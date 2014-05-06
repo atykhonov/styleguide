@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2014-05-06T16:36:20+01:00</updated><entry><title>Testing</title><link href="/testing.html" rel="alternate"></link><updated>2014-05-06T16:36:20+01:00</updated><author><name>Chevah Team</name></author><id>tag:,2014-05-06:testing.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Chevah Style Guide</title><link>/</link><description></description><atom:link href="http://styleguide.chevah.com/feeds/.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 06 May 2014 16:36:20 +0100</lastBuildDate><item><title>Testing</title><link>/testing.html</link><description>&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#types-of-tests" id="id1"&gt;Types of tests&lt;/a&gt;&lt;ul&gt;
@@ -752,7 +752,7 @@ validation all the time.
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Bash</title><link href="/bash.html" rel="alternate"></link><updated>2014-05-06T16:36:20+01:00</updated><author><name>Chevah Team</name></author><id>tag:,2014-05-06:bash.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Chevah Team</dc:creator><pubDate>Tue, 06 May 2014 16:36:20 +0100</pubDate><guid>tag:,2014-05-06:testing.html</guid></item><item><title>Bash</title><link>/bash.html</link><description>&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -916,7 +916,7 @@ procedure1&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>CSS, LESS and Styles</title><link href="/css.html" rel="alternate"></link><updated>2014-05-06T16:36:20+01:00</updated><author><name>Chevah Team</name></author><id>tag:,2014-05-06:css.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Chevah Team</dc:creator><pubDate>Tue, 06 May 2014 16:36:20 +0100</pubDate><guid>tag:,2014-05-06:bash.html</guid></item><item><title>CSS, LESS and Styles</title><link>/css.html</link><description>&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#css-syntax-elements" id="id1"&gt;CSS Syntax Elements&lt;/a&gt;&lt;/li&gt;
@@ -1082,7 +1082,7 @@ product-name {
     }
 &lt;/pre&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Generic</title><link href="/generic.html" rel="alternate"></link><updated>2014-05-06T16:36:20+01:00</updated><author><name>Chevah Team</name></author><id>tag:,2014-05-06:generic.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Chevah Team</dc:creator><pubDate>Tue, 06 May 2014 16:36:20 +0100</pubDate><guid>tag:,2014-05-06:css.html</guid></item><item><title>Generic</title><link>/generic.html</link><description>&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -1338,7 +1338,7 @@ log_file
     that can be set.
 &lt;/pre&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>HTML, XML and other markups</title><link href="/html.html" rel="alternate"></link><updated>2014-05-06T16:36:20+01:00</updated><author><name>Chevah Team</name></author><id>tag:,2014-05-06:html.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Chevah Team</dc:creator><pubDate>Tue, 06 May 2014 16:36:20 +0100</pubDate><guid>tag:,2014-05-06:generic.html</guid></item><item><title>HTML, XML and other markups</title><link>/html.html</link><description>&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -1424,7 +1424,7 @@ You want the browser to load the footer before a table full of data.):&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>JavaScript</title><link href="/javascript.html" rel="alternate"></link><updated>2014-05-06T16:36:20+01:00</updated><author><name>Chevah Team</name></author><id>tag:,2014-05-06:javascript.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Chevah Team</dc:creator><pubDate>Tue, 06 May 2014 16:36:20 +0100</pubDate><guid>tag:,2014-05-06:html.html</guid></item><item><title>JavaScript</title><link>/javascript.html</link><description>&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -1801,7 +1801,7 @@ BAD : $('#element_id').attr('src': 'some/red_dot.png');
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Library</title><link href="/library.html" rel="alternate"></link><updated>2014-05-06T16:36:20+01:00</updated><author><name>Chevah Team</name></author><id>tag:,2014-05-06:library.html</id><summary type="html">&lt;p&gt;These page contain a list of talking about life, programming craftsmanship,
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Chevah Team</dc:creator><pubDate>Tue, 06 May 2014 16:36:20 +0100</pubDate><guid>tag:,2014-05-06:javascript.html</guid></item><item><title>Library</title><link>/library.html</link><description>&lt;p&gt;These page contain a list of talking about life, programming craftsmanship,
 good/clean code and many more. The list is in random order:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416"&gt;Extreme Programming Explained: Embrace Change&lt;/a&gt;
@@ -1819,7 +1819,7 @@ good/clean code and many more. The list is in random order:&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/dp/1936719118"&gt;Anything You Want&lt;/a&gt;
 (ISBN: 978-1936719112) by Derek Sivers, published June 29, 2011.&lt;/li&gt;
 &lt;/ul&gt;
-</summary></entry><entry><title>Overview</title><link href="//index.html" rel="alternate"></link><updated>2014-05-06T16:36:20+01:00</updated><author><name>Chevah Team</name></author><id>tag:,2014-05-06:/index.html</id><summary type="html">&lt;p&gt;These pages describe the style and other guides used in Chevah project.
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Chevah Team</dc:creator><pubDate>Tue, 06 May 2014 16:36:20 +0100</pubDate><guid>tag:,2014-05-06:library.html</guid></item><item><title>Overview</title><link>//index.html</link><description>&lt;p&gt;These pages describe the style and other guides used in Chevah project.
 They also include some notes about the whole software development
 process.&lt;/p&gt;
 &lt;p&gt;The content might be pedantic, but we hope that by following these guide
@@ -1838,7 +1838,7 @@ can do that over email, or adding an issue or pull request on
 &lt;p&gt;We try to automatically check these rules using &lt;a class="reference external" href="https://launchpad.net/pocket-lint/"&gt;pocket-lint&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This is a collection of programming craftsmanship recommendations and ideas.
 Please let us know if we fail to properly cite the source.&lt;/p&gt;
-</summary></entry><entry><title>Python</title><link href="/python.html" rel="alternate"></link><updated>2014-05-06T16:36:20+01:00</updated><author><name>Chevah Team</name></author><id>tag:,2014-05-06:python.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Chevah Team</dc:creator><pubDate>Tue, 06 May 2014 16:36:20 +0100</pubDate><guid>tag:,2014-05-06:/index.html</guid></item><item><title>Python</title><link>/python.html</link><description>&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -2141,7 +2141,7 @@ line ending with comma.&lt;/li&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>References</title><link href="/references.html" rel="alternate"></link><updated>2014-05-06T16:36:20+01:00</updated><author><name>Chevah Team</name></author><id>tag:,2014-05-06:references.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Chevah Team</dc:creator><pubDate>Tue, 06 May 2014 16:36:20 +0100</pubDate><guid>tag:,2014-05-06:python.html</guid></item><item><title>References</title><link>/references.html</link><description>&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -2181,7 +2181,7 @@ line ending with comma.&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://github.com/necolas/idiomatic-css"&gt;Idiomatic CSS&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Release process</title><link href="/release-process.html" rel="alternate"></link><updated>2014-05-06T16:36:20+01:00</updated><author><name>Chevah Team</name></author><id>tag:,2014-05-06:release-process.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Chevah Team</dc:creator><pubDate>Tue, 06 May 2014 16:36:20 +0100</pubDate><guid>tag:,2014-05-06:references.html</guid></item><item><title>Release process</title><link>/release-process.html</link><description>&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -2311,7 +2311,7 @@ INFO FOR PREVIOUS RELEASE.
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Review</title><link href="/review.html" rel="alternate"></link><updated>2014-05-06T16:36:20+01:00</updated><author><name>Chevah Team</name></author><id>tag:,2014-05-06:review.html</id><summary type="html">&lt;p&gt;This page discuss the code/changes review process as both the person
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Chevah Team</dc:creator><pubDate>Tue, 06 May 2014 16:36:20 +0100</pubDate><guid>tag:,2014-05-06:release-process.html</guid></item><item><title>Review</title><link>/review.html</link><description>&lt;p&gt;This page discuss the code/changes review process as both the person
 who requests a reviewer and a person who checks a review.&lt;/p&gt;
 &lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
@@ -2599,7 +2599,7 @@ either just reject the review, or trigger a test and wait for results.
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Work</title><link href="/work.html" rel="alternate"></link><updated>2014-05-06T16:36:20+01:00</updated><author><name>Chevah Team</name></author><id>tag:,2014-05-06:work.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Chevah Team</dc:creator><pubDate>Tue, 06 May 2014 16:36:20 +0100</pubDate><guid>tag:,2014-05-06:review.html</guid></item><item><title>Work</title><link>/work.html</link><description>&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -2741,4 +2741,4 @@ emails instead of deleting them.&lt;/p&gt;
 &lt;a class="reference external" href="http://hoppycow.com/2012/12/26/what-its-like-to-work-future-style/"&gt;http://hoppycow.com/2012/12/26/what-its-like-to-work-future-style/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary></entry></feed>
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Chevah Team</dc:creator><pubDate>Tue, 06 May 2014 16:36:20 +0100</pubDate><guid>tag:,2014-05-06:work.html</guid></item></channel></rss>
