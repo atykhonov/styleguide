@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <title>Generic • Chevah Style Guide</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="/theme/css/chevah.css">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
+
+    <link rel="shortcut icon" href="/theme/img/favicon.png" />
+    <link rel="shortcut icon" href="/theme/img/favicon.ico" />
+
+    <meta name="coypright" content="Chevah Team" />
+    <meta name="revisit-after" content="5 days" />
+    <meta name="language" content="en, English" />
+    <meta name="distribution" content="global" />
+    <meta name="robots" content="nofollow, noindex" />
+
+  </head>
+<body>
+
+    <div class="header">
+      <header role="banner">
+        <hgroup>
+          <h1><a href="/">Chevah</a></h1>
+          <h2>StyleGuide&nbsp;Documentation</h2>
+        </hgroup>
+        <nav role="navigation">
+          <ul class="nav">
+            <li>
+              <a href="http://www.chevah.com">Chevah Project </a>
+            </li>
+            <li>
+              <a class="active" href="http://styleguide.chevah.com">
+                Style Guide
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <div class="main">
+
+<nav class="subnav" title="subnav">
+  <ul>
+      <li>
+        <a class="" href="/index.html">
+          Overview
+        </a>
+      </li>
+      <li>
+        <a class="active" href="generic.html">
+          Generic
+        </a>
+      </li>
+      <li>
+        <a class="" href="css.html">
+          CSS, LESS and Styles
+        </a>
+      </li>
+      <li>
+        <a class="" href="work.html">
+          Work
+        </a>
+      </li>
+      <li>
+        <a class="" href="html.html">
+          HTML, XML and other markups
+        </a>
+      </li>
+      <li>
+        <a class="" href="release-process.html">
+          Release process
+        </a>
+      </li>
+      <li>
+        <a class="" href="testing.html">
+          Testing
+        </a>
+      </li>
+      <li>
+        <a class="" href="review.html">
+          Review
+        </a>
+      </li>
+      <li>
+        <a class="" href="python.html">
+          Python
+        </a>
+      </li>
+      <li>
+        <a class="" href="javascript.html">
+          JavaScript
+        </a>
+      </li>
+      <li>
+        <a class="" href="bash.html">
+          Bash
+        </a>
+      </li>
+      <li>
+        <a class="" href="library.html">
+          Library
+        </a>
+      </li>
+      <li>
+        <a class="" href="references.html">
+          References
+        </a>
+      </li>
+
+  </ul>
+</nav>
+      <article role="main">
+        <header>
+          <h1>Generic</h1>
+        </header>
+
+        <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#general" id="id1">General</a></li>
+<li><a class="reference internal" href="#comments" id="id2">Comments</a></li>
+<li><a class="reference internal" href="#exceptions-handling" id="id3">Exceptions handling</a></li>
+<li><a class="reference internal" href="#project-specific" id="id4">Project specific</a></li>
+</ul>
+</div>
+<div class="section" id="general">
+<h2><a class="toc-backref" href="#id1">General</a></h2>
+<p>The content of this website is intended to help new team members understand
+the direction of our team.</p>
+<p>It also helps novice and advance beginners by providing a set of simple rules.
+Anyone should read this as best practice and provide feedback in case
+something is wrong.</p>
+<ul class="simple">
+<li>Rule #1: Keep it DRY! Don't repeat yourself!</li>
+<li>Rule #2: KISS - Keep it simple, stupid simple!</li>
+<li>All code in any code-base should look like a single person typed it, no
+matter how many people contributed.</li>
+<li>No single person is responsible for a part of the code. We write code
+together, we take the blame together, we take the glory together.
+Once a code was approved for review, reviewers are also responsible for
+that code.</li>
+<li>Write all code as it will be written once and read thousand times.
+Write code for maximum readability.</li>
+<li>When you need a trade-off between readability and code duplication, choose
+to have a code less readable but without duplication.</li>
+<li>Write code as it will be used by humans, not a machine. You are not a
+a compiler / interpretor.</li>
+<li>Optimization should come second and only if really needed. Don't Use clever
+tricks and other optimization to early.</li>
+<li>Do the simplest thing that could possibly work and do it well.
+Always work on the story you have, not something you think we're going to
+need sometime in the future.
+Don't try implement all usecases you can think of and end with poorly
+designed code and poorly tested code.</li>
+<li>Try to keep methods as flat as possible and return as soon as possible.</li>
+<li>Don't use abbreviation. Use full, meaningful names.</li>
+<li>Don't use tabs for indentation, and in general don't use tabs for anything
+else. The only exceptions are the Makefiles.</li>
+<li>Favor indentation using 4 spaces. For deep nested languages (HTML, JS) it
+is OK to use 2 spaces.</li>
+<li>Maximum line length is 78 characters.</li>
+<li>Don't mix multiple languages in a single file.</li>
+<li>No need for the ultimate purism, when using / calling code from external
+libraries it is OK if those calls don't comply with coding convention.</li>
+<li>When extending external libraries use the coding convention used by that
+library. It might be harder to define the border of those changes but this
+should help with sending patches upstream.</li>
+<li>When reporting a code related problem, use
+<a class="reference external" href="http://sscce.org">Short, Self Contained, Correct (Compilable), Example</a></li>
+</ul>
+<ul>
+<li><p class="first">Each repository / project will have a README file describing why it exists
+and what it should do.
+The README should also include notes about contributing to the project.</p>
+</li>
+<li><p class="first">Each repository will have a LICENSE and AUTHORS files.</p>
+</li>
+<li><p class="first">Technical dept comments (ex FIXME, TODO) will always have an attached
+ticket ID and will use the following format. Only <strong>FIXME</strong> marker is used
+followed by ticket ID. Comments will come on a new lines.
+Adapt this to the style of comments use in the specific language, but
+is important to keep the <strong>FIXME:123:</strong> marker.:</p>
+<pre class="literal-block">
+# FIXME:1234:
+# Details about this tech-dept. Ex: Can only be fixed when full moon.
+</pre>
+</li>
+<li><p class="first">Words are an important part of how software works.
+Even though there may be dozens of people creating a product, reading
+comments, documentation, notes etc, it should still sound like we speak
+in one consistent voice.</p>
+</li>
+<li><p class="first">When writing text for the documentation or text that appears in the
+program favour classy over cute or mechanical.
+Respect the reader, act more like a human and less like a computer,
+and use fewer words:</p>
+<pre class="literal-block">
+Instead of:
+
+Successfully deleted the #{branch_name} branch.
+
+Try something like:
+
+The #{branch_name} branch has been deleted.
+</pre>
+</li>
+<li><p class="first">Use a graphical commit tool (<tt class="docutils literal">git gui</tt> or <tt class="docutils literal">gitg</tt>) for doing the commit.
+In this way you can split the changes in multiple commits and you can also
+do a first review just before the commit.</p>
+</li>
+<li><p class="first">When you don't understand something related to security, don't just walk
+by and ignore it. Try to understand what is happening there, or ask
+someone else to take a look or to explain it to you.</p>
+</li>
+<li><p class="first">Don't abuse inheritance and favour composition and delegation.</p>
+</li>
+<li><p class="first">Write code so that it can be read / used by developers having a work
+style different than yours. Don't add IDE / text editor specific things
+Don't assume that other developer will use the same IDE / text editor,
+fancy keyboard (or foot pedals), array of huge monitors...</p>
+</li>
+<li><p class="first">When you have a non-trivial conditional expression (logical condition from
+an if statement), break it in smaller sub-conditionals.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span class="c"># Long conditional which is not that bad.</span>
+<span class="k">if</span> <span class="p">((</span><span class="n">source</span><span class="o">.</span><span class="n">length</span> <span class="o">&lt;</span> <span class="n">source</span><span class="o">.</span><span class="n">MAX_SIZE</span><span class="p">)</span> <span class="ow">and</span>
+    <span class="p">(</span><span class="n">destination</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="n">ACTIVE</span><span class="p">)</span> <span class="ow">and</span>
+    <span class="p">(</span><span class="n">destination</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="n">PAUSED</span><span class="p">)):</span>
+  <span class="n">do_domething</span><span class="p">()</span>
+
+<span class="c"># But can be better.</span>
+<span class="n">source_not_full</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">length</span> <span class="o">&lt;</span> <span class="n">source</span><span class="o">.</span><span class="n">MAX_SIZE</span>
+<span class="n">destination_available</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="n">destination</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="n">ACTIVE</span><span class="p">)</span> <span class="ow">and</span>
+    <span class="p">(</span><span class="n">destination</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="n">PAUSED</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="k">if</span> <span class="n">source_available</span> <span class="o">&amp;&amp;</span> <span class="n">destination_available</span><span class="p">:</span>
+  <span class="n">do_something</span><span class="p">()</span>
+
+<span class="c"># Or even better.</span>
+<span class="k">class</span> <span class="nc">Source</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+  <span class="n">MAX_SIZE</span> <span class="o">=</span> <span class="mi">10</span>
+  <span class="nd">@property</span>
+  <span class="k">def</span> <span class="nf">full</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">MAX_SIZE</span>
+
+<span class="k">class</span> <span class="nc">Destination</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+  <span class="n">ACTIVE</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">PAUSED</span> <span class="o">=</span> <span class="mi">2</span>
+  <span class="n">STOPPED</span> <span class="o">=</span> <span class="mi">3</span>
+  <span class="n">FAILDED</span> <span class="o">=</span> <span class="mi">4</span>
+
+  <span class="nd">@property</span>
+  <span class="k">def</span> <span class="nf">ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">(</span><span class="n">destination</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ACTIVE</span><span class="p">)</span> <span class="ow">and</span>
+      <span class="p">(</span><span class="n">destination</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PAUSED</span><span class="p">)</span>
+      <span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">source</span><span class="o">.</span><span class="n">full</span> <span class="ow">and</span> <span class="n">destination</span><span class="o">.</span><span class="n">ready</span><span class="p">:</span>
+  <span class="n">do_something</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="comments">
+<h2><a class="toc-backref" href="#id2">Comments</a></h2>
+<ul>
+<li><p class="first">All comments should be valid sentences and should end with a full stop (.).</p>
+</li>
+<li><p class="first">Try to write code so that it speak for itself and so that a comment is not
+required.</p>
+</li>
+<li><p class="first">Try to name variables, methods, function so that they communicate their
+intend. A comment is only attached to the place where the name is defined,
+and not present in all other multiple places where it is used. IDE can help,
+but we should not rely on that.</p>
+<p>When a comment is required is like saying: I have no idea for a better name
+for this thing, so here is my poor comment. Good luck with figuring the
+intend of this name when you see the it in the rest of this file.</p>
+</li>
+<li><p class="first">Well commented code is extremely important. Take time to describe
+components, how they work, their limitations, and the way they are
+constructed. Don't leave others in the team guessing as to the purpose
+of uncommon or non-obvious code.</p>
+</li>
+<li><p class="first">Place comments on a new line above their subject.</p>
+</li>
+<li><p class="first">Avoid end of line comments. End of line comments can be used for lint
+ignores and other hints for automated tools... but not for humans.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="exceptions-handling">
+<h2><a class="toc-backref" href="#id3">Exceptions handling</a></h2>
+<p>Here are some simple generic rules for working with exceptions.</p>
+<p>In Chevah project we use 2 major &quot;kinds&quot; of exceptions:</p>
+<ul class="simple">
+<li><cite>Errors</cite> are top level exceptions that are not going to be handled
+internally by the package / library.</li>
+<li><cite>Exceptions</cite> normal exceptions, passed inside the package/library to signal
+various conditions. The public API for the package/library should not raise
+this kind of exceptions.</li>
+</ul>
+<p>Exceptions can take any format, and most of the time they can contain only
+a text with some details about the error. These exceptions are low level
+and should be raised in simple conditions.</p>
+<p>Errors should have an unique ID and a data attribute.
+Each ID should be raised from a single place.
+The data attribute is a dictionary with key / values that make sense for the
+error.</p>
+</div>
+<div class="section" id="project-specific">
+<h2><a class="toc-backref" href="#id4">Project specific</a></h2>
+<ul class="simple">
+<li>Each log message should be documented, listing format, introduction version,
+version since it was obsolete, log type, conditions in which it is raised
+and other informations that can be useful for users.</li>
+<li>A logging messages should only be called from a single place in the code.
+This will greatly help with support and debugging.</li>
+<li>A logging message should have a unique ID. This will help the support team
+by pointing a specific event. It will also help when localized logs are
+used.</li>
+<li>If a logging message should be issued from multiple places, move the
+logging call into a dedicated helper method. This will help with
+automatic detection of accidentally using same message ID for different
+logs.</li>
+<li>Components should not issue logging messages that are outside of
+theirs scope, but rather use exceptions to pass the log informations.</li>
+<li>If there are no other options, rather than directly issuing a logging
+message, the component should call a function located in the component
+that 'owns' the log ID that will issue the log.</li>
+<li>All branches will need to use the following convention:
+<tt class="docutils literal"><span class="pre">TICKETNO-SHORT_DESCRIPTION</span></tt>. By having a reference to a ticket, it will
+be much easier to track and keep a record of branch purpose and its
+development.</li>
+</ul>
+<p>Example:</p>
+<pre class="literal-block">
+447-add_sqlite_log
+</pre>
+<ul class="simple">
+<li>Each user configuration options should be documented,
+listing valid values, place where the configuration is located,
+introduction version, version since it was obsolete,
+together with a description of the purpose and effect.</li>
+<li>Configuration options will be documented using the following format. Please
+note the order in which fields are defined, the name of the files and the
+format for declaring possible values. All fields should be present, and
+if no value is defined, use 'None' or leave it blank.</li>
+</ul>
+<pre class="literal-block">
+log_file
+--------
+
+:Optional: Yes
+:Default value: `log/server.log`
+:Values: * `some value`
+         * `other value` - short description or this value.
+         * `yet another value`
+:Available from version: 1.6.0
+:Available up to version: 2.0.3
+:Description:
+    This is the long description of the configuration option. It can
+    span multiple lines.
+
+    It can also span multiple paragraph.
+
+    This should be the place to describe in details available values
+    that can be set.
+</pre>
+</div>
+
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer_inner">
+        <div class="row">
+          <address class="vcard">
+            <strong>Contact</strong>
+            main site: <a class="fn org url" href="http://www.chevah.com">Chevah Team</a><br>
+            email: <a class="email" href="mailto:contact@chevah.com">contact@chevah.com</a>
+        </div>
+        <div class="row">
+          <aside class="social" title="Check our GitHub repositories.">
+            Check the source of this site at <a href="http://github.com/chevah/styleguide">chevah/styleguide</a>
+            on GitHub.
+            Check our other repositories on <a href="http://github.com/chevah">GitHub</a>.
+          </aside>
+
+          <div class="terms">
+            &copy; Chevah Project. Content under Public Domain License.
+          </div>
+        </div>
+      </div>
+    </footer>  </body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <title>Review • Chevah Style Guide</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="/theme/css/chevah.css">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
+
+    <link rel="shortcut icon" href="/theme/img/favicon.png" />
+    <link rel="shortcut icon" href="/theme/img/favicon.ico" />
+
+    <meta name="coypright" content="Chevah Team" />
+    <meta name="revisit-after" content="5 days" />
+    <meta name="language" content="en, English" />
+    <meta name="distribution" content="global" />
+    <meta name="robots" content="nofollow, noindex" />
+
+  </head>
+<body>
+
+    <div class="header">
+      <header role="banner">
+        <hgroup>
+          <h1><a href="/">Chevah</a></h1>
+          <h2>StyleGuide&nbsp;Documentation</h2>
+        </hgroup>
+        <nav role="navigation">
+          <ul class="nav">
+            <li>
+              <a href="http://www.chevah.com">Chevah Project </a>
+            </li>
+            <li>
+              <a class="active" href="http://styleguide.chevah.com">
+                Style Guide
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <div class="main">
+
+<nav class="subnav" title="subnav">
+  <ul>
+      <li>
+        <a class="" href="/index.html">
+          Overview
+        </a>
+      </li>
+      <li>
+        <a class="" href="generic.html">
+          Generic
+        </a>
+      </li>
+      <li>
+        <a class="" href="css.html">
+          CSS, LESS and Styles
+        </a>
+      </li>
+      <li>
+        <a class="" href="work.html">
+          Work
+        </a>
+      </li>
+      <li>
+        <a class="" href="html.html">
+          HTML, XML and other markups
+        </a>
+      </li>
+      <li>
+        <a class="" href="release-process.html">
+          Release process
+        </a>
+      </li>
+      <li>
+        <a class="" href="testing.html">
+          Testing
+        </a>
+      </li>
+      <li>
+        <a class="active" href="review.html">
+          Review
+        </a>
+      </li>
+      <li>
+        <a class="" href="python.html">
+          Python
+        </a>
+      </li>
+      <li>
+        <a class="" href="javascript.html">
+          JavaScript
+        </a>
+      </li>
+      <li>
+        <a class="" href="bash.html">
+          Bash
+        </a>
+      </li>
+      <li>
+        <a class="" href="library.html">
+          Library
+        </a>
+      </li>
+      <li>
+        <a class="" href="references.html">
+          References
+        </a>
+      </li>
+
+  </ul>
+</nav>
+      <article role="main">
+        <header>
+          <h1>Review</h1>
+        </header>
+
+        <p>This page discuss the code/changes review process as both the person
+who requests a reviewer and a person who checks a review.</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#general" id="id1">General</a></li>
+<li><a class="reference internal" href="#for-person-requesting-a-review" id="id2">For person requesting a review</a><ul>
+<li><a class="reference internal" href="#review-request-message" id="id3">Review request message</a></li>
+<li><a class="reference internal" href="#merge-your-branch" id="id4">Merge your branch</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#for-person-reviewing-changes" id="id5">For person reviewing changes</a><ul>
+<li><a class="reference internal" href="#reviewer-s-check-list" id="id6">Reviewer's check list</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="general">
+<h2><a class="toc-backref" href="#id1">General</a></h2>
+<ul class="simple">
+<li>The goal of a review is to eliminate as many defects as possible,
+regardless of who &quot;caused&quot; the error. Branch driver and reviews work
+together to achieve this goal.</li>
+<li>The review process is a very efficient form of pair-programming ...
+<a class="reference external" href="http://whenarewehavingcake.tumblr.com/post/23507389861">and is not this kind of pair programming</a>.</li>
+<li>Branch driver is the person (or persons) requesting the review and
+responsible for implementing changes during review.</li>
+<li>Reviewer is the person responsible for checking the code or changes.</li>
+<li>The review process is first class citizen of the Quality Assurance process.</li>
+<li>Each defect found during a review is an opportunity to improve the code.
+Every defect found and fixed in peer review is a defect that a customer
+never sees and another problem that support doesn't have to spend time
+tracking down.</li>
+<li>The branch driver is responsible for getting his/her branch approved. In
+case a branch review is delayed, the branch driver should contact the
+reviewers and urge the review.</li>
+<li>While the main purpose of a review is to assert the quality of the changes,
+the review is at the same time a learning, growing, and communication
+experience.</li>
+<li>Try to observe good things from other team members and feel free to comment
+and let others know about how you think that things can be improved.</li>
+<li>Ideally you will have many small merge requests, because the bigger they
+get, the more costly they are - now and in the future.</li>
+<li>One merge request should do one thing only.</li>
+<li>The target for a small request is no more than 400 touched lines
+(added + removed).</li>
+<li>When you do a refactoring and you need to rename something in many files,
+do it in a dedicated branch which only deals with the renaming.
+This will help a lot with the review. Land your changed with the ugly
+names and then do a follow-up branch for the renaming.</li>
+<li>Feel free to submit as many merge request as you can. There is a problem
+with the size of a merge request, not with their number :).</li>
+<li>Some reasons for keeping the merge requests small:<ul>
+<li>Large changes are much more likely to do many things.</li>
+<li>It's harder to understand them.</li>
+<li>It's harder to review them.</li>
+<li>It's harder to inspect the main branch to find the merge that
+introduced a bug.</li>
+<li>It's more likely to break the build.</li>
+<li>It's harder to cherry pick code for backporting / supporting old releases.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="for-person-requesting-a-review">
+<h2><a class="toc-backref" href="#id2">For person requesting a review</a></h2>
+<ul class="simple">
+<li>Once a task/ticket is done, it should be submitted for review.</li>
+<li><strong>All</strong> changes should be reviewed prior to be merged or released.</li>
+<li>Before requesting a review you should run a full test on your local
+computer and on all supported platforms.
+Just run <tt class="docutils literal">paver test_remote all</tt> and Buildbot and GitHub will work
+together to display the results.</li>
+<li>Before passing the review to others, take another careful look at your work
+and perform a first review yourself.
+Check that all changes are described together with their attached test
+cases.
+It is very important to have a good review request message as it will
+help reviewers understand what you have done.</li>
+<li>Check the <strong>Reviewer's check list</strong> since those are the things that a
+reviewer will check for sure.</li>
+<li>For Trac: A review request is created by adding the comment and then
+setting the state to 'needs_review'.
+(<strong>don't use keywords</strong>, we are using a strict ticket
+work-flow so use the ticket action form).</li>
+<li>For GitHub: A review request is created using <strong>GitHub Pull requests</strong>.</li>
+<li>When submitting a review for changes not planed in the current milestone,
+update the milestone to the current one. Don't leave the old milestone.</li>
+<li>You can start writing your review request as soon as you start coding on a
+branch. There is no need to wait for feature to be fully implemented and
+tests to pass.
+Writing a review request early, will help you to organize and explain
+the work that you plan to do on the branch.</li>
+<li>When the review is ready to be sent to reviewers, leave a comment
+containing the <strong>needs-review</strong> marker word. It will trigger the review
+request process.</li>
+<li>GitHub inline comments are great, and you can add them to help with the
+initial review request. Just <strong>don't abuse them</strong>!
+Think twice before adding an initial inline comment for the review.
+Ask yourself why that comments is needed and why that line is not
+clear. Maybe adding a comment in the code would avoid the
+need for the GitHub inline comment.</li>
+<li>During a review, the reviewer might request changes. You can solve
+the request by either changing the code, or adding a comment with
+the reason why you don't want to change the code. After all requests
+are solved, leave a <strong>new</strong>, separate, comment containing the keyword
+<strong>needs-review</strong> . This will let reviewers know that you are done and that
+they can check the latest changes.</li>
+<li>Make sure that review request message is always up to date with latest
+changes.
+If during the review new changes are made or new test cases are discovered,
+don't forget to update the initial review request message to include a
+summary of these changes.</li>
+<li>The &quot;How to test the changes&quot; section should include <strong>ALL</strong> test cases
+done during the review. If a reviewer is following a test case not described
+in the initial request message, it should update the review message with
+the new test case.</li>
+</ul>
+<div class="section" id="review-request-message">
+<h3><a class="toc-backref" href="#id3">Review request message</a></h3>
+<p>When submitting a ticket for review, the review request should contain the
+following message (added to the ticket description):</p>
+<pre class="literal-block">
+{{ '{{{' }}
+#!rst
+
+Problem description
+===================
+
+Describe the problem that these changes wants to solve.
+This content should be created when a ticket is submitted and just link
+the ticket or copy paste the ticket description... or find a way for
+linking this review to a ticket.
+
+depends-on #123 #124
+
+
+Why we got into this (5 whys)
+=============================
+
+Mainly used for bugs. Can be removed for tasks or new features.
+
+Describe why we got this problem in the first place. What went wrong.
+Repeatedly ask the question “Why” (up to 5 times) to determine the
+cause of this problem.
+
+
+Changes description
+===================
+
+Describe how the problem was fixed.
+List **all** changes made.
+
+List all changes for which an *ideal* solution was not found. Describe
+the current solution.
+
+What was not done yet and link to the ticket for the still to do work.
+
+
+How to try and test the changes
+===============================
+
+reviewers &#64;some-dude &#64;another-dude
+
+How the changes can be tested and verified by team members.
+
+
+Title for first test case
+-------------------------
+
+For end-user changes, how the changes can be tested and verified by
+our users.
+
+List the steps to follow for checking that everything is OK.
+
+Explicitly state the expected results.
+{{ '}}}' }}
+</pre>
+<ul>
+<li><p class="first">For GitHub review requests, <strong>add the merge commit message as the pull
+request title</strong>. The message should include the ticket ID number.
+Example of merge commit message:</p>
+<pre class="literal-block">
+[#1234] What was done in this branch.
+</pre>
+</li>
+<li><p class="first">The commit message should be on a single line and preferable under 100
+characters. The message should be a clearly articulated phrase, summarizing
+changes done in the branch. Further details about the changes can go in
+the release notes or review request body.</p>
+</li>
+<li><p class="first">Add the list of persons who should review the branch, using a
+line starting with <strong>reviewers</strong> and followed by GitHub names or each
+reviewer prefixed with <strong>&#64;</strong>.</p>
+</li>
+<li><p class="first">If required, using <strong>depends-on</strong> marker, add the list of reviews on which
+this review depends and blocks the merge of this branch.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="merge-your-branch">
+<h3><a class="toc-backref" href="#id4">Merge your branch</a></h3>
+<p>After the merge request and review was approved you need to merge your branch
+into master.</p>
+<p>After your review request was approved, you can send you branch got PQM
+for automatic testing and merging. Use the following command:</p>
+<pre class="literal-block">
+paver pqm GITHUB_PULL_REQUEST_ID
+</pre>
+<p>The PQM will check your branch and if it passed all tests, it will be merged
+and pushed to master.</p>
+<p>If PQM is not enabled for the repo, you will need to do a manual merge.</p>
+<p>When doing manual merge using git, use squash merge and don't use the
+default commit message. Here is a sample command for merging branch
+&quot;1234-what-was-done&quot;:</p>
+<pre class="literal-block">
+git checkout master
+git merge --no-commit --squash 1234-what-was-done
+git commit -a -m &quot;[#1234] What was done in this branch.&quot;
+</pre>
+<p>It is recommended to define a git alias for <cite>merge --no-commit --squash</cite>.</p>
+<p>A merge commit should have a commit message, in the format:</p>
+<pre class="literal-block">
+[#1234] What was done in this branch.
+</pre>
+<ul class="simple">
+<li><strong>#1234</strong> is the ticket number for this branch. It is used to get more
+details about branch work and review. It can also be used to associate a
+commit to a ticket / branch / review / task and check the history/story of
+that commit.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="for-person-reviewing-changes">
+<h2><a class="toc-backref" href="#id5">For person reviewing changes</a></h2>
+<ul class="simple">
+<li>Aim for a code inspection rate of fewer than 300 – 500 LOC per hour. This
+does not apply to QA team members for which, reviewing changes is the main
+activity.</li>
+<li>Take enough time for a proper, slow review, but not more than 60–90 minutes.
+Take a big break between reviews.</li>
+<li>You should always spend at least five minutes reviewing code, even if it's
+just one line. Often, a single line or small changes can have major
+impact throughout the whole system, and it's worth the five minutes to
+think through the possible effects that a change could have.</li>
+<li>The only quality metric of good work / code is <strong>WTF/s</strong>. While doing
+the review you are encouraged to keep track of all your first
+contact / view / read impressions and report them in the review feedback.</li>
+<li>Follow procedure recommended in the &quot;How to try and test the changes&quot;
+section, record environment, steps and results and share them through
+a comment.</li>
+<li>In case of errors, leave a comment describing what tests were run, the
+exact steps you took and the actual results.</li>
+<li>If the work is good, you can request the code to be merged by the author
+by setting the state to needs_merge in Trac.</li>
+<li>If the work is good and GitHub pull request was used, leave a comment on
+the pull request page with a line starting with <strong>approved-at 342d345</strong>,
+where <strong>342d345</strong> is the revision at which the branch was approved.</li>
+<li>If no merge is required you can close the ticket as solved.</li>
+<li>If minor changes are required, and they are easy to fix, you cat try to fix
+them. Commit the changes and approve the review at your revision.</li>
+<li>If changes are required, you put the ticket in the <strong>needs-changes</strong> state
+and assign the ticket to the person who can make the required changes.
+When working with GitHub you can request changed by adding
+the <strong>needs-changes</strong> marker word in a comment.</li>
+<li>Don't spend to much time on a review request if it is not clear enough and
+you don't know exactly what to do and how to test.
+This is a problem with the review request and it <cite>needs changes</cite>.</li>
+</ul>
+<div class="section" id="reviewer-s-check-list">
+<h3><a class="toc-backref" href="#id6">Reviewer's check list</a></h3>
+<ul class="simple">
+<li>Does the <strong>new</strong> changes comply with latest styleguide ?</li>
+<li>Does the code have tests for new code?</li>
+<li>Does the merge commit message describes what is done by this branch?</li>
+<li>Does the branch name starts with the Trac ticket ID.</li>
+<li>Does <strong>all</strong> tests pass? Does GitHub say that the branch is
+<strong>Good to merge</strong>?</li>
+<li>If there is no <tt class="docutils literal">paver test_remote all</tt> for the latest code, you can
+either just reject the review, or trigger a test and wait for results.
+<strong>Never</strong> approve a code that is not passing the tests.</li>
+<li>Is there a release notes entry for changes?</li>
+<li>Is there documentation for changes? Does the documentation make sense?</li>
+<li>Are the new event documented?</li>
+<li>Are the removed events documented?</li>
+</ul>
+</div>
+</div>
+
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer_inner">
+        <div class="row">
+          <address class="vcard">
+            <strong>Contact</strong>
+            main site: <a class="fn org url" href="http://www.chevah.com">Chevah Team</a><br>
+            email: <a class="email" href="mailto:contact@chevah.com">contact@chevah.com</a>
+        </div>
+        <div class="row">
+          <aside class="social" title="Check our GitHub repositories.">
+            Check the source of this site at <a href="http://github.com/chevah/styleguide">chevah/styleguide</a>
+            on GitHub.
+            Check our other repositories on <a href="http://github.com/chevah">GitHub</a>.
+          </aside>
+
+          <div class="terms">
+            &copy; Chevah Project. Content under Public Domain License.
+          </div>
+        </div>
+      </div>
+    </footer>  </body>
+</html>

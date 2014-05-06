@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <title>Python • Chevah Style Guide</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="/theme/css/chevah.css">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
+
+    <link rel="shortcut icon" href="/theme/img/favicon.png" />
+    <link rel="shortcut icon" href="/theme/img/favicon.ico" />
+
+    <meta name="coypright" content="Chevah Team" />
+    <meta name="revisit-after" content="5 days" />
+    <meta name="language" content="en, English" />
+    <meta name="distribution" content="global" />
+    <meta name="robots" content="nofollow, noindex" />
+
+  </head>
+<body>
+
+    <div class="header">
+      <header role="banner">
+        <hgroup>
+          <h1><a href="/">Chevah</a></h1>
+          <h2>StyleGuide&nbsp;Documentation</h2>
+        </hgroup>
+        <nav role="navigation">
+          <ul class="nav">
+            <li>
+              <a href="http://www.chevah.com">Chevah Project </a>
+            </li>
+            <li>
+              <a class="active" href="http://styleguide.chevah.com">
+                Style Guide
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <div class="main">
+
+<nav class="subnav" title="subnav">
+  <ul>
+      <li>
+        <a class="" href="/index.html">
+          Overview
+        </a>
+      </li>
+      <li>
+        <a class="" href="generic.html">
+          Generic
+        </a>
+      </li>
+      <li>
+        <a class="" href="css.html">
+          CSS, LESS and Styles
+        </a>
+      </li>
+      <li>
+        <a class="" href="work.html">
+          Work
+        </a>
+      </li>
+      <li>
+        <a class="" href="html.html">
+          HTML, XML and other markups
+        </a>
+      </li>
+      <li>
+        <a class="" href="release-process.html">
+          Release process
+        </a>
+      </li>
+      <li>
+        <a class="" href="testing.html">
+          Testing
+        </a>
+      </li>
+      <li>
+        <a class="" href="review.html">
+          Review
+        </a>
+      </li>
+      <li>
+        <a class="active" href="python.html">
+          Python
+        </a>
+      </li>
+      <li>
+        <a class="" href="javascript.html">
+          JavaScript
+        </a>
+      </li>
+      <li>
+        <a class="" href="bash.html">
+          Bash
+        </a>
+      </li>
+      <li>
+        <a class="" href="library.html">
+          Library
+        </a>
+      </li>
+      <li>
+        <a class="" href="references.html">
+          References
+        </a>
+      </li>
+
+  </ul>
+</nav>
+      <article role="main">
+        <header>
+          <h1>Python</h1>
+        </header>
+
+        <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#general" id="id1">General</a></li>
+<li><a class="reference internal" href="#mixin" id="id2">Mixin</a></li>
+<li><a class="reference internal" href="#project-specific" id="id3">Project specific</a><ul>
+<li><a class="reference internal" href="#multi-line-indentation" id="id4">Multi line indentation</a></li>
+<li><a class="reference internal" href="#imports" id="id5">Imports</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="general">
+<h2><a class="toc-backref" href="#id1">General</a></h2>
+<ul class="simple">
+<li>For python we have pocket-lint that checks for PEP8 and some other things.</li>
+<li><a class="reference external" href="http://www.python.org/dev/peps/pep-0008/">Python PEP 8</a>
+<strong>Python base code style guide</strong>.</li>
+<li>Favour single inheritance.</li>
+<li>As the second best, use Mixins to reuse code and avoid multiple inheritance.</li>
+<li>Docstring always use multiline strings with double quotes.</li>
+</ul>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">some_function</span><span class="p">(</span><span class="n">argument</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Single line docstring.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">SomeClass</span><span class="p">(</span><span class="n">ParentClass</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Quick explanation of the role of this class.</span>
+
+<span class="sd">    More details to follow in long paragraphs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+<ul class="simple">
+<li>Class members or instance members can be documented inline using the
+following syntax.</li>
+</ul>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">SomeClass</span><span class="p">(</span><span class="n">ParentClass</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Docstring for class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c">#: Docstring for class member.</span>
+    <span class="c">#: Can be on multiple lines.</span>
+    <span class="n">class_member</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+<ul class="simple">
+<li>All test functions, test methods, test suites will have docstrings.</li>
+<li>Tests methods will be prefixed with <tt class="docutils literal">test_</tt>.</li>
+<li>Tests suites (test class) will be prefixed with <tt class="docutils literal">Test</tt>.</li>
+<li>Test's docstring should state what is the expected behavior based on
+test's input.</li>
+</ul>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">test_methodName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    When doing this `methodName` will raise an AssertionError.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+<ul class="simple">
+<li>When adding linter exception, always add a comment explaining the reason
+why the exception was added.</li>
+<li>Use named parameters for calling methods. This will reduce future
+refactoring effort.</li>
+<li>If a method or class initialization / constructor method has more than 1
+argument always use named parameters for calling that method.</li>
+<li>Try to use single quotes for string. This will make it easier to generated
+quoted text for UI or HTML.</li>
+</ul>
+<p>YES</p>
+<div class="highlight"><pre><span class="n">other_var</span> <span class="o">=</span> <span class="s">&#39;string&#39;</span>
+<span class="n">some_var</span> <span class="o">=</span> <span class="s">&#39;string &quot;b&quot; yes&#39;</span>
+</pre></div>
+<p>NO</p>
+<div class="highlight"><pre><span class="n">other_bad</span> <span class="o">=</span> <span class="s">&quot;string&quot;</span>
+<span class="n">some_bad</span> <span class="o">=</span> <span class="s">&quot;string &#39;b&#39; yes&quot;</span>
+</pre></div>
+<ul class="simple">
+<li>As PEP8 recommend, Don't use '' to split long lines. Wrap long lines is by
+using Python's implied line continuation inside parentheses, brackets and
+braces. More details here:
+<a class="reference external" href="http://www.python.org/dev/peps/pep-0008/#maximum-line-length">http://www.python.org/dev/peps/pep-0008/#maximum-line-length</a></li>
+<li>Multi line split using parentheses, brackets (etc) will follow the normal
+indentation. The code might look ugly and then exceptions are allowed.</li>
+<li>Define all class members at the beginning of class definition.
+Don't interleave methods and class members definition. This should make it
+easy to identify all class members used by the class.</li>
+<li>Define all instance members inside the __init__() method. This should make
+it easy to identity all instance members used by the class and reduce the
+risk of using the same member for more than one purpose.</li>
+<li>Decode all input to Unicode and encode all output from Unicode. Do <strong>all</strong>
+internal text handling in <strong>Unicode</strong>.</li>
+</ul>
+<div class="highlight"><pre><span class="n">input_raw_string</span> <span class="o">=</span> <span class="n">read_from_wire</span><span class="p">()</span>
+<span class="n">input_string</span> <span class="o">=</span> <span class="n">input_raw_string</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+
+<span class="c"># Only work with Unicode data.</span>
+<span class="n">output_string</span> <span class="o">=</span> <span class="n">process_something</span><span class="p">(</span><span class="n">input_string</span><span class="p">)</span>
+
+<span class="n">output_raw_string</span> <span class="o">=</span> <span class="n">output_string</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">send_to_wire</span><span class="p">(</span><span class="n">output_raw_string</span><span class="p">)</span>
+</pre></div>
+<ul class="simple">
+<li>UTF-8 is not Unicode.
+Unicode is a character set and UTF-8 is a particular way of
+encoding Unicode.</li>
+<li>When a method does not use the <em>self</em> attribute, this is a code smell
+that this method should be placed somewhere else.</li>
+</ul>
+</div>
+<div class="section" id="mixin">
+<h2><a class="toc-backref" href="#id2">Mixin</a></h2>
+<p>As stated by <a class="reference external" href="http://en.wikipedia.org/wiki/Mixin">Wikipedia</a>:
+Mixins encourage code reuse and avoid well-known pathologies associated
+with multiple inheritance.</p>
+<p>Mixin is a limited usage of multiple inheritance.</p>
+<p>We use mixing to reuse code and they are provide great help writing tests.</p>
+<p>Methods from a mixin should not be overwritten by classes using the mixin.</p>
+<p>Mixins should not overwrite methods or call <strong>super()</strong>.</p>
+<p>When defining a class using mixins, put first the parent class and then
+mixin classes in alphabetical order.</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">SomeMixedClass</span><span class="p">(</span><span class="n">ParentClass</span><span class="p">,</span> <span class="n">AnotherMixin</span><span class="p">,</span> <span class="n">SomeMixin</span><span class="p">,</span> <span class="n">ZoroMixin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class with `single` inheritance and multiple mixins.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+<p>When defining a mixin, document the external class or instance members used
+by the mixin.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">some_package</span> <span class="kn">import</span> <span class="n">complicated_code_using</span><span class="p">,</span> <span class="n">complicated_other_using</span>
+
+
+<span class="k">class</span> <span class="nc">LoginMixin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Does some kind of work.</span>
+
+<span class="sd">    username - account used for authentication.</span>
+<span class="sd">    password - password for the account</span>
+<span class="sd">    ssh_key - SSH key for authentication</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">loginWithUsernameAndPassword</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does something.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SomeException</span><span class="p">()</span>
+
+        <span class="n">complicated_code_using</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">loginWithUsernameAndSSHKey</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does something else.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">complicated_other_using</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssh_key</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="project-specific">
+<h2><a class="toc-backref" href="#id3">Project specific</a></h2>
+<ul>
+<li><p class="first">When default arguments have mutable values they are defined as <cite>None</cite> and
+then assigned the default value.</p>
+<p>Otherwise this can hit us very hard. <a class="reference external" href="http://stackoverflow.com/q/1132941/539264">More details here</a>.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">methodName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="s">&#39;imutable&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Describe method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+       <span class="n">c</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">if</span> <span class="n">d</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+       <span class="n">d</span> <span class="o">=</span> <span class="n">SomeObject</span><span class="p">()</span>
+</pre></div>
+<div class="section" id="multi-line-indentation">
+<h3><a class="toc-backref" href="#id4">Multi line indentation</a></h3>
+<ul class="simple">
+<li>For now, just some examples:</li>
+</ul>
+<div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span>
+    <span class="n">message_id</span><span class="o">=</span><span class="n">factory</span><span class="o">.</span><span class="n">number</span><span class="p">(),</span>
+    <span class="n">name</span><span class="o">=</span><span class="n">factory</span><span class="o">.</span><span class="n">getUniqueString</span><span class="p">(),</span>
+    <span class="n">callback</span><span class="o">=</span><span class="n">do_something_else</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+<p>Same indentation applies for brackets:</p>
+<div class="highlight"><pre><span class="n">some_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">bla</span><span class="p">,</span>
+    <span class="n">blabla</span><span class="p">,</span>
+    <span class="n">alabala</span><span class="p">,</span>
+    <span class="p">]</span>
+</pre></div>
+<ul class="simple">
+<li>2 line code exception. If the parentheses expression fits on one line:</li>
+</ul>
+<div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span>
+    <span class="n">factory</span><span class="o">.</span><span class="n">number</span><span class="p">(),</span> <span class="n">factory</span><span class="o">.</span><span class="n">getUniqueString</span><span class="p">())</span>
+</pre></div>
+<ul class="simple">
+<li>Conditional exception. When indenting parentheses for conditional
+expressions add one extra indent to separate the condition expression
+from the conditional block.</li>
+</ul>
+<div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="n">somethin_else</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span>
+        <span class="n">say_something_else</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span>
+    <span class="n">do_else</span> <span class="o">=</span> <span class="n">nothing</span>
+    <span class="n">do_something</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">somethin_else</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span>
+        <span class="n">say_something_else</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span>
+        <span class="n">we_should_not_have_long_conditionals</span>
+        <span class="p">):</span>
+    <span class="n">do_else</span> <span class="o">=</span> <span class="n">nothing</span>
+    <span class="n">do_something</span><span class="p">()</span>
+</pre></div>
+<ul class="simple">
+<li>Class, method and function indentation.</li>
+</ul>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">MyClassName</span><span class="p">(</span>
+        <span class="n">VeryLongParentClass</span><span class="p">,</span> <span class="n">VeryLongOtherMixin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Docstring here.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">myMethodWithLongArguments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">other_long_thing</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Docstring here.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">my_function_with_long_arguments</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">other_long_thing</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">other_very_long_argument</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Docstring here.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<div class="section" id="imports">
+<h3><a class="toc-backref" href="#id5">Imports</a></h3>
+<ul class="simple">
+<li>Imports should be called at the start of each module, the only exception is
+allowed for avoiding circular imports.</li>
+<li>There is one empty line between the import block and module comment.</li>
+<li>The imports blocks are separated by one empty line.</li>
+<li>They will be arranged in 3 major blocks:<ul>
+<li>The first one is for importing from Python standard modules.</li>
+<li>The second from modules outside of the project (3rd party).</li>
+<li>The last for modules belonging to the project.</li>
+</ul>
+</li>
+<li>In each block the modules are sorted in alphabetical order,
+case-insensitive.</li>
+<li>When importing multiple members of a module, if they don't exceed the 78
+characters limit, they will be listed on the same line</li>
+<li>When importing multiple members of a module, and they exceed the 78
+characters limit, they will be listed as a list, with each member on a
+line ending with comma.</li>
+</ul>
+<p>A good example:</p>
+<div class="highlight"><pre><span class="c"># Copyright (c) YEAR Your Name.</span>
+<span class="c"># See LICENSE for details.</span>
+<span class="sd">&quot;&quot;&quot;Sample module for demonstrating imports coding conventions.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">with_statement</span>
+
+<span class="kn">from</span> <span class="nn">optparse</span> <span class="kn">import</span> <span class="n">OptionParser</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">types</span>
+
+<span class="kn">from</span> <span class="nn">OpenSSL</span> <span class="kn">import</span> <span class="n">crypto</span>
+<span class="kn">from</span> <span class="nn">twisted.web</span> <span class="kn">import</span> <span class="n">server</span>
+<span class="kn">import</span> <span class="nn">simplejson</span> <span class="kn">as</span> <span class="nn">json</span>
+
+<span class="kn">from</span> <span class="nn">chevah.commons.utils.constants</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DEFAULT_KEY_SIZE</span><span class="p">,</span>
+    <span class="n">DEFAULT_KEY_TYPE</span><span class="p">,</span>
+    <span class="n">DEFAULT_PUBLIC_KEY_EXTENSION</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">chevah.commons.utils.exceptions</span> <span class="kn">import</span> <span class="n">OperationalException</span>
+<span class="kn">from</span> <span class="nn">chevah.commons.utils.crypto</span> <span class="kn">import</span> <span class="n">Key</span>
+<span class="kn">from</span> <span class="nn">chevah.commons.utils.helpers</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">_</span><span class="p">,</span>
+    <span class="n">log_add_default_handlers</span><span class="p">,</span>
+    <span class="n">open_local_admin_webpage</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">chevah.server.commons.configuration</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ApplicationConfiguration</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">chevah.server.commons.constants</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CONFIGURATION_SERVER_FILE</span><span class="p">,</span>
+    <span class="n">CONFIGURATION_PID_FILE</span><span class="p">,</span>
+    <span class="n">PRODUCT_NAME</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">chevah.server.commons.process</span> <span class="kn">import</span> <span class="n">ChevahTwistedProcess</span>
+</pre></div>
+</div>
+</div>
+
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer_inner">
+        <div class="row">
+          <address class="vcard">
+            <strong>Contact</strong>
+            main site: <a class="fn org url" href="http://www.chevah.com">Chevah Team</a><br>
+            email: <a class="email" href="mailto:contact@chevah.com">contact@chevah.com</a>
+        </div>
+        <div class="row">
+          <aside class="social" title="Check our GitHub repositories.">
+            Check the source of this site at <a href="http://github.com/chevah/styleguide">chevah/styleguide</a>
+            on GitHub.
+            Check our other repositories on <a href="http://github.com/chevah">GitHub</a>.
+          </aside>
+
+          <div class="terms">
+            &copy; Chevah Project. Content under Public Domain License.
+          </div>
+        </div>
+      </div>
+    </footer>  </body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <title>JavaScript • Chevah Style Guide</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="/theme/css/chevah.css">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
+
+    <link rel="shortcut icon" href="/theme/img/favicon.png" />
+    <link rel="shortcut icon" href="/theme/img/favicon.ico" />
+
+    <meta name="coypright" content="Chevah Team" />
+    <meta name="revisit-after" content="5 days" />
+    <meta name="language" content="en, English" />
+    <meta name="distribution" content="global" />
+    <meta name="robots" content="nofollow, noindex" />
+
+  </head>
+<body>
+
+    <div class="header">
+      <header role="banner">
+        <hgroup>
+          <h1><a href="/">Chevah</a></h1>
+          <h2>StyleGuide&nbsp;Documentation</h2>
+        </hgroup>
+        <nav role="navigation">
+          <ul class="nav">
+            <li>
+              <a href="http://www.chevah.com">Chevah Project </a>
+            </li>
+            <li>
+              <a class="active" href="http://styleguide.chevah.com">
+                Style Guide
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <div class="main">
+
+<nav class="subnav" title="subnav">
+  <ul>
+      <li>
+        <a class="" href="/index.html">
+          Overview
+        </a>
+      </li>
+      <li>
+        <a class="" href="generic.html">
+          Generic
+        </a>
+      </li>
+      <li>
+        <a class="" href="css.html">
+          CSS, LESS and Styles
+        </a>
+      </li>
+      <li>
+        <a class="" href="work.html">
+          Work
+        </a>
+      </li>
+      <li>
+        <a class="" href="html.html">
+          HTML, XML and other markups
+        </a>
+      </li>
+      <li>
+        <a class="" href="release-process.html">
+          Release process
+        </a>
+      </li>
+      <li>
+        <a class="" href="testing.html">
+          Testing
+        </a>
+      </li>
+      <li>
+        <a class="" href="review.html">
+          Review
+        </a>
+      </li>
+      <li>
+        <a class="" href="python.html">
+          Python
+        </a>
+      </li>
+      <li>
+        <a class="active" href="javascript.html">
+          JavaScript
+        </a>
+      </li>
+      <li>
+        <a class="" href="bash.html">
+          Bash
+        </a>
+      </li>
+      <li>
+        <a class="" href="library.html">
+          Library
+        </a>
+      </li>
+      <li>
+        <a class="" href="references.html">
+          References
+        </a>
+      </li>
+
+  </ul>
+</nav>
+      <article role="main">
+        <header>
+          <h1>JavaScript</h1>
+        </header>
+
+        <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#general" id="id1">General</a></li>
+<li><a class="reference internal" href="#defining-classes" id="id2">Defining classes</a></li>
+<li><a class="reference internal" href="#css-interaction" id="id3">CSS interaction</a><ul>
+<li><a class="reference internal" href="#js-related-css-class" id="id4">JS related CSS class</a></li>
+<li><a class="reference internal" href="#changing-css-html-from-js" id="id5">Changing CSS/HTML from JS</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#test-styleguide" id="id6">Test styleguide</a><ul>
+<li><a class="reference internal" href="#rerefences" id="id7">Rerefences</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="general">
+<h2><a class="toc-backref" href="#id1">General</a></h2>
+<ul>
+<li><p class="first">Variable declarations must start with 'var'.</p>
+</li>
+<li><p class="first">Do your best to never use a semicolon.
+This means avoiding them at line breaks and avoiding multi-statement lines.
+Semi-colon at the end of the line is added only when required.</p>
+</li>
+<li><p class="first">Use 4 space indentation.</p>
+</li>
+<li><p class="first">Variable, function, method and constants name are after PEP8.
+variable_name, function_name, methodName, ClassName, CONSTANT_NAME</p>
+</li>
+<li><p class="first">Callback methods should always end with 'Callback' as the
+method / function name. This is a reminder of the fact that
+the context is lost.</p>
+</li>
+<li><p class="first">Constructor functions (those that are called with <strong>new</strong>) should use
+class naming convention.</p>
+</li>
+<li><p class="first">use <tt class="docutils literal">===</tt> instead of <tt class="docutils literal">==</tt> for comparison. <tt class="docutils literal">===</tt> doesn't do type
+coercion.</p>
+</li>
+<li><p class="first">Only use <tt class="docutils literal">typeof</tt> for checking against undefined variables:</p>
+<pre class="literal-block">
+typeof foo !== 'undefined'
+</pre>
+</li>
+<li><p class="first">For all other type checking use the custom defined typeOf() function.</p>
+</li>
+<li><p class="first">Try to avoid the usage of <tt class="docutils literal">instanceof</tt> and don't use it for native types.</p>
+</li>
+<li><p class="first">Create new arrays using the array literals <tt class="docutils literal">[]</tt> notation. Don't use
+<tt class="docutils literal">new Array()</tt>.</p>
+</li>
+<li><p class="first">Iterate arrays using the classic <tt class="docutils literal">for</tt> loop:</p>
+<pre class="literal-block">
+var list = [1, 2, 3, 4, 5, ...... 100000000];
+for (var i = 0, l = list.length; i == l; i++) {
+    console.log(list[i]);
+}
+</pre>
+</li>
+<li><p class="first">Always define the variable used to iterate in a <tt class="docutils literal">for</tt> loop.</p>
+</li>
+<li><p class="first">Don't use <tt class="docutils literal">eval</tt> and don't pass strings to <tt class="docutils literal">setTimeout</tt> and
+<tt class="docutils literal">setInterval</tt>.</p>
+</li>
+<li><p class="first">Use <tt class="docutils literal">undefined</tt> instead of the the traditional <tt class="docutils literal">null</tt>.</p>
+</li>
+<li><p class="first">Keep braces on the same line as their corresponding statements. Never omit
+them for single-line if / else statements.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nx">something</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// code here</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// code here</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">duppy</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">something</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="nx">foo</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<ul class="simple">
+<li>Leave 2 empty lines between global function or class definitions.
+Leave 1 empty line between functions from the same class.
+Global variable can be grouped and the don't require empty lines in between.</li>
+</ul>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">GLOBAL_DAY</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="kd">var</span> <span class="nx">GLOBAL_YEAR</span> <span class="o">=</span> <span class="mi">3</span>
+
+
+<span class="cm">/*</span>
+<span class="cm">Docstring for duppy.</span>
+<span class="cm">*/</span>
+<span class="kd">function</span> <span class="nx">duppy</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Do something here.</span>
+<span class="p">}</span>
+
+
+<span class="cm">/*</span>
+<span class="cm">Docstring for duppy_doo.</span>
+<span class="cm">*/</span>
+<span class="kd">function</span> <span class="nx">duppy_doo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Do something here.</span>
+<span class="p">}</span>
+
+
+<span class="cm">/*</span>
+<span class="cm">A simple mock for Browser service.</span>
+<span class="cm">*/</span>
+<span class="kd">function</span> <span class="nx">MockBrowser</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_cookies</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="cm">/*</span>
+<span class="cm">    Docstring for MockBrower.setCookies()</span>
+<span class="cm">    */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setCookie</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Implementation here.</span>
+    <span class="p">}</span>
+
+    <span class="cm">/*</span>
+<span class="cm">    Docstring here.</span>
+<span class="cm">    */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">doSomethingElse</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Implementation here.</span>
+    <span class="p">}</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">_methodWihoutDocstring</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Implementation here.</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+<ul>
+<li><p class="first">Avoid using leading parenthesis.</p>
+</li>
+<li><p class="first">Avoid using <tt class="docutils literal">delete</tt> operator and only use it to delete explicitly
+set properties on normal objects:</p>
+<pre class="literal-block">
+var obj = {x: 1};
+obj.y = 2;
+delete obj.x;  // true
+delete obj.y;  // true
+</pre>
+</li>
+<li><p class="first">Use single quote for strings.</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre class="literal-block">
+In HTML, we use &quot; as quotes around attribute values, like this:
+
+&lt;a href=&quot;foo&quot;&gt;bar&lt;/a&gt;
+In JavaScript, we use ' as much as possible.
+
+alert('qux');
+This way, we can use consistent quotes when writing HTML inside of JS:
+
+alert('&lt;a href=&quot;foo&quot;&gt;bar&lt;/a&gt;')
+</pre>
+<ul class="simple">
+<li>REST web services should always return a valid dictionary
+and not an Array or a primitive. JSON-RPC is forced to return a dictionary
+by the protocol.</li>
+<li>Callbacks called from the GUI / DOM should be prefixed with <cite>on</cite>.
+Ex: onAuthentication (when authenticate button is pressed),
+onLogout (when logout link is pressed),
+onLoginFormSubmit (when login form is submitted)</li>
+<li>Callbacks/Errback for XHR are be prefixed with <cite>cb</cite> and <cite>eb</cite>, similar
+with Python/Twisted convention.</li>
+<li>For one line comments, leave one empty space after the comment marker.</li>
+</ul>
+<div class="highlight"><pre><span class="c1">// Good comment line.</span>
+<span class="c1">//Bad comment line.</span>
+</pre></div>
+<ul class="simple">
+<li>For multi line comments use the following convention.</li>
+</ul>
+<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Short single line comment title.</span>
+<span class="cm">More details about what is here and</span>
+<span class="cm">here and here.</span>
+
+<span class="cm">Feel free to create paragraphs separation.</span>
+<span class="cm">*/</span>
+</pre></div>
+<ul class="simple">
+<li>Global constants will follow the CONSTANT_NAME naming convention.</li>
+<li>Global services (objects with methods) are named similar to class names.
+Most of the time they will be singletons so there will be no associated
+class.</li>
+</ul>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">Shell</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;WScript.Shell&quot;</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">do_something</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">bla</span> <span class="o">=</span> <span class="nx">Shell</span><span class="p">.</span><span class="nx">method_usage</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+<p>TODO
+<a class="reference external" href="http://javascript.crockford.com/code.html">http://javascript.crockford.com/code.html</a> <a class="reference external" href="http://jibbering.com/faq/notes/code-guidelines/">http://jibbering.com/faq/notes/code-guidelines/</a> <a class="reference external" href="http://neil.rashbrook.org/Js.htm">http://neil.rashbrook.org/Js.htm</a></p>
+</div>
+<div class="section" id="defining-classes">
+<h2><a class="toc-backref" href="#id2">Defining classes</a></h2>
+<p>In JS there is no strict way of defining a class and instances are created
+using a function and new operator.</p>
+<p>When defining a class we use an anonymous function to allow class
+private instances and create a new class scope.</p>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">BaseAccount</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">class_private_member</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="cm">/*</span>
+<span class="cm">    Constructor is here.</span>
+<span class="cm">    */</span>
+    <span class="kd">var</span> <span class="nx">cls</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span>
+    <span class="p">}</span>
+
+    <span class="nx">cls</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">class_member</span> <span class="o">=</span> <span class="mi">3</span>
+
+    <span class="cm">/*</span>
+<span class="cm">    Base method.</span>
+<span class="cm">    */</span>
+    <span class="nx">cls</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">base_method</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">age</span>
+    <span class="p">}</span>
+
+    <span class="cm">/*</span>
+<span class="cm">    Some method.</span>
+<span class="cm">    */</span>
+    <span class="nx">cls</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">some_method</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">prefix</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">prefix</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">base_method</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="cm">/*</span>
+<span class="cm">    Another method.</span>
+<span class="cm">    */</span>
+    <span class="nx">cls</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">tuned</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">cls</span>
+<span class="p">}())</span>
+
+
+<span class="kd">var</span> <span class="nx">SpecialAccount</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">cls</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">variant</span> <span class="o">=</span> <span class="s1">&#39;light&#39;</span>
+        <span class="cm">/* Something similar to super()*/</span>
+        <span class="nx">BaseAccount</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* Something similar to inheritance. */</span>
+    <span class="nx">cls</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">BaseAccount</span><span class="p">.</span><span class="nx">prototype</span><span class="p">)</span>
+    <span class="nx">cls</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">cls</span>
+
+    <span class="cm">/*</span>
+<span class="cm">    Method extending parent.</span>
+<span class="cm">    */</span>
+    <span class="nx">cls</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">some_method</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">prefix</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nx">BaseAccount</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">some_method</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">prefix</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nx">prefix</span> <span class="o">+</span> <span class="s1">&#39;-child-&#39;</span> <span class="o">+</span> <span class="nx">parent</span>
+    <span class="p">}</span>
+
+    <span class="cm">/*</span>
+<span class="cm">    Method overwriting parent.</span>
+<span class="cm">    */</span>
+    <span class="nx">cls</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">tuned</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">true</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">cls</span>
+<span class="p">}())</span>
+</pre></div>
+</div>
+<div class="section" id="css-interaction">
+<h2><a class="toc-backref" href="#id3">CSS interaction</a></h2>
+<div class="section" id="js-related-css-class">
+<h3><a class="toc-backref" href="#id4">JS related CSS class</a></h3>
+<p>Try to append js- to all javascript-based selectors. This is taken from
+<a class="reference external" href="http://ozmm.org/posts/slightly_obtrusive_javascript.html">slightly obtrusive javascript</a>. The idea is that you should be able to tell
+a presentational class from a functional class.</p>
+<p>There are good things and bad things about &quot;Unobtrustive JavaScript.&quot;
+One bad thing: it's hard to tell what JavaScript is touching an element.</p>
+<p>Only ever use classes and ids prefix with js- when touching the DOM with
+JavaScript.</p>
+<p>For example:</p>
+<pre class="literal-block">
+&lt;a href=&quot;#prices&quot; class=&quot;button js-open-tab&quot;&gt;Prices&lt;/a&gt;
+</pre>
+<p>Now we know to look for any JavaScript touching .js-open-tab, which should
+only be a simple search away.</p>
+<p>And hey, now JavaScript and CSS won't share selectors. Since we're separating
+our content and presentation, we might as well separate our behaviour all the
+way too.</p>
+</div>
+<div class="section" id="changing-css-html-from-js">
+<h3><a class="toc-backref" href="#id5">Changing CSS/HTML from JS</a></h3>
+<p>Don't modify the associated CSS properties, but rather modify the CSS class:</p>
+<pre class="literal-block">
+GOOD: $('#element_id').addClass('highlight');
+BAD : $('#element_id').css('font-weight': 'bold');
+</pre>
+<p>Same story as with CSS, don't modify HTML tag attributes,
+but rather try to change the CSS class:</p>
+<pre class="literal-block">
+GOOD: $('#element_id').addClass('sprite red_dot');
+BAD : $('#element_id').attr('src': 'some/red_dot.png');
+</pre>
+</div>
+</div>
+<div class="section" id="test-styleguide">
+<h2><a class="toc-backref" href="#id6">Test styleguide</a></h2>
+<ul class="simple">
+<li>We use <tt class="docutils literal">expect</tt> style testing.</li>
+<li>Leave 2 emtpy lines before each <tt class="docutils literal">suite</tt> and one empty line before each
+<tt class="docutils literal">test</tt></li>
+</ul>
+<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Tests for login controller.</span>
+<span class="cm">*/</span>
+
+
+<span class="nx">suite</span><span class="p">(</span><span class="s1">&#39;LoginCtrl&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="c1">// Shared variables.</span>
+    <span class="kd">var</span> <span class="nx">scope</span>
+    <span class="kd">var</span> <span class="nx">ctrl</span>
+
+    <span class="nx">setup</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Initialize first.</span>
+    <span class="p">})</span>
+
+    <span class="nx">teardown</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Clean second.</span>
+    <span class="p">})</span>
+
+    <span class="nx">test</span><span class="p">(</span>
+    <span class="s1">&#39;Initializes with no errors and blank values&#39;</span> <span class="o">+</span>
+    <span class="s1">&#39;long line are wrapped&#39;</span><span class="p">,</span>
+    <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">something</span> <span class="o">=</span> <span class="nx">Something</span><span class="p">()</span>
+
+        <span class="nx">something</span><span class="p">.</span><span class="nx">doSomething</span><span class="p">()</span>
+
+        <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nx">something</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span>
+    <span class="p">})</span>
+
+
+    <span class="nx">suite</span><span class="p">(</span><span class="s1">&#39;critical_error attribute&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+
+        <span class="nx">test</span><span class="p">(</span>
+        <span class="s1">&#39;When set, hides the form and sets the error message.&#39;</span><span class="p">,</span>
+        <span class="kd">function</span><span class="p">(){</span>
+            <span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">manu</span><span class="p">.</span><span class="nx">makeUniqueString</span><span class="p">()</span>
+
+            <span class="nx">scope</span><span class="p">.</span><span class="nx">critical_error</span> <span class="o">=</span> <span class="nx">message</span>
+            <span class="nx">scope</span><span class="p">.</span><span class="nx">$digest</span><span class="p">()</span>
+
+            <span class="nx">assert</span><span class="p">.</span><span class="nx">isFalse</span><span class="p">(</span><span class="nx">scope</span><span class="p">.</span><span class="nx">show_form</span><span class="p">)</span>
+            <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="nx">scope</span><span class="p">.</span><span class="nx">alert</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+        <span class="p">})</span>
+    <span class="p">})</span>
+<span class="p">})</span>
+</pre></div>
+<div class="section" id="rerefences">
+<h3><a class="toc-backref" href="#id7">Rerefences</a></h3>
+<p>Here are the pages I used to create this page.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://toranbillups.com/blog/archive/2013/05/15/Basic-javascript-inheritance-and-polymorphism/">http://toranbillups.com/blog/archive/2013/05/15/Basic-javascript-inheritance-and-polymorphism/</a></li>
+</ul>
+</div>
+</div>
+
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer_inner">
+        <div class="row">
+          <address class="vcard">
+            <strong>Contact</strong>
+            main site: <a class="fn org url" href="http://www.chevah.com">Chevah Team</a><br>
+            email: <a class="email" href="mailto:contact@chevah.com">contact@chevah.com</a>
+        </div>
+        <div class="row">
+          <aside class="social" title="Check our GitHub repositories.">
+            Check the source of this site at <a href="http://github.com/chevah/styleguide">chevah/styleguide</a>
+            on GitHub.
+            Check our other repositories on <a href="http://github.com/chevah">GitHub</a>.
+          </aside>
+
+          <div class="terms">
+            &copy; Chevah Project. Content under Public Domain License.
+          </div>
+        </div>
+      </div>
+    </footer>  </body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <title>Bash • Chevah Style Guide</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="/theme/css/chevah.css">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
+
+    <link rel="shortcut icon" href="/theme/img/favicon.png" />
+    <link rel="shortcut icon" href="/theme/img/favicon.ico" />
+
+    <meta name="coypright" content="Chevah Team" />
+    <meta name="revisit-after" content="5 days" />
+    <meta name="language" content="en, English" />
+    <meta name="distribution" content="global" />
+    <meta name="robots" content="nofollow, noindex" />
+
+  </head>
+<body>
+
+    <div class="header">
+      <header role="banner">
+        <hgroup>
+          <h1><a href="/">Chevah</a></h1>
+          <h2>StyleGuide&nbsp;Documentation</h2>
+        </hgroup>
+        <nav role="navigation">
+          <ul class="nav">
+            <li>
+              <a href="http://www.chevah.com">Chevah Project </a>
+            </li>
+            <li>
+              <a class="active" href="http://styleguide.chevah.com">
+                Style Guide
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <div class="main">
+
+<nav class="subnav" title="subnav">
+  <ul>
+      <li>
+        <a class="" href="/index.html">
+          Overview
+        </a>
+      </li>
+      <li>
+        <a class="" href="generic.html">
+          Generic
+        </a>
+      </li>
+      <li>
+        <a class="" href="css.html">
+          CSS, LESS and Styles
+        </a>
+      </li>
+      <li>
+        <a class="" href="work.html">
+          Work
+        </a>
+      </li>
+      <li>
+        <a class="" href="html.html">
+          HTML, XML and other markups
+        </a>
+      </li>
+      <li>
+        <a class="" href="release-process.html">
+          Release process
+        </a>
+      </li>
+      <li>
+        <a class="" href="testing.html">
+          Testing
+        </a>
+      </li>
+      <li>
+        <a class="" href="review.html">
+          Review
+        </a>
+      </li>
+      <li>
+        <a class="" href="python.html">
+          Python
+        </a>
+      </li>
+      <li>
+        <a class="" href="javascript.html">
+          JavaScript
+        </a>
+      </li>
+      <li>
+        <a class="active" href="bash.html">
+          Bash
+        </a>
+      </li>
+      <li>
+        <a class="" href="library.html">
+          Library
+        </a>
+      </li>
+      <li>
+        <a class="" href="references.html">
+          References
+        </a>
+      </li>
+
+  </ul>
+</nav>
+      <article role="main">
+        <header>
+          <h1>Bash</h1>
+        </header>
+
+        <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#general" id="id1">General</a></li>
+<li><a class="reference internal" href="#path-constants" id="id2">Path constants</a></li>
+<li><a class="reference internal" href="#function-definition" id="id3">Function Definition</a></li>
+<li><a class="reference internal" href="#case-syntax" id="id4">Case Syntax</a></li>
+<li><a class="reference internal" href="#if-then-else" id="id5">IF/THEN/ELSE</a></li>
+<li><a class="reference internal" href="#for" id="id6">FOR</a></li>
+<li><a class="reference internal" href="#while-until" id="id7">WHILE/UNTIL</a></li>
+<li><a class="reference internal" href="#references" id="id8">References</a></li>
+</ul>
+</div>
+<div class="section" id="general">
+<h2><a class="toc-backref" href="#id1">General</a></h2>
+<ul class="simple">
+<li>Shell scripts should be kept at a minimum and <strong>only</strong> for internal scripts.
+For all other things there is Python.</li>
+<li>If any, public scripts should use <tt class="docutils literal">/bin/sh</tt>. Bash is not available on all
+Unix systems and ksh or other shells are not compatible with Bash syntax.</li>
+<li>Use <tt class="docutils literal">printf</tt> instead of <tt class="docutils literal">echo</tt> when using  <tt class="docutils literal">/bin/sh</tt> as a shell,
+because <tt class="docutils literal">echo</tt> behaviour is incompatible in Bash and Korn shells.
+Eg. use <tt class="docutils literal">printf</tt> instead of <tt class="docutils literal">echo <span class="pre">-n</span></tt> and <tt class="docutils literal">printf &quot;blabla\n&quot;</tt> instead
+of <tt class="docutils literal">echo &quot;blabla&quot;</tt>.</li>
+<li>For internal scripts we should use <tt class="docutils literal">/bin/bash</tt>, as the default <tt class="docutils literal">/bin/sh</tt>
+sometimes points to a lesser shell such as Dash.</li>
+<li>A function called main is required for scripts long enough to contain at
+least one other function.</li>
+<li>Put all functions together in the file just below constants. Don't hide
+executable code between functions.</li>
+<li>Use uppercase for all GLOBAL variables.</li>
+<li>In tests, enclose all uncontrolled string variables in double quotes to
+handle empty strings or spaces in variables.</li>
+<li>Always double quote the <tt class="docutils literal">$&#64;</tt> variable to keep all arguments with spaces.</li>
+<li>Pipelines should be split one per line if they don't all fit on one line.</li>
+<li>Use $(command) instead of backticks. Nested backticks require escaping the
+inner ones with . The $(command) format doesn't change when nested and is
+easier to read. See the example below</li>
+</ul>
+<div class="highlight"><pre><span class="c"># This is preferred:</span>
+<span class="nv">var</span><span class="o">=</span><span class="s2">&quot;$(command &quot;</span><span class="k">$(</span>command1<span class="k">)</span><span class="s2">&quot;)&quot;</span>
+
+<span class="c"># This is not:</span>
+<span class="nv">var</span><span class="o">=</span><span class="s2">&quot;`command \`command1\``&quot;</span>
+</pre></div>
+<ul class="simple">
+<li>Always guard your Bash scripts from unexpected errors by using</li>
+</ul>
+<div class="highlight"><pre><span class="nb">set</span> -o nounset
+</pre></div>
+</div>
+<div class="section" id="path-constants">
+<h2><a class="toc-backref" href="#id2">Path constants</a></h2>
+<p>When defining a directory path as a constant, you should include the trailing
+slash to make sure it is a directory and not a file. Two consecutive /'s are
+harmless in POSIX shells as long as they are not at the beginning of the path
+in some exotic environment such as Cygwin that actually uses this notation for
+SMB shares.</p>
+<p>Always double quote path constants to handle files with spaces:</p>
+<div class="highlight"><pre><span class="nv">SOME_PATH</span><span class="o">=</span>/some/path/
+<span class="c"># and use it like this:</span>
+<span class="nb">command</span> <span class="s2">&quot;${SOME_PATH}/some.file&quot;</span>
+
+<span class="c"># Another example</span>
+<span class="nv">REMOTE_URI</span><span class="o">=</span>chevah@chevah.com:/home/chevah/styleguide.chevah.com/vm/
+scp <span class="s2">&quot;$LOCAL_FILE&quot;</span> <span class="s2">&quot;${REMOTE_URL}/file&quot;</span>
+</pre></div>
+<p>Instead of:</p>
+<div class="highlight"><pre><span class="nv">SOME_PATH</span><span class="o">=</span>/some/path/
+<span class="c"># and then:</span>
+<span class="nb">command</span> <span class="s2">&quot;${SOME_PATH}some.file&quot;</span>
+</pre></div>
+</div>
+<div class="section" id="function-definition">
+<h2><a class="toc-backref" href="#id3">Function Definition</a></h2>
+<p>Leave 2 blank lines between function definitions and always use <tt class="docutils literal">local</tt> for
+local variable declaration.</p>
+<p>Define local variables at the start of the function, in a distinct block.
+It is recommended to define a local variable named <cite>result</cite> to hold the value
+produced by calling the function.</p>
+<p>Put the final returned result in a separate block.</p>
+<p>Procedures are functions which have no result.</p>
+<p>Since Bash only support returning numeric values, which are interpreted
+as exit codes, we will pass values between functions by using <tt class="docutils literal">echo</tt>.</p>
+<div class="highlight"><pre><span class="c">#</span>
+<span class="c"># Description of function 1.</span>
+<span class="c">#</span>
+<span class="c"># * $1 - description of first argument</span>
+<span class="c"># * $2 - description of second argument</span>
+<span class="c"># * return - description of return value.</span>
+
+function1<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span>variable_which_is_local
+    <span class="nb">local </span>result
+
+    do_some_action_here
+    do_more_action
+
+    <span class="nb">echo</span> <span class="nv">$result</span>
+<span class="o">}</span>
+
+
+<span class="c">#</span>
+<span class="c"># Description of procedure 1.</span>
+<span class="c">#</span>
+<span class="c"># It does this and this.</span>
+<span class="c">#</span>
+procedure1<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">something</span><span class="o">=</span><span class="k">$(</span>function1 ARG1<span class="k">)</span>
+
+    do_something_else something
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="section" id="case-syntax">
+<h2><a class="toc-backref" href="#id4">Case Syntax</a></h2>
+<div class="highlight"><pre><span class="k">case</span> <span class="s2">&quot;$VARIABLE_NAME&quot;</span> in
+    <span class="s2">&quot;option1&quot;</span><span class="o">)</span>
+        <span class="k">do </span>specific
+        ;;
+    option2*<span class="o">)</span>
+        <span class="k">do </span>generic
+        ;;
+    *<span class="o">)</span>
+        <span class="k">do </span>default
+        ;;
+<span class="k">esac</span>
+</pre></div>
+</div>
+<div class="section" id="if-then-else">
+<h2><a class="toc-backref" href="#id5">IF/THEN/ELSE</a></h2>
+<div class="highlight"><pre><span class="k">if </span>TEST; <span class="k">then</span>
+<span class="k">    </span>call something
+<span class="k">elif</span> <span class="o">[</span> <span class="s2">&quot;$string&quot;</span> <span class="o">==</span> OTHER_TEST <span class="o">]</span>; <span class="k">then</span>
+<span class="k">    </span>call something_else
+<span class="k">else</span>
+<span class="k">    </span>call something_else_completely
+<span class="k">fi</span>
+</pre></div>
+</div>
+<div class="section" id="for">
+<h2><a class="toc-backref" href="#id6">FOR</a></h2>
+<div class="highlight"><pre><span class="k">for </span>CONDITION; <span class="k">do</span>
+<span class="k">    </span>call something
+<span class="k">done</span>
+</pre></div>
+</div>
+<div class="section" id="while-until">
+<h2><a class="toc-backref" href="#id7">WHILE/UNTIL</a></h2>
+<div class="highlight"><pre><span class="k">while </span>TEST; <span class="k">do</span>
+<span class="k">    </span>call something
+<span class="k">done</span>
+</pre></div>
+</div>
+<div class="section" id="references">
+<h2><a class="toc-backref" href="#id8">References</a></h2>
+<p>Here are the pages I used to create this page.</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://www.davidpashley.com/articles/writing-robust-shell-scripts/">http://www.davidpashley.com/articles/writing-robust-shell-scripts/</a></li>
+<li><a class="reference external" href="http://www.linuxjournal.com/content/return-values-bash-functions">http://www.linuxjournal.com/content/return-values-bash-functions</a></li>
+</ul>
+</blockquote>
+</div>
+
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer_inner">
+        <div class="row">
+          <address class="vcard">
+            <strong>Contact</strong>
+            main site: <a class="fn org url" href="http://www.chevah.com">Chevah Team</a><br>
+            email: <a class="email" href="mailto:contact@chevah.com">contact@chevah.com</a>
+        </div>
+        <div class="row">
+          <aside class="social" title="Check our GitHub repositories.">
+            Check the source of this site at <a href="http://github.com/chevah/styleguide">chevah/styleguide</a>
+            on GitHub.
+            Check our other repositories on <a href="http://github.com/chevah">GitHub</a>.
+          </aside>
+
+          <div class="terms">
+            &copy; Chevah Project. Content under Public Domain License.
+          </div>
+        </div>
+      </div>
+    </footer>  </body>
+</html>

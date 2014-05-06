@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <title>Testing • Chevah Style Guide</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="/theme/css/chevah.css">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
+
+    <link rel="shortcut icon" href="/theme/img/favicon.png" />
+    <link rel="shortcut icon" href="/theme/img/favicon.ico" />
+
+    <meta name="coypright" content="Chevah Team" />
+    <meta name="revisit-after" content="5 days" />
+    <meta name="language" content="en, English" />
+    <meta name="distribution" content="global" />
+    <meta name="robots" content="nofollow, noindex" />
+
+  </head>
+<body>
+
+    <div class="header">
+      <header role="banner">
+        <hgroup>
+          <h1><a href="/">Chevah</a></h1>
+          <h2>StyleGuide&nbsp;Documentation</h2>
+        </hgroup>
+        <nav role="navigation">
+          <ul class="nav">
+            <li>
+              <a href="http://www.chevah.com">Chevah Project </a>
+            </li>
+            <li>
+              <a class="active" href="http://styleguide.chevah.com">
+                Style Guide
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <div class="main">
+
+<nav class="subnav" title="subnav">
+  <ul>
+      <li>
+        <a class="" href="/index.html">
+          Overview
+        </a>
+      </li>
+      <li>
+        <a class="" href="generic.html">
+          Generic
+        </a>
+      </li>
+      <li>
+        <a class="" href="css.html">
+          CSS, LESS and Styles
+        </a>
+      </li>
+      <li>
+        <a class="" href="work.html">
+          Work
+        </a>
+      </li>
+      <li>
+        <a class="" href="html.html">
+          HTML, XML and other markups
+        </a>
+      </li>
+      <li>
+        <a class="" href="release-process.html">
+          Release process
+        </a>
+      </li>
+      <li>
+        <a class="active" href="testing.html">
+          Testing
+        </a>
+      </li>
+      <li>
+        <a class="" href="review.html">
+          Review
+        </a>
+      </li>
+      <li>
+        <a class="" href="python.html">
+          Python
+        </a>
+      </li>
+      <li>
+        <a class="" href="javascript.html">
+          JavaScript
+        </a>
+      </li>
+      <li>
+        <a class="" href="bash.html">
+          Bash
+        </a>
+      </li>
+      <li>
+        <a class="" href="library.html">
+          Library
+        </a>
+      </li>
+      <li>
+        <a class="" href="references.html">
+          References
+        </a>
+      </li>
+
+  </ul>
+</nav>
+      <article role="main">
+        <header>
+          <h1>Testing</h1>
+        </header>
+
+        <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#types-of-tests" id="id1">Types of tests</a><ul>
+<li><a class="reference internal" href="#unit-testing" id="id2">Unit testing</a></li>
+<li><a class="reference internal" href="#integration-testing" id="id3">Integration testing</a></li>
+<li><a class="reference internal" href="#system-testing" id="id4">System testing</a></li>
+<li><a class="reference internal" href="#story-functional-customer-tests" id="id5">Story / Functional / Customer tests</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#developing-using-tests" id="id6">Developing using tests</a><ul>
+<li><a class="reference internal" href="#domain-specific-language" id="id7">Domain Specific Language</a></li>
+<li><a class="reference internal" href="#dependency-injection-of-system-components" id="id8">Dependency injection of system components</a></li>
+<li><a class="reference internal" href="#mock-object" id="id9">Mock object</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#structure-of-a-test" id="id10">Structure of a test</a></li>
+<li><a class="reference internal" href="#smells" id="id11">Smells</a></li>
+<li><a class="reference internal" href="#naming-conventions" id="id12">Naming conventions</a></li>
+<li><a class="reference internal" href="#test-fixtures-setup-and-teardown" id="id13">Test fixtures, setUp and tearDown</a></li>
+<li><a class="reference internal" href="#tests-description-docstrings" id="id14">Tests description - docstrings</a></li>
+<li><a class="reference internal" href="#rerefences" id="id15">Rerefences</a></li>
+</ul>
+</div>
+<p>Writing automated tests is an important part of development.</p>
+<p>We write tests to:</p>
+<ul class="simple">
+<li>help improve quality</li>
+<li>help understand the product and its components</li>
+<li>reduce risk and fears when doing bold changes into product structure</li>
+<li>make work easier and fun</li>
+</ul>
+<p>All tests should have the following characteristic:</p>
+<ul class="simple">
+<li>simple</li>
+<li>easy to write and maintain as product evolves</li>
+<li>easy to read and understand what they are doing</li>
+<li>easy to run, easy to re-run, fully automated run and reporting</li>
+<li>run very, very fast</li>
+<li>each test should be an independent test which can run by itself</li>
+</ul>
+<p>Writing tests is not only done to check that code works as expected, it is
+also done to make sure that code has a simple designed, decoupled and easy
+to be reused.</p>
+<p>Writing test is also about making sure that you fully understand what the
+code should do and how it is used.</p>
+<p>Writing tests is not a silver bullet for improving code quality and is easy to
+write bad tests.</p>
+<p>Once used to having tests that show how things work (and that they do work), you
+will start using the key phrase: <strong>Do you have a test for that?</strong>.</p>
+<p>You are going to test your code anyway, spend the time to do it right.</p>
+<p>We write tests as a tool for regression checking, ie preventing bugs.
+Tests should be easy to run and should be fast. Tests will also help us find
+bugs and avoid long debugging session, but they primary goal is to keep the
+bugs out of our product.</p>
+<p>We should write code and do clean-up / refactoring without any fear and with
+a confident and free mind. Don't take decision out of fear.</p>
+<p>Imperfect tests, run frequently, are much better than perfect tests that are
+never written at all.</p>
+<p>Writing tests does not mean writing twice as much code or coding slower.</p>
+<p>Most of the time the associated test code is tree times longer, or more
+in lines of code. Test code should be trivial, easy to write and easy to
+understand. Even if there are many lines of test, they should be easy
+to write and should not add a big overhead to what you're doing.</p>
+<p>On the long run, it's faster and more robust than coding without tests.</p>
+<p>Another important part of writing test is to help us have a clean code base.
+You can not refactor and do clean-up without an easy mechanism to check for
+regression.
+Clean-up tasks are just normal business and an integrated part of
+coding process. We will do cleanup all the time, and there is no
+dedicated development window for cleanup.</p>
+<p>The goal is to write test first and code later.</p>
+<p>If you are starting and learning how to write tests, you will write tests
+after writing the code simply because you have so much to learn and find
+that writing tests first is impossible. This is a normal start.
+It's just a stepping stone on your way to test-first development.</p>
+<p>Passing software to another developer without tests is like saying
+'Good luck dude!', but instead we should say 'I've got you covered!'.</p>
+<div class="section" id="types-of-tests">
+<h2><a class="toc-backref" href="#id1">Types of tests</a></h2>
+<p>Tests can be placed in many categories according to various criteria.</p>
+<p>Below is an attempt to identify various types of tests based on their interaction
+with other code / systems.</p>
+<div class="section" id="unit-testing">
+<h3><a class="toc-backref" href="#id2">Unit testing</a></h3>
+<p>This is the least controversial type of tests, and people usually know what
+unit tests are.</p>
+<p>Test for single method or functions. As the number of unit tests significantly grows
+throughout the lifecycle of the project one key requirement is that they run as
+fast as possible. Therefore the tests should use only data from memory for both input
+and output.</p>
+</div>
+<div class="section" id="integration-testing">
+<h3><a class="toc-backref" href="#id3">Integration testing</a></h3>
+<p>These are the tests which take what was tested using unit tests (functions,
+methods) and combine / integrate them in bigger tests for the whole module or even
+module interactions.</p>
+<p>The time / speed restrictions still apply. They should also use only data from memory.</p>
+<p>Try to test all corner cases regarding the component's integration.</p>
+<p>Don't write corner cases for a specific component since they <em>should</em> be handled at
+unit testing level. If that is not the case please revise the unit tests accordingly.</p>
+<p>The purpose of integration testing is to detect any inconsistencies between
+the software units / modules that are integrated together or between any
+modules and the hardware.</p>
+<p>Since they should be fast, you can put them together with unit tests.</p>
+</div>
+<div class="section" id="system-testing">
+<h3><a class="toc-backref" href="#id4">System testing</a></h3>
+<p>In contrast with unit or functional tests, we have system test which have no
+restriction for
+interacting with external systems.</p>
+<p>A test is a system test if:</p>
+<ul class="simple">
+<li>It touches the file system.</li>
+<li>It talks to the database.</li>
+<li>It communicates across the network.</li>
+<li>It uses some type of shared resource and can't run at the same time as
+any other unit tests.</li>
+<li>You have to do special things to prepare your environment.</li>
+<li>Requires a special OS account / OS credentials to exists.</li>
+</ul>
+<p>They interact with local filesystem, network and other services provided by
+the operating system.</p>
+<p>While interacting with external system, system tests require additional
+steps in configuration and preparing the external system for running the
+tests, so their execution depend on these external systems.
+Example: configure an OS account, do special network configuration,
+configure a printer, create certain files or folder structures on the
+filesystem.</p>
+<p>The external services are &quot;black boxes&quot;, as we don't have access to their
+internal structure.</p>
+<p>They test the integration with external services, and at some
+extend they are integration tests.</p>
+<p>Due to interaction with external system, system tests are slower than unit or
+integration tests.</p>
+<p>While configuring external systems, take special care to avoid side effects or
+leaving the system in an inconsistent tests that will not allow other tests
+to execute. At the end of the test, leave the system in the same state as the
+one from the start.</p>
+<p>We put them in together with unit tests, since they should be fast,
+but we tag them since they require special handling due to dependency on
+external systems. Ex, when porting on a new platform, they are likely to
+fail.</p>
+</div>
+<div class="section" id="story-functional-customer-tests">
+<h3><a class="toc-backref" href="#id5">Story / Functional / Customer tests</a></h3>
+<p>These are the tests for the final product. All modules are put together just
+like in the production (real) system.</p>
+<p>In other places, they are also called <em>acceptance tests</em>.</p>
+<p>This kind of tests help us detect <strong>what</strong> features of our product are
+not working. In case we have good unit test, we look there to find <strong>why</strong>
+a functional tests is failing.</p>
+<p>Functional tests will not help with development and locating the source
+of an error. Use unit tests for this. In case unit test pass, and we have
+failing functional tests, then we have just discovered a hole in our unit
+testing and we should fix it first.</p>
+<p>The functional tests are just recording the same steps required in manual
+testing. If a functional tests pass, you can look around by starting
+the real server and manually perform the same steps as in the functional
+test.</p>
+<p>You can consider them black box testing as their role is to check that the
+system, as a whole, works.</p>
+<p>While for system tests only external systems are handled as black boxes,
+for functional testing the system under test is also handled as a black box.</p>
+<p>They will read actual input just like the real life application and will
+produce actual, real life, results.</p>
+<p>Don't do too much work here and don't bother with corner cases.
+A simple success scenario and a failure scenario should be enough.</p>
+<p>Sometimes reading and writing actual input can slow tests, so for performance
+reasons, some system tests also read and write data in memory, but the format
+used closely resembles the one used in real life, production environments.</p>
+</div>
+</div>
+<div class="section" id="developing-using-tests">
+<h2><a class="toc-backref" href="#id6">Developing using tests</a></h2>
+<p>As there is no guarantee for the order in which the tests will execute there is
+one major requirement, regardless of the test type. The <em>test should not have any
+side effect</em> as the order of execution is random.</p>
+<p>When writing application code, only write enough code to make a test work.
+It helps you to realise when to stop coding and move on to the next task.
+If you know there should be more code to handle other cases, you should write the tests
+for those particular cases. This technique prevents writing code that is never executed
+and ensures that you always have a test for the code you write.</p>
+<p>When you find a bug, start by writing a test reproducing the bug then
+continue you work in fixing the bug. Ask the <em>5 whys</em> in order to find the
+root cause of the bug and fix the problem there. The initial test written
+to reproduce the bug, might be a high level tests which is not at the same
+level to the code which was fixed. Removed the high level tests and write
+a specific unit test, directly associated with the fixed code.</p>
+<p>Running the test suite should be fast, but sometimes some tests are just slow.
+Functional tests are always slow, and system tests tend to be slow. We mark
+these slow tests so that we can skip them using the test runner.</p>
+<p>Principle of developing using tests:</p>
+<ul class="simple">
+<li><strong>Write test first</strong> - the test will save a lot of debugging time and
+setup time for each time you would have to run the manual test to check
+your code.</li>
+<li><strong>Design for testability</strong> - Now, if you don't write your test first, you
+should at least let the test design your code and not design the test
+after your code. If you <strong>write test first</strong> you don't need to worry
+about this.</li>
+<li>Use <strong>Front Door First</strong>, this means that you should first try to write
+tests only using the public interface.</li>
+<li><strong>Verify one condition per test</strong>. Don't test more than one thing in a test,
+as it will make the test hard to read. There is an exception for customer
+tests, which are story based and those tests will check a complete
+work-flow.</li>
+<li><strong>Comunicate Intent</strong> write short tests, which are clean and easy to read
+and serve as documentation for the code.</li>
+<li><strong>Keep testing login out of production code</strong>. Don't add hooks or
+conditional statements in the production code to help with testing.</li>
+<li><strong>Keep tests independent</strong> each test should run on it's own and should also
+run together with the other tests.</li>
+</ul>
+<div class="section" id="domain-specific-language">
+<h3><a class="toc-backref" href="#id7">Domain Specific Language</a></h3>
+<p>Group multiple / related calls into dedicated, helper methods. Give the method
+an easy to read name. Try to create a Domain Specific Language for your tests.</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">TestSuperUser</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Tests for super user.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">test_rename_ulgy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Users can be renamed just by calling rename() on the user object.</span>
+
+<span class="sd">        Ugly initialization code.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">makeUsername</span><span class="p">()</span>
+        <span class="n">new_username</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">makeUsername</span><span class="p">()</span>
+        <span class="n">configuration</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">makeSuperConfiguration</span><span class="p">()</span>
+        <span class="n">configuration</span><span class="o">.</span><span class="n">addUser</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">getUser</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="bp">True</span>
+
+        <span class="n">user</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">new_username</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">userExists</span><span class="p">(</span><span class="n">new_username</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">userExists</span><span class="p">(</span><span class="n">username</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">makeUser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a new username created for `configuration`.</span>
+
+<span class="sd">        If `configuration` is `None` it will use a new configuration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">configuration</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">configuration</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">makeSuperConfiguration</span><span class="p">()</span>
+        <span class="n">configuration</span><span class="o">.</span><span class="n">addUser</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">getUser</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="n">user</span>
+
+    <span class="k">def</span> <span class="nf">test_rename_clean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Users can be renamed just by calling rename() on the user object.</span>
+
+<span class="sd">        Clean version.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">makeUsername</span><span class="p">()</span>
+        <span class="n">new_username</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">makeUsername</span><span class="p">()</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">makeUser</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+
+        <span class="n">user</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">new_username</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">userExists</span><span class="p">(</span><span class="n">new_username</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">userExists</span><span class="p">(</span><span class="n">username</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="section" id="dependency-injection-of-system-components">
+<h3><a class="toc-backref" href="#id8">Dependency injection of system components</a></h3>
+<p>For unit testing, we want to make them easy to write, run them fast and
+without touching the system (filesystem / network / os services).</p>
+<p>In order to be useful, methods need to interact with the system.</p>
+<p>As a first practice, methods interacting with the system should be grouped
+and isolated into component dedicated with input / output operations.</p>
+<p>When writing tests for code which touches the system, the tests will also
+use the system. This can slow the tests or create unwanted side effects, since
+most of the time system resources are persistent.</p>
+<p>In some cases, especially when testing code for failures, it is very hard
+to setup the external system to raise a certain failure condition. For example
+we have the code which handles a socket which can raise a timeout error.
+Timeout errors are complicated since they requite a certain amount of time
+to pass before they appear and this can slow down the whole tests.</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">socket</span>
+
+<span class="k">class</span> <span class="nc">ClientWithoutDependecy</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A network client.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Try to connect to a server and return False if connection was</span>
+<span class="sd">        not successful.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">socket</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">except</span> <span class="n">socket</span><span class="o">.</span><span class="n">TimeoutError</span><span class="p">:</span>
+            <span class="n">do_something_on_timeout</span><span class="p">()</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+<span class="k">def</span> <span class="nf">test_connect_with_slow_timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    When a server does not exist at the address, the timeout is handled</span>
+<span class="sd">    in some way.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">ClientWithoutDependecy</span><span class="p">()</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connect_to_server</span><span class="p">(</span><span class="s">&#39;bad.address&#39;</span><span class="p">)</span>
+    <span class="c"># Wait a lot for method to return.</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">ClientWithDependecy</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A network client which has its dependencies as class members.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">socket</span> <span class="o">=</span> <span class="n">socket</span>
+
+    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Try to connect to a server and return False if connection was</span>
+<span class="sd">        not successful.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">except</span> <span class="n">socket</span><span class="o">.</span><span class="n">TimeoutError</span><span class="p">:</span>
+            <span class="n">do_something_on_timeout</span><span class="p">()</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+<span class="k">def</span> <span class="nf">test_connect_with_fast_timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    When a server does not exist at the address, the timeout is handled</span>
+<span class="sd">    in some way.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">class</span> <span class="nc">TimingOutSocket</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A socket which times out at connection.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">socket</span><span class="o">.</span><span class="n">TimeoutError</span><span class="p">()</span>
+
+    <span class="n">client</span> <span class="o">=</span> <span class="n">ClientWithDependecy</span><span class="p">()</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">socket</span> <span class="o">=</span> <span class="n">TimingOutSocket</span><span class="p">()</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">connect_to_server</span><span class="p">(</span><span class="s">&#39;bad.address&#39;</span><span class="p">)</span>
+    <span class="c"># Returns very fast.</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="mock-object">
+<h3><a class="toc-backref" href="#id9">Mock object</a></h3>
+<p>Mock object can simplify a lot test writing and are a very powerful test
+tool.</p>
+<p>With great power, comes great responsibility! Don't abuse the mocks.</p>
+<p>As much as possible, try to use a Mock object together with the specification
+of the mocked class.</p>
+<div class="highlight"><pre><span class="c"># Bad.</span>
+<span class="n">mocked_object</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+<span class="c"># Good.</span>
+<span class="n">mocked_object</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">specs</span><span class="o">=</span><span class="n">SomeClass</span><span class="p">)</span>
+</pre></div>
+<p>You can use mock object in the following circumstances:</p>
+<ul class="simple">
+<li>Want to trigger an error from a function that requires a precondition
+that is hard to create in a test.</li>
+</ul>
+<div class="highlight"><pre><span class="n">some_object</span> <span class="o">=</span> <span class="n">SomeClass</span><span class="p">()</span>
+<span class="n">some_object</span><span class="o">.</span><span class="n">openFile</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">side_effect</span><span class="o">=</span><span class="n">SomeHardException</span><span class="p">())</span>
+</pre></div>
+<ul class="simple">
+<li>Want to check for delegation and you know that the delegated methods /
+objects have good test coverage.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="structure-of-a-test">
+<h2><a class="toc-backref" href="#id10">Structure of a test</a></h2>
+<p>Use the <strong>Assert, Act, Arrange,</strong> pattern: each part must have it's own paragraph.</p>
+<blockquote>
+<ul class="simple">
+<li><strong>Arrange</strong> is variable declaration and initialization code.
+Set up all conditions and environment for testing.</li>
+<li><strong>Act</strong> is invoking the code being tested.
+Call the method or trigger the necessary state.</li>
+<li><strong>Assert</strong> is using the assert methods or any other code to verify that
+expectations were met.</li>
+</ul>
+</blockquote>
+<p>For integration tests, this can also be called <strong>Assemble, Activate, Assert</strong>.</p>
+<p>The tests needs to be short and easy to read.</p>
+<p>Some test might not require the <em>arrange</em> part, but this is usually a code
+smell and most of the time you should have something in arrange part.</p>
+<p>Make sure to test only a single thing at once.</p>
+<p>When <em>asserting</em> that <em>acting</em> on a code raised an exception, these two steps
+might get intertwined and look like the following code. This is OK.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">test_getAllProperties_no_accounts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An error is raised if no accounts are defined.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="n">ConfigurationError</span><span class="p">):</span>
+        <span class="n">some</span><span class="o">.</span><span class="n">getAllProperties</span><span class="p">()</span>
+</pre></div>
+<p>The <em>arrange</em> part can get very long. Try to move as much code in setUp()
+method, or move related initialization code in a helper method.</p>
+<p>When the code is used only in a few tests, put it in a dedicated, reusable, method.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">test_section_navigation_long_arrange</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This does not uses setUp or other</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">account</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">makeTestAccount</span><span class="p">()</span>
+    <span class="n">browser</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">makeTestBrowser</span><span class="p">()</span>
+    <span class="n">browser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BASE_URL</span> <span class="o">+</span> <span class="s">&#39;/login&#39;</span><span class="p">)</span>
+    <span class="n">browser</span><span class="o">.</span><span class="n">setField</span><span class="p">(</span><span class="s">&#39;username&#39;</span><span class="p">,</span> <span class="n">account</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">browser</span><span class="o">.</span><span class="n">setField</span><span class="p">(</span><span class="s">&#39;password&#39;</span><span class="p">,</span> <span class="n">account</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
+    <span class="n">browser</span><span class="o">.</span><span class="n">clickButton</span><span class="p">(</span><span class="s">&#39;Submit&#39;</span><span class="p">)</span>
+
+    <span class="n">browser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BASE_URL</span> <span class="o">+</span> <span class="s">&#39;/some_section&#39;</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s">&#39;section_title&#39;</span><span class="p">,</span> <span class="n">browser</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Object used by almost all tests.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">account</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">makeTestAccount</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">browser</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">makeTestBrowser</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Go to login page and submit username and password.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">browser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BASE_URL</span> <span class="o">+</span> <span class="s">&#39;/login&#39;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">browser</span><span class="o">.</span><span class="n">setField</span><span class="p">(</span><span class="s">&#39;username&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">browser</span><span class="o">.</span><span class="n">setField</span><span class="p">(</span><span class="s">&#39;password&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">browser</span><span class="o">.</span><span class="n">clickButton</span><span class="p">(</span><span class="s">&#39;Submit&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">test_section_navigation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    After login, users can navigate to specific sections.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">browser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BASE_URL</span> <span class="o">+</span> <span class="s">&#39;/some_section&#39;</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s">&#39;section_title&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">browser</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+</pre></div>
+<p>Especially on some integration test or system tests, you also have one last
+part for a test: the cleanup. It is recommended to do it in tearDown() but
+when not practical, do it as a new paragraph, at the end of the test.</p>
+</div>
+<div class="section" id="smells">
+<h2><a class="toc-backref" href="#id11">Smells</a></h2>
+<ul class="simple">
+<li>Don't abuse the debugger. The tests should have a good coverage so that
+any code can be debugged just by using the debugger on a failed tests.
+In case you need more than 1 breakpoint in the code, this is a sign that
+you are missing a test.</li>
+<li>Hard work in finding / debugging an error is often an indication of failure
+in writing good code or good tests.</li>
+<li>In case using the automatic breakpoint provided test runner is enough to
+detect the problem, that the code might be good :)</li>
+<li>If a functional test fails, but no unit test fails, than we have at least
+one missing unit test.</li>
+</ul>
+</div>
+<div class="section" id="naming-conventions">
+<h2><a class="toc-backref" href="#id12">Naming conventions</a></h2>
+<ul class="simple">
+<li>All test cases should have names prefixed with <cite>Test</cite>.</li>
+<li>Include the tested class name in the name of the test case.</li>
+<li>When multiple test cases exist for the same class, suffix the test case with
+some hints about the special cases in each test case.</li>
+</ul>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">TestSuperButtonInSpace</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Test for super button behavior in space.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">():</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TestSuperButtonInSpace</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
+        <span class="n">DO</span> <span class="n">YOUR</span> <span class="n">SPACE</span> <span class="n">INITIALIZATION</span> <span class="n">HERE</span><span class="o">.</span>
+
+<span class="k">class</span> <span class="nc">TestSuperButtonOnEarth</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Test for super button behavior on earth.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">():</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TestSuperButtonOnEarth</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
+        <span class="n">DO</span> <span class="n">YOUR</span> <span class="n">EARTH</span> <span class="n">INITIALIZATION</span> <span class="n">HERE</span><span class="o">.</span>
+</pre></div>
+<ul class="simple">
+<li>All methods that perform tests should be prefixed with <cite>test_</cite>.</li>
+<li>If testing a specific method, include the exact name of the method, in the
+test name, at the beginning, just after the <cite>test_</cite> marker.</li>
+<li>When there are multiple tests for the same method, suffix the test with
+a short underline (&quot;_&quot;) delimited summary. No need to add all details in the name.
+Just make sure it is unique in the test case. Avoid long descriptions, you
+can add everything in the docstring.</li>
+</ul>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">test_getAllProperties_no_accounts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An empty dictionary is returned if no accounts are defined.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<div class="section" id="test-fixtures-setup-and-teardown">
+<h2><a class="toc-backref" href="#id13">Test fixtures, setUp and tearDown</a></h2>
+<p>Reusing base test cases and grouping code in setUp and tearDown are great
+ways of reducing code duplications.</p>
+<p>Since this is a good thing, it does not need to be abused.
+Don't forget that code and tests also need to be easy to read.</p>
+<p>We write test cases based on the class under test.
+For example, when we have an object called Account which can have two
+important states: Application and OS, we will write two test case
+<em>AccountOSTestCase</em> and <em>AccountApplicationTestCase</em>.
+This is why all tests from a specific test case will need to instantiate the
+same object, and this is why is OK to create <strong>self.object_under_test</strong>
+instance in the <em>setUp</em>.</p>
+<p>As a raw rule, in the setUp try to only create raw instances which are
+used in all tests, without calling any other code that change the state
+of an object.</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">BadStorageTestCase</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A test that is hard to read.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">stream</span> <span class="o">=</span> <span class="n">SomeStream</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span> <span class="o">=</span> <span class="n">StreamStorage</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">object_1</span> <span class="o">=</span> <span class="n">NewStoredObject</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;one&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">object_1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">object_2</span> <span class="o">=</span> <span class="n">NewStoredObject</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;two&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">object_2</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BadHandlerTestCase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">test_get_all_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Without arguments, returns all objects for the storage.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># This test smells, since it had no arrange part.</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">object_1</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">object_2</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_get_filtered_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A name can be specified to filter results.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># This test smells, since it had no arrange part.</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;one&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">object_1</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotContains</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">object_2</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">BetterStorageTestCase</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A test that is easier to read.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">stream</span> <span class="o">=</span> <span class="n">SomeStream</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span> <span class="o">=</span> <span class="n">StreamStorage</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BadHandlerTestCase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">test_get_all_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Without arguments, returns all objects for the storage.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">object_1</span> <span class="o">=</span> <span class="n">NewStoredObject</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">object_1</span><span class="p">)</span>
+        <span class="n">object_2</span> <span class="o">=</span> <span class="n">NewStoredObject</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">object_2</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">object_1</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">object_2</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_get_all_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A name can be specified to filter results.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">object_1</span> <span class="o">=</span> <span class="n">NewStoredObject</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;one&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">object_1</span><span class="p">)</span>
+        <span class="n">object_2</span> <span class="o">=</span> <span class="n">NewStoredObject</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;two&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">object_2</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;one&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">object_1</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotContains</span><span class="p">(</span><span class="n">object_2</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+</pre></div>
+<p>Try to put as much cleanup code in the tearDown method and not after the
+<strong>assert</strong> block. If a test fails, the rest of the assert block is not
+executed, and putting everything in a try/finally increase indentation.
+You can register object for cleanup by using dedicated creation method.</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">BadTestCase</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">test_someMethod_with_test_bad_cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        When an assertion fails, cleanup is not called.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;some_file&#39;</span><span class="p">)</span>
+        <span class="n">operator</span> <span class="o">=</span> <span class="n">SomeFancy</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+
+        <span class="n">operator</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s">&#39;something&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">getAllContent</span><span class="p">())</span>
+        <span class="c"># When assert fails, the remaining code is not executed.</span>
+        <span class="nb">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">rm</span><span class="p">(</span><span class="nb">file</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">GoodTestCase</span><span class="p">,</span> <span class="bp">self</span><span class="p">(</span><span class="o">.</span><span class="n">tearDown</span><span class="p">()</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">GoodTestCase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">opened_files</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">opened_files</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="nb">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">rm</span><span class="p">(</span><span class="nb">file</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="c"># Pass or record the files which were not closed</span>
+                <span class="c"># and fail with more details.</span>
+                <span class="k">pass</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">GoodTestCase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">tearDown</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">openFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creation method which also registers the object for cleanup.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;some_file&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">opened_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_someMethod_with_test_bad_cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        When an assertion fails, cleanup is still called via tearDown.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">openFile</span><span class="p">(</span><span class="s">&#39;some_file&#39;</span><span class="p">)</span>
+        <span class="n">operator</span> <span class="o">=</span> <span class="n">SomeFancy</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+
+        <span class="n">operator</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s">&#39;something&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">getAllContent</span><span class="p">())</span>
+</pre></div>
+<p>To reduce the need of tearDown and cleanup code, try to run each test on
+new instances and avoid global or singleton objects.</p>
+<p>You can still reuse object, in case creating a new instance takes a long time,
+as we want test to be fast.</p>
+</div>
+<div class="section" id="tests-description-docstrings">
+<h2><a class="toc-backref" href="#id14">Tests description - docstrings</a></h2>
+<p>Good tests can help document and define what something is supposed to do,
+so dedicate effort to write good docstrings.</p>
+<p>Each test should have a description (docstring) with information about the
+purpose of the test or any other additional info that could help another
+person to understand the test.</p>
+<p>Writing docstring for tests is not easy, but doing so will reduce the
+WTF/minute.</p>
+<ul class="simple">
+<li>Describe in simple plain English what you are testing and what is the
+expected behaviour.</li>
+<li>Think of the test's docstring as an extension of documentation for the
+method under tests.</li>
+<li>For integration tests add notes about pre-conditions or other requirements.</li>
+<li>Add a brief description and don't describe how the test is done.
+Detailed information about the test should be available by reading
+the code implementing the tests.
+When code fails to speak for itself use inline comments.</li>
+<li>Avoid including the name of the method under tests. The test method name
+should already include it.</li>
+<li>When testing for raised exceptions avoid adding the exception name in
+the test description. Just inform that an exception is raised. By
+reading the test code, it should be easy to get more details about the
+exception.</li>
+</ul>
+<p>Here are some tips from Jonathan Lange as a handy five-step guide:</p>
+<ol class="arabic">
+<li><p class="first">Write the first docstring that comes to mind. It will almost certainly be:</p>
+<pre class="literal-block">
+&quot;&quot;&quot;Test that input is parsed correctly.&quot;&quot;&quot;
+</pre>
+</li>
+<li><p class="first">Get rid of &quot;Test that&quot; or &quot;Check that&quot;. We know it's a test.:</p>
+<pre class="literal-block">
+&quot;&quot;&quot;Input should be parsed correctly.&quot;&quot;&quot;
+</pre>
+</li>
+<li><p class="first">Seriously?! Why'd you have to go and add &quot;should&quot;? It's a test,
+it's all about &quot;should&quot;.</p>
+<pre class="literal-block">
+&quot;&quot;&quot;Input is parsed correctly.&quot;&quot;&quot;
+</pre>
+</li>
+<li><p class="first">&quot;Correctly&quot;, &quot;properly&quot;, and &quot;as we expect&quot; are all redundant.
+Axe them too.</p>
+<pre class="literal-block">
+&quot;&quot;&quot;Input is parsed.&quot;&quot;&quot;
+</pre>
+</li>
+<li><p class="first">Look at what's left. Is it saying anything at all?
+If so, great. If not, consider adding something specific about the test
+behaviour and perhaps even why it's desirable behaviour to have.</p>
+<pre class="literal-block">
+&quot;&quot;&quot;
+Input is parsed into an immutable dict according to the config
+schema, so we get config info without worrying about input
+validation all the time.
+&quot;&quot;&quot;
+</pre>
+</li>
+<li><p class="first">Happy hacking!</p>
+</li>
+</ol>
+</div>
+<div class="section" id="rerefences">
+<h2><a class="toc-backref" href="#id15">Rerefences</a></h2>
+<p>Here are the pages I used to create this page.</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://integralpath.blogs.com/thinkingoutloud/2005/09/principles_of_t.html">http://integralpath.blogs.com/thinkingoutloud/2005/09/principles_of_t.html</a></li>
+<li><a class="reference external" href="https://plus.google.com/115348217455779620753/posts/YA3ThKWhSAj">https://plus.google.com/115348217455779620753/posts/YA3ThKWhSAj</a></li>
+<li><a class="reference external" href="http://c2.com/cgi/wiki?ArrangeActAssert">http://c2.com/cgi/wiki?ArrangeActAssert</a></li>
+<li><a class="reference external" href="http://stackoverflow.com/q/67299/539264">http://stackoverflow.com/q/67299/539264</a></li>
+<li><a class="reference external" href="http://agileprogrammer.com/2005/08/14/i-really-did-mean-it-avoid-setup-and-teardown/">http://agileprogrammer.com/2005/08/14/i-really-did-mean-it-avoid-setup-and-teardown/</a></li>
+<li><a class="reference external" href="http://agilesoftwaredevelopment.com/blog/vaibhav/acceptance-testing-what-why-how">http://agilesoftwaredevelopment.com/blog/vaibhav/acceptance-testing-what-why-how</a></li>
+</ul>
+</blockquote>
+</div>
+
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer_inner">
+        <div class="row">
+          <address class="vcard">
+            <strong>Contact</strong>
+            main site: <a class="fn org url" href="http://www.chevah.com">Chevah Team</a><br>
+            email: <a class="email" href="mailto:contact@chevah.com">contact@chevah.com</a>
+        </div>
+        <div class="row">
+          <aside class="social" title="Check our GitHub repositories.">
+            Check the source of this site at <a href="http://github.com/chevah/styleguide">chevah/styleguide</a>
+            on GitHub.
+            Check our other repositories on <a href="http://github.com/chevah">GitHub</a>.
+          </aside>
+
+          <div class="terms">
+            &copy; Chevah Project. Content under Public Domain License.
+          </div>
+        </div>
+      </div>
+    </footer>  </body>
+</html>
