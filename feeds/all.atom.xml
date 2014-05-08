@@ -1,5 +1,1054 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="http://styleguide.chevah.com/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>http://styleguide.chevah.com/</id><updated>2014-05-07T16:34:45+01:00</updated><entry><title>Library</title><link href="http://styleguide.chevah.com/library.html" rel="alternate"></link><updated>2014-05-07T16:34:45+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-07:library.html</id><summary type="html">&lt;p&gt;These page contain a list of talking about life, programming craftsmanship,
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="http://styleguide.chevah.com/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>http://styleguide.chevah.com/</id><updated>2014-05-08T17:39:34+01:00</updated><entry><title>Bash</title><link href="http://styleguide.chevah.com/bash.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:bash.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#path-constants" id="id2"&gt;Path constants&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#function-definition" id="id3"&gt;Function Definition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#case-syntax" id="id4"&gt;Case Syntax&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#if-then-else" id="id5"&gt;IF/THEN/ELSE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#for" id="id6"&gt;FOR&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#while-until" id="id7"&gt;WHILE/UNTIL&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#references" id="id8"&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="general"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Shell scripts should be kept at a minimum and &lt;strong&gt;only&lt;/strong&gt; for internal scripts.
+For all other things there is Python.&lt;/li&gt;
+&lt;li&gt;If any, public scripts should use &lt;tt class="docutils literal"&gt;/bin/sh&lt;/tt&gt;. Bash is not available on all
+Unix systems and ksh or other shells are not compatible with Bash syntax.&lt;/li&gt;
+&lt;li&gt;Use &lt;tt class="docutils literal"&gt;printf&lt;/tt&gt; instead of &lt;tt class="docutils literal"&gt;echo&lt;/tt&gt; when using  &lt;tt class="docutils literal"&gt;/bin/sh&lt;/tt&gt; as a shell,
+because &lt;tt class="docutils literal"&gt;echo&lt;/tt&gt; behaviour is incompatible in Bash and Korn shells.
+Eg. use &lt;tt class="docutils literal"&gt;printf&lt;/tt&gt; instead of &lt;tt class="docutils literal"&gt;echo &lt;span class="pre"&gt;-n&lt;/span&gt;&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;printf &amp;quot;blabla\n&amp;quot;&lt;/tt&gt; instead
+of &lt;tt class="docutils literal"&gt;echo &amp;quot;blabla&amp;quot;&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;For internal scripts we should use &lt;tt class="docutils literal"&gt;/bin/bash&lt;/tt&gt;, as the default &lt;tt class="docutils literal"&gt;/bin/sh&lt;/tt&gt;
+sometimes points to a lesser shell such as Dash.&lt;/li&gt;
+&lt;li&gt;A function called main is required for scripts long enough to contain at
+least one other function.&lt;/li&gt;
+&lt;li&gt;Put all functions together in the file just below constants. Don't hide
+executable code between functions.&lt;/li&gt;
+&lt;li&gt;Use uppercase for all GLOBAL variables.&lt;/li&gt;
+&lt;li&gt;In tests, enclose all uncontrolled string variables in double quotes to
+handle empty strings or spaces in variables.&lt;/li&gt;
+&lt;li&gt;Always double quote the &lt;tt class="docutils literal"&gt;$&amp;#64;&lt;/tt&gt; variable to keep all arguments with spaces.&lt;/li&gt;
+&lt;li&gt;Pipelines should be split one per line if they don't all fit on one line.&lt;/li&gt;
+&lt;li&gt;Use $(command) instead of backticks. Nested backticks require escaping the
+inner ones with . The $(command) format doesn't change when nested and is
+easier to read. See the example below&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# This is preferred:&lt;/span&gt;
+&lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;$(command &amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;command1&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;)&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;# This is not:&lt;/span&gt;
+&lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;`command \`command1\``&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Always guard your Bash scripts from unexpected errors by using&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;set&lt;/span&gt; -o nounset
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="path-constants"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Path constants&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;When defining a directory path as a constant, you should include the trailing
+slash to make sure it is a directory and not a file. Two consecutive /'s are
+harmless in POSIX shells as long as they are not at the beginning of the path
+in some exotic environment such as Cygwin that actually uses this notation for
+SMB shares.&lt;/p&gt;
+&lt;p&gt;Always double quote path constants to handle files with spaces:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;SOME_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/some/path/
+&lt;span class="c"&gt;# and use it like this:&lt;/span&gt;
+&lt;span class="nb"&gt;command&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;${SOME_PATH}/some.file&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;# Another example&lt;/span&gt;
+&lt;span class="nv"&gt;REMOTE_URI&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;chevah@chevah.com:/home/chevah/styleguide.chevah.com/vm/
+scp &lt;span class="s2"&gt;&amp;quot;$LOCAL_FILE&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;${REMOTE_URL}/file&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Instead of:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;SOME_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/some/path/
+&lt;span class="c"&gt;# and then:&lt;/span&gt;
+&lt;span class="nb"&gt;command&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;${SOME_PATH}some.file&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="function-definition"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Function Definition&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Leave 2 blank lines between function definitions and always use &lt;tt class="docutils literal"&gt;local&lt;/tt&gt; for
+local variable declaration.&lt;/p&gt;
+&lt;p&gt;Define local variables at the start of the function, in a distinct block.
+It is recommended to define a local variable named &lt;cite&gt;result&lt;/cite&gt; to hold the value
+produced by calling the function.&lt;/p&gt;
+&lt;p&gt;Put the final returned result in a separate block.&lt;/p&gt;
+&lt;p&gt;Procedures are functions which have no result.&lt;/p&gt;
+&lt;p&gt;Since Bash only support returning numeric values, which are interpreted
+as exit codes, we will pass values between functions by using &lt;tt class="docutils literal"&gt;echo&lt;/tt&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#&lt;/span&gt;
+&lt;span class="c"&gt;# Description of function 1.&lt;/span&gt;
+&lt;span class="c"&gt;#&lt;/span&gt;
+&lt;span class="c"&gt;# * $1 - description of first argument&lt;/span&gt;
+&lt;span class="c"&gt;# * $2 - description of second argument&lt;/span&gt;
+&lt;span class="c"&gt;# * return - description of return value.&lt;/span&gt;
+
+function1&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="nb"&gt;local &lt;/span&gt;variable_which_is_local
+    &lt;span class="nb"&gt;local &lt;/span&gt;result
+
+    do_some_action_here
+    do_more_action
+
+    &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$result&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+
+&lt;span class="c"&gt;#&lt;/span&gt;
+&lt;span class="c"&gt;# Description of procedure 1.&lt;/span&gt;
+&lt;span class="c"&gt;#&lt;/span&gt;
+&lt;span class="c"&gt;# It does this and this.&lt;/span&gt;
+&lt;span class="c"&gt;#&lt;/span&gt;
+procedure1&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="nb"&gt;local &lt;/span&gt;&lt;span class="nv"&gt;something&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;function1 ARG1&lt;span class="k"&gt;)&lt;/span&gt;
+
+    do_something_else something
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="case-syntax"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;Case Syntax&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;$VARIABLE_NAME&amp;quot;&lt;/span&gt; in
+    &lt;span class="s2"&gt;&amp;quot;option1&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;do &lt;/span&gt;specific
+        ;;
+    option2*&lt;span class="o"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;do &lt;/span&gt;generic
+        ;;
+    *&lt;span class="o"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;do &lt;/span&gt;default
+        ;;
+&lt;span class="k"&gt;esac&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="if-then-else"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id5"&gt;IF/THEN/ELSE&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if &lt;/span&gt;TEST; &lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="k"&gt;    &lt;/span&gt;call something
+&lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;$string&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; OTHER_TEST &lt;span class="o"&gt;]&lt;/span&gt;; &lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="k"&gt;    &lt;/span&gt;call something_else
+&lt;span class="k"&gt;else&lt;/span&gt;
+&lt;span class="k"&gt;    &lt;/span&gt;call something_else_completely
+&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="for"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id6"&gt;FOR&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for &lt;/span&gt;CONDITION; &lt;span class="k"&gt;do&lt;/span&gt;
+&lt;span class="k"&gt;    &lt;/span&gt;call something
+&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="while-until"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id7"&gt;WHILE/UNTIL&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;while &lt;/span&gt;TEST; &lt;span class="k"&gt;do&lt;/span&gt;
+&lt;span class="k"&gt;    &lt;/span&gt;call something
+&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="references"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id8"&gt;References&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Here are the pages I used to create this page.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.davidpashley.com/articles/writing-robust-shell-scripts/"&gt;http://www.davidpashley.com/articles/writing-robust-shell-scripts/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.linuxjournal.com/content/return-values-bash-functions"&gt;http://www.linuxjournal.com/content/return-values-bash-functions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>CSS, LESS and Styles</title><link href="http://styleguide.chevah.com/css.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:css.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#css-syntax-elements" id="id1"&gt;CSS Syntax Elements&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#general" id="id2"&gt;General&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#css-class-naming" id="id3"&gt;CSS Class naming&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#rules-definition" id="id4"&gt;Rules definition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#layout-and-typography-separation" id="id5"&gt;Layout and Typography separation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;p&gt;The CSS Coding conventions are inspired by &lt;a class="reference external" href="http://www.phpied.com/css-coding-conventions"&gt;Stoyan Stefanov's CSS Coding
+Conventions&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Many of them are automatically checked using pocket-lint that now included
+the CSS Coding Convention Checker.
+Please report any problems that you have with running &lt;tt class="docutils literal"&gt;paver lint&lt;/tt&gt; or
+if some errors are not identified by &lt;tt class="docutils literal"&gt;paver lint&lt;/tt&gt;&lt;/p&gt;
+&lt;div class="section" id="css-syntax-elements"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;CSS Syntax Elements&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;When describing the CSS rules, we will use the following terminology.&lt;/p&gt;
+&lt;img alt="CSS Selector Graphic" src="http://www.w3schools.com/css/selector.gif" /&gt;
+&lt;/div&gt;
+&lt;div class="section" id="general"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;General&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Use C++ comments style (/* comment here */) and not C style (//) as they
+are not supported by CSS2 and there are problems in some browsers.
+Also, on LESS C style comments (//) are ignored in the final result.&lt;/li&gt;
+&lt;li&gt;Avoid using short CSS notation. They are harder to read and the diff
+generated by changing short notations is less explicit.&lt;/li&gt;
+&lt;li&gt;Avoid using IDs when defining styles as they discourage style reuse...
+and then you risk to repeat yourself.&lt;/li&gt;
+&lt;li&gt;Put general styles in ''styles.css'' and don't put page specific styles.&lt;/li&gt;
+&lt;li&gt;Page specific styles can be included using a different file.&lt;/li&gt;
+&lt;li&gt;Use upper letter for color HEX code. Good #F9A0C5 , BAD #f9a0c5&lt;/li&gt;
+&lt;li&gt;Don't use color names or rba, just HEX code.&lt;/li&gt;
+&lt;li&gt;Use 4 space indentation.&lt;/li&gt;
+&lt;li&gt;End a property-value with semi-colon.&lt;/li&gt;
+&lt;li&gt;Separate each rule by a blank line.&lt;/li&gt;
+&lt;li&gt;Put unrelated rule in different files.&lt;/li&gt;
+&lt;li&gt;LESS constants (variables) should be dahs-separated and only low cases:
+&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;&amp;#64;good-constant&lt;/span&gt;&lt;/tt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="css-class-naming"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;CSS Class naming&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The most important thing to have in mind is the content nature of the
+HTML document, not its presentation. Selector names should describe the
+content semantic and &lt;tt class="docutils literal"&gt;not how it looks&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;Don't use abbreviation. Use 'header' instead of 'hdr' or 'head'.&lt;/li&gt;
+&lt;li&gt;Avoid presentation-specific words in the name,
+like &lt;tt class="docutils literal"&gt;blue&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;text-gray&lt;/span&gt;&lt;/tt&gt;, or &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;light-box&lt;/span&gt;&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;Add namespaces using a dash (-) as a separator.&lt;/li&gt;
+&lt;li&gt;Distinct words in the class name are separated by a dash.&lt;/li&gt;
+&lt;li&gt;Names are lowercase.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="rules-definition"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;Rules definition&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The property will be followed by colons and then a space.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Good:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.some-class {
+    float: center;
+}
+&lt;/pre&gt;
+&lt;p&gt;Bad:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.some-class {
+    float:center;
+}
+&lt;/pre&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Put each selector on a single line and separate them using comma.
+In this was it is easier to see the selector when using multiple selectors.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Good:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.some-class,
+p a.class {
+    float: center;
+}
+&lt;/pre&gt;
+&lt;p&gt;Bad:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.some-class, p a.class {
+    float: center;
+}
+&lt;/pre&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The closing bracket should be the only character from a line.
+It should not be indented.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Good:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.some-class {
+  float: center;
+}
+&lt;/pre&gt;
+&lt;p&gt;Bad:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.some-class
+{
+    float: center;
+    }
+
+.some-class {
+    float: center; }
+
+.some-class, .another { float: center; }
+&lt;/pre&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The opening bracket should be on a the same line as the last selector.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Good:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.some-class {
+    float: center;
+}
+
+.some-class,
+.another-class {
+    float: center;
+}
+&lt;/pre&gt;
+&lt;p&gt;Bad:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.some-class
+{
+    float: center;
+}
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="layout-and-typography-separation"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id5"&gt;Layout and Typography separation&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Don't put typography properties in the same rule with layout properties&lt;/li&gt;
+&lt;li&gt;The idea it that when you change or remove a typographic rule, the layout will not be affected.&lt;/li&gt;
+&lt;li&gt;Use this with moderation, sometimes it is ok to set a margin or padding for H1 or P tag... but don't abuse this.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;GOOD:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+product-name {
+    font-style: underline:
+    color: red;
+    }
+
+highlighted-box {
+    float: center;
+    width: 30px;
+    background-color: blue;
+    }
+&lt;/pre&gt;
+&lt;p&gt;BAD:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+product-name {
+    font-style: underline:
+    color: red;
+    float: center;
+    width: 30px;
+    background-color: blue;
+    }
+&lt;/pre&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Generic</title><link href="http://styleguide.chevah.com/generic.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:generic.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#comments" id="id2"&gt;Comments&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#exceptions-handling" id="id3"&gt;Exceptions handling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#project-specific" id="id4"&gt;Project specific&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="general"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The content of this website is intended to help new team members understand
+the direction of our team.&lt;/p&gt;
+&lt;p&gt;It also helps novice and advance beginners by providing a set of simple rules.
+Anyone should read this as best practice and provide feedback in case
+something is wrong.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Rule #1: Keep it DRY! Don't repeat yourself!&lt;/li&gt;
+&lt;li&gt;Rule #2: KISS - Keep it simple, stupid simple!&lt;/li&gt;
+&lt;li&gt;All code in any code-base should look like a single person typed it, no
+matter how many people contributed.&lt;/li&gt;
+&lt;li&gt;No single person is responsible for a part of the code. We write code
+together, we take the blame together, we take the glory together.
+Once a code was approved for review, reviewers are also responsible for
+that code.&lt;/li&gt;
+&lt;li&gt;Write all code as it will be written once and read thousand times.
+Write code for maximum readability.&lt;/li&gt;
+&lt;li&gt;When you need a trade-off between readability and code duplication, choose
+to have a code less readable but without duplication.&lt;/li&gt;
+&lt;li&gt;Write code as it will be used by humans, not a machine. You are not a
+a compiler / interpretor.&lt;/li&gt;
+&lt;li&gt;Optimization should come second and only if really needed. Don't Use clever
+tricks and other optimization to early.&lt;/li&gt;
+&lt;li&gt;Do the simplest thing that could possibly work and do it well.
+Always work on the story you have, not something you think we're going to
+need sometime in the future.
+Don't try implement all usecases you can think of and end with poorly
+designed code and poorly tested code.&lt;/li&gt;
+&lt;li&gt;Try to keep methods as flat as possible and return as soon as possible.&lt;/li&gt;
+&lt;li&gt;Don't use abbreviation. Use full, meaningful names.&lt;/li&gt;
+&lt;li&gt;Don't use tabs for indentation, and in general don't use tabs for anything
+else. The only exceptions are the Makefiles.&lt;/li&gt;
+&lt;li&gt;Favor indentation using 4 spaces. For deep nested languages (HTML, JS) it
+is OK to use 2 spaces.&lt;/li&gt;
+&lt;li&gt;Maximum line length is 78 characters.&lt;/li&gt;
+&lt;li&gt;Don't mix multiple languages in a single file.&lt;/li&gt;
+&lt;li&gt;No need for the ultimate purism, when using / calling code from external
+libraries it is OK if those calls don't comply with coding convention.&lt;/li&gt;
+&lt;li&gt;When extending external libraries use the coding convention used by that
+library. It might be harder to define the border of those changes but this
+should help with sending patches upstream.&lt;/li&gt;
+&lt;li&gt;When reporting a code related problem, use
+&lt;a class="reference external" href="http://sscce.org"&gt;Short, Self Contained, Correct (Compilable), Example&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;Each repository / project will have a README file describing why it exists
+and what it should do.
+The README should also include notes about contributing to the project.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Each repository will have a LICENSE and AUTHORS files.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Technical dept comments (ex FIXME, TODO) will always have an attached
+ticket ID and will use the following format. Only &lt;strong&gt;FIXME&lt;/strong&gt; marker is used
+followed by ticket ID. Comments will come on a new lines.
+Adapt this to the style of comments use in the specific language, but
+is important to keep the &lt;strong&gt;FIXME:123:&lt;/strong&gt; marker.:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+# FIXME:1234:
+# Details about this tech-dept. Ex: Can only be fixed when full moon.
+&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Words are an important part of how software works.
+Even though there may be dozens of people creating a product, reading
+comments, documentation, notes etc, it should still sound like we speak
+in one consistent voice.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;When writing text for the documentation or text that appears in the
+program favour classy over cute or mechanical.
+Respect the reader, act more like a human and less like a computer,
+and use fewer words:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+Instead of:
+
+Successfully deleted the #{branch_name} branch.
+
+Try something like:
+
+The #{branch_name} branch has been deleted.
+&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Use a graphical commit tool (&lt;tt class="docutils literal"&gt;git gui&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;gitg&lt;/tt&gt;) for doing the commit.
+In this way you can split the changes in multiple commits and you can also
+do a first review just before the commit.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;When you don't understand something related to security, don't just walk
+by and ignore it. Try to understand what is happening there, or ask
+someone else to take a look or to explain it to you.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Don't abuse inheritance and favour composition and delegation.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Write code so that it can be read / used by developers having a work
+style different than yours. Don't add IDE / text editor specific things
+Don't assume that other developer will use the same IDE / text editor,
+fancy keyboard (or foot pedals), array of huge monitors...&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;When you have a non-trivial conditional expression (logical condition from
+an if statement), break it in smaller sub-conditionals.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Long conditional which is not that bad.&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MAX_SIZE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;ACTIVE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;PAUSED&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
+  &lt;span class="n"&gt;do_domething&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="c"&gt;# But can be better.&lt;/span&gt;
+&lt;span class="n"&gt;source_not_full&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MAX_SIZE&lt;/span&gt;
+&lt;span class="n"&gt;destination_available&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;ACTIVE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;PAUSED&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source_available&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;destination_available&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;do_something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="c"&gt;# Or even better.&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Source&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+  &lt;span class="n"&gt;MAX_SIZE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+  &lt;span class="nd"&gt;@property&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;full&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MAX_SIZE&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Destination&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+  &lt;span class="n"&gt;ACTIVE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+  &lt;span class="n"&gt;PAUSED&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+  &lt;span class="n"&gt;STOPPED&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+  &lt;span class="n"&gt;FAILDED&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+
+  &lt;span class="nd"&gt;@property&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;ready&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ACTIVE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
+      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PAUSED&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;full&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ready&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;do_something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="comments"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Comments&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;All comments should be valid sentences and should end with a full stop (.).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Try to write code so that it speak for itself and so that a comment is not
+required.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Try to name variables, methods, function so that they communicate their
+intend. A comment is only attached to the place where the name is defined,
+and not present in all other multiple places where it is used. IDE can help,
+but we should not rely on that.&lt;/p&gt;
+&lt;p&gt;When a comment is required is like saying: I have no idea for a better name
+for this thing, so here is my poor comment. Good luck with figuring the
+intend of this name when you see the it in the rest of this file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Well commented code is extremely important. Take time to describe
+components, how they work, their limitations, and the way they are
+constructed. Don't leave others in the team guessing as to the purpose
+of uncommon or non-obvious code.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Place comments on a new line above their subject.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Avoid end of line comments. End of line comments can be used for lint
+ignores and other hints for automated tools... but not for humans.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="exceptions-handling"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Exceptions handling&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Here are some simple generic rules for working with exceptions.&lt;/p&gt;
+&lt;p&gt;In Chevah project we use 2 major &amp;quot;kinds&amp;quot; of exceptions:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;cite&gt;Errors&lt;/cite&gt; are top level exceptions that are not going to be handled
+internally by the package / library.&lt;/li&gt;
+&lt;li&gt;&lt;cite&gt;Exceptions&lt;/cite&gt; normal exceptions, passed inside the package/library to signal
+various conditions. The public API for the package/library should not raise
+this kind of exceptions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Exceptions can take any format, and most of the time they can contain only
+a text with some details about the error. These exceptions are low level
+and should be raised in simple conditions.&lt;/p&gt;
+&lt;p&gt;Errors should have an unique ID and a data attribute.
+Each ID should be raised from a single place.
+The data attribute is a dictionary with key / values that make sense for the
+error.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="project-specific"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;Project specific&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Each log message should be documented, listing format, introduction version,
+version since it was obsolete, log type, conditions in which it is raised
+and other informations that can be useful for users.&lt;/li&gt;
+&lt;li&gt;A logging messages should only be called from a single place in the code.
+This will greatly help with support and debugging.&lt;/li&gt;
+&lt;li&gt;A logging message should have a unique ID. This will help the support team
+by pointing a specific event. It will also help when localized logs are
+used.&lt;/li&gt;
+&lt;li&gt;If a logging message should be issued from multiple places, move the
+logging call into a dedicated helper method. This will help with
+automatic detection of accidentally using same message ID for different
+logs.&lt;/li&gt;
+&lt;li&gt;Components should not issue logging messages that are outside of
+theirs scope, but rather use exceptions to pass the log informations.&lt;/li&gt;
+&lt;li&gt;If there are no other options, rather than directly issuing a logging
+message, the component should call a function located in the component
+that 'owns' the log ID that will issue the log.&lt;/li&gt;
+&lt;li&gt;All branches will need to use the following convention:
+&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;TICKETNO-SHORT_DESCRIPTION&lt;/span&gt;&lt;/tt&gt;. By having a reference to a ticket, it will
+be much easier to track and keep a record of branch purpose and its
+development.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+447-add_sqlite_log
+&lt;/pre&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Each user configuration options should be documented,
+listing valid values, place where the configuration is located,
+introduction version, version since it was obsolete,
+together with a description of the purpose and effect.&lt;/li&gt;
+&lt;li&gt;Configuration options will be documented using the following format. Please
+note the order in which fields are defined, the name of the files and the
+format for declaring possible values. All fields should be present, and
+if no value is defined, use 'None' or leave it blank.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="literal-block"&gt;
+log_file
+--------
+
+:Optional: Yes
+:Default value: `log/server.log`
+:Values: * `some value`
+         * `other value` - short description or this value.
+         * `yet another value`
+:Available from version: 1.6.0
+:Available up to version: 2.0.3
+:Description:
+    This is the long description of the configuration option. It can
+    span multiple lines.
+
+    It can also span multiple paragraph.
+
+    This should be the place to describe in details available values
+    that can be set.
+&lt;/pre&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>HTML, XML and other markups</title><link href="http://styleguide.chevah.com/html.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:html.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#css-interaction" id="id2"&gt;CSS interaction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#html-tags-usage" id="id3"&gt;HTML tags usage&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="general"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;Unlike other files, indentation for XML/HTML is 2 spaces.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Don't use inline HTML style attribute. Only CSS class.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Use HTML5 doctype:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;lt;!doctype html&amp;gt;
+&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="css-interaction"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;CSS interaction&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Make sure all elements that are used in JS have an ID.
+This helps with testing.&lt;/li&gt;
+&lt;li&gt;Make sure all related elements have the same class.&lt;/li&gt;
+&lt;li&gt;Make sure that a page will not contain the same ID more than once.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="html-tags-usage"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;HTML tags usage&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;Don't use new HTML5 elements/tags and API.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Don't use deprecated HTML4 elements/tags.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Paragraphs of text should always be placed in a &amp;lt;p&amp;gt; tag.
+Never use multiple &amp;lt;br/&amp;gt; tags.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Items in list form should always be in &amp;lt;ul&amp;gt;, &amp;lt;ol&amp;gt;, or &amp;lt;dl&amp;gt;,
+Never a set of &amp;lt;div&amp;gt; or &amp;lt;p&amp;gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Every form input that has text attached should utilize a &amp;lt;label&amp;gt; tag.
+Especially radio or checkbox elements.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Use double quotes for tag/element attributes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Even though quotes around attributes is optional, always put quotes around
+attributes for readability:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+GOOD: &amp;lt;p class=&amp;quot;line note&amp;quot; data-attribute=&amp;quot;106&amp;quot;&amp;gt;
+        This is my paragraph of special text.&amp;lt;/p&amp;gt;
+BAD : &amp;lt;p class=&amp;quot;line note&amp;quot; data-attribute=106&amp;gt;
+        This is my paragraph of special text.&amp;lt;/p&amp;gt;
+&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Make use of &amp;lt;thead&amp;gt;, &amp;lt;tfoot&amp;gt;, &amp;lt;tbody&amp;gt;, and &amp;lt;th&amp;gt; tags (and Scope attribute)
+when appropriate. (note: &amp;lt;tfoot&amp;gt; goes above &amp;lt;tbody&amp;gt; for speed reasons.
+You want the browser to load the footer before a table full of data.):&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;lt;table summary=&amp;quot;This is a chart of invoices for 2011.&amp;quot;&amp;gt;
+  &amp;lt;thead&amp;gt;
+    &amp;lt;tr&amp;gt;
+      &amp;lt;th scope=&amp;quot;col&amp;quot;&amp;gt;Table header 1&amp;lt;/th&amp;gt;
+      &amp;lt;th scope=&amp;quot;col&amp;quot;&amp;gt;Table header 2&amp;lt;/th&amp;gt;
+    &amp;lt;/tr&amp;gt;
+  &amp;lt;/thead&amp;gt;
+  &amp;lt;tfoot&amp;gt;
+    &amp;lt;tr&amp;gt;
+      &amp;lt;td&amp;gt;Table footer 1&amp;lt;/td&amp;gt;
+      &amp;lt;td&amp;gt;Table footer 2&amp;lt;/td&amp;gt;
+    &amp;lt;/tr&amp;gt;
+  &amp;lt;/tfoot&amp;gt;
+  &amp;lt;tbody&amp;gt;
+    &amp;lt;tr&amp;gt;
+      &amp;lt;td&amp;gt;Table data 1&amp;lt;/td&amp;gt;
+      &amp;lt;td&amp;gt;Table data 2&amp;lt;/td&amp;gt;
+    &amp;lt;/tr&amp;gt;
+  &amp;lt;/tbody&amp;gt;
+&amp;lt;/table&amp;gt;
+&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>JavaScript</title><link href="http://styleguide.chevah.com/javascript.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:javascript.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#defining-classes" id="id2"&gt;Defining classes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#css-interaction" id="id3"&gt;CSS interaction&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#js-related-css-class" id="id4"&gt;JS related CSS class&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#changing-css-html-from-js" id="id5"&gt;Changing CSS/HTML from JS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#test-styleguide" id="id6"&gt;Test styleguide&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#rerefences" id="id7"&gt;Rerefences&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="general"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;Variable declarations must start with 'var'.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Do your best to never use a semicolon.
+This means avoiding them at line breaks and avoiding multi-statement lines.
+Semi-colon at the end of the line is added only when required.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Use 4 space indentation.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Variable, function, method and constants name are after PEP8.
+variable_name, function_name, methodName, ClassName, CONSTANT_NAME&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Callback methods should always end with 'Callback' as the
+method / function name. This is a reminder of the fact that
+the context is lost.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Constructor functions (those that are called with &lt;strong&gt;new&lt;/strong&gt;) should use
+class naming convention.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;use &lt;tt class="docutils literal"&gt;===&lt;/tt&gt; instead of &lt;tt class="docutils literal"&gt;==&lt;/tt&gt; for comparison. &lt;tt class="docutils literal"&gt;===&lt;/tt&gt; doesn't do type
+coercion.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Only use &lt;tt class="docutils literal"&gt;typeof&lt;/tt&gt; for checking against undefined variables:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+typeof foo !== 'undefined'
+&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;For all other type checking use the custom defined typeOf() function.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Try to avoid the usage of &lt;tt class="docutils literal"&gt;instanceof&lt;/tt&gt; and don't use it for native types.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Create new arrays using the array literals &lt;tt class="docutils literal"&gt;[]&lt;/tt&gt; notation. Don't use
+&lt;tt class="docutils literal"&gt;new Array()&lt;/tt&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Iterate arrays using the classic &lt;tt class="docutils literal"&gt;for&lt;/tt&gt; loop:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+var list = [1, 2, 3, 4, 5, ...... 100000000];
+for (var i = 0, l = list.length; i == l; i++) {
+    console.log(list[i]);
+}
+&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Always define the variable used to iterate in a &lt;tt class="docutils literal"&gt;for&lt;/tt&gt; loop.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Don't use &lt;tt class="docutils literal"&gt;eval&lt;/tt&gt; and don't pass strings to &lt;tt class="docutils literal"&gt;setTimeout&lt;/tt&gt; and
+&lt;tt class="docutils literal"&gt;setInterval&lt;/tt&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Use &lt;tt class="docutils literal"&gt;undefined&lt;/tt&gt; instead of the the traditional &lt;tt class="docutils literal"&gt;null&lt;/tt&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Keep braces on the same line as their corresponding statements. Never omit
+them for single-line if / else statements.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;something&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// code here&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// code here&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;duppy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;something&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Leave 2 empty lines between global function or class definitions.
+Leave 1 empty line between functions from the same class.
+Global variable can be grouped and the don't require empty lines in between.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;GLOBAL_DAY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;GLOBAL_YEAR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+
+
+&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;Docstring for duppy.&lt;/span&gt;
+&lt;span class="cm"&gt;*/&lt;/span&gt;
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;duppy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// Do something here.&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+
+&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;Docstring for duppy_doo.&lt;/span&gt;
+&lt;span class="cm"&gt;*/&lt;/span&gt;
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;duppy_doo&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// Do something here.&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+
+&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;A simple mock for Browser service.&lt;/span&gt;
+&lt;span class="cm"&gt;*/&lt;/span&gt;
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;MockBrowser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;_cookies&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;    Docstring for MockBrower.setCookies()&lt;/span&gt;
+&lt;span class="cm"&gt;    */&lt;/span&gt;
+    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setCookie&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;// Implementation here.&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;    Docstring here.&lt;/span&gt;
+&lt;span class="cm"&gt;    */&lt;/span&gt;
+    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;doSomethingElse&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;// Implementation here.&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;_methodWihoutDocstring&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;// Implementation here.&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;Avoid using leading parenthesis.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Avoid using &lt;tt class="docutils literal"&gt;delete&lt;/tt&gt; operator and only use it to delete explicitly
+set properties on normal objects:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+var obj = {x: 1};
+obj.y = 2;
+delete obj.x;  // true
+delete obj.y;  // true
+&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Use single quote for strings.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+In HTML, we use &amp;quot; as quotes around attribute values, like this:
+
+&amp;lt;a href=&amp;quot;foo&amp;quot;&amp;gt;bar&amp;lt;/a&amp;gt;
+In JavaScript, we use ' as much as possible.
+
+alert('qux');
+This way, we can use consistent quotes when writing HTML inside of JS:
+
+alert('&amp;lt;a href=&amp;quot;foo&amp;quot;&amp;gt;bar&amp;lt;/a&amp;gt;')
+&lt;/pre&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;REST web services should always return a valid dictionary
+and not an Array or a primitive. JSON-RPC is forced to return a dictionary
+by the protocol.&lt;/li&gt;
+&lt;li&gt;Callbacks called from the GUI / DOM should be prefixed with &lt;cite&gt;on&lt;/cite&gt;.
+Ex: onAuthentication (when authenticate button is pressed),
+onLogout (when logout link is pressed),
+onLoginFormSubmit (when login form is submitted)&lt;/li&gt;
+&lt;li&gt;Callbacks/Errback for XHR are be prefixed with &lt;cite&gt;cb&lt;/cite&gt; and &lt;cite&gt;eb&lt;/cite&gt;, similar
+with Python/Twisted convention.&lt;/li&gt;
+&lt;li&gt;For one line comments, leave one empty space after the comment marker.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// Good comment line.&lt;/span&gt;
+&lt;span class="c1"&gt;//Bad comment line.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;For multi line comments use the following convention.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;Short single line comment title.&lt;/span&gt;
+&lt;span class="cm"&gt;More details about what is here and&lt;/span&gt;
+&lt;span class="cm"&gt;here and here.&lt;/span&gt;
+
+&lt;span class="cm"&gt;Feel free to create paragraphs separation.&lt;/span&gt;
+&lt;span class="cm"&gt;*/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Global constants will follow the CONSTANT_NAME naming convention.&lt;/li&gt;
+&lt;li&gt;Global services (objects with methods) are named similar to class names.
+Most of the time they will be singletons so there will be no associated
+class.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;Shell&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;ActiveXObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;WScript.Shell&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;do_something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;bla&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Shell&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;method_usage&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;TODO
+&lt;a class="reference external" href="http://javascript.crockford.com/code.html"&gt;http://javascript.crockford.com/code.html&lt;/a&gt; &lt;a class="reference external" href="http://jibbering.com/faq/notes/code-guidelines/"&gt;http://jibbering.com/faq/notes/code-guidelines/&lt;/a&gt; &lt;a class="reference external" href="http://neil.rashbrook.org/Js.htm"&gt;http://neil.rashbrook.org/Js.htm&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="defining-classes"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Defining classes&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In JS there is no strict way of defining a class and instances are created
+using a function and new operator.&lt;/p&gt;
+&lt;p&gt;When defining a class we use an anonymous function to allow class
+private instances and create a new class scope.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;BaseAccount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;class_private_member&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;    Constructor is here.&lt;/span&gt;
+&lt;span class="cm"&gt;    */&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;
+        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;class_member&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;    Base method.&lt;/span&gt;
+&lt;span class="cm"&gt;    */&lt;/span&gt;
+    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;base_method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;-&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;    Some method.&lt;/span&gt;
+&lt;span class="cm"&gt;    */&lt;/span&gt;
+    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;some_method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;prefix&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;base_method&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;    Another method.&lt;/span&gt;
+&lt;span class="cm"&gt;    */&lt;/span&gt;
+    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;tuned&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt;
+&lt;span class="p"&gt;}())&lt;/span&gt;
+
+
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;SpecialAccount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;variant&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;light&amp;#39;&lt;/span&gt;
+        &lt;span class="cm"&gt;/* Something similar to super()*/&lt;/span&gt;
+        &lt;span class="nx"&gt;BaseAccount&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;call&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/* Something similar to inheritance. */&lt;/span&gt;
+    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;Object&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;BaseAccount&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;constructor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;    Method extending parent.&lt;/span&gt;
+&lt;span class="cm"&gt;    */&lt;/span&gt;
+    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;some_method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;prefix&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;parent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;BaseAccount&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;some_method&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;call&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;prefix&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;-child-&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;parent&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;    Method overwriting parent.&lt;/span&gt;
+&lt;span class="cm"&gt;    */&lt;/span&gt;
+    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;tuned&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt;
+&lt;span class="p"&gt;}())&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="css-interaction"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;CSS interaction&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="section" id="js-related-css-class"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id4"&gt;JS related CSS class&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Try to append js- to all javascript-based selectors. This is taken from
+&lt;a class="reference external" href="http://ozmm.org/posts/slightly_obtrusive_javascript.html"&gt;slightly obtrusive javascript&lt;/a&gt;. The idea is that you should be able to tell
+a presentational class from a functional class.&lt;/p&gt;
+&lt;p&gt;There are good things and bad things about &amp;quot;Unobtrustive JavaScript.&amp;quot;
+One bad thing: it's hard to tell what JavaScript is touching an element.&lt;/p&gt;
+&lt;p&gt;Only ever use classes and ids prefix with js- when touching the DOM with
+JavaScript.&lt;/p&gt;
+&lt;p&gt;For example:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;lt;a href=&amp;quot;#prices&amp;quot; class=&amp;quot;button js-open-tab&amp;quot;&amp;gt;Prices&amp;lt;/a&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Now we know to look for any JavaScript touching .js-open-tab, which should
+only be a simple search away.&lt;/p&gt;
+&lt;p&gt;And hey, now JavaScript and CSS won't share selectors. Since we're separating
+our content and presentation, we might as well separate our behaviour all the
+way too.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="changing-css-html-from-js"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id5"&gt;Changing CSS/HTML from JS&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Don't modify the associated CSS properties, but rather modify the CSS class:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+GOOD: $('#element_id').addClass('highlight');
+BAD : $('#element_id').css('font-weight': 'bold');
+&lt;/pre&gt;
+&lt;p&gt;Same story as with CSS, don't modify HTML tag attributes,
+but rather try to change the CSS class:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+GOOD: $('#element_id').addClass('sprite red_dot');
+BAD : $('#element_id').attr('src': 'some/red_dot.png');
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="test-styleguide"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id6"&gt;Test styleguide&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;We use &lt;tt class="docutils literal"&gt;expect&lt;/tt&gt; style testing.&lt;/li&gt;
+&lt;li&gt;Leave 2 emtpy lines before each &lt;tt class="docutils literal"&gt;suite&lt;/tt&gt; and one empty line before each
+&lt;tt class="docutils literal"&gt;test&lt;/tt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;Tests for login controller.&lt;/span&gt;
+&lt;span class="cm"&gt;*/&lt;/span&gt;
+
+
+&lt;span class="nx"&gt;suite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;LoginCtrl&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// Shared variables.&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;scope&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;ctrl&lt;/span&gt;
+
+    &lt;span class="nx"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;// Initialize first.&lt;/span&gt;
+    &lt;span class="p"&gt;})&lt;/span&gt;
+
+    &lt;span class="nx"&gt;teardown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;// Clean second.&lt;/span&gt;
+    &lt;span class="p"&gt;})&lt;/span&gt;
+
+    &lt;span class="nx"&gt;test&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;Initializes with no errors and blank values&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;long line are wrapped&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;something&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+        &lt;span class="nx"&gt;something&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;doSomething&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+        &lt;span class="nx"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;equal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;something&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;username&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;})&lt;/span&gt;
+
+
+    &lt;span class="nx"&gt;suite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;critical_error attribute&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+
+        &lt;span class="nx"&gt;test&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;When set, hides the form and sets the error message.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+            &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;manu&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;makeUniqueString&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+            &lt;span class="nx"&gt;scope&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;critical_error&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt;
+            &lt;span class="nx"&gt;scope&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$digest&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+            &lt;span class="nx"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;isFalse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;scope&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;show_form&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="nx"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;equal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;scope&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;})&lt;/span&gt;
+    &lt;span class="p"&gt;})&lt;/span&gt;
+&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="rerefences"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id7"&gt;Rerefences&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Here are the pages I used to create this page.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://toranbillups.com/blog/archive/2013/05/15/Basic-javascript-inheritance-and-polymorphism/"&gt;http://toranbillups.com/blog/archive/2013/05/15/Basic-javascript-inheritance-and-polymorphism/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Library</title><link href="http://styleguide.chevah.com/library.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:library.html</id><summary type="html">&lt;p&gt;These page contain a list of talking about life, programming craftsmanship,
 good/clean code and many more. The list is in random order:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416"&gt;Extreme Programming Explained: Embrace Change&lt;/a&gt;
@@ -17,7 +1066,168 @@ good/clean code and many more. The list is in random order:&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/dp/1936719118"&gt;Anything You Want&lt;/a&gt;
 (ISBN: 978-1936719112) by Derek Sivers, published June 29, 2011.&lt;/li&gt;
 &lt;/ul&gt;
-</summary></entry><entry><title>Python</title><link href="http://styleguide.chevah.com/python.html" rel="alternate"></link><updated>2014-05-07T16:34:45+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-07:python.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Overview</title><link href="http://styleguide.chevah.com//index.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:/index.html</id><summary type="html">&lt;p&gt;These pages describe the style and other guides used in Chevah project.
+They also include some notes about the whole software development
+process.&lt;/p&gt;
+&lt;p&gt;The content might be pedantic, but we hope that by following these guide
+you will find easier to collaborate and improve the quality of
+code and work.&lt;/p&gt;
+&lt;p&gt;There is a page with common rules and a special page for each language
+or technology used by the project.&lt;/p&gt;
+&lt;p&gt;Please note that these guides are continuously updated according to latest
+best practices.&lt;/p&gt;
+&lt;p&gt;We consider that arguments over these guides are not pointless. In the same
+time, it is hard to agree upon a style guide for all projects, and we don't
+expect that everyone will agree with the lines from this page.
+If you have any comment or suggestions, please get in touch with us. You
+can do that over email, or adding an issue or pull request on
+&lt;a class="reference external" href="{{author.code_url}}"&gt;chevah/styleguide - Github&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We try to automatically check these rules using &lt;a class="reference external" href="https://launchpad.net/pocket-lint/"&gt;pocket-lint&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is a collection of programming craftsmanship recommendations and ideas.
+Please let us know if we fail to properly cite the source.&lt;/p&gt;
+</summary></entry><entry><title>Work</title><link href="http://styleguide.chevah.com/work.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:work.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#you-are-in-control" id="id2"&gt;You are in control&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#stay-focus-on-what-you-do" id="id3"&gt;Stay focus on what you do&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#asynchronous-tasks" id="id4"&gt;Asynchronous tasks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#staying-healthy" id="id5"&gt;Staying Healthy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#communication" id="id6"&gt;Communication&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#tools" id="id7"&gt;Tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#references" id="id8"&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="general"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This page tries to by the &amp;quot;style-guide&amp;quot; for your life :)&lt;/p&gt;
+&lt;p&gt;Working in a distributed team can be fun, challenging but not everything is
+fun and joy... and not all the time.&lt;/p&gt;
+&lt;p&gt;A distributed team is scattered across different locations,
+and everyone works wherever they are. People can work from home
+(bedroom, living room or home office room), from co-working places or
+any place they feel comfortable.&lt;/p&gt;
+&lt;p&gt;If you have always done your job &amp;quot;at work&amp;quot;, the transition can be rough.
+Working remotely isn't for everyone, and it can take a while to adjust to it.
+Ask for advice from your team members, they have also been
+through this and can share their experience.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="you-are-in-control"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;You are in control&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;When you work in a distributed team, you are in control.
+You plan your schedule and decide where and when to work.&lt;/p&gt;
+&lt;p&gt;Most difficult part is to find the motivation to work. Hopefully you enjoy
+what you do at work and genuinely care about getting work done for the
+project. Otherwise you might need to find another project or recognize that
+distributed teams are not your style.&lt;/p&gt;
+&lt;p&gt;There is nobody to tell you when to work, how to work or to check that you
+are at work. It is your own style to work and you need to find ways to
+improve the way you work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="stay-focus-on-what-you-do"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Stay focus on what you do&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Try not to mix &amp;quot;at work&amp;quot; activities with &amp;quot;after work&amp;quot; activities.
+Make a clear distinction between when you are &amp;quot;at work&amp;quot; an when not.
+Otherwise you might be working or slacking non-stop.&lt;/p&gt;
+&lt;p&gt;When you are &amp;quot;at work&amp;quot;, it does not matter how much time you spend sitting at
+your desk or staring at the screen.
+The only thing you have to show for your day is that you've actually got
+something done.&lt;/p&gt;
+&lt;p&gt;Define a time when you work and a place where you work.
+Let others know about these boundaries.
+When at home, other members of the house might find it hard that even if
+though you're around, you're actually &amp;quot;at the office&amp;quot; working.&lt;/p&gt;
+&lt;p&gt;Same boundaries apply when you are not at work or on leave / holiday.
+Dedicate the weekend for non-work related activities.
+Refrain from checking work email, colleagues progress or project status.
+Take that time to disconnect from work, recharge your energy and motivation,
+interact with your friends... just do something else.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="asynchronous-tasks"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;Asynchronous tasks&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Distributed or asynchronous work requires a completely different way to
+handler tasks, in comparison with the 9 to 5 methodology.&lt;/p&gt;
+&lt;p&gt;We are a team, so we still need to collaborate in order to get a task done.&lt;/p&gt;
+&lt;p&gt;While working on a task you will have to wait for feedback from one or more
+team members. Example review request, help with some idea... etc
+Since we are not at work in the same time it will inevitable lead to
+having multiple opened tasks in the same time.&lt;/p&gt;
+&lt;p&gt;In order to reduce the number of parallel tasks, we need to provide quick
+feedback to our team. The feedback should be no more than 48 hours, preferable
+24 hours.&lt;/p&gt;
+&lt;p&gt;In case a team member is delaying the feedback, get in touch with him/her
+and try to hurry the feedback.&lt;/p&gt;
+&lt;p&gt;Try to keep the number of parallel tasks to a manageable size of less than 5
+tasks.&lt;/p&gt;
+&lt;p&gt;Make sure you have the right tools so that switching between tasks is easy and
+fun:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;the tools should provide good support for switching between
+environments or operating systems, sharing configurations or environment.&lt;/li&gt;
+&lt;li&gt;review comments should be clear so that you will always know what you
+need to do next.&lt;/li&gt;
+&lt;li&gt;changes after review should be easy to detect and focus.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="staying-healthy"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id5"&gt;Staying Healthy&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Staying healthy, both physical and mental, is harder when you are on your
+own.&lt;/p&gt;
+&lt;p&gt;When you work from home or bedroom you tend to do little physical
+effort. Fitness is something you have to pay close attention.&lt;/p&gt;
+&lt;p&gt;Make sure you have a comfortable desk, chair, keyboard,
+mouse and monitor. Any of these can cause short or long term injuries.
+There is also the option of working from a standing desk.&lt;/p&gt;
+&lt;p&gt;Being alone at work is probably the hardest part.
+When you work from home, the only person you talk to all day are members of
+the house. It can get pretty sad.&lt;/p&gt;
+&lt;p&gt;Disconnect yourself from the work, stay away from the screen and feel
+more like a social human being.
+Be pro-active and invite friend for lunch, coffee, dinner,
+game night, pasta night, drinks.
+You shouldn't be dependent on work for social interactions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="communication"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id6"&gt;Communication&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Use &amp;quot;away&amp;quot; and &amp;quot;busy&amp;quot; functionality of you instant messaging tool to let other
+know about your status.&lt;/p&gt;
+&lt;p&gt;When you talk to someone face-to-face or voice-to-voice,
+you get a lot of contextual information and unspoken messages,
+and information is exchanged pretty quickly.&lt;/p&gt;
+&lt;p&gt;When communicating using text messages many or these unspoken messages are
+not received.
+Always acknowledge that you have received and understood a text message.
+Be as clear as possible and avoid subtle irony or local culture jokes.&lt;/p&gt;
+&lt;p&gt;Since most of the communication is done using text, get proficient at typing.
+You will write many code, emails, documents, text chats.&lt;/p&gt;
+&lt;p&gt;The process of writing should encourage you to slow down,
+organize and clarify your thoughts before sharing them with someone else.&lt;/p&gt;
+&lt;p&gt;When things get to complicated, don't hesitate to switch to voice chat.
+After a voice chat don't forget to document what was discussed by updating
+a document, sending a follow up email, updating a ticket or
+creating new tickets with new up tasks.&lt;/p&gt;
+&lt;p&gt;Document everything in public places.
+Folks can look up the information they need to see how a project's going,
+how to do a task, and someone can quickly step in when a colleague is
+out on vacation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tools"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id7"&gt;Tools&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Make sure all development tools are on your laptop.&lt;/p&gt;
+&lt;p&gt;Buy a good headset and microphone.&lt;/p&gt;
+&lt;p&gt;Verba volant, scripta manent. As main communication is done using text,
+you can keep track of all past conversions. Configure your instant
+messaging client to keep logs of all previous conversation and archive your
+emails instead of deleting them.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="references"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id8"&gt;References&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;This page was started inspired by:
+&lt;a class="reference external" href="http://hoppycow.com/2012/12/26/what-its-like-to-work-future-style/"&gt;http://hoppycow.com/2012/12/26/what-its-like-to-work-future-style/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Python</title><link href="http://styleguide.chevah.com/python.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:python.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -320,7 +1530,7 @@ line ending with comma.&lt;/li&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>References</title><link href="http://styleguide.chevah.com/references.html" rel="alternate"></link><updated>2014-05-07T16:34:45+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-07:references.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>References</title><link href="http://styleguide.chevah.com/references.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:references.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -360,7 +1570,7 @@ line ending with comma.&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://github.com/necolas/idiomatic-css"&gt;Idiomatic CSS&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Release process</title><link href="http://styleguide.chevah.com/release-process.html" rel="alternate"></link><updated>2014-05-07T16:34:45+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-07:release-process.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Release process</title><link href="http://styleguide.chevah.com/release-process.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:release-process.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -372,12 +1582,12 @@ line ending with comma.&lt;/li&gt;
 &lt;/div&gt;
 &lt;div class="section" id="general"&gt;
 &lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This page describe the release process and things to be followed during
+&lt;p&gt;This page describes the release process and steps to be followed during
 development to simplify the release or a final product or library.&lt;/p&gt;
 &lt;p&gt;Releasing a product usually consists of publishing the following:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Binary or source archives.&lt;/li&gt;
-&lt;li&gt;Documentation, which includes Release notes, Known Issues and Upgrade steps.&lt;/li&gt;
+&lt;li&gt;Documentation, which includes Release Notes, Known Issues and Upgrade Steps.&lt;/li&gt;
 &lt;li&gt;Public announcement. Notification email or website news/blog article.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
@@ -385,14 +1595,14 @@ development to simplify the release or a final product or library.&lt;/p&gt;
 &lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Release Notes&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Release notes explain what changed with this version. &lt;strong&gt;Period&lt;/strong&gt;.
 Release notes are &lt;strong&gt;not&lt;/strong&gt; installation, upgrade or configuration.&lt;/p&gt;
-&lt;p&gt;Each time a branch fixes a bug, adds a new feature or makes any change
-which is visible to end users a new entry is added inside the release notes
+&lt;p&gt;Each time a branch fixes a bug, adds a new feature or makes any changes
+which are visible to end users a new entry is added inside the release notes
 file. A release note entry is a summary for one change.&lt;/p&gt;
 &lt;p&gt;We keep release notes for all versions in a single file so that users can
 easily read all changes starting from their version up to latest or a
 specific version.&lt;/p&gt;
-&lt;p&gt;Release notes are grouped in one of the following categories. A category can
-be missing if no changes were added for it. Here are some categories:&lt;/p&gt;
+&lt;p&gt;Release notes are grouped in one of the following categories. The category
+may be omitted if no changes were added for it. Here are some categories:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 * New features
 * Bug fixes
@@ -401,9 +1611,9 @@ be missing if no changes were added for it. Here are some categories:&lt;/p&gt;
 * Other changes. Documentation changes.
 &lt;/pre&gt;
 &lt;p&gt;A marker/tag is added at the end of the sentence to point the ticket ID
-associated with this change.&lt;/p&gt;
-&lt;p&gt;It can be followed by a list of tags to help users understand to scope
-if the change. Here are some examples:&lt;/p&gt;
+associated with this change. Ticket ID marker is not mandatory for new features.&lt;/p&gt;
+&lt;p&gt;It can be followed by a list of tags to help users understand / filter the
+scope of the change. Here are some examples:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 * ``[https]`` - for changes affecting only a sub-system.
 * ``[aix]`` - for changes affecting only AIX systems.
@@ -412,18 +1622,18 @@ if the change. Here are some examples:&lt;/p&gt;
 &lt;p&gt;Remember your audience/user/clients and write for that audience.&lt;/p&gt;
 &lt;p&gt;Don't explain all details of the change. When more details are required
 use a link to documentation.&lt;/p&gt;
-&lt;p&gt;All entries should be full proposition or phrases, ending with a
+&lt;p&gt;All entries should be complete sentences or phrases, ending with a
 punctuation mark.&lt;/p&gt;
 &lt;p&gt;Use present tense as opposed to past tense. The text should state what the
-changes &lt;strong&gt;does&lt;/strong&gt; and not what it &lt;strong&gt;did&lt;/strong&gt;.
+change &lt;strong&gt;does&lt;/strong&gt; and not what it &lt;strong&gt;did&lt;/strong&gt;.
 &amp;quot;Product no longer falls over X.&amp;quot; as opposed to &amp;quot;Product fell over X.&amp;quot;.&lt;/p&gt;
 &lt;p&gt;Write text in &lt;strong&gt;resolution&lt;/strong&gt; form, describe what impact the change will have
 on users. What will the users notice?&lt;/p&gt;
 &lt;p&gt;If a single sentence isn't clear enough to understand, explaining the
-background to the change can be helpful, by adding in
+background of the change can be helpful, by adding in
 &lt;cite&gt;Previously, X used to do Y.&lt;/cite&gt; or &lt;cite&gt;Previously, X used to do Y. Now Z.&lt;/cite&gt;.&lt;/p&gt;
 &lt;p&gt;Don't add low-level, internal details about product logic. Focus on how
-the change affects and is perceived by the user.&lt;/p&gt;
+the change affects / is perceived by the user.&lt;/p&gt;
 &lt;p&gt;Here are some examples:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Support was added for doing / integrating with X.&lt;/li&gt;
@@ -453,14 +1663,16 @@ New features
 ^^^^^^^^^^^^
 
 * Support was added to transfer files using SCP over SSH.
-  Read more... [#1234][windows]
+  Read more... [scp]
+* SFTP protocol now support reading and creating symbolic links on
+  Windows. [sftp][windows]
 
 
 Defect fixes
 ^^^^^^^^^^^^
 
 * Fix an internal server error when SSH client requests
-  to execute a command, a shell or a pseudo-terminal. [#1345][sftp][scp]
+  to execute a command, a shell or a pseudo-terminal. [sftp][scp]
 
 
 Deprecations
@@ -490,7 +1702,7 @@ INFO FOR PREVIOUS RELEASE.
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Review</title><link href="http://styleguide.chevah.com/review.html" rel="alternate"></link><updated>2014-05-07T16:34:45+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-07:review.html</id><summary type="html">&lt;p&gt;This page discuss the code/changes review process as both the person
+</summary></entry><entry><title>Review</title><link href="http://styleguide.chevah.com/review.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:review.html</id><summary type="html">&lt;p&gt;This page discuss the code/changes review process as both the person
 who requests a reviewer and a person who checks a review.&lt;/p&gt;
 &lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
@@ -778,7 +1990,7 @@ either just reject the review, or trigger a test and wait for results.
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Testing</title><link href="http://styleguide.chevah.com/testing.html" rel="alternate"></link><updated>2014-05-07T16:34:45+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-07:testing.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Testing</title><link href="http://styleguide.chevah.com/testing.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:testing.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#types-of-tests" id="id1"&gt;Types of tests&lt;/a&gt;&lt;ul&gt;
@@ -1530,1215 +2742,5 @@ validation all the time.
 &lt;li&gt;&lt;a class="reference external" href="http://agilesoftwaredevelopment.com/blog/vaibhav/acceptance-testing-what-why-how"&gt;http://agilesoftwaredevelopment.com/blog/vaibhav/acceptance-testing-what-why-how&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
-&lt;/div&gt;
-</summary></entry><entry><title>Bash</title><link href="http://styleguide.chevah.com/bash.html" rel="alternate"></link><updated>2014-05-07T16:34:45+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-07:bash.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
-&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#path-constants" id="id2"&gt;Path constants&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#function-definition" id="id3"&gt;Function Definition&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#case-syntax" id="id4"&gt;Case Syntax&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#if-then-else" id="id5"&gt;IF/THEN/ELSE&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#for" id="id6"&gt;FOR&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#while-until" id="id7"&gt;WHILE/UNTIL&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#references" id="id8"&gt;References&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="general"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Shell scripts should be kept at a minimum and &lt;strong&gt;only&lt;/strong&gt; for internal scripts.
-For all other things there is Python.&lt;/li&gt;
-&lt;li&gt;If any, public scripts should use &lt;tt class="docutils literal"&gt;/bin/sh&lt;/tt&gt;. Bash is not available on all
-Unix systems and ksh or other shells are not compatible with Bash syntax.&lt;/li&gt;
-&lt;li&gt;Use &lt;tt class="docutils literal"&gt;printf&lt;/tt&gt; instead of &lt;tt class="docutils literal"&gt;echo&lt;/tt&gt; when using  &lt;tt class="docutils literal"&gt;/bin/sh&lt;/tt&gt; as a shell,
-because &lt;tt class="docutils literal"&gt;echo&lt;/tt&gt; behaviour is incompatible in Bash and Korn shells.
-Eg. use &lt;tt class="docutils literal"&gt;printf&lt;/tt&gt; instead of &lt;tt class="docutils literal"&gt;echo &lt;span class="pre"&gt;-n&lt;/span&gt;&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;printf &amp;quot;blabla\n&amp;quot;&lt;/tt&gt; instead
-of &lt;tt class="docutils literal"&gt;echo &amp;quot;blabla&amp;quot;&lt;/tt&gt;.&lt;/li&gt;
-&lt;li&gt;For internal scripts we should use &lt;tt class="docutils literal"&gt;/bin/bash&lt;/tt&gt;, as the default &lt;tt class="docutils literal"&gt;/bin/sh&lt;/tt&gt;
-sometimes points to a lesser shell such as Dash.&lt;/li&gt;
-&lt;li&gt;A function called main is required for scripts long enough to contain at
-least one other function.&lt;/li&gt;
-&lt;li&gt;Put all functions together in the file just below constants. Don't hide
-executable code between functions.&lt;/li&gt;
-&lt;li&gt;Use uppercase for all GLOBAL variables.&lt;/li&gt;
-&lt;li&gt;In tests, enclose all uncontrolled string variables in double quotes to
-handle empty strings or spaces in variables.&lt;/li&gt;
-&lt;li&gt;Always double quote the &lt;tt class="docutils literal"&gt;$&amp;#64;&lt;/tt&gt; variable to keep all arguments with spaces.&lt;/li&gt;
-&lt;li&gt;Pipelines should be split one per line if they don't all fit on one line.&lt;/li&gt;
-&lt;li&gt;Use $(command) instead of backticks. Nested backticks require escaping the
-inner ones with . The $(command) format doesn't change when nested and is
-easier to read. See the example below&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# This is preferred:&lt;/span&gt;
-&lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;$(command &amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;command1&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;)&amp;quot;&lt;/span&gt;
-
-&lt;span class="c"&gt;# This is not:&lt;/span&gt;
-&lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;`command \`command1\``&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Always guard your Bash scripts from unexpected errors by using&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;set&lt;/span&gt; -o nounset
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="path-constants"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Path constants&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;When defining a directory path as a constant, you should include the trailing
-slash to make sure it is a directory and not a file. Two consecutive /'s are
-harmless in POSIX shells as long as they are not at the beginning of the path
-in some exotic environment such as Cygwin that actually uses this notation for
-SMB shares.&lt;/p&gt;
-&lt;p&gt;Always double quote path constants to handle files with spaces:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;SOME_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/some/path/
-&lt;span class="c"&gt;# and use it like this:&lt;/span&gt;
-&lt;span class="nb"&gt;command&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;${SOME_PATH}/some.file&amp;quot;&lt;/span&gt;
-
-&lt;span class="c"&gt;# Another example&lt;/span&gt;
-&lt;span class="nv"&gt;REMOTE_URI&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;chevah@chevah.com:/home/chevah/styleguide.chevah.com/vm/
-scp &lt;span class="s2"&gt;&amp;quot;$LOCAL_FILE&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;${REMOTE_URL}/file&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Instead of:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;SOME_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/some/path/
-&lt;span class="c"&gt;# and then:&lt;/span&gt;
-&lt;span class="nb"&gt;command&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;${SOME_PATH}some.file&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="function-definition"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Function Definition&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Leave 2 blank lines between function definitions and always use &lt;tt class="docutils literal"&gt;local&lt;/tt&gt; for
-local variable declaration.&lt;/p&gt;
-&lt;p&gt;Define local variables at the start of the function, in a distinct block.
-It is recommended to define a local variable named &lt;cite&gt;result&lt;/cite&gt; to hold the value
-produced by calling the function.&lt;/p&gt;
-&lt;p&gt;Put the final returned result in a separate block.&lt;/p&gt;
-&lt;p&gt;Procedures are functions which have no result.&lt;/p&gt;
-&lt;p&gt;Since Bash only support returning numeric values, which are interpreted
-as exit codes, we will pass values between functions by using &lt;tt class="docutils literal"&gt;echo&lt;/tt&gt;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#&lt;/span&gt;
-&lt;span class="c"&gt;# Description of function 1.&lt;/span&gt;
-&lt;span class="c"&gt;#&lt;/span&gt;
-&lt;span class="c"&gt;# * $1 - description of first argument&lt;/span&gt;
-&lt;span class="c"&gt;# * $2 - description of second argument&lt;/span&gt;
-&lt;span class="c"&gt;# * return - description of return value.&lt;/span&gt;
-
-function1&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
-    &lt;span class="nb"&gt;local &lt;/span&gt;variable_which_is_local
-    &lt;span class="nb"&gt;local &lt;/span&gt;result
-
-    do_some_action_here
-    do_more_action
-
-    &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$result&lt;/span&gt;
-&lt;span class="o"&gt;}&lt;/span&gt;
-
-
-&lt;span class="c"&gt;#&lt;/span&gt;
-&lt;span class="c"&gt;# Description of procedure 1.&lt;/span&gt;
-&lt;span class="c"&gt;#&lt;/span&gt;
-&lt;span class="c"&gt;# It does this and this.&lt;/span&gt;
-&lt;span class="c"&gt;#&lt;/span&gt;
-procedure1&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
-    &lt;span class="nb"&gt;local &lt;/span&gt;&lt;span class="nv"&gt;something&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;function1 ARG1&lt;span class="k"&gt;)&lt;/span&gt;
-
-    do_something_else something
-&lt;span class="o"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="case-syntax"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;Case Syntax&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;$VARIABLE_NAME&amp;quot;&lt;/span&gt; in
-    &lt;span class="s2"&gt;&amp;quot;option1&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="k"&gt;do &lt;/span&gt;specific
-        ;;
-    option2*&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="k"&gt;do &lt;/span&gt;generic
-        ;;
-    *&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="k"&gt;do &lt;/span&gt;default
-        ;;
-&lt;span class="k"&gt;esac&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="if-then-else"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id5"&gt;IF/THEN/ELSE&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if &lt;/span&gt;TEST; &lt;span class="k"&gt;then&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;call something
-&lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;$string&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; OTHER_TEST &lt;span class="o"&gt;]&lt;/span&gt;; &lt;span class="k"&gt;then&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;call something_else
-&lt;span class="k"&gt;else&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;call something_else_completely
-&lt;span class="k"&gt;fi&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="for"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id6"&gt;FOR&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for &lt;/span&gt;CONDITION; &lt;span class="k"&gt;do&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;call something
-&lt;span class="k"&gt;done&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="while-until"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id7"&gt;WHILE/UNTIL&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;while &lt;/span&gt;TEST; &lt;span class="k"&gt;do&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;call something
-&lt;span class="k"&gt;done&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="references"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id8"&gt;References&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Here are the pages I used to create this page.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://www.davidpashley.com/articles/writing-robust-shell-scripts/"&gt;http://www.davidpashley.com/articles/writing-robust-shell-scripts/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://www.linuxjournal.com/content/return-values-bash-functions"&gt;http://www.linuxjournal.com/content/return-values-bash-functions&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;/div&gt;
-</summary></entry><entry><title>CSS, LESS and Styles</title><link href="http://styleguide.chevah.com/css.html" rel="alternate"></link><updated>2014-05-07T16:34:45+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-07:css.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
-&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#css-syntax-elements" id="id1"&gt;CSS Syntax Elements&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#general" id="id2"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#css-class-naming" id="id3"&gt;CSS Class naming&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#rules-definition" id="id4"&gt;Rules definition&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#layout-and-typography-separation" id="id5"&gt;Layout and Typography separation&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;p&gt;The CSS Coding conventions are inspired by &lt;a class="reference external" href="http://www.phpied.com/css-coding-conventions"&gt;Stoyan Stefanov's CSS Coding
-Conventions&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Many of them are automatically checked using pocket-lint that now included
-the CSS Coding Convention Checker.
-Please report any problems that you have with running &lt;tt class="docutils literal"&gt;paver lint&lt;/tt&gt; or
-if some errors are not identified by &lt;tt class="docutils literal"&gt;paver lint&lt;/tt&gt;&lt;/p&gt;
-&lt;div class="section" id="css-syntax-elements"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;CSS Syntax Elements&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;When describing the CSS rules, we will use the following terminology.&lt;/p&gt;
-&lt;img alt="CSS Selector Graphic" src="http://www.w3schools.com/css/selector.gif" /&gt;
-&lt;/div&gt;
-&lt;div class="section" id="general"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;General&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Use C++ comments style (/* comment here */) and not C style (//) as they
-are not supported by CSS2 and there are problems in some browsers.
-Also, on LESS C style comments (//) are ignored in the final result.&lt;/li&gt;
-&lt;li&gt;Avoid using short CSS notation. They are harder to read and the diff
-generated by changing short notations is less explicit.&lt;/li&gt;
-&lt;li&gt;Avoid using IDs when defining styles as they discourage style reuse...
-and then you risk to repeat yourself.&lt;/li&gt;
-&lt;li&gt;Put general styles in ''styles.css'' and don't put page specific styles.&lt;/li&gt;
-&lt;li&gt;Page specific styles can be included using a different file.&lt;/li&gt;
-&lt;li&gt;Use upper letter for color HEX code. Good #F9A0C5 , BAD #f9a0c5&lt;/li&gt;
-&lt;li&gt;Don't use color names or rba, just HEX code.&lt;/li&gt;
-&lt;li&gt;Use 4 space indentation.&lt;/li&gt;
-&lt;li&gt;End a property-value with semi-colon.&lt;/li&gt;
-&lt;li&gt;Separate each rule by a blank line.&lt;/li&gt;
-&lt;li&gt;Put unrelated rule in different files.&lt;/li&gt;
-&lt;li&gt;LESS constants (variables) should be dahs-separated and only low cases:
-&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;&amp;#64;good-constant&lt;/span&gt;&lt;/tt&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="css-class-naming"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;CSS Class naming&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;The most important thing to have in mind is the content nature of the
-HTML document, not its presentation. Selector names should describe the
-content semantic and &lt;tt class="docutils literal"&gt;not how it looks&lt;/tt&gt;.&lt;/li&gt;
-&lt;li&gt;Don't use abbreviation. Use 'header' instead of 'hdr' or 'head'.&lt;/li&gt;
-&lt;li&gt;Avoid presentation-specific words in the name,
-like &lt;tt class="docutils literal"&gt;blue&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;text-gray&lt;/span&gt;&lt;/tt&gt;, or &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;light-box&lt;/span&gt;&lt;/tt&gt;.&lt;/li&gt;
-&lt;li&gt;Add namespaces using a dash (-) as a separator.&lt;/li&gt;
-&lt;li&gt;Distinct words in the class name are separated by a dash.&lt;/li&gt;
-&lt;li&gt;Names are lowercase.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="rules-definition"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;Rules definition&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;The property will be followed by colons and then a space.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Good:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-.some-class {
-    float: center;
-}
-&lt;/pre&gt;
-&lt;p&gt;Bad:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-.some-class {
-    float:center;
-}
-&lt;/pre&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Put each selector on a single line and separate them using comma.
-In this was it is easier to see the selector when using multiple selectors.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Good:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-.some-class,
-p a.class {
-    float: center;
-}
-&lt;/pre&gt;
-&lt;p&gt;Bad:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-.some-class, p a.class {
-    float: center;
-}
-&lt;/pre&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;The closing bracket should be the only character from a line.
-It should not be indented.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Good:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-.some-class {
-  float: center;
-}
-&lt;/pre&gt;
-&lt;p&gt;Bad:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-.some-class
-{
-    float: center;
-    }
-
-.some-class {
-    float: center; }
-
-.some-class, .another { float: center; }
-&lt;/pre&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;The opening bracket should be on a the same line as the last selector.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Good:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-.some-class {
-    float: center;
-}
-
-.some-class,
-.another-class {
-    float: center;
-}
-&lt;/pre&gt;
-&lt;p&gt;Bad:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-.some-class
-{
-    float: center;
-}
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class="section" id="layout-and-typography-separation"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id5"&gt;Layout and Typography separation&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Don't put typography properties in the same rule with layout properties&lt;/li&gt;
-&lt;li&gt;The idea it that when you change or remove a typographic rule, the layout will not be affected.&lt;/li&gt;
-&lt;li&gt;Use this with moderation, sometimes it is ok to set a margin or padding for H1 or P tag... but don't abuse this.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;GOOD:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-product-name {
-    font-style: underline:
-    color: red;
-    }
-
-highlighted-box {
-    float: center;
-    width: 30px;
-    background-color: blue;
-    }
-&lt;/pre&gt;
-&lt;p&gt;BAD:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-product-name {
-    font-style: underline:
-    color: red;
-    float: center;
-    width: 30px;
-    background-color: blue;
-    }
-&lt;/pre&gt;
-&lt;/div&gt;
-</summary></entry><entry><title>Generic</title><link href="http://styleguide.chevah.com/generic.html" rel="alternate"></link><updated>2014-05-07T16:34:45+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-07:generic.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
-&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#comments" id="id2"&gt;Comments&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#exceptions-handling" id="id3"&gt;Exceptions handling&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#project-specific" id="id4"&gt;Project specific&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="general"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The content of this website is intended to help new team members understand
-the direction of our team.&lt;/p&gt;
-&lt;p&gt;It also helps novice and advance beginners by providing a set of simple rules.
-Anyone should read this as best practice and provide feedback in case
-something is wrong.&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Rule #1: Keep it DRY! Don't repeat yourself!&lt;/li&gt;
-&lt;li&gt;Rule #2: KISS - Keep it simple, stupid simple!&lt;/li&gt;
-&lt;li&gt;All code in any code-base should look like a single person typed it, no
-matter how many people contributed.&lt;/li&gt;
-&lt;li&gt;No single person is responsible for a part of the code. We write code
-together, we take the blame together, we take the glory together.
-Once a code was approved for review, reviewers are also responsible for
-that code.&lt;/li&gt;
-&lt;li&gt;Write all code as it will be written once and read thousand times.
-Write code for maximum readability.&lt;/li&gt;
-&lt;li&gt;When you need a trade-off between readability and code duplication, choose
-to have a code less readable but without duplication.&lt;/li&gt;
-&lt;li&gt;Write code as it will be used by humans, not a machine. You are not a
-a compiler / interpretor.&lt;/li&gt;
-&lt;li&gt;Optimization should come second and only if really needed. Don't Use clever
-tricks and other optimization to early.&lt;/li&gt;
-&lt;li&gt;Do the simplest thing that could possibly work and do it well.
-Always work on the story you have, not something you think we're going to
-need sometime in the future.
-Don't try implement all usecases you can think of and end with poorly
-designed code and poorly tested code.&lt;/li&gt;
-&lt;li&gt;Try to keep methods as flat as possible and return as soon as possible.&lt;/li&gt;
-&lt;li&gt;Don't use abbreviation. Use full, meaningful names.&lt;/li&gt;
-&lt;li&gt;Don't use tabs for indentation, and in general don't use tabs for anything
-else. The only exceptions are the Makefiles.&lt;/li&gt;
-&lt;li&gt;Favor indentation using 4 spaces. For deep nested languages (HTML, JS) it
-is OK to use 2 spaces.&lt;/li&gt;
-&lt;li&gt;Maximum line length is 78 characters.&lt;/li&gt;
-&lt;li&gt;Don't mix multiple languages in a single file.&lt;/li&gt;
-&lt;li&gt;No need for the ultimate purism, when using / calling code from external
-libraries it is OK if those calls don't comply with coding convention.&lt;/li&gt;
-&lt;li&gt;When extending external libraries use the coding convention used by that
-library. It might be harder to define the border of those changes but this
-should help with sending patches upstream.&lt;/li&gt;
-&lt;li&gt;When reporting a code related problem, use
-&lt;a class="reference external" href="http://sscce.org"&gt;Short, Self Contained, Correct (Compilable), Example&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;Each repository / project will have a README file describing why it exists
-and what it should do.
-The README should also include notes about contributing to the project.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Each repository will have a LICENSE and AUTHORS files.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Technical dept comments (ex FIXME, TODO) will always have an attached
-ticket ID and will use the following format. Only &lt;strong&gt;FIXME&lt;/strong&gt; marker is used
-followed by ticket ID. Comments will come on a new lines.
-Adapt this to the style of comments use in the specific language, but
-is important to keep the &lt;strong&gt;FIXME:123:&lt;/strong&gt; marker.:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-# FIXME:1234:
-# Details about this tech-dept. Ex: Can only be fixed when full moon.
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Words are an important part of how software works.
-Even though there may be dozens of people creating a product, reading
-comments, documentation, notes etc, it should still sound like we speak
-in one consistent voice.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;When writing text for the documentation or text that appears in the
-program favour classy over cute or mechanical.
-Respect the reader, act more like a human and less like a computer,
-and use fewer words:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-Instead of:
-
-Successfully deleted the #{branch_name} branch.
-
-Try something like:
-
-The #{branch_name} branch has been deleted.
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Use a graphical commit tool (&lt;tt class="docutils literal"&gt;git gui&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;gitg&lt;/tt&gt;) for doing the commit.
-In this way you can split the changes in multiple commits and you can also
-do a first review just before the commit.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;When you don't understand something related to security, don't just walk
-by and ignore it. Try to understand what is happening there, or ask
-someone else to take a look or to explain it to you.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Don't abuse inheritance and favour composition and delegation.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Write code so that it can be read / used by developers having a work
-style different than yours. Don't add IDE / text editor specific things
-Don't assume that other developer will use the same IDE / text editor,
-fancy keyboard (or foot pedals), array of huge monitors...&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;When you have a non-trivial conditional expression (logical condition from
-an if statement), break it in smaller sub-conditionals.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Long conditional which is not that bad.&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MAX_SIZE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
-    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;ACTIVE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
-    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;PAUSED&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
-  &lt;span class="n"&gt;do_domething&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-&lt;span class="c"&gt;# But can be better.&lt;/span&gt;
-&lt;span class="n"&gt;source_not_full&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MAX_SIZE&lt;/span&gt;
-&lt;span class="n"&gt;destination_available&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;ACTIVE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
-    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;PAUSED&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source_available&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;destination_available&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-  &lt;span class="n"&gt;do_something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-&lt;span class="c"&gt;# Or even better.&lt;/span&gt;
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Source&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-  &lt;span class="n"&gt;MAX_SIZE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
-  &lt;span class="nd"&gt;@property&lt;/span&gt;
-  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;full&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MAX_SIZE&lt;/span&gt;
-
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Destination&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-  &lt;span class="n"&gt;ACTIVE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-  &lt;span class="n"&gt;PAUSED&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
-  &lt;span class="n"&gt;STOPPED&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
-  &lt;span class="n"&gt;FAILDED&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
-
-  &lt;span class="nd"&gt;@property&lt;/span&gt;
-  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;ready&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
-      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ACTIVE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
-      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PAUSED&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-      &lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;full&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ready&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-  &lt;span class="n"&gt;do_something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="comments"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Comments&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;All comments should be valid sentences and should end with a full stop (.).&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Try to write code so that it speak for itself and so that a comment is not
-required.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Try to name variables, methods, function so that they communicate their
-intend. A comment is only attached to the place where the name is defined,
-and not present in all other multiple places where it is used. IDE can help,
-but we should not rely on that.&lt;/p&gt;
-&lt;p&gt;When a comment is required is like saying: I have no idea for a better name
-for this thing, so here is my poor comment. Good luck with figuring the
-intend of this name when you see the it in the rest of this file.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Well commented code is extremely important. Take time to describe
-components, how they work, their limitations, and the way they are
-constructed. Don't leave others in the team guessing as to the purpose
-of uncommon or non-obvious code.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Place comments on a new line above their subject.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Avoid end of line comments. End of line comments can be used for lint
-ignores and other hints for automated tools... but not for humans.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="exceptions-handling"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Exceptions handling&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Here are some simple generic rules for working with exceptions.&lt;/p&gt;
-&lt;p&gt;In Chevah project we use 2 major &amp;quot;kinds&amp;quot; of exceptions:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;cite&gt;Errors&lt;/cite&gt; are top level exceptions that are not going to be handled
-internally by the package / library.&lt;/li&gt;
-&lt;li&gt;&lt;cite&gt;Exceptions&lt;/cite&gt; normal exceptions, passed inside the package/library to signal
-various conditions. The public API for the package/library should not raise
-this kind of exceptions.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Exceptions can take any format, and most of the time they can contain only
-a text with some details about the error. These exceptions are low level
-and should be raised in simple conditions.&lt;/p&gt;
-&lt;p&gt;Errors should have an unique ID and a data attribute.
-Each ID should be raised from a single place.
-The data attribute is a dictionary with key / values that make sense for the
-error.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="project-specific"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;Project specific&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Each log message should be documented, listing format, introduction version,
-version since it was obsolete, log type, conditions in which it is raised
-and other informations that can be useful for users.&lt;/li&gt;
-&lt;li&gt;A logging messages should only be called from a single place in the code.
-This will greatly help with support and debugging.&lt;/li&gt;
-&lt;li&gt;A logging message should have a unique ID. This will help the support team
-by pointing a specific event. It will also help when localized logs are
-used.&lt;/li&gt;
-&lt;li&gt;If a logging message should be issued from multiple places, move the
-logging call into a dedicated helper method. This will help with
-automatic detection of accidentally using same message ID for different
-logs.&lt;/li&gt;
-&lt;li&gt;Components should not issue logging messages that are outside of
-theirs scope, but rather use exceptions to pass the log informations.&lt;/li&gt;
-&lt;li&gt;If there are no other options, rather than directly issuing a logging
-message, the component should call a function located in the component
-that 'owns' the log ID that will issue the log.&lt;/li&gt;
-&lt;li&gt;All branches will need to use the following convention:
-&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;TICKETNO-SHORT_DESCRIPTION&lt;/span&gt;&lt;/tt&gt;. By having a reference to a ticket, it will
-be much easier to track and keep a record of branch purpose and its
-development.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Example:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-447-add_sqlite_log
-&lt;/pre&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Each user configuration options should be documented,
-listing valid values, place where the configuration is located,
-introduction version, version since it was obsolete,
-together with a description of the purpose and effect.&lt;/li&gt;
-&lt;li&gt;Configuration options will be documented using the following format. Please
-note the order in which fields are defined, the name of the files and the
-format for declaring possible values. All fields should be present, and
-if no value is defined, use 'None' or leave it blank.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="literal-block"&gt;
-log_file
---------
-
-:Optional: Yes
-:Default value: `log/server.log`
-:Values: * `some value`
-         * `other value` - short description or this value.
-         * `yet another value`
-:Available from version: 1.6.0
-:Available up to version: 2.0.3
-:Description:
-    This is the long description of the configuration option. It can
-    span multiple lines.
-
-    It can also span multiple paragraph.
-
-    This should be the place to describe in details available values
-    that can be set.
-&lt;/pre&gt;
-&lt;/div&gt;
-</summary></entry><entry><title>HTML, XML and other markups</title><link href="http://styleguide.chevah.com/html.html" rel="alternate"></link><updated>2014-05-07T16:34:45+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-07:html.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
-&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#css-interaction" id="id2"&gt;CSS interaction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#html-tags-usage" id="id3"&gt;HTML tags usage&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="general"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;Unlike other files, indentation for XML/HTML is 2 spaces.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Don't use inline HTML style attribute. Only CSS class.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Use HTML5 doctype:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-&amp;lt;!doctype html&amp;gt;
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="css-interaction"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;CSS interaction&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Make sure all elements that are used in JS have an ID.
-This helps with testing.&lt;/li&gt;
-&lt;li&gt;Make sure all related elements have the same class.&lt;/li&gt;
-&lt;li&gt;Make sure that a page will not contain the same ID more than once.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="html-tags-usage"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;HTML tags usage&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;Don't use new HTML5 elements/tags and API.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Don't use deprecated HTML4 elements/tags.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Paragraphs of text should always be placed in a &amp;lt;p&amp;gt; tag.
-Never use multiple &amp;lt;br/&amp;gt; tags.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Items in list form should always be in &amp;lt;ul&amp;gt;, &amp;lt;ol&amp;gt;, or &amp;lt;dl&amp;gt;,
-Never a set of &amp;lt;div&amp;gt; or &amp;lt;p&amp;gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Every form input that has text attached should utilize a &amp;lt;label&amp;gt; tag.
-Especially radio or checkbox elements.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Use double quotes for tag/element attributes.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Even though quotes around attributes is optional, always put quotes around
-attributes for readability:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-GOOD: &amp;lt;p class=&amp;quot;line note&amp;quot; data-attribute=&amp;quot;106&amp;quot;&amp;gt;
-        This is my paragraph of special text.&amp;lt;/p&amp;gt;
-BAD : &amp;lt;p class=&amp;quot;line note&amp;quot; data-attribute=106&amp;gt;
-        This is my paragraph of special text.&amp;lt;/p&amp;gt;
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Make use of &amp;lt;thead&amp;gt;, &amp;lt;tfoot&amp;gt;, &amp;lt;tbody&amp;gt;, and &amp;lt;th&amp;gt; tags (and Scope attribute)
-when appropriate. (note: &amp;lt;tfoot&amp;gt; goes above &amp;lt;tbody&amp;gt; for speed reasons.
-You want the browser to load the footer before a table full of data.):&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-&amp;lt;table summary=&amp;quot;This is a chart of invoices for 2011.&amp;quot;&amp;gt;
-  &amp;lt;thead&amp;gt;
-    &amp;lt;tr&amp;gt;
-      &amp;lt;th scope=&amp;quot;col&amp;quot;&amp;gt;Table header 1&amp;lt;/th&amp;gt;
-      &amp;lt;th scope=&amp;quot;col&amp;quot;&amp;gt;Table header 2&amp;lt;/th&amp;gt;
-    &amp;lt;/tr&amp;gt;
-  &amp;lt;/thead&amp;gt;
-  &amp;lt;tfoot&amp;gt;
-    &amp;lt;tr&amp;gt;
-      &amp;lt;td&amp;gt;Table footer 1&amp;lt;/td&amp;gt;
-      &amp;lt;td&amp;gt;Table footer 2&amp;lt;/td&amp;gt;
-    &amp;lt;/tr&amp;gt;
-  &amp;lt;/tfoot&amp;gt;
-  &amp;lt;tbody&amp;gt;
-    &amp;lt;tr&amp;gt;
-      &amp;lt;td&amp;gt;Table data 1&amp;lt;/td&amp;gt;
-      &amp;lt;td&amp;gt;Table data 2&amp;lt;/td&amp;gt;
-    &amp;lt;/tr&amp;gt;
-  &amp;lt;/tbody&amp;gt;
-&amp;lt;/table&amp;gt;
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-</summary></entry><entry><title>JavaScript</title><link href="http://styleguide.chevah.com/javascript.html" rel="alternate"></link><updated>2014-05-07T16:34:45+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-07:javascript.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
-&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#defining-classes" id="id2"&gt;Defining classes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#css-interaction" id="id3"&gt;CSS interaction&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#js-related-css-class" id="id4"&gt;JS related CSS class&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#changing-css-html-from-js" id="id5"&gt;Changing CSS/HTML from JS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#test-styleguide" id="id6"&gt;Test styleguide&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#rerefences" id="id7"&gt;Rerefences&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="general"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;Variable declarations must start with 'var'.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Do your best to never use a semicolon.
-This means avoiding them at line breaks and avoiding multi-statement lines.
-Semi-colon at the end of the line is added only when required.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Use 4 space indentation.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Variable, function, method and constants name are after PEP8.
-variable_name, function_name, methodName, ClassName, CONSTANT_NAME&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Callback methods should always end with 'Callback' as the
-method / function name. This is a reminder of the fact that
-the context is lost.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Constructor functions (those that are called with &lt;strong&gt;new&lt;/strong&gt;) should use
-class naming convention.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;use &lt;tt class="docutils literal"&gt;===&lt;/tt&gt; instead of &lt;tt class="docutils literal"&gt;==&lt;/tt&gt; for comparison. &lt;tt class="docutils literal"&gt;===&lt;/tt&gt; doesn't do type
-coercion.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Only use &lt;tt class="docutils literal"&gt;typeof&lt;/tt&gt; for checking against undefined variables:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-typeof foo !== 'undefined'
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;For all other type checking use the custom defined typeOf() function.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Try to avoid the usage of &lt;tt class="docutils literal"&gt;instanceof&lt;/tt&gt; and don't use it for native types.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Create new arrays using the array literals &lt;tt class="docutils literal"&gt;[]&lt;/tt&gt; notation. Don't use
-&lt;tt class="docutils literal"&gt;new Array()&lt;/tt&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Iterate arrays using the classic &lt;tt class="docutils literal"&gt;for&lt;/tt&gt; loop:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-var list = [1, 2, 3, 4, 5, ...... 100000000];
-for (var i = 0, l = list.length; i == l; i++) {
-    console.log(list[i]);
-}
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Always define the variable used to iterate in a &lt;tt class="docutils literal"&gt;for&lt;/tt&gt; loop.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Don't use &lt;tt class="docutils literal"&gt;eval&lt;/tt&gt; and don't pass strings to &lt;tt class="docutils literal"&gt;setTimeout&lt;/tt&gt; and
-&lt;tt class="docutils literal"&gt;setInterval&lt;/tt&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Use &lt;tt class="docutils literal"&gt;undefined&lt;/tt&gt; instead of the the traditional &lt;tt class="docutils literal"&gt;null&lt;/tt&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Keep braces on the same line as their corresponding statements. Never omit
-them for single-line if / else statements.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;something&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="c1"&gt;// code here&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="c1"&gt;// code here&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;duppy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;something&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="nx"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Leave 2 empty lines between global function or class definitions.
-Leave 1 empty line between functions from the same class.
-Global variable can be grouped and the don't require empty lines in between.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;GLOBAL_DAY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;GLOBAL_YEAR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
-
-
-&lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;Docstring for duppy.&lt;/span&gt;
-&lt;span class="cm"&gt;*/&lt;/span&gt;
-&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;duppy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="c1"&gt;// Do something here.&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-
-&lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;Docstring for duppy_doo.&lt;/span&gt;
-&lt;span class="cm"&gt;*/&lt;/span&gt;
-&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;duppy_doo&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="c1"&gt;// Do something here.&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-
-&lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;A simple mock for Browser service.&lt;/span&gt;
-&lt;span class="cm"&gt;*/&lt;/span&gt;
-&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;MockBrowser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;_cookies&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
-
-    &lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;    Docstring for MockBrower.setCookies()&lt;/span&gt;
-&lt;span class="cm"&gt;    */&lt;/span&gt;
-    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setCookie&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="c1"&gt;// Implementation here.&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;    Docstring here.&lt;/span&gt;
-&lt;span class="cm"&gt;    */&lt;/span&gt;
-    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;doSomethingElse&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="c1"&gt;// Implementation here.&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;_methodWihoutDocstring&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="c1"&gt;// Implementation here.&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;Avoid using leading parenthesis.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Avoid using &lt;tt class="docutils literal"&gt;delete&lt;/tt&gt; operator and only use it to delete explicitly
-set properties on normal objects:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-var obj = {x: 1};
-obj.y = 2;
-delete obj.x;  // true
-delete obj.y;  // true
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Use single quote for strings.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Example:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-In HTML, we use &amp;quot; as quotes around attribute values, like this:
-
-&amp;lt;a href=&amp;quot;foo&amp;quot;&amp;gt;bar&amp;lt;/a&amp;gt;
-In JavaScript, we use ' as much as possible.
-
-alert('qux');
-This way, we can use consistent quotes when writing HTML inside of JS:
-
-alert('&amp;lt;a href=&amp;quot;foo&amp;quot;&amp;gt;bar&amp;lt;/a&amp;gt;')
-&lt;/pre&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;REST web services should always return a valid dictionary
-and not an Array or a primitive. JSON-RPC is forced to return a dictionary
-by the protocol.&lt;/li&gt;
-&lt;li&gt;Callbacks called from the GUI / DOM should be prefixed with &lt;cite&gt;on&lt;/cite&gt;.
-Ex: onAuthentication (when authenticate button is pressed),
-onLogout (when logout link is pressed),
-onLoginFormSubmit (when login form is submitted)&lt;/li&gt;
-&lt;li&gt;Callbacks/Errback for XHR are be prefixed with &lt;cite&gt;cb&lt;/cite&gt; and &lt;cite&gt;eb&lt;/cite&gt;, similar
-with Python/Twisted convention.&lt;/li&gt;
-&lt;li&gt;For one line comments, leave one empty space after the comment marker.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// Good comment line.&lt;/span&gt;
-&lt;span class="c1"&gt;//Bad comment line.&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;For multi line comments use the following convention.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;Short single line comment title.&lt;/span&gt;
-&lt;span class="cm"&gt;More details about what is here and&lt;/span&gt;
-&lt;span class="cm"&gt;here and here.&lt;/span&gt;
-
-&lt;span class="cm"&gt;Feel free to create paragraphs separation.&lt;/span&gt;
-&lt;span class="cm"&gt;*/&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Global constants will follow the CONSTANT_NAME naming convention.&lt;/li&gt;
-&lt;li&gt;Global services (objects with methods) are named similar to class names.
-Most of the time they will be singletons so there will be no associated
-class.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;Shell&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;ActiveXObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;WScript.Shell&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-
-&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;do_something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;bla&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Shell&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;method_usage&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;TODO
-&lt;a class="reference external" href="http://javascript.crockford.com/code.html"&gt;http://javascript.crockford.com/code.html&lt;/a&gt; &lt;a class="reference external" href="http://jibbering.com/faq/notes/code-guidelines/"&gt;http://jibbering.com/faq/notes/code-guidelines/&lt;/a&gt; &lt;a class="reference external" href="http://neil.rashbrook.org/Js.htm"&gt;http://neil.rashbrook.org/Js.htm&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="defining-classes"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Defining classes&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;In JS there is no strict way of defining a class and instances are created
-using a function and new operator.&lt;/p&gt;
-&lt;p&gt;When defining a class we use an anonymous function to allow class
-private instances and create a new class scope.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;BaseAccount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-
-    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;class_private_member&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
-
-    &lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;    Constructor is here.&lt;/span&gt;
-&lt;span class="cm"&gt;    */&lt;/span&gt;
-    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;
-        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;class_member&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
-
-    &lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;    Base method.&lt;/span&gt;
-&lt;span class="cm"&gt;    */&lt;/span&gt;
-    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;base_method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;-&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;    Some method.&lt;/span&gt;
-&lt;span class="cm"&gt;    */&lt;/span&gt;
-    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;some_method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;prefix&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;base_method&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;    Another method.&lt;/span&gt;
-&lt;span class="cm"&gt;    */&lt;/span&gt;
-    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;tuned&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt;
-&lt;span class="p"&gt;}())&lt;/span&gt;
-
-
-&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;SpecialAccount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-
-    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;variant&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;light&amp;#39;&lt;/span&gt;
-        &lt;span class="cm"&gt;/* Something similar to super()*/&lt;/span&gt;
-        &lt;span class="nx"&gt;BaseAccount&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;call&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="cm"&gt;/* Something similar to inheritance. */&lt;/span&gt;
-    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;Object&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;BaseAccount&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;constructor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt;
-
-    &lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;    Method extending parent.&lt;/span&gt;
-&lt;span class="cm"&gt;    */&lt;/span&gt;
-    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;some_method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;prefix&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;parent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;BaseAccount&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;some_method&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;call&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;prefix&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;-child-&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;parent&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;    Method overwriting parent.&lt;/span&gt;
-&lt;span class="cm"&gt;    */&lt;/span&gt;
-    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;tuned&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt;
-&lt;span class="p"&gt;}())&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="css-interaction"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;CSS interaction&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="section" id="js-related-css-class"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id4"&gt;JS related CSS class&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Try to append js- to all javascript-based selectors. This is taken from
-&lt;a class="reference external" href="http://ozmm.org/posts/slightly_obtrusive_javascript.html"&gt;slightly obtrusive javascript&lt;/a&gt;. The idea is that you should be able to tell
-a presentational class from a functional class.&lt;/p&gt;
-&lt;p&gt;There are good things and bad things about &amp;quot;Unobtrustive JavaScript.&amp;quot;
-One bad thing: it's hard to tell what JavaScript is touching an element.&lt;/p&gt;
-&lt;p&gt;Only ever use classes and ids prefix with js- when touching the DOM with
-JavaScript.&lt;/p&gt;
-&lt;p&gt;For example:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-&amp;lt;a href=&amp;quot;#prices&amp;quot; class=&amp;quot;button js-open-tab&amp;quot;&amp;gt;Prices&amp;lt;/a&amp;gt;
-&lt;/pre&gt;
-&lt;p&gt;Now we know to look for any JavaScript touching .js-open-tab, which should
-only be a simple search away.&lt;/p&gt;
-&lt;p&gt;And hey, now JavaScript and CSS won't share selectors. Since we're separating
-our content and presentation, we might as well separate our behaviour all the
-way too.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="changing-css-html-from-js"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id5"&gt;Changing CSS/HTML from JS&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Don't modify the associated CSS properties, but rather modify the CSS class:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-GOOD: $('#element_id').addClass('highlight');
-BAD : $('#element_id').css('font-weight': 'bold');
-&lt;/pre&gt;
-&lt;p&gt;Same story as with CSS, don't modify HTML tag attributes,
-but rather try to change the CSS class:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-GOOD: $('#element_id').addClass('sprite red_dot');
-BAD : $('#element_id').attr('src': 'some/red_dot.png');
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="test-styleguide"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id6"&gt;Test styleguide&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;We use &lt;tt class="docutils literal"&gt;expect&lt;/tt&gt; style testing.&lt;/li&gt;
-&lt;li&gt;Leave 2 emtpy lines before each &lt;tt class="docutils literal"&gt;suite&lt;/tt&gt; and one empty line before each
-&lt;tt class="docutils literal"&gt;test&lt;/tt&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;Tests for login controller.&lt;/span&gt;
-&lt;span class="cm"&gt;*/&lt;/span&gt;
-
-
-&lt;span class="nx"&gt;suite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;LoginCtrl&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-
-    &lt;span class="c1"&gt;// Shared variables.&lt;/span&gt;
-    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;scope&lt;/span&gt;
-    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;ctrl&lt;/span&gt;
-
-    &lt;span class="nx"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="c1"&gt;// Initialize first.&lt;/span&gt;
-    &lt;span class="p"&gt;})&lt;/span&gt;
-
-    &lt;span class="nx"&gt;teardown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="c1"&gt;// Clean second.&lt;/span&gt;
-    &lt;span class="p"&gt;})&lt;/span&gt;
-
-    &lt;span class="nx"&gt;test&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="s1"&gt;&amp;#39;Initializes with no errors and blank values&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
-    &lt;span class="s1"&gt;&amp;#39;long line are wrapped&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;something&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-        &lt;span class="nx"&gt;something&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;doSomething&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-        &lt;span class="nx"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;equal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;something&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;username&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="p"&gt;})&lt;/span&gt;
-
-
-    &lt;span class="nx"&gt;suite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;critical_error attribute&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
-
-        &lt;span class="nx"&gt;test&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-        &lt;span class="s1"&gt;&amp;#39;When set, hides the form and sets the error message.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
-            &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;manu&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;makeUniqueString&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-            &lt;span class="nx"&gt;scope&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;critical_error&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt;
-            &lt;span class="nx"&gt;scope&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$digest&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-            &lt;span class="nx"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;isFalse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;scope&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;show_form&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-            &lt;span class="nx"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;equal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;scope&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;})&lt;/span&gt;
-    &lt;span class="p"&gt;})&lt;/span&gt;
-&lt;span class="p"&gt;})&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;div class="section" id="rerefences"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id7"&gt;Rerefences&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Here are the pages I used to create this page.&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://toranbillups.com/blog/archive/2013/05/15/Basic-javascript-inheritance-and-polymorphism/"&gt;http://toranbillups.com/blog/archive/2013/05/15/Basic-javascript-inheritance-and-polymorphism/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</summary></entry><entry><title>Overview</title><link href="http://styleguide.chevah.com//index.html" rel="alternate"></link><updated>2014-05-07T16:34:45+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-07:/index.html</id><summary type="html">&lt;p&gt;These pages describe the style and other guides used in Chevah project.
-They also include some notes about the whole software development
-process.&lt;/p&gt;
-&lt;p&gt;The content might be pedantic, but we hope that by following these guide
-you will find easier to collaborate and improve the quality of
-code and work.&lt;/p&gt;
-&lt;p&gt;There is a page with common rules and a special page for each language
-or technology used by the project.&lt;/p&gt;
-&lt;p&gt;Please note that these guides are continuously updated according to latest
-best practices.&lt;/p&gt;
-&lt;p&gt;We consider that arguments over these guides are not pointless. In the same
-time, it is hard to agree upon a style guide for all projects, and we don't
-expect that everyone will agree with the lines from this page.
-If you have any comment or suggestions, please get in touch with us. You
-can do that over email, or adding an issue or pull request on
-&lt;a class="reference external" href="{{author.code_url}}"&gt;chevah/styleguide - Github&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;We try to automatically check these rules using &lt;a class="reference external" href="https://launchpad.net/pocket-lint/"&gt;pocket-lint&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This is a collection of programming craftsmanship recommendations and ideas.
-Please let us know if we fail to properly cite the source.&lt;/p&gt;
-</summary></entry><entry><title>Work</title><link href="http://styleguide.chevah.com/work.html" rel="alternate"></link><updated>2014-05-07T16:34:45+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-07:work.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
-&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#you-are-in-control" id="id2"&gt;You are in control&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#stay-focus-on-what-you-do" id="id3"&gt;Stay focus on what you do&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#asynchronous-tasks" id="id4"&gt;Asynchronous tasks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#staying-healthy" id="id5"&gt;Staying Healthy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#communication" id="id6"&gt;Communication&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#tools" id="id7"&gt;Tools&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#references" id="id8"&gt;References&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="general"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This page tries to by the &amp;quot;style-guide&amp;quot; for your life :)&lt;/p&gt;
-&lt;p&gt;Working in a distributed team can be fun, challenging but not everything is
-fun and joy... and not all the time.&lt;/p&gt;
-&lt;p&gt;A distributed team is scattered across different locations,
-and everyone works wherever they are. People can work from home
-(bedroom, living room or home office room), from co-working places or
-any place they feel comfortable.&lt;/p&gt;
-&lt;p&gt;If you have always done your job &amp;quot;at work&amp;quot;, the transition can be rough.
-Working remotely isn't for everyone, and it can take a while to adjust to it.
-Ask for advice from your team members, they have also been
-through this and can share their experience.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="you-are-in-control"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;You are in control&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;When you work in a distributed team, you are in control.
-You plan your schedule and decide where and when to work.&lt;/p&gt;
-&lt;p&gt;Most difficult part is to find the motivation to work. Hopefully you enjoy
-what you do at work and genuinely care about getting work done for the
-project. Otherwise you might need to find another project or recognize that
-distributed teams are not your style.&lt;/p&gt;
-&lt;p&gt;There is nobody to tell you when to work, how to work or to check that you
-are at work. It is your own style to work and you need to find ways to
-improve the way you work.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="stay-focus-on-what-you-do"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Stay focus on what you do&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Try not to mix &amp;quot;at work&amp;quot; activities with &amp;quot;after work&amp;quot; activities.
-Make a clear distinction between when you are &amp;quot;at work&amp;quot; an when not.
-Otherwise you might be working or slacking non-stop.&lt;/p&gt;
-&lt;p&gt;When you are &amp;quot;at work&amp;quot;, it does not matter how much time you spend sitting at
-your desk or staring at the screen.
-The only thing you have to show for your day is that you've actually got
-something done.&lt;/p&gt;
-&lt;p&gt;Define a time when you work and a place where you work.
-Let others know about these boundaries.
-When at home, other members of the house might find it hard that even if
-though you're around, you're actually &amp;quot;at the office&amp;quot; working.&lt;/p&gt;
-&lt;p&gt;Same boundaries apply when you are not at work or on leave / holiday.
-Dedicate the weekend for non-work related activities.
-Refrain from checking work email, colleagues progress or project status.
-Take that time to disconnect from work, recharge your energy and motivation,
-interact with your friends... just do something else.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="asynchronous-tasks"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;Asynchronous tasks&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Distributed or asynchronous work requires a completely different way to
-handler tasks, in comparison with the 9 to 5 methodology.&lt;/p&gt;
-&lt;p&gt;We are a team, so we still need to collaborate in order to get a task done.&lt;/p&gt;
-&lt;p&gt;While working on a task you will have to wait for feedback from one or more
-team members. Example review request, help with some idea... etc
-Since we are not at work in the same time it will inevitable lead to
-having multiple opened tasks in the same time.&lt;/p&gt;
-&lt;p&gt;In order to reduce the number of parallel tasks, we need to provide quick
-feedback to our team. The feedback should be no more than 48 hours, preferable
-24 hours.&lt;/p&gt;
-&lt;p&gt;In case a team member is delaying the feedback, get in touch with him/her
-and try to hurry the feedback.&lt;/p&gt;
-&lt;p&gt;Try to keep the number of parallel tasks to a manageable size of less than 5
-tasks.&lt;/p&gt;
-&lt;p&gt;Make sure you have the right tools so that switching between tasks is easy and
-fun:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;the tools should provide good support for switching between
-environments or operating systems, sharing configurations or environment.&lt;/li&gt;
-&lt;li&gt;review comments should be clear so that you will always know what you
-need to do next.&lt;/li&gt;
-&lt;li&gt;changes after review should be easy to detect and focus.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="staying-healthy"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id5"&gt;Staying Healthy&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Staying healthy, both physical and mental, is harder when you are on your
-own.&lt;/p&gt;
-&lt;p&gt;When you work from home or bedroom you tend to do little physical
-effort. Fitness is something you have to pay close attention.&lt;/p&gt;
-&lt;p&gt;Make sure you have a comfortable desk, chair, keyboard,
-mouse and monitor. Any of these can cause short or long term injuries.
-There is also the option of working from a standing desk.&lt;/p&gt;
-&lt;p&gt;Being alone at work is probably the hardest part.
-When you work from home, the only person you talk to all day are members of
-the house. It can get pretty sad.&lt;/p&gt;
-&lt;p&gt;Disconnect yourself from the work, stay away from the screen and feel
-more like a social human being.
-Be pro-active and invite friend for lunch, coffee, dinner,
-game night, pasta night, drinks.
-You shouldn't be dependent on work for social interactions.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="communication"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id6"&gt;Communication&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Use &amp;quot;away&amp;quot; and &amp;quot;busy&amp;quot; functionality of you instant messaging tool to let other
-know about your status.&lt;/p&gt;
-&lt;p&gt;When you talk to someone face-to-face or voice-to-voice,
-you get a lot of contextual information and unspoken messages,
-and information is exchanged pretty quickly.&lt;/p&gt;
-&lt;p&gt;When communicating using text messages many or these unspoken messages are
-not received.
-Always acknowledge that you have received and understood a text message.
-Be as clear as possible and avoid subtle irony or local culture jokes.&lt;/p&gt;
-&lt;p&gt;Since most of the communication is done using text, get proficient at typing.
-You will write many code, emails, documents, text chats.&lt;/p&gt;
-&lt;p&gt;The process of writing should encourage you to slow down,
-organize and clarify your thoughts before sharing them with someone else.&lt;/p&gt;
-&lt;p&gt;When things get to complicated, don't hesitate to switch to voice chat.
-After a voice chat don't forget to document what was discussed by updating
-a document, sending a follow up email, updating a ticket or
-creating new tickets with new up tasks.&lt;/p&gt;
-&lt;p&gt;Document everything in public places.
-Folks can look up the information they need to see how a project's going,
-how to do a task, and someone can quickly step in when a colleague is
-out on vacation.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="tools"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id7"&gt;Tools&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Make sure all development tools are on your laptop.&lt;/p&gt;
-&lt;p&gt;Buy a good headset and microphone.&lt;/p&gt;
-&lt;p&gt;Verba volant, scripta manent. As main communication is done using text,
-you can keep track of all past conversions. Configure your instant
-messaging client to keep logs of all previous conversation and archive your
-emails instead of deleting them.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="references"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id8"&gt;References&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;This page was started inspired by:
-&lt;a class="reference external" href="http://hoppycow.com/2012/12/26/what-its-like-to-work-future-style/"&gt;http://hoppycow.com/2012/12/26/what-its-like-to-work-future-style/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 &lt;/div&gt;
 </summary></entry></feed>
