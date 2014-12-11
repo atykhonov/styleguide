@@ -1,5 +1,318 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="http://styleguide.chevah.com/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>http://styleguide.chevah.com/</id><updated>2014-05-08T17:39:34+01:00</updated><entry><title>Bash</title><link href="http://styleguide.chevah.com/bash.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:bash.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="http://styleguide.chevah.com/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>http://styleguide.chevah.com/</id><updated>2014-12-11T09:52:03+00:00</updated><entry><title>Work</title><link href="http://styleguide.chevah.com/work.html" rel="alternate"></link><updated>2014-12-11T09:52:03+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-12-11:work.html</id><summary type="html">&lt;div class="section" id="general"&gt;
+&lt;h2&gt;General&lt;/h2&gt;
+&lt;p&gt;This page tries to by the &amp;quot;style-guide&amp;quot; for your life :)&lt;/p&gt;
+&lt;p&gt;Working in a distributed team can be fun, challenging but not everything is
+fun and joy... and not all the time.&lt;/p&gt;
+&lt;p&gt;A distributed team is scattered across different locations,
+and everyone works wherever they are. People can work from home
+(bedroom, living room or home office room), from co-working places or
+any place they feel comfortable.&lt;/p&gt;
+&lt;p&gt;If you have always done your job &amp;quot;at work&amp;quot;, the transition can be rough.
+Working remotely isn't for everyone, and it can take a while to adjust to it.
+Ask for advice from your team members, they have also been
+through this and can share their experience.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="you-are-in-control"&gt;
+&lt;h2&gt;You are in control&lt;/h2&gt;
+&lt;p&gt;When you work in a distributed team, you are in control.
+You plan your schedule and decide where and when to work.&lt;/p&gt;
+&lt;p&gt;Most difficult part is to find the motivation to work. Hopefully you enjoy
+what you do at work and genuinely care about getting work done for the
+project. Otherwise you might need to find another project or recognize that
+distributed teams are not your style.&lt;/p&gt;
+&lt;p&gt;There is nobody to tell you when to work, how to work or to check that you
+are at work. It is your own style to work and you need to find ways to
+improve the way you work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="stay-focus-on-what-you-do"&gt;
+&lt;h2&gt;Stay focus on what you do&lt;/h2&gt;
+&lt;p&gt;Try not to mix &amp;quot;at work&amp;quot; activities with &amp;quot;after work&amp;quot; activities.
+Make a clear distinction between when you are &amp;quot;at work&amp;quot; an when not.
+Otherwise you might be working or slacking non-stop.&lt;/p&gt;
+&lt;p&gt;When you are &amp;quot;at work&amp;quot;, it does not matter how much time you spend sitting at
+your desk or staring at the screen.
+The only thing you have to show for your day is that you've actually got
+something done.&lt;/p&gt;
+&lt;p&gt;Define a time when you work and a place where you work.
+Let others know about these boundaries.
+When at home, other members of the house might find it hard that even if
+though you're around, you're actually &amp;quot;at the office&amp;quot; working.&lt;/p&gt;
+&lt;p&gt;Same boundaries apply when you are not at work or on leave / holiday.
+Dedicate the weekend for non-work related activities.
+Refrain from checking work email, colleagues progress or project status.
+Take that time to disconnect from work, recharge your energy and motivation,
+interact with your friends... just do something else.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="asynchronous-tasks"&gt;
+&lt;h2&gt;Asynchronous tasks&lt;/h2&gt;
+&lt;p&gt;Distributed or asynchronous work requires a completely different way to
+handler tasks, in comparison with the 9 to 5 methodology.&lt;/p&gt;
+&lt;p&gt;We are a team, so we still need to collaborate in order to get a task done.&lt;/p&gt;
+&lt;p&gt;While working on a task you will have to wait for feedback from one or more
+team members. Example review request, help with some idea... etc
+Since we are not at work in the same time it will inevitable lead to
+having multiple opened tasks in the same time.&lt;/p&gt;
+&lt;p&gt;In order to reduce the number of parallel tasks, we need to provide quick
+feedback to our team. The feedback should be no more than 48 hours, preferable
+24 hours.&lt;/p&gt;
+&lt;p&gt;In case a team member is delaying the feedback, get in touch with him/her
+and try to hurry the feedback.&lt;/p&gt;
+&lt;p&gt;Try to keep the number of parallel tasks to a manageable size of less than 5
+tasks.&lt;/p&gt;
+&lt;p&gt;Make sure you have the right tools so that switching between tasks is easy and
+fun:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;the tools should provide good support for switching between
+environments or operating systems, sharing configurations or environment.&lt;/li&gt;
+&lt;li&gt;review comments should be clear so that you will always know what you
+need to do next.&lt;/li&gt;
+&lt;li&gt;changes after review should be easy to detect and focus.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="staying-healthy"&gt;
+&lt;h2&gt;Staying Healthy&lt;/h2&gt;
+&lt;p&gt;Staying healthy, both physical and mental, is harder when you are on your
+own.&lt;/p&gt;
+&lt;p&gt;When you work from home or bedroom you tend to do little physical
+effort. Fitness is something you have to pay close attention.&lt;/p&gt;
+&lt;p&gt;Make sure you have a comfortable desk, chair, keyboard,
+mouse and monitor. Any of these can cause short or long term injuries.
+There is also the option of working from a standing desk.&lt;/p&gt;
+&lt;p&gt;Being alone at work is probably the hardest part.
+When you work from home, the only person you talk to all day are members of
+the house. It can get pretty sad.&lt;/p&gt;
+&lt;p&gt;Disconnect yourself from the work, stay away from the screen and feel
+more like a social human being.
+Be pro-active and invite friend for lunch, coffee, dinner,
+game night, pasta night, drinks.
+You shouldn't be dependent on work for social interactions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="communication"&gt;
+&lt;h2&gt;Communication&lt;/h2&gt;
+&lt;p&gt;Use &amp;quot;away&amp;quot; and &amp;quot;busy&amp;quot; functionality of you instant messaging tool to let other
+know about your status.&lt;/p&gt;
+&lt;p&gt;When you talk to someone face-to-face or voice-to-voice,
+you get a lot of contextual information and unspoken messages,
+and information is exchanged pretty quickly.&lt;/p&gt;
+&lt;p&gt;When communicating using text messages many or these unspoken messages are
+not received.
+Always acknowledge that you have received and understood a text message.
+Be as clear as possible and avoid subtle irony or local culture jokes.&lt;/p&gt;
+&lt;p&gt;Since most of the communication is done using text, get proficient at typing.
+You will write many code, emails, documents, text chats.&lt;/p&gt;
+&lt;p&gt;The process of writing should encourage you to slow down,
+organize and clarify your thoughts before sharing them with someone else.&lt;/p&gt;
+&lt;p&gt;When things get to complicated, don't hesitate to switch to voice chat.
+After a voice chat don't forget to document what was discussed by updating
+a document, sending a follow up email, updating a ticket or
+creating new tickets with new up tasks.&lt;/p&gt;
+&lt;p&gt;Document everything in public places.
+Folks can look up the information they need to see how a project's going,
+how to do a task, and someone can quickly step in when a colleague is
+out on vacation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tools"&gt;
+&lt;h2&gt;Tools&lt;/h2&gt;
+&lt;p&gt;Make sure all development tools are on your laptop.&lt;/p&gt;
+&lt;p&gt;Buy a good headset and microphone.&lt;/p&gt;
+&lt;p&gt;Verba volant, scripta manent. As main communication is done using text,
+you can keep track of all past conversions. Configure your instant
+messaging client to keep logs of all previous conversation and archive your
+emails instead of deleting them.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="references"&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;This page was started inspired by:
+&lt;a class="reference external" href="http://hoppycow.com/2012/12/26/what-its-like-to-work-future-style/"&gt;http://hoppycow.com/2012/12/26/what-its-like-to-work-future-style/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Leave / Holiday</title><link href="http://styleguide.chevah.com/leave-holiday.html" rel="alternate"></link><updated>2014-12-11T09:50:36+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-12-11:leave-holiday.html</id><summary type="html">&lt;div class="section" id="general"&gt;
+&lt;h2&gt;General&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;We have 30 days of payed holidays per year. 21 + 9 bank holidays&lt;/li&gt;
+&lt;li&gt;All legal leave and bank holidays are put in a common pool of leave days.
+Use them as you like.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;All&lt;/strong&gt; leave days should be logged in the leave spreadsheets,
+including bank holidays.&lt;/li&gt;
+&lt;li&gt;Feel free to subscribe to notification for the leave document.&lt;/li&gt;
+&lt;li&gt;When updating the table 2 days before the leave, no need for other notices,
+other than editing the document. Notifications are sent each day.
+You will be contacted if something needs clarification.&lt;/li&gt;
+&lt;li&gt;Please try to change the document as soon as possible.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="vacation"&gt;
+&lt;h2&gt;Vacation&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;It is &lt;strong&gt;strongly recommended&lt;/strong&gt; to take at least 5 continuous days of vacation
+to disconnect from the project :)&lt;/li&gt;
+&lt;li&gt;A vacation is time to recharge, so stay away from the project / work.&lt;/li&gt;
+&lt;li&gt;The team has to learn how to function when people are on vacation and
+unavailable, however important their role is.&lt;/li&gt;
+&lt;li&gt;Leave should be taken in collaboration with colleagues to ensure project
+operations are not disrupted.&lt;/li&gt;
+&lt;li&gt;When you run out of payed leave days just continue to record your leave days.
+It is &lt;strong&gt;OK&lt;/strong&gt; if you need more holiday. Extra holiday is not payed.
+Not payed leave days are subtracted from the salary
+from last month of the year.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="other-legal-leaves"&gt;
+&lt;h2&gt;Other legal leaves&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Other types of legal leaves are added as extra payed leave days.&lt;/li&gt;
+&lt;li&gt;5 days of Marriage leaves&lt;/li&gt;
+&lt;li&gt;3 days for death in the family&lt;/li&gt;
+&lt;li&gt;If required, medical leaves are added to the total number of extra payed
+leave days.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="unused-leaves"&gt;
+&lt;h2&gt;Unused leaves&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;We &lt;strong&gt;strongly recommend to take all&lt;/strong&gt; your allocated leaves.
+Unused leave days for a year are reported to next year,
+up to a total of 5 days.&lt;/li&gt;
+&lt;li&gt;You can redeem your unused leave days as normal paid days,
+up to a total of 5 days. Try to plan your time so that you don't end up
+with these remaining days in the first place.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Release process</title><link href="http://styleguide.chevah.com/release-process.html" rel="alternate"></link><updated>2014-05-08T15:46:36+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:release-process.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#release-notes" id="id2"&gt;Release Notes&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#sample-release-notes" id="id3"&gt;Sample release notes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="general"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This page describes the release process and steps to be followed during
+development to simplify the release or a final product or library.&lt;/p&gt;
+&lt;p&gt;Releasing a product usually consists of publishing the following:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Binary or source archives.&lt;/li&gt;
+&lt;li&gt;Documentation, which includes Release Notes, Known Issues and Upgrade Steps.&lt;/li&gt;
+&lt;li&gt;Public announcement. Notification email or website news/blog article.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="release-notes"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Release Notes&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Release notes explain what changed with this version. &lt;strong&gt;Period&lt;/strong&gt;.
+Release notes are &lt;strong&gt;not&lt;/strong&gt; installation, upgrade or configuration.&lt;/p&gt;
+&lt;p&gt;Each time a branch fixes a bug, adds a new feature or makes any changes
+which are visible to end users a new entry is added inside the release notes
+file. A release note entry is a summary for one change.&lt;/p&gt;
+&lt;p&gt;We keep release notes for all versions in a single file so that users can
+easily read all changes starting from their version up to latest or a
+specific version.&lt;/p&gt;
+&lt;p&gt;Release notes are grouped in one of the following categories. The category
+may be omitted if no changes were added for it. Here are some categories:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+* New features
+* Bug fixes
+* Deprecation
+* Removals
+* Other changes. Documentation changes.
+&lt;/pre&gt;
+&lt;p&gt;A marker/tag is added at the end of the sentence to point the ticket ID
+associated with this change. Ticket ID marker is not mandatory for new features.&lt;/p&gt;
+&lt;p&gt;It can be followed by a list of tags to help users understand / filter the
+scope of the change. Here are some examples:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+* ``[https]`` - for changes affecting only a sub-system.
+* ``[aix]`` - for changes affecting only AIX systems.
+* ``[windows]`` - for changes affection only Windows system.
+&lt;/pre&gt;
+&lt;p&gt;Remember your audience/user/clients and write for that audience.&lt;/p&gt;
+&lt;p&gt;Don't explain all details of the change. When more details are required
+use a link to documentation.&lt;/p&gt;
+&lt;p&gt;All entries should be complete sentences or phrases, ending with a
+punctuation mark.&lt;/p&gt;
+&lt;p&gt;Use present tense as opposed to past tense. The text should state what the
+change &lt;strong&gt;does&lt;/strong&gt; and not what it &lt;strong&gt;did&lt;/strong&gt;.
+&amp;quot;Product no longer falls over X.&amp;quot; as opposed to &amp;quot;Product fell over X.&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Write text in &lt;strong&gt;resolution&lt;/strong&gt; form, describe what impact the change will have
+on users. What will the users notice?&lt;/p&gt;
+&lt;p&gt;If a single sentence isn't clear enough to understand, explaining the
+background of the change can be helpful, by adding in
+&lt;cite&gt;Previously, X used to do Y.&lt;/cite&gt; or &lt;cite&gt;Previously, X used to do Y. Now Z.&lt;/cite&gt;.&lt;/p&gt;
+&lt;p&gt;Don't add low-level, internal details about product logic. Focus on how
+the change affects / is perceived by the user.&lt;/p&gt;
+&lt;p&gt;Here are some examples:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Support was added for doing / integrating with X.&lt;/li&gt;
+&lt;li&gt;Users now can do X.&lt;/li&gt;
+&lt;li&gt;It is no longer possible to do Y.&lt;/li&gt;
+&lt;li&gt;The text on the ABC form is now Z.&lt;/li&gt;
+&lt;li&gt;Reworded text from X to be gender neutral.&lt;/li&gt;
+&lt;li&gt;Doing X on a session in state Y no longer gives the XYZ error.&lt;/li&gt;
+&lt;li&gt;Fix the XZY error generated when client was doing X on a session in Y state.&lt;/li&gt;
+&lt;li&gt;Previously, users were unable to upload files to a folder if they
+had write permissions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="sample-release-notes"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id3"&gt;Sample release notes&lt;/a&gt;&lt;/h3&gt;
+&lt;pre class="literal-block"&gt;
+Release Notes
+=============
+
+This is the list of all changes for PRODUCT NAME releases.
+
+
+Version 1.2.3, released 24/02/2014
+----------------------------------
+
+
+New features
+^^^^^^^^^^^^
+
+* Support was added to transfer files using SCP over SSH.
+  Read more... [scp]
+* SFTP protocol now support reading and creating symbolic links on
+  Windows. [sftp][windows]
+
+
+Defect fixes
+^^^^^^^^^^^^
+
+* Fix an internal server error when SSH client requests
+  to execute a command, a shell or a pseudo-terminal. [sftp][scp]
+
+
+Deprecations
+^^^^^^^^^^^^
+
+* It is no longer possible to do X. [#1359][unix]
+
+
+Removals
+^^^^^^^^
+
+* Windows XP is no longer supported. [#2345]
+* Configuration option X, deprecated since Product version 12.1.2, is now
+  removed. [#1366]
+
+
+Other changes
+^^^^^^^^^^^^^
+
+* The howto document page of X now has documentation about doing Y. [#2452]
+
+
+Version 1.1.0, released 14/02/2013
+----------------------------------
+
+INFO FOR PREVIOUS RELEASE.
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Bash</title><link href="http://styleguide.chevah.com/bash.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:bash.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -163,7 +476,7 @@ procedure1&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>CSS, LESS and Styles</title><link href="http://styleguide.chevah.com/css.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:css.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>CSS, LESS and Styles</title><link href="http://styleguide.chevah.com/css.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:css.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#css-syntax-elements" id="id1"&gt;CSS Syntax Elements&lt;/a&gt;&lt;/li&gt;
@@ -329,7 +642,7 @@ product-name {
     }
 &lt;/pre&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Generic</title><link href="http://styleguide.chevah.com/generic.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:generic.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Generic</title><link href="http://styleguide.chevah.com/generic.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:generic.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -585,7 +898,7 @@ log_file
     that can be set.
 &lt;/pre&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>HTML, XML and other markups</title><link href="http://styleguide.chevah.com/html.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:html.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>HTML, XML and other markups</title><link href="http://styleguide.chevah.com/html.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:html.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -671,7 +984,7 @@ You want the browser to load the footer before a table full of data.):&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>JavaScript</title><link href="http://styleguide.chevah.com/javascript.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:javascript.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>JavaScript</title><link href="http://styleguide.chevah.com/javascript.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:javascript.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -1048,7 +1361,7 @@ BAD : $('#element_id').attr('src': 'some/red_dot.png');
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Library</title><link href="http://styleguide.chevah.com/library.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:library.html</id><summary type="html">&lt;p&gt;These page contain a list of talking about life, programming craftsmanship,
+</summary></entry><entry><title>Library</title><link href="http://styleguide.chevah.com/library.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:library.html</id><summary type="html">&lt;p&gt;These page contain a list of talking about life, programming craftsmanship,
 good/clean code and many more. The list is in random order:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416"&gt;Extreme Programming Explained: Embrace Change&lt;/a&gt;
@@ -1066,7 +1379,7 @@ good/clean code and many more. The list is in random order:&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/dp/1936719118"&gt;Anything You Want&lt;/a&gt;
 (ISBN: 978-1936719112) by Derek Sivers, published June 29, 2011.&lt;/li&gt;
 &lt;/ul&gt;
-</summary></entry><entry><title>Overview</title><link href="http://styleguide.chevah.com//index.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:/index.html</id><summary type="html">&lt;p&gt;These pages describe the style and other guides used in Chevah project.
+</summary></entry><entry><title>Overview</title><link href="http://styleguide.chevah.com//index.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:/index.html</id><summary type="html">&lt;p&gt;These pages describe the style and other guides used in Chevah project.
 They also include some notes about the whole software development
 process.&lt;/p&gt;
 &lt;p&gt;The content might be pedantic, but we hope that by following these guide
@@ -1085,149 +1398,7 @@ can do that over email, or adding an issue or pull request on
 &lt;p&gt;We try to automatically check these rules using &lt;a class="reference external" href="https://launchpad.net/pocket-lint/"&gt;pocket-lint&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This is a collection of programming craftsmanship recommendations and ideas.
 Please let us know if we fail to properly cite the source.&lt;/p&gt;
-</summary></entry><entry><title>Work</title><link href="http://styleguide.chevah.com/work.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:work.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
-&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#you-are-in-control" id="id2"&gt;You are in control&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#stay-focus-on-what-you-do" id="id3"&gt;Stay focus on what you do&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#asynchronous-tasks" id="id4"&gt;Asynchronous tasks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#staying-healthy" id="id5"&gt;Staying Healthy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#communication" id="id6"&gt;Communication&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#tools" id="id7"&gt;Tools&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#references" id="id8"&gt;References&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="general"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This page tries to by the &amp;quot;style-guide&amp;quot; for your life :)&lt;/p&gt;
-&lt;p&gt;Working in a distributed team can be fun, challenging but not everything is
-fun and joy... and not all the time.&lt;/p&gt;
-&lt;p&gt;A distributed team is scattered across different locations,
-and everyone works wherever they are. People can work from home
-(bedroom, living room or home office room), from co-working places or
-any place they feel comfortable.&lt;/p&gt;
-&lt;p&gt;If you have always done your job &amp;quot;at work&amp;quot;, the transition can be rough.
-Working remotely isn't for everyone, and it can take a while to adjust to it.
-Ask for advice from your team members, they have also been
-through this and can share their experience.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="you-are-in-control"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;You are in control&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;When you work in a distributed team, you are in control.
-You plan your schedule and decide where and when to work.&lt;/p&gt;
-&lt;p&gt;Most difficult part is to find the motivation to work. Hopefully you enjoy
-what you do at work and genuinely care about getting work done for the
-project. Otherwise you might need to find another project or recognize that
-distributed teams are not your style.&lt;/p&gt;
-&lt;p&gt;There is nobody to tell you when to work, how to work or to check that you
-are at work. It is your own style to work and you need to find ways to
-improve the way you work.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="stay-focus-on-what-you-do"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Stay focus on what you do&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Try not to mix &amp;quot;at work&amp;quot; activities with &amp;quot;after work&amp;quot; activities.
-Make a clear distinction between when you are &amp;quot;at work&amp;quot; an when not.
-Otherwise you might be working or slacking non-stop.&lt;/p&gt;
-&lt;p&gt;When you are &amp;quot;at work&amp;quot;, it does not matter how much time you spend sitting at
-your desk or staring at the screen.
-The only thing you have to show for your day is that you've actually got
-something done.&lt;/p&gt;
-&lt;p&gt;Define a time when you work and a place where you work.
-Let others know about these boundaries.
-When at home, other members of the house might find it hard that even if
-though you're around, you're actually &amp;quot;at the office&amp;quot; working.&lt;/p&gt;
-&lt;p&gt;Same boundaries apply when you are not at work or on leave / holiday.
-Dedicate the weekend for non-work related activities.
-Refrain from checking work email, colleagues progress or project status.
-Take that time to disconnect from work, recharge your energy and motivation,
-interact with your friends... just do something else.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="asynchronous-tasks"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;Asynchronous tasks&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Distributed or asynchronous work requires a completely different way to
-handler tasks, in comparison with the 9 to 5 methodology.&lt;/p&gt;
-&lt;p&gt;We are a team, so we still need to collaborate in order to get a task done.&lt;/p&gt;
-&lt;p&gt;While working on a task you will have to wait for feedback from one or more
-team members. Example review request, help with some idea... etc
-Since we are not at work in the same time it will inevitable lead to
-having multiple opened tasks in the same time.&lt;/p&gt;
-&lt;p&gt;In order to reduce the number of parallel tasks, we need to provide quick
-feedback to our team. The feedback should be no more than 48 hours, preferable
-24 hours.&lt;/p&gt;
-&lt;p&gt;In case a team member is delaying the feedback, get in touch with him/her
-and try to hurry the feedback.&lt;/p&gt;
-&lt;p&gt;Try to keep the number of parallel tasks to a manageable size of less than 5
-tasks.&lt;/p&gt;
-&lt;p&gt;Make sure you have the right tools so that switching between tasks is easy and
-fun:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;the tools should provide good support for switching between
-environments or operating systems, sharing configurations or environment.&lt;/li&gt;
-&lt;li&gt;review comments should be clear so that you will always know what you
-need to do next.&lt;/li&gt;
-&lt;li&gt;changes after review should be easy to detect and focus.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="staying-healthy"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id5"&gt;Staying Healthy&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Staying healthy, both physical and mental, is harder when you are on your
-own.&lt;/p&gt;
-&lt;p&gt;When you work from home or bedroom you tend to do little physical
-effort. Fitness is something you have to pay close attention.&lt;/p&gt;
-&lt;p&gt;Make sure you have a comfortable desk, chair, keyboard,
-mouse and monitor. Any of these can cause short or long term injuries.
-There is also the option of working from a standing desk.&lt;/p&gt;
-&lt;p&gt;Being alone at work is probably the hardest part.
-When you work from home, the only person you talk to all day are members of
-the house. It can get pretty sad.&lt;/p&gt;
-&lt;p&gt;Disconnect yourself from the work, stay away from the screen and feel
-more like a social human being.
-Be pro-active and invite friend for lunch, coffee, dinner,
-game night, pasta night, drinks.
-You shouldn't be dependent on work for social interactions.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="communication"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id6"&gt;Communication&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Use &amp;quot;away&amp;quot; and &amp;quot;busy&amp;quot; functionality of you instant messaging tool to let other
-know about your status.&lt;/p&gt;
-&lt;p&gt;When you talk to someone face-to-face or voice-to-voice,
-you get a lot of contextual information and unspoken messages,
-and information is exchanged pretty quickly.&lt;/p&gt;
-&lt;p&gt;When communicating using text messages many or these unspoken messages are
-not received.
-Always acknowledge that you have received and understood a text message.
-Be as clear as possible and avoid subtle irony or local culture jokes.&lt;/p&gt;
-&lt;p&gt;Since most of the communication is done using text, get proficient at typing.
-You will write many code, emails, documents, text chats.&lt;/p&gt;
-&lt;p&gt;The process of writing should encourage you to slow down,
-organize and clarify your thoughts before sharing them with someone else.&lt;/p&gt;
-&lt;p&gt;When things get to complicated, don't hesitate to switch to voice chat.
-After a voice chat don't forget to document what was discussed by updating
-a document, sending a follow up email, updating a ticket or
-creating new tickets with new up tasks.&lt;/p&gt;
-&lt;p&gt;Document everything in public places.
-Folks can look up the information they need to see how a project's going,
-how to do a task, and someone can quickly step in when a colleague is
-out on vacation.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="tools"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id7"&gt;Tools&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Make sure all development tools are on your laptop.&lt;/p&gt;
-&lt;p&gt;Buy a good headset and microphone.&lt;/p&gt;
-&lt;p&gt;Verba volant, scripta manent. As main communication is done using text,
-you can keep track of all past conversions. Configure your instant
-messaging client to keep logs of all previous conversation and archive your
-emails instead of deleting them.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="references"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id8"&gt;References&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;This page was started inspired by:
-&lt;a class="reference external" href="http://hoppycow.com/2012/12/26/what-its-like-to-work-future-style/"&gt;http://hoppycow.com/2012/12/26/what-its-like-to-work-future-style/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-</summary></entry><entry><title>Python</title><link href="http://styleguide.chevah.com/python.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:python.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Python</title><link href="http://styleguide.chevah.com/python.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:python.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -1530,7 +1701,7 @@ line ending with comma.&lt;/li&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>References</title><link href="http://styleguide.chevah.com/references.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:references.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>References</title><link href="http://styleguide.chevah.com/references.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:references.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -1570,139 +1741,7 @@ line ending with comma.&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://github.com/necolas/idiomatic-css"&gt;Idiomatic CSS&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Release process</title><link href="http://styleguide.chevah.com/release-process.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:release-process.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
-&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#release-notes" id="id2"&gt;Release Notes&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#sample-release-notes" id="id3"&gt;Sample release notes&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="general"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This page describes the release process and steps to be followed during
-development to simplify the release or a final product or library.&lt;/p&gt;
-&lt;p&gt;Releasing a product usually consists of publishing the following:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Binary or source archives.&lt;/li&gt;
-&lt;li&gt;Documentation, which includes Release Notes, Known Issues and Upgrade Steps.&lt;/li&gt;
-&lt;li&gt;Public announcement. Notification email or website news/blog article.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="release-notes"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Release Notes&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Release notes explain what changed with this version. &lt;strong&gt;Period&lt;/strong&gt;.
-Release notes are &lt;strong&gt;not&lt;/strong&gt; installation, upgrade or configuration.&lt;/p&gt;
-&lt;p&gt;Each time a branch fixes a bug, adds a new feature or makes any changes
-which are visible to end users a new entry is added inside the release notes
-file. A release note entry is a summary for one change.&lt;/p&gt;
-&lt;p&gt;We keep release notes for all versions in a single file so that users can
-easily read all changes starting from their version up to latest or a
-specific version.&lt;/p&gt;
-&lt;p&gt;Release notes are grouped in one of the following categories. The category
-may be omitted if no changes were added for it. Here are some categories:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-* New features
-* Bug fixes
-* Deprecation
-* Removals
-* Other changes. Documentation changes.
-&lt;/pre&gt;
-&lt;p&gt;A marker/tag is added at the end of the sentence to point the ticket ID
-associated with this change. Ticket ID marker is not mandatory for new features.&lt;/p&gt;
-&lt;p&gt;It can be followed by a list of tags to help users understand / filter the
-scope of the change. Here are some examples:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-* ``[https]`` - for changes affecting only a sub-system.
-* ``[aix]`` - for changes affecting only AIX systems.
-* ``[windows]`` - for changes affection only Windows system.
-&lt;/pre&gt;
-&lt;p&gt;Remember your audience/user/clients and write for that audience.&lt;/p&gt;
-&lt;p&gt;Don't explain all details of the change. When more details are required
-use a link to documentation.&lt;/p&gt;
-&lt;p&gt;All entries should be complete sentences or phrases, ending with a
-punctuation mark.&lt;/p&gt;
-&lt;p&gt;Use present tense as opposed to past tense. The text should state what the
-change &lt;strong&gt;does&lt;/strong&gt; and not what it &lt;strong&gt;did&lt;/strong&gt;.
-&amp;quot;Product no longer falls over X.&amp;quot; as opposed to &amp;quot;Product fell over X.&amp;quot;.&lt;/p&gt;
-&lt;p&gt;Write text in &lt;strong&gt;resolution&lt;/strong&gt; form, describe what impact the change will have
-on users. What will the users notice?&lt;/p&gt;
-&lt;p&gt;If a single sentence isn't clear enough to understand, explaining the
-background of the change can be helpful, by adding in
-&lt;cite&gt;Previously, X used to do Y.&lt;/cite&gt; or &lt;cite&gt;Previously, X used to do Y. Now Z.&lt;/cite&gt;.&lt;/p&gt;
-&lt;p&gt;Don't add low-level, internal details about product logic. Focus on how
-the change affects / is perceived by the user.&lt;/p&gt;
-&lt;p&gt;Here are some examples:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Support was added for doing / integrating with X.&lt;/li&gt;
-&lt;li&gt;Users now can do X.&lt;/li&gt;
-&lt;li&gt;It is no longer possible to do Y.&lt;/li&gt;
-&lt;li&gt;The text on the ABC form is now Z.&lt;/li&gt;
-&lt;li&gt;Reworded text from X to be gender neutral.&lt;/li&gt;
-&lt;li&gt;Doing X on a session in state Y no longer gives the XYZ error.&lt;/li&gt;
-&lt;li&gt;Fix the XZY error generated when client was doing X on a session in Y state.&lt;/li&gt;
-&lt;li&gt;Previously, users were unable to upload files to a folder if they
-had write permissions.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="section" id="sample-release-notes"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id3"&gt;Sample release notes&lt;/a&gt;&lt;/h3&gt;
-&lt;pre class="literal-block"&gt;
-Release Notes
-=============
-
-This is the list of all changes for PRODUCT NAME releases.
-
-
-Version 1.2.3, released 24/02/2014
-----------------------------------
-
-
-New features
-^^^^^^^^^^^^
-
-* Support was added to transfer files using SCP over SSH.
-  Read more... [scp]
-* SFTP protocol now support reading and creating symbolic links on
-  Windows. [sftp][windows]
-
-
-Defect fixes
-^^^^^^^^^^^^
-
-* Fix an internal server error when SSH client requests
-  to execute a command, a shell or a pseudo-terminal. [sftp][scp]
-
-
-Deprecations
-^^^^^^^^^^^^
-
-* It is no longer possible to do X. [#1359][unix]
-
-
-Removals
-^^^^^^^^
-
-* Windows XP is no longer supported. [#2345]
-* Configuration option X, deprecated since Product version 12.1.2, is now
-  removed. [#1366]
-
-
-Other changes
-^^^^^^^^^^^^^
-
-* The howto document page of X now has documentation about doing Y. [#2452]
-
-
-Version 1.1.0, released 14/02/2013
-----------------------------------
-
-INFO FOR PREVIOUS RELEASE.
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</summary></entry><entry><title>Review</title><link href="http://styleguide.chevah.com/review.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:review.html</id><summary type="html">&lt;p&gt;This page discuss the code/changes review process as both the person
+</summary></entry><entry><title>Review</title><link href="http://styleguide.chevah.com/review.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:review.html</id><summary type="html">&lt;p&gt;This page discuss the code/changes review process as both the person
 who requests a reviewer and a person who checks a review.&lt;/p&gt;
 &lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
@@ -1990,7 +2029,7 @@ either just reject the review, or trigger a test and wait for results.
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Testing</title><link href="http://styleguide.chevah.com/testing.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:testing.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Testing</title><link href="http://styleguide.chevah.com/testing.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:testing.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#types-of-tests" id="id1"&gt;Types of tests&lt;/a&gt;&lt;ul&gt;
