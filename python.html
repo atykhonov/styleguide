@@ -55,6 +55,11 @@
         </a>
       </li>
       <li>
+        <a class="active" href="python.html">
+          Python
+        </a>
+      </li>
+      <li>
         <a class="" href="release-process.html">
           Release process
         </a>
@@ -77,11 +82,6 @@
       <li>
         <a class="" href="javascript.html">
           JavaScript
-        </a>
-      </li>
-      <li>
-        <a class="active" href="python.html">
-          Python
         </a>
       </li>
       <li>
@@ -238,7 +238,8 @@ that this method should be placed somewhere else.</li>
 <p>As stated by <a class="reference external" href="http://en.wikipedia.org/wiki/Mixin">Wikipedia</a>:
 Mixins encourage code reuse and avoid well-known pathologies associated
 with multiple inheritance.</p>
-<p>Mixin is a limited usage of multiple inheritance.</p>
+<p>Mixin is a limited usage of multiple inheritance, but they should <strong>not be
+mixed with overriding</strong>.</p>
 <p>We use mixing to reuse code and they are provide great help writing tests.</p>
 <p>Methods from a mixin should not be overwritten by classes using the mixin.</p>
 <p>Mixins should not overwrite methods or call <strong>super()</strong>.</p>
