@@ -115,7 +115,6 @@ a:active,
 a:visited {
   color: #fa7f07;
   text-decoration: underline;
-  overflow: hidden;
   outline: none; }
 
 a:hover,
@@ -248,7 +247,6 @@ th,
 td {
   border: 1px solid #E5E5E5;
   vertical-align: middle;
-  text-align: center;
   font-weight: normal;
   padding: 10px; }
   th.yes,
@@ -685,8 +683,8 @@ aside[role=complementary] {
  */
 article[role=main] {
   zoom: 1;
-  overflow: hidden;
-  padding: 0 1px; }
+  padding: 0 1px;
+}
 
 /*
  * Home Intro

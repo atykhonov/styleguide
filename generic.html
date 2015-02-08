@@ -55,6 +55,16 @@
         </a>
       </li>
       <li>
+        <a class="" href="bash.html">
+          Bash
+        </a>
+      </li>
+      <li>
+        <a class="" href="javascript.html">
+          JavaScript
+        </a>
+      </li>
+      <li>
         <a class="" href="python.html">
           Python
         </a>
@@ -65,11 +75,6 @@
         </a>
       </li>
       <li>
-        <a class="" href="bash.html">
-          Bash
-        </a>
-      </li>
-      <li>
         <a class="" href="css.html">
           CSS, LESS and Styles
         </a>
@@ -77,11 +82,6 @@
       <li>
         <a class="" href="html.html">
           HTML, XML and other markups
-        </a>
-      </li>
-      <li>
-        <a class="" href="javascript.html">
-          JavaScript
         </a>
       </li>
       <li>
@@ -128,7 +128,8 @@
 <li><a class="reference internal" href="#general" id="id1">General</a></li>
 <li><a class="reference internal" href="#comments" id="id2">Comments</a></li>
 <li><a class="reference internal" href="#exceptions-handling" id="id3">Exceptions handling</a></li>
-<li><a class="reference internal" href="#project-specific" id="id4">Project specific</a></li>
+<li><a class="reference internal" href="#experimental-features-without-feature-branches" id="id4">Experimental Features Without Feature Branches</a></li>
+<li><a class="reference internal" href="#project-specific" id="id5">Project specific</a></li>
 </ul>
 </div>
 <div class="section" id="general">
@@ -141,6 +142,7 @@ something is wrong.</p>
 <ul class="simple">
 <li>Rule #1: Keep it DRY! Don't repeat yourself!</li>
 <li>Rule #2: KISS - Keep it simple, stupid simple!</li>
+<li>Rule #3: If it ain't broke, don't fix it!</li>
 <li>All code in any code-base should look like a single person typed it, no
 matter how many people contributed.</li>
 <li>No single person is responsible for a part of the code. We write code
@@ -166,7 +168,22 @@ designed code and poorly tested code.</li>
 else. The only exceptions are the Makefiles.</li>
 <li>Favor indentation using 4 spaces. For deep nested languages (HTML, JS) it
 is OK to use 2 spaces.</li>
-<li>Maximum line length is 78 characters.</li>
+<li>Maximum line length for code 80 characters, but for Python we use 79 to be in
+sync with PEP8.</li>
+<li>For narrative documentation use <a class="reference external" href="http://rhodesmill.org/brandon/2012/one-sentence-per-line/">semantic newlines</a>.
+Make lines short, and break lines at natural places, such as after commas and semicolons, rather than after the Nth column.</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre>Sometimes when editing a narrative documentation file, I wrap the lines semantically.
+Instead of inserting a newline at 70 columns (or whatever),
+or making paragraphs one long line,
+I put in newlines at a point that seems logical to me.
+Modern code-oriented text editor are very good at wrapping and arranging long lines.
+</pre></div>
+</td></tr></table><ul class="simple">
 <li>Don't mix multiple languages in a single file.</li>
 <li>No need for the ultimate purism, when using / calling code from external
 libraries it is OK if those calls don't comply with coding convention.</li>
@@ -318,8 +335,35 @@ Each ID should be raised from a single place.
 The data attribute is a dictionary with key / values that make sense for the
 error.</p>
 </div>
+<div class="section" id="experimental-features-without-feature-branches">
+<h2><a class="toc-backref" href="#id4">Experimental Features Without Feature Branches</a></h2>
+<p>Feature branches are one way to develop slow/long changes without affecting
+the production / master branch.</p>
+<p>We don't use feature branches because:</p>
+<ul class="simple">
+<li>They need to be permanently kept in sync with main branch. This will solve
+conflicts with the main branch, but there might still be hidden conflicts
+with <strong>other feature</strong> branches.</li>
+<li>You will need to keep in sync with other feature branches to make sure
+there are no integration problems. This just creates more work and in the
+end you will have something close to multiple <strong>masters</strong> as each feature
+branch will contain latest development from all other feature branches.</li>
+<li>They create multiple versions of a product which requires more release work.
+You will want to release an alpha/beta version of the feature as soon as
+possible to get feedback from end users.</li>
+<li>Along the focus feature, they might fix or refactor some code code which is
+of great help for the main branch.</li>
+<li>Once merged, a feature branch will introduce a big change in a short time.</li>
+</ul>
+<p>Instead of feature branches we develop experimental features directly in the
+main branch. Experimental features are triggered using dedicated
+(configuration) flags.</p>
+<p>In this way, a feature is gradually added to master, and during development
+by spending more time in master it should have a greater exposure to testing
+and checking that it integrates with other features.</p>
+</div>
 <div class="section" id="project-specific">
-<h2><a class="toc-backref" href="#id4">Project specific</a></h2>
+<h2><a class="toc-backref" href="#id5">Project specific</a></h2>
 <ul class="simple">
 <li>Each log message should be documented, listing format, introduction version,
 version since it was obsolete, log type, conditions in which it is raised
