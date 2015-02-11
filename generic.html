@@ -55,6 +55,11 @@
         </a>
       </li>
       <li>
+        <a class="" href="python.html">
+          Python
+        </a>
+      </li>
+      <li>
         <a class="" href="bash.html">
           Bash
         </a>
@@ -62,11 +67,6 @@
       <li>
         <a class="" href="javascript.html">
           JavaScript
-        </a>
-      </li>
-      <li>
-        <a class="" href="python.html">
-          Python
         </a>
       </li>
       <li>
@@ -127,9 +127,10 @@
 <ul class="simple">
 <li><a class="reference internal" href="#general" id="id1">General</a></li>
 <li><a class="reference internal" href="#comments" id="id2">Comments</a></li>
-<li><a class="reference internal" href="#exceptions-handling" id="id3">Exceptions handling</a></li>
-<li><a class="reference internal" href="#experimental-features-without-feature-branches" id="id4">Experimental Features Without Feature Branches</a></li>
-<li><a class="reference internal" href="#project-specific" id="id5">Project specific</a></li>
+<li><a class="reference internal" href="#documentation" id="id3">Documentation</a></li>
+<li><a class="reference internal" href="#exceptions-handling" id="id4">Exceptions handling</a></li>
+<li><a class="reference internal" href="#experimental-features-without-feature-branches" id="id5">Experimental Features Without Feature Branches</a></li>
+<li><a class="reference internal" href="#project-specific" id="id6">Project specific</a></li>
 </ul>
 </div>
 <div class="section" id="general">
@@ -199,16 +200,6 @@ and what it should do.
 The README should also include notes about contributing to the project.</p>
 </li>
 <li><p class="first">Each repository will have a LICENSE and AUTHORS files.</p>
-</li>
-<li><p class="first">Technical dept comments (ex FIXME, TODO) will always have an attached
-ticket ID and will use the following format. Only <strong>FIXME</strong> marker is used
-followed by ticket ID. Comments will come on a new lines.
-Adapt this to the style of comments use in the specific language, but
-is important to keep the <strong>FIXME:123:</strong> marker.:</p>
-<pre class="literal-block">
-# FIXME:1234:
-# Details about this tech-dept. Ex: Can only be fixed when full moon.
-</pre>
 </li>
 <li><p class="first">Words are an important part of how software works.
 Even though there may be dozens of people creating a product, reading
@@ -304,20 +295,57 @@ but we should not rely on that.</p>
 for this thing, so here is my poor comment. Good luck with figuring the
 intend of this name when you see the it in the rest of this file.</p>
 </li>
-<li><p class="first">Well commented code is extremely important. Take time to describe
-components, how they work, their limitations, and the way they are
-constructed. Don't leave others in the team guessing as to the purpose
-of uncommon or non-obvious code.</p>
+<li><p class="first">Place comments on a new line above their subject and in the same block as the referred code.</p>
 </li>
-<li><p class="first">Place comments on a new line above their subject.</p>
+</ul>
+<div class="highlight"><pre><span class="k">if</span> <span class="n">some_condition</span><span class="p">:</span>
+  <span class="c"># We got into into this branch to do x.</span>
+  <span class="n">do_domething</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+  <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;marker&#39;</span><span class="p">):</span>
+    <span class="c"># Marker lines are ignored.</span>
+    <span class="k">continue</span>
+  <span class="n">do_domething</span><span class="p">()</span>
+</pre></div>
+<ul>
+<li><p class="first">Avoid end of line comments.</p>
 </li>
-<li><p class="first">Avoid end of line comments. End of line comments can be used for lint
-ignores and other hints for automated tools... but not for humans.</p>
+<li><p class="first">Technical dept comments (ex FIXME, TODO) will always have an attached
+ticket ID and will use the following format. Only <strong>FIXME</strong> marker is used
+followed by ticket ID. Comments will come on a new lines.
+Adapt this to the style of comments use in the specific language, but
+is important to keep the <strong>FIXME:123:</strong> marker.:</p>
+<pre class="literal-block">
+# FIXME:1234:
+# Details about this tech-dept. Ex: Can only be fixed when full moon.
+</pre>
 </li>
 </ul>
 </div>
+<div class="section" id="documentation">
+<h2><a class="toc-backref" href="#id3">Documentation</a></h2>
+<ul class="simple">
+<li>Well documented code is extremely important.
+Take time to describe components, how they work, their limitations, and the way they are constructed.
+Don't leave others in the team guessing as to the purpose of uncommon or non-obvious code.</li>
+<li>Document code as part of docstrings and not as comments.</li>
+<li>Document packages, modules, classes, functions.</li>
+<li>For narative documentation (non docstrins) use <a class="reference external" href="http://rhodesmill.org/brandon/2012/one-sentence-per-line/">semantic linefeeds</a>.</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre>Sometimes when editing a narrative documentation file, I wrap the lines semantically.
+Instead of inserting a newline at 70 columns (or whatever),
+or making paragraphs one long line,
+I put in newlines at a point that seems logical to me.
+Modern code-oriented text editor are very good at wrapping and arranging long lines.
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="exceptions-handling">
-<h2><a class="toc-backref" href="#id3">Exceptions handling</a></h2>
+<h2><a class="toc-backref" href="#id4">Exceptions handling</a></h2>
 <p>Here are some simple generic rules for working with exceptions.</p>
 <p>In Chevah project we use 2 major &quot;kinds&quot; of exceptions:</p>
 <ul class="simple">
@@ -336,7 +364,7 @@ The data attribute is a dictionary with key / values that make sense for the
 error.</p>
 </div>
 <div class="section" id="experimental-features-without-feature-branches">
-<h2><a class="toc-backref" href="#id4">Experimental Features Without Feature Branches</a></h2>
+<h2><a class="toc-backref" href="#id5">Experimental Features Without Feature Branches</a></h2>
 <p>Feature branches are one way to develop slow/long changes without affecting
 the production / master branch.</p>
 <p>We don't use feature branches because:</p>
@@ -363,7 +391,7 @@ by spending more time in master it should have a greater exposure to testing
 and checking that it integrates with other features.</p>
 </div>
 <div class="section" id="project-specific">
-<h2><a class="toc-backref" href="#id5">Project specific</a></h2>
+<h2><a class="toc-backref" href="#id6">Project specific</a></h2>
 <ul class="simple">
 <li>Each log message should be documented, listing format, introduction version,
 version since it was obsolete, log type, conditions in which it is raised

@@ -55,6 +55,11 @@
         </a>
       </li>
       <li>
+        <a class="active" href="python.html">
+          Python
+        </a>
+      </li>
+      <li>
         <a class="" href="bash.html">
           Bash
         </a>
@@ -62,11 +67,6 @@
       <li>
         <a class="" href="javascript.html">
           JavaScript
-        </a>
-      </li>
-      <li>
-        <a class="active" href="python.html">
-          Python
         </a>
       </li>
       <li>
@@ -137,25 +137,39 @@
 <div class="section" id="general">
 <h2><a class="toc-backref" href="#id1">General</a></h2>
 <ul class="simple">
+<li>Start by reading
+<a class="reference external" href="https://www.python.org/dev/peps/pep-0020/">The Zen of Python</a></li>
+</ul>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">this</span>
+</pre></div>
+<ul class="simple">
 <li>For python we have pocket-lint that checks for PEP8 and some other things.</li>
 <li><a class="reference external" href="http://www.python.org/dev/peps/pep-0008/">Python PEP 8</a>
 <strong>Python base code style guide</strong>.</li>
 <li>Favour single inheritance.</li>
 <li>As the second best, use Mixins to reuse code and avoid multiple inheritance.</li>
-<li>Docstring always use multiline strings with double quotes.</li>
+<li>Docstring always use multiline strings with double quotes and empty first
+and last lines. There's no blank line either before or after the docstring.</li>
 </ul>
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">some_function</span><span class="p">(</span><span class="n">argument</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Single line docstring.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">code_starts_here</span><span class="p">()</span>
 
 
 <span class="k">class</span> <span class="nc">SomeClass</span><span class="p">(</span><span class="n">ParentClass</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Quick explanation of the role of this class.</span>
+<span class="sd">    Quick explanation of the role of this class which is a bit long so we</span>
+<span class="sd">    wrap it.</span>
 
 <span class="sd">    More details to follow in long paragraphs.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">method_starts_here</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Something here.</span>
+<span class="sd">      &quot;&quot;&quot;</span>
 </pre></div>
 <ul class="simple">
 <li>Class members or instance members can be documented inline using the
