@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="http://styleguide.chevah.com/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>http://styleguide.chevah.com/</id><updated>2015-02-11T09:40:56+00:00</updated><entry><title>References</title><link href="http://styleguide.chevah.com/references.html" rel="alternate"></link><updated>2015-02-11T09:40:56+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:references.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="http://styleguide.chevah.com/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>http://styleguide.chevah.com/</id><updated>2015-02-11T10:02:03+00:00</updated><entry><title>Library</title><link href="http://styleguide.chevah.com/library.html" rel="alternate"></link><updated>2015-02-11T10:02:03+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:library.html</id><summary type="html">&lt;p&gt;These page contain a list of talking about life, programming craftsmanship,
+good/clean code and many more. The list is in random order:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416"&gt;Extreme Programming Explained: Embrace Change&lt;/a&gt;
+(ISBN: 978-0201616415) by Kent Beck, published in October, 1999.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://pragprog.com/the-pragmatic-programmer/"&gt;The Pragmatic Programmer: From Journeyman to Master&lt;/a&gt;
+(ISBN: 0-201-61622-X) by Andrew Hunt and David Thomas, published in October, 1999.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882"&gt;Clean Code: A Handbook of Agile Software Craftsmanship&lt;/a&gt;
+(ISBN: 978-0132350884) by Robert C. Martin, published in August 11, 2008.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/gp/product/0131495054"&gt;xUnit Test Patterns Refactoring Test Code&lt;/a&gt;
+(ISBN: 978-0131495050) by Gerard Meszaros, published in May 31, 2007.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/exec/obidos/ASIN/0321344758/"&gt;Don't Make Me Think: A Common Sense Approach to Web Usability, 2nd Edition&lt;/a&gt;
+(ISBN: 978-0321344755) by Steve Krug, published in August 28, 2005.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/exec/obidos/ASIN/0465067107/"&gt;The Design of Everyday Things&lt;/a&gt;
+(ISBN: 978-0465067107) by Donald A. Norman, published September 17, 2002.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/Mastering-Regular-Expressions-Jeffrey-Friedl/dp/0596528124/"&gt;Mastering Regular Expressions&lt;/a&gt;
+(ISBN: 978-0596528126) by Jeffrey E.F. Friedl, published August 15, 2006.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/dp/1936719118"&gt;Anything You Want&lt;/a&gt;
+(ISBN: 978-1936719112) by Derek Sivers, published June 29, 2011.&lt;/li&gt;
+&lt;/ul&gt;
+</summary></entry><entry><title>References</title><link href="http://styleguide.chevah.com/references.html" rel="alternate"></link><updated>2015-02-11T09:40:56+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:references.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id2"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -1844,24 +1864,6 @@ You want the browser to load the footer before a table full of data.):&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Library</title><link href="http://styleguide.chevah.com/library.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:library.html</id><summary type="html">&lt;p&gt;These page contain a list of talking about life, programming craftsmanship,
-good/clean code and many more. The list is in random order:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416"&gt;Extreme Programming Explained: Embrace Change&lt;/a&gt;
-(ISBN: 978-0201616415) by Kent Beck, published in October, 1999.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://pragprog.com/the-pragmatic-programmer/"&gt;The Pragmatic Programmer: From Journeyman to Master&lt;/a&gt;
-(ISBN: 0-201-61622-X) by Andrew Hunt and David Thomas, published in October, 1999.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882"&gt;Clean Code: A Handbook of Agile Software Craftsmanship&lt;/a&gt;
-(ISBN: 978-0132350884) by Robert C. Martin, published in August 11, 2008.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/exec/obidos/ASIN/0321344758/"&gt;Don't Make Me Think: A Common Sense Approach to Web Usability, 2nd Edition&lt;/a&gt;
-(ISBN: 978-0321344755) by Steve Krug, published in August 28, 2005.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/exec/obidos/ASIN/0465067107/"&gt;The Design of Everyday Things&lt;/a&gt;
-(ISBN: 978-0465067107) by Donald A. Norman, published September 17, 2002.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/Mastering-Regular-Expressions-Jeffrey-Friedl/dp/0596528124/"&gt;Mastering Regular Expressions&lt;/a&gt;
-(ISBN: 978-0596528126) by Jeffrey E.F. Friedl, published August 15, 2006.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/dp/1936719118"&gt;Anything You Want&lt;/a&gt;
-(ISBN: 978-1936719112) by Derek Sivers, published June 29, 2011.&lt;/li&gt;
-&lt;/ul&gt;
 </summary></entry><entry><title>Review</title><link href="http://styleguide.chevah.com/review.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:review.html</id><summary type="html">&lt;p&gt;This page discuss the code/changes review process as both the person
 who requests a reviewer and a person who checks a review.&lt;/p&gt;
 &lt;div class="contents topic" id="contents"&gt;
