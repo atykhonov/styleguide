@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="http://styleguide.chevah.com/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>http://styleguide.chevah.com/</id><updated>2015-04-09T19:32:20+01:00</updated><entry><title>Work</title><link href="http://styleguide.chevah.com/work.html" rel="alternate"></link><updated>2015-04-09T19:32:20+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-04-09:work.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="http://styleguide.chevah.com/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>http://styleguide.chevah.com/</id><updated>2015-04-09T20:13:15+01:00</updated><entry><title>Work</title><link href="http://styleguide.chevah.com/work.html" rel="alternate"></link><updated>2015-04-09T20:13:15+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-04-09:work.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -124,7 +124,9 @@ You shouldn't be dependent on work for social interactions.&lt;/p&gt;
 &lt;p&gt;Use a dedicated account (email, chat, skype) for work.
 This will help you filter the work related communication.&lt;/p&gt;
 &lt;p&gt;Use &amp;quot;away&amp;quot; and &amp;quot;busy&amp;quot; functionality of you instant messaging tool to let other know about your status.&lt;/p&gt;
-&lt;p&gt;Since we don't work based on fixed working ours you will received email, review request, feedback when you are outside of your &lt;em&gt;working ours&lt;/em&gt;. Ignore them and don't feel the obligation to read or respond then.&lt;/p&gt;
+&lt;p&gt;Since we don't work based on fixed working hours you will received email,
+review request, feedback when you are outside of your &lt;em&gt;working hours&lt;/em&gt;.
+Ignore them and don't feel the obligation to read or respond then.&lt;/p&gt;
 &lt;p&gt;When you talk to someone face-to-face or voice-to-voice,
 you get a lot of contextual information and unspoken messages,
 and information is exchanged pretty quickly.&lt;/p&gt;
@@ -132,8 +134,10 @@ and information is exchanged pretty quickly.&lt;/p&gt;
 not received.
 Always acknowledge that you have received and understood a text message.
 Be as clear as possible and avoid subtle irony or local culture jokes.
-Use emotion to hint for mood. ALL CAPS is shouting, use &lt;cite&gt;**empashize**&lt;/cite&gt; to
-stress something.&lt;/p&gt;
+Use emoticons to hint for mood, e.g. &lt;em&gt;This is a silly joke :)&lt;/em&gt;
+Avoid ALL CAPS as much as possible, otherwise people will feel
+that you are shouting at them.
+Use the appropriate text markup to &lt;cite&gt;**emphasize**&lt;/cite&gt; something.&lt;/p&gt;
 &lt;p&gt;Since most of the communication is done using text, get proficient at typing and get good tools to help with typing (ie a good keyboard).
 You will write many code, emails, documents, text chats.&lt;/p&gt;
 &lt;p&gt;The process of writing should encourage you to slow down,
