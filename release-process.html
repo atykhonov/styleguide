@@ -55,6 +55,11 @@
         </a>
       </li>
       <li>
+        <a class="active" href="release-process.html">
+          Release process
+        </a>
+      </li>
+      <li>
         <a class="" href="review.html">
           Review
         </a>
@@ -72,11 +77,6 @@
       <li>
         <a class="" href="javascript.html">
           JavaScript
-        </a>
-      </li>
-      <li>
-        <a class="active" href="release-process.html">
-          Release process
         </a>
       </li>
       <li>
@@ -156,10 +156,10 @@ specific version.</p>
 <p>Release notes are grouped in one of the following categories. The category
 may be omitted if no changes were added for it. Here are some categories:</p>
 <pre class="literal-block">
+* Major changes (only for major releases)
 * New features
-* Bug fixes
-* Deprecation
-* Removals
+* Bug fixes (this will be the only section for bugfix releases)
+* Deprecation and Removals
 * Other changes. Documentation changes.
 </pre>
 <p>A marker/tag is added at the end of the sentence to point the ticket ID
@@ -207,7 +207,7 @@ Release Notes
 This is the list of all changes for PRODUCT NAME releases.
 
 
-Version 1.2.3, released 24/02/2014
+Version 2.1.0, released 24/02/2014
 ----------------------------------
 
 
@@ -224,18 +224,13 @@ Defect fixes
 ^^^^^^^^^^^^
 
 * Fix an internal server error when SSH client requests
-  to execute a command, a shell or a pseudo-terminal. [sftp][scp]
+  to execute a command, a shell or a pseudo-terminal. [#176][sftp][scp]
 
 
-Deprecations
-^^^^^^^^^^^^
+Deprecations and removals
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * It is no longer possible to do X. [#1359][unix]
-
-
-Removals
-^^^^^^^^
-
 * Windows XP is no longer supported. [#2345]
 * Configuration option X, deprecated since Product version 12.1.2, is now
   removed. [#1366]
@@ -247,10 +242,54 @@ Other changes
 * The howto document page of X now has documentation about doing Y. [#2452]
 
 
-Version 1.1.0, released 14/02/2013
+
+Version 2.0.0, released 20/02/2014
 ----------------------------------
 
-INFO FOR PREVIOUS RELEASE.
+
+Major changes
+^^^^^^^^^^^^^
+
+* All log handlers were converted to event handlers.
+  This allows an unified method for interacting the the audit events
+  produced by SFTPPlus.
+* All authentication methods are now explicitly defined and ordered.
+  You can now choose the order in which different authentication methods
+  are used.
+
+
+New features
+^^^^^^^^^^^^
+
+* Support was added to transfer files using SCP over SSH.
+  Read more... [scp]
+
+
+Defect fixes
+^^^^^^^^^^^^
+
+* Fix an internal server error when SSH client requests
+  to execute a command, a shell or a pseudo-terminal. [#176][sftp][scp]
+
+
+Deprecations and removals
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* It is no longer possible to do X. [#1359][unix]
+* Windows XP is no longer supported. [#2345]
+* Configuration option X, deprecated since Product version 12.1.2, is now
+  removed. [#1366]
+
+
+Version 1.1.1, released 14/02/2013
+----------------------------------
+
+
+Defect fixes
+^^^^^^^^^^^^
+
+* Fix an internal server error when FTP client requests
+  an unknown command. [#160][ftp][ftps]
 </pre>
 </div>
 </div>

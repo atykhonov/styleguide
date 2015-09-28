@@ -1,5 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="http://styleguide.chevah.com/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>http://styleguide.chevah.com/</id><updated>2015-04-09T20:13:15+01:00</updated><entry><title>Work</title><link href="http://styleguide.chevah.com/work.html" rel="alternate"></link><updated>2015-04-09T20:13:15+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-04-09:work.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="http://styleguide.chevah.com/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>http://styleguide.chevah.com/</id><updated>2015-09-28T13:25:38+01:00</updated><entry><title>Release process</title><link href="http://styleguide.chevah.com/release-process.html" rel="alternate"></link><updated>2015-09-28T13:25:38+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-09-28:release-process.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#release-notes" id="id2"&gt;Release Notes&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#sample-release-notes" id="id3"&gt;Sample release notes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="general"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This page describes the release process and steps to be followed during
+development to simplify the release or a final product or library.&lt;/p&gt;
+&lt;p&gt;Releasing a product usually consists of publishing the following:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Binary or source archives.&lt;/li&gt;
+&lt;li&gt;Documentation, which includes Release Notes, Known Issues and Upgrade Steps.&lt;/li&gt;
+&lt;li&gt;Public announcement. Notification email or website news/blog article.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="release-notes"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Release Notes&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Release notes explain what changed with this version. &lt;strong&gt;Period&lt;/strong&gt;.
+Release notes are &lt;strong&gt;not&lt;/strong&gt; installation, upgrade or configuration.&lt;/p&gt;
+&lt;p&gt;Each time a branch fixes a bug, adds a new feature or makes any changes
+which are visible to end users a new entry is added inside the release notes
+file. A release note entry is a summary for one change.&lt;/p&gt;
+&lt;p&gt;We keep release notes for all versions in a single file so that users can
+easily read all changes starting from their version up to latest or a
+specific version.&lt;/p&gt;
+&lt;p&gt;Release notes are grouped in one of the following categories. The category
+may be omitted if no changes were added for it. Here are some categories:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+* Major changes (only for major releases)
+* New features
+* Bug fixes (this will be the only section for bugfix releases)
+* Deprecation and Removals
+* Other changes. Documentation changes.
+&lt;/pre&gt;
+&lt;p&gt;A marker/tag is added at the end of the sentence to point the ticket ID
+associated with this change. Ticket ID marker is not mandatory for new features.&lt;/p&gt;
+&lt;p&gt;It can be followed by a list of tags to help users understand / filter the
+scope of the change. Here are some examples:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+* ``[https]`` - for changes affecting only a sub-system.
+* ``[aix]`` - for changes affecting only AIX systems.
+* ``[windows]`` - for changes affection only Windows system.
+&lt;/pre&gt;
+&lt;p&gt;Remember your audience/user/clients and write for that audience.&lt;/p&gt;
+&lt;p&gt;Don't explain all details of the change. When more details are required
+use a link to documentation.&lt;/p&gt;
+&lt;p&gt;All entries should be complete sentences or phrases, ending with a
+punctuation mark.&lt;/p&gt;
+&lt;p&gt;Use present tense as opposed to past tense. The text should state what the
+change &lt;strong&gt;does&lt;/strong&gt; and not what it &lt;strong&gt;did&lt;/strong&gt;.
+&amp;quot;Product no longer falls over X.&amp;quot; as opposed to &amp;quot;Product fell over X.&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Write text in &lt;strong&gt;resolution&lt;/strong&gt; form, describe what impact the change will have
+on users. What will the users notice?&lt;/p&gt;
+&lt;p&gt;If a single sentence isn't clear enough to understand, explaining the
+background of the change can be helpful, by adding in
+&lt;cite&gt;Previously, X used to do Y.&lt;/cite&gt; or &lt;cite&gt;Previously, X used to do Y. Now Z.&lt;/cite&gt;.&lt;/p&gt;
+&lt;p&gt;Don't add low-level, internal details about product logic. Focus on how
+the change affects / is perceived by the user.&lt;/p&gt;
+&lt;p&gt;Here are some examples:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Support was added for doing / integrating with X.&lt;/li&gt;
+&lt;li&gt;Users now can do X.&lt;/li&gt;
+&lt;li&gt;It is no longer possible to do Y.&lt;/li&gt;
+&lt;li&gt;The text on the ABC form is now Z.&lt;/li&gt;
+&lt;li&gt;Reworded text from X to be gender neutral.&lt;/li&gt;
+&lt;li&gt;Doing X on a session in state Y no longer gives the XYZ error.&lt;/li&gt;
+&lt;li&gt;Fix the XZY error generated when client was doing X on a session in Y state.&lt;/li&gt;
+&lt;li&gt;Previously, users were unable to upload files to a folder if they
+had write permissions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="sample-release-notes"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id3"&gt;Sample release notes&lt;/a&gt;&lt;/h3&gt;
+&lt;pre class="literal-block"&gt;
+Release Notes
+=============
+
+This is the list of all changes for PRODUCT NAME releases.
+
+
+Version 2.1.0, released 24/02/2014
+----------------------------------
+
+
+New features
+^^^^^^^^^^^^
+
+* Support was added to transfer files using SCP over SSH.
+  Read more... [scp]
+* SFTP protocol now support reading and creating symbolic links on
+  Windows. [sftp][windows]
+
+
+Defect fixes
+^^^^^^^^^^^^
+
+* Fix an internal server error when SSH client requests
+  to execute a command, a shell or a pseudo-terminal. [#176][sftp][scp]
+
+
+Deprecations and removals
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* It is no longer possible to do X. [#1359][unix]
+* Windows XP is no longer supported. [#2345]
+* Configuration option X, deprecated since Product version 12.1.2, is now
+  removed. [#1366]
+
+
+Other changes
+^^^^^^^^^^^^^
+
+* The howto document page of X now has documentation about doing Y. [#2452]
+
+
+
+Version 2.0.0, released 20/02/2014
+----------------------------------
+
+
+Major changes
+^^^^^^^^^^^^^
+
+* All log handlers were converted to event handlers.
+  This allows an unified method for interacting the the audit events
+  produced by SFTPPlus.
+* All authentication methods are now explicitly defined and ordered.
+  You can now choose the order in which different authentication methods
+  are used.
+
+
+New features
+^^^^^^^^^^^^
+
+* Support was added to transfer files using SCP over SSH.
+  Read more... [scp]
+
+
+Defect fixes
+^^^^^^^^^^^^
+
+* Fix an internal server error when SSH client requests
+  to execute a command, a shell or a pseudo-terminal. [#176][sftp][scp]
+
+
+Deprecations and removals
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* It is no longer possible to do X. [#1359][unix]
+* Windows XP is no longer supported. [#2345]
+* Configuration option X, deprecated since Product version 12.1.2, is now
+  removed. [#1366]
+
+
+Version 1.1.1, released 14/02/2013
+----------------------------------
+
+
+Defect fixes
+^^^^^^^^^^^^
+
+* Fix an internal server error when FTP client requests
+  an unknown command. [#160][ftp][ftps]
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Work</title><link href="http://styleguide.chevah.com/work.html" rel="alternate"></link><updated>2015-04-09T22:13:15+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-04-09:work.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -178,7 +349,7 @@ emails instead of deleting them.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://plus.google.com/108965338468155180315/posts/joE2sKYihHP"&gt;https://plus.google.com/108965338468155180315/posts/joE2sKYihHP&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Review</title><link href="http://styleguide.chevah.com/review.html" rel="alternate"></link><updated>2015-03-05T14:32:25+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-03-05:review.html</id><summary type="html">&lt;p&gt;This page discuss the code/changes review process as both the person
+</summary></entry><entry><title>Review</title><link href="http://styleguide.chevah.com/review.html" rel="alternate"></link><updated>2015-03-05T16:32:25+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-03-05:review.html</id><summary type="html">&lt;p&gt;This page discuss the code/changes review process as both the person
 who requests a reviewer and a person who checks a review.&lt;/p&gt;
 &lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
@@ -466,7 +637,7 @@ either just reject the review, or trigger a test and wait for results.
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Generic</title><link href="http://styleguide.chevah.com/generic.html" rel="alternate"></link><updated>2015-02-11T17:27:48+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:generic.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Generic</title><link href="http://styleguide.chevah.com/generic.html" rel="alternate"></link><updated>2015-02-11T19:27:48+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:generic.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -794,7 +965,7 @@ log_file
     that can be set.
 &lt;/pre&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Library</title><link href="http://styleguide.chevah.com/library.html" rel="alternate"></link><updated>2015-02-11T17:27:48+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:library.html</id><summary type="html">&lt;p&gt;These page contain a list of talking about life, programming craftsmanship,
+</summary></entry><entry><title>Library</title><link href="http://styleguide.chevah.com/library.html" rel="alternate"></link><updated>2015-02-11T19:27:48+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:library.html</id><summary type="html">&lt;p&gt;These page contain a list of talking about life, programming craftsmanship,
 good/clean code and many more. The list is in random order:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416"&gt;Extreme Programming Explained: Embrace Change&lt;/a&gt;
@@ -814,7 +985,7 @@ good/clean code and many more. The list is in random order:&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/dp/1936719118"&gt;Anything You Want&lt;/a&gt;
 (ISBN: 978-1936719112) by Derek Sivers, published June 29, 2011.&lt;/li&gt;
 &lt;/ul&gt;
-</summary></entry><entry><title>Python</title><link href="http://styleguide.chevah.com/python.html" rel="alternate"></link><updated>2015-02-11T17:27:48+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:python.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Python</title><link href="http://styleguide.chevah.com/python.html" rel="alternate"></link><updated>2015-02-11T19:27:48+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:python.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -1132,7 +1303,7 @@ line ending with comma.&lt;/li&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>References</title><link href="http://styleguide.chevah.com/references.html" rel="alternate"></link><updated>2015-02-11T17:27:48+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:references.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>References</title><link href="http://styleguide.chevah.com/references.html" rel="alternate"></link><updated>2015-02-11T19:27:48+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:references.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -1174,7 +1345,7 @@ line ending with comma.&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://github.com/necolas/idiomatic-css"&gt;Idiomatic CSS&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Bash</title><link href="http://styleguide.chevah.com/bash.html" rel="alternate"></link><updated>2015-01-25T12:58:35+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-01-25:bash.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Bash</title><link href="http://styleguide.chevah.com/bash.html" rel="alternate"></link><updated>2015-01-25T14:58:35+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-01-25:bash.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -1338,7 +1509,7 @@ procedure1&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>JavaScript</title><link href="http://styleguide.chevah.com/javascript.html" rel="alternate"></link><updated>2015-01-25T11:53:03+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-01-25:javascript.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>JavaScript</title><link href="http://styleguide.chevah.com/javascript.html" rel="alternate"></link><updated>2015-01-25T13:53:03+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-01-25:javascript.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -1731,7 +1902,7 @@ BAD : $('#element_id').attr('src': 'some/red_dot.png');
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Overview</title><link href="http://styleguide.chevah.com//index.html" rel="alternate"></link><updated>2014-12-24T10:52:14+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-12-24:/index.html</id><summary type="html">&lt;p&gt;These pages describe the guides used in Chevah project.
+</summary></entry><entry><title>Overview</title><link href="http://styleguide.chevah.com//index.html" rel="alternate"></link><updated>2014-12-24T12:52:14+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-12-24:/index.html</id><summary type="html">&lt;p&gt;These pages describe the guides used in Chevah project.
 They include programming style guides but also notes about the working on the project as a whole.&lt;/p&gt;
 &lt;p&gt;The content might be pedantic, but we hope that by following these guide
 you will find easier to collaborate and improve the quality of
@@ -1754,7 +1925,7 @@ can do that over email, or adding an issue or pull request on
 &lt;p&gt;We try to automatically check software development rules using &lt;a class="reference external" href="https://launchpad.net/pocket-lint/"&gt;pocket-lint&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This is a collection of programming craftsmanship recommendations and ideas.
 Please let us know if we fail to properly cite the source.&lt;/p&gt;
-</summary></entry><entry><title>Leave / Holiday</title><link href="http://styleguide.chevah.com/leave-holiday.html" rel="alternate"></link><updated>2014-12-11T09:50:36+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-12-11:leave-holiday.html</id><summary type="html">&lt;div class="section" id="general"&gt;
+</summary></entry><entry><title>Leave / Holiday</title><link href="http://styleguide.chevah.com/leave-holiday.html" rel="alternate"></link><updated>2014-12-11T11:50:36+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-12-11:leave-holiday.html</id><summary type="html">&lt;div class="section" id="general"&gt;
 &lt;h2&gt;General&lt;/h2&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;We have 30 days of payed holidays per year. 21 + 9 bank holidays&lt;/li&gt;
@@ -1806,139 +1977,7 @@ up to a total of 5 days. Try to plan your time so that you don't end up
 with these remaining days in the first place.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Release process</title><link href="http://styleguide.chevah.com/release-process.html" rel="alternate"></link><updated>2014-05-08T15:46:36+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:release-process.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
-&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#release-notes" id="id2"&gt;Release Notes&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#sample-release-notes" id="id3"&gt;Sample release notes&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="general"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This page describes the release process and steps to be followed during
-development to simplify the release or a final product or library.&lt;/p&gt;
-&lt;p&gt;Releasing a product usually consists of publishing the following:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Binary or source archives.&lt;/li&gt;
-&lt;li&gt;Documentation, which includes Release Notes, Known Issues and Upgrade Steps.&lt;/li&gt;
-&lt;li&gt;Public announcement. Notification email or website news/blog article.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="release-notes"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Release Notes&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Release notes explain what changed with this version. &lt;strong&gt;Period&lt;/strong&gt;.
-Release notes are &lt;strong&gt;not&lt;/strong&gt; installation, upgrade or configuration.&lt;/p&gt;
-&lt;p&gt;Each time a branch fixes a bug, adds a new feature or makes any changes
-which are visible to end users a new entry is added inside the release notes
-file. A release note entry is a summary for one change.&lt;/p&gt;
-&lt;p&gt;We keep release notes for all versions in a single file so that users can
-easily read all changes starting from their version up to latest or a
-specific version.&lt;/p&gt;
-&lt;p&gt;Release notes are grouped in one of the following categories. The category
-may be omitted if no changes were added for it. Here are some categories:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-* New features
-* Bug fixes
-* Deprecation
-* Removals
-* Other changes. Documentation changes.
-&lt;/pre&gt;
-&lt;p&gt;A marker/tag is added at the end of the sentence to point the ticket ID
-associated with this change. Ticket ID marker is not mandatory for new features.&lt;/p&gt;
-&lt;p&gt;It can be followed by a list of tags to help users understand / filter the
-scope of the change. Here are some examples:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-* ``[https]`` - for changes affecting only a sub-system.
-* ``[aix]`` - for changes affecting only AIX systems.
-* ``[windows]`` - for changes affection only Windows system.
-&lt;/pre&gt;
-&lt;p&gt;Remember your audience/user/clients and write for that audience.&lt;/p&gt;
-&lt;p&gt;Don't explain all details of the change. When more details are required
-use a link to documentation.&lt;/p&gt;
-&lt;p&gt;All entries should be complete sentences or phrases, ending with a
-punctuation mark.&lt;/p&gt;
-&lt;p&gt;Use present tense as opposed to past tense. The text should state what the
-change &lt;strong&gt;does&lt;/strong&gt; and not what it &lt;strong&gt;did&lt;/strong&gt;.
-&amp;quot;Product no longer falls over X.&amp;quot; as opposed to &amp;quot;Product fell over X.&amp;quot;.&lt;/p&gt;
-&lt;p&gt;Write text in &lt;strong&gt;resolution&lt;/strong&gt; form, describe what impact the change will have
-on users. What will the users notice?&lt;/p&gt;
-&lt;p&gt;If a single sentence isn't clear enough to understand, explaining the
-background of the change can be helpful, by adding in
-&lt;cite&gt;Previously, X used to do Y.&lt;/cite&gt; or &lt;cite&gt;Previously, X used to do Y. Now Z.&lt;/cite&gt;.&lt;/p&gt;
-&lt;p&gt;Don't add low-level, internal details about product logic. Focus on how
-the change affects / is perceived by the user.&lt;/p&gt;
-&lt;p&gt;Here are some examples:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Support was added for doing / integrating with X.&lt;/li&gt;
-&lt;li&gt;Users now can do X.&lt;/li&gt;
-&lt;li&gt;It is no longer possible to do Y.&lt;/li&gt;
-&lt;li&gt;The text on the ABC form is now Z.&lt;/li&gt;
-&lt;li&gt;Reworded text from X to be gender neutral.&lt;/li&gt;
-&lt;li&gt;Doing X on a session in state Y no longer gives the XYZ error.&lt;/li&gt;
-&lt;li&gt;Fix the XZY error generated when client was doing X on a session in Y state.&lt;/li&gt;
-&lt;li&gt;Previously, users were unable to upload files to a folder if they
-had write permissions.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="section" id="sample-release-notes"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id3"&gt;Sample release notes&lt;/a&gt;&lt;/h3&gt;
-&lt;pre class="literal-block"&gt;
-Release Notes
-=============
-
-This is the list of all changes for PRODUCT NAME releases.
-
-
-Version 1.2.3, released 24/02/2014
-----------------------------------
-
-
-New features
-^^^^^^^^^^^^
-
-* Support was added to transfer files using SCP over SSH.
-  Read more... [scp]
-* SFTP protocol now support reading and creating symbolic links on
-  Windows. [sftp][windows]
-
-
-Defect fixes
-^^^^^^^^^^^^
-
-* Fix an internal server error when SSH client requests
-  to execute a command, a shell or a pseudo-terminal. [sftp][scp]
-
-
-Deprecations
-^^^^^^^^^^^^
-
-* It is no longer possible to do X. [#1359][unix]
-
-
-Removals
-^^^^^^^^
-
-* Windows XP is no longer supported. [#2345]
-* Configuration option X, deprecated since Product version 12.1.2, is now
-  removed. [#1366]
-
-
-Other changes
-^^^^^^^^^^^^^
-
-* The howto document page of X now has documentation about doing Y. [#2452]
-
-
-Version 1.1.0, released 14/02/2013
-----------------------------------
-
-INFO FOR PREVIOUS RELEASE.
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</summary></entry><entry><title>CSS, LESS and Styles</title><link href="http://styleguide.chevah.com/css.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:css.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>CSS, LESS and Styles</title><link href="http://styleguide.chevah.com/css.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:css.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#css-syntax-elements" id="id1"&gt;CSS Syntax Elements&lt;/a&gt;&lt;/li&gt;
@@ -2104,7 +2143,7 @@ product-name {
     }
 &lt;/pre&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>HTML, XML and other markups</title><link href="http://styleguide.chevah.com/html.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:html.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>HTML, XML and other markups</title><link href="http://styleguide.chevah.com/html.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:html.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -2190,7 +2229,7 @@ You want the browser to load the footer before a table full of data.):&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Testing</title><link href="http://styleguide.chevah.com/testing.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:testing.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Testing</title><link href="http://styleguide.chevah.com/testing.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:testing.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#types-of-tests" id="id1"&gt;Types of tests&lt;/a&gt;&lt;ul&gt;
