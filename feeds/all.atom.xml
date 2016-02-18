@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="http://styleguide.chevah.com/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>http://styleguide.chevah.com/</id><updated>2015-12-09T19:18:15+00:00</updated><entry><title>Review</title><link href="http://styleguide.chevah.com/review.html" rel="alternate"></link><updated>2015-12-09T19:18:15+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-12-09:review.html</id><summary type="html">&lt;p&gt;This page discuss the code/changes review process as both the person
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="http://styleguide.chevah.com/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>http://styleguide.chevah.com/</id><updated>2016-02-18T11:37:59+00:00</updated><entry><title>Review</title><link href="http://styleguide.chevah.com/review.html" rel="alternate"></link><updated>2016-02-18T11:37:59+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-02-18:review.html</id><summary type="html">&lt;p&gt;This page discuss the code/changes review process as both the person
 who requests a reviewer and a person who checks a review.&lt;/p&gt;
 &lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
@@ -120,66 +120,7 @@ the new test case.&lt;/li&gt;
 &lt;div class="section" id="review-request-message"&gt;
 &lt;h3&gt;&lt;a class="toc-backref" href="#id3"&gt;Review request message&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;When submitting a ticket for review, the review request should contain the
-following message (added to the ticket description):&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-{{ '{{{' }}
-#!rst
-
-Scope
-=====
-
-Describe the scope of the changes or the problem that these changes wants
-to solve.
-This content should be created when a ticket is submitted and just link
-the ticket or copy paste the ticket description... or find a way for
-linking this review to a ticket.
-
-depends-on #123 #124
-
-
-Why we got into this (5 whys)
-=============================
-
-Mainly used for bugs. Can be ignored for tasks or new features.
-
-Describe why we got this problem in the first place. What went wrong.
-Repeatedly ask the question “Why” (up to 5 times) to determine the
-cause of this problem.
-
-
-Changes
-=======
-
-Describe how the problem was fixed.
-List **all** changes made.
-
-List all changes for which an *ideal* solution was not found. Describe
-the current solution.
-
-What was not done yet and link to the ticket for the still to do work.
-
-Any comments about out-of-scope minor drive-by changes.
-
-
-How to try and test the changes
-===============================
-
-reviewers &amp;#64;some-dude &amp;#64;another-dude
-
-How the changes can be tested and verified by team members.
-
-
-Title for first test case
--------------------------
-
-For end-user changes, how the changes can be tested and verified by
-our users.
-
-List the steps to follow for checking that everything is OK.
-
-Explicitly state the expected results.
-{{ '}}}' }}
-&lt;/pre&gt;
+following message as described in &lt;a class="reference external" href="https://github.com/chevah/styleguide/blob/master/.github/PULL_REQUEST_TEMPLATE"&gt;PULL_REQUEST_TEMPLATE&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p class="first"&gt;For GitHub review requests, &lt;strong&gt;add the merge commit message as the pull
 request title&lt;/strong&gt;. The message should include the ticket ID number.
@@ -290,7 +231,7 @@ either just reject the review, or trigger a test and wait for results.
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Release process</title><link href="http://styleguide.chevah.com/release-process.html" rel="alternate"></link><updated>2015-09-28T13:25:38+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-09-28:release-process.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Release process</title><link href="http://styleguide.chevah.com/release-process.html" rel="alternate"></link><updated>2015-09-28T11:25:38+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-09-28:release-process.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -461,7 +402,7 @@ Defect fixes
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Work</title><link href="http://styleguide.chevah.com/work.html" rel="alternate"></link><updated>2015-04-09T22:13:15+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-04-09:work.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Work</title><link href="http://styleguide.chevah.com/work.html" rel="alternate"></link><updated>2015-04-09T20:13:15+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-04-09:work.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -640,7 +581,7 @@ emails instead of deleting them.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://plus.google.com/108965338468155180315/posts/joE2sKYihHP"&gt;https://plus.google.com/108965338468155180315/posts/joE2sKYihHP&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Generic</title><link href="http://styleguide.chevah.com/generic.html" rel="alternate"></link><updated>2015-02-11T19:27:48+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:generic.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Generic</title><link href="http://styleguide.chevah.com/generic.html" rel="alternate"></link><updated>2015-02-11T17:27:48+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:generic.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -968,7 +909,7 @@ log_file
     that can be set.
 &lt;/pre&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Library</title><link href="http://styleguide.chevah.com/library.html" rel="alternate"></link><updated>2015-02-11T19:27:48+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:library.html</id><summary type="html">&lt;p&gt;These page contain a list of talking about life, programming craftsmanship,
+</summary></entry><entry><title>Library</title><link href="http://styleguide.chevah.com/library.html" rel="alternate"></link><updated>2015-02-11T17:27:48+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:library.html</id><summary type="html">&lt;p&gt;These page contain a list of talking about life, programming craftsmanship,
 good/clean code and many more. The list is in random order:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416"&gt;Extreme Programming Explained: Embrace Change&lt;/a&gt;
@@ -988,7 +929,7 @@ good/clean code and many more. The list is in random order:&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/dp/1936719118"&gt;Anything You Want&lt;/a&gt;
 (ISBN: 978-1936719112) by Derek Sivers, published June 29, 2011.&lt;/li&gt;
 &lt;/ul&gt;
-</summary></entry><entry><title>Python</title><link href="http://styleguide.chevah.com/python.html" rel="alternate"></link><updated>2015-02-11T19:27:48+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:python.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Python</title><link href="http://styleguide.chevah.com/python.html" rel="alternate"></link><updated>2015-02-11T17:27:48+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:python.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -1306,7 +1247,7 @@ line ending with comma.&lt;/li&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>References</title><link href="http://styleguide.chevah.com/references.html" rel="alternate"></link><updated>2015-02-11T19:27:48+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:references.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>References</title><link href="http://styleguide.chevah.com/references.html" rel="alternate"></link><updated>2015-02-11T17:27:48+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:references.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -1348,7 +1289,7 @@ line ending with comma.&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://github.com/necolas/idiomatic-css"&gt;Idiomatic CSS&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Bash</title><link href="http://styleguide.chevah.com/bash.html" rel="alternate"></link><updated>2015-01-25T14:58:35+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-01-25:bash.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Bash</title><link href="http://styleguide.chevah.com/bash.html" rel="alternate"></link><updated>2015-01-25T12:58:35+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-01-25:bash.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -1512,7 +1453,7 @@ procedure1&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>JavaScript</title><link href="http://styleguide.chevah.com/javascript.html" rel="alternate"></link><updated>2015-01-25T13:53:03+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-01-25:javascript.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>JavaScript</title><link href="http://styleguide.chevah.com/javascript.html" rel="alternate"></link><updated>2015-01-25T11:53:03+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-01-25:javascript.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -1905,7 +1846,7 @@ BAD : $('#element_id').attr('src': 'some/red_dot.png');
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Overview</title><link href="http://styleguide.chevah.com//index.html" rel="alternate"></link><updated>2014-12-24T12:52:14+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-12-24:/index.html</id><summary type="html">&lt;p&gt;These pages describe the guides used in Chevah project.
+</summary></entry><entry><title>Overview</title><link href="http://styleguide.chevah.com//index.html" rel="alternate"></link><updated>2014-12-24T10:52:14+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-12-24:/index.html</id><summary type="html">&lt;p&gt;These pages describe the guides used in Chevah project.
 They include programming style guides but also notes about the working on the project as a whole.&lt;/p&gt;
 &lt;p&gt;The content might be pedantic, but we hope that by following these guide
 you will find easier to collaborate and improve the quality of
@@ -1928,7 +1869,7 @@ can do that over email, or adding an issue or pull request on
 &lt;p&gt;We try to automatically check software development rules using &lt;a class="reference external" href="https://launchpad.net/pocket-lint/"&gt;pocket-lint&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This is a collection of programming craftsmanship recommendations and ideas.
 Please let us know if we fail to properly cite the source.&lt;/p&gt;
-</summary></entry><entry><title>Leave / Holiday</title><link href="http://styleguide.chevah.com/leave-holiday.html" rel="alternate"></link><updated>2014-12-11T11:50:36+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-12-11:leave-holiday.html</id><summary type="html">&lt;div class="section" id="general"&gt;
+</summary></entry><entry><title>Leave / Holiday</title><link href="http://styleguide.chevah.com/leave-holiday.html" rel="alternate"></link><updated>2014-12-11T09:50:36+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-12-11:leave-holiday.html</id><summary type="html">&lt;div class="section" id="general"&gt;
 &lt;h2&gt;General&lt;/h2&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;We have 30 days of payed holidays per year. 21 + 9 bank holidays&lt;/li&gt;
@@ -1980,7 +1921,7 @@ up to a total of 5 days. Try to plan your time so that you don't end up
 with these remaining days in the first place.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>CSS, LESS and Styles</title><link href="http://styleguide.chevah.com/css.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:css.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>CSS, LESS and Styles</title><link href="http://styleguide.chevah.com/css.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:css.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#css-syntax-elements" id="id1"&gt;CSS Syntax Elements&lt;/a&gt;&lt;/li&gt;
@@ -2146,7 +2087,7 @@ product-name {
     }
 &lt;/pre&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>HTML, XML and other markups</title><link href="http://styleguide.chevah.com/html.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:html.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>HTML, XML and other markups</title><link href="http://styleguide.chevah.com/html.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:html.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -2232,7 +2173,7 @@ You want the browser to load the footer before a table full of data.):&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Testing</title><link href="http://styleguide.chevah.com/testing.html" rel="alternate"></link><updated>2014-05-08T17:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:testing.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Testing</title><link href="http://styleguide.chevah.com/testing.html" rel="alternate"></link><updated>2014-05-08T15:39:34+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2014-05-08:testing.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#types-of-tests" id="id1"&gt;Types of tests&lt;/a&gt;&lt;ul&gt;
