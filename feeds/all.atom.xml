@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="http://styleguide.chevah.com/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>http://styleguide.chevah.com/</id><updated>2016-02-18T11:37:59+00:00</updated><entry><title>Review</title><link href="http://styleguide.chevah.com/review.html" rel="alternate"></link><updated>2016-02-18T11:37:59+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-02-18:review.html</id><summary type="html">&lt;p&gt;This page discuss the code/changes review process as both the person
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="http://styleguide.chevah.com/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>http://styleguide.chevah.com/</id><updated>2016-03-07T12:40:20+00:00</updated><entry><title>Review</title><link href="http://styleguide.chevah.com/review.html" rel="alternate"></link><updated>2016-03-07T12:40:20+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-03-07:review.html</id><summary type="html">&lt;p&gt;This page discuss the code/changes review process as both the person
 who requests a reviewer and a person who checks a review.&lt;/p&gt;
 &lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
@@ -22,8 +22,7 @@ who requests a reviewer and a person who checks a review.&lt;/p&gt;
 &lt;li&gt;The goal of a review is to eliminate as many defects as possible,
 regardless of who &amp;quot;caused&amp;quot; the error. Branch driver and reviews work
 together to achieve this goal.&lt;/li&gt;
-&lt;li&gt;The review process is a very efficient form of pair-programming ...
-&lt;a class="reference external" href="http://whenarewehavingcake.tumblr.com/post/23507389861"&gt;and is not this kind of pair programming&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;The review process is a very efficient form of pair-programming.&lt;/li&gt;
 &lt;li&gt;Branch driver is the person (or persons) requesting the review and
 responsible for implementing changes during review.&lt;/li&gt;
 &lt;li&gt;Reviewer is the person responsible for checking the code or changes.&lt;/li&gt;
@@ -147,7 +146,7 @@ this review depends and blocks the merge of this branch.&lt;/p&gt;
 &lt;h3&gt;&lt;a class="toc-backref" href="#id4"&gt;Merge your branch&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;After the merge request and review was approved you need to merge your branch
 into master.&lt;/p&gt;
-&lt;p&gt;After your review request was approved, you can send you branch got PQM
+&lt;p&gt;After your review request was approved, you can send your branch to PQM
 for automatic testing and merging. Use the following command:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 paver pqm GITHUB_PULL_REQUEST_ID
@@ -230,6 +229,185 @@ either just reject the review, or trigger a test and wait for results.
 &lt;li&gt;Are the removed events documented?&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Work</title><link href="http://styleguide.chevah.com/work.html" rel="alternate"></link><updated>2016-03-07T12:40:20+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-03-07:work.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#you-are-in-control" id="id2"&gt;You are in control&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#stay-focus-on-what-you-do" id="id3"&gt;Stay focus on what you do&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#asynchronous-tasks" id="id4"&gt;Asynchronous tasks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#staying-healthy" id="id5"&gt;Staying Healthy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#communication" id="id6"&gt;Communication&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#well-documented-small-tasks-based-work" id="id7"&gt;Well documented, small tasks based work&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#tools" id="id8"&gt;Tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#references" id="id9"&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="general"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This page tries to by the &amp;quot;style-guide&amp;quot; for your life :)&lt;/p&gt;
+&lt;p&gt;Working in a distributed team can be fun, challenging but not everything is
+fun and joy... and not all the time.&lt;/p&gt;
+&lt;p&gt;A distributed team is scattered across different locations,
+and everyone works wherever they are. People can work from home
+(bedroom, living room or home office room), from co-working places or
+any place they feel comfortable.&lt;/p&gt;
+&lt;p&gt;If you have always done your job &amp;quot;at work&amp;quot;, the transition can be rough.
+Working remotely isn't for everyone, and it can take a while to adjust to it.
+Ask for advice from your team members, they have also been
+through this and can share their experience.&lt;/p&gt;
+&lt;p&gt;While we don't work from the same location, we are all located
+in a 2 hours difference time zone.&lt;/p&gt;
+&lt;p&gt;We don't have fixed working hour but our customers expect us to be available from &lt;strong&gt;9 to 5 from Monday until Friday GMT&lt;/strong&gt;.
+We try to adapt to this requirement and don't work on weekends.&lt;/p&gt;
+&lt;p&gt;We don't impose a fixed amount of work hours per week and you should work to an amount with which you care comfortable and really willing to work.&lt;/p&gt;
+&lt;p&gt;The amount of work differ greatly from one person to another,
+but we do get suspicious if someone want to work more than 40 hours per week for an extended period of time,
+as everyone needs time for itself + sleep.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="you-are-in-control"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;You are in control&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;When you work in a distributed team, you are in control.
+You plan your schedule and decide where and when to work.&lt;/p&gt;
+&lt;p&gt;Most difficult part is to find the motivation to work. Hopefully you enjoy
+what you do at work and genuinely care about getting work done for the
+project. Otherwise you might need to find another project or recognize that
+distributed teams are not your style.&lt;/p&gt;
+&lt;p&gt;There is nobody to tell you when to work, how to work or to check that you
+are at work. It is your own style to work and you need to find ways to
+improve the way you work.&lt;/p&gt;
+&lt;p&gt;The sustainable work hours number varies considerably by person so take the time to observe your limits.&lt;/p&gt;
+&lt;p&gt;Define and respect boundaries between work and your personal life.
+Realize your work throughput limit and stop working as soon as
+you hit the limit. It will be best for you and the project.&lt;/p&gt;
+&lt;p&gt;There is no correlation between work hours and experience level.
+Working hours is a personal choice, you decide how much energy you want to spend for the project and for yourself/family/friends.
+More energy spent for the project will translate in less energy for yourself.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="stay-focus-on-what-you-do"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Stay focus on what you do&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Try not to mix &amp;quot;at work&amp;quot; activities with &amp;quot;after work&amp;quot; activities.
+Make a clear distinction between when you are &amp;quot;at work&amp;quot; an when not.
+Otherwise you might be working or slacking non-stop.&lt;/p&gt;
+&lt;p&gt;When you are &amp;quot;at work&amp;quot;, it does not matter how much time you spend sitting at
+your desk or staring at the screen.
+The only thing you have to show for your day is that you've actually got
+something done.&lt;/p&gt;
+&lt;p&gt;Define a time when you work and a place where you work.
+Let others know about these boundaries.
+When at home, other members of the house might find it hard that even if
+though you're around, you're actually &amp;quot;at the office&amp;quot; working.&lt;/p&gt;
+&lt;p&gt;Same boundaries apply when you are not at work or on leave / holiday.
+Dedicate the weekend for non-work related activities.
+Refrain from checking work email, colleagues progress or project status.
+Take that time to disconnect from work, recharge your energy and motivation,
+interact with your friends... just do something else.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="asynchronous-tasks"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;Asynchronous tasks&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Distributed or asynchronous work requires a completely different way to
+handler tasks, in comparison with the 9 to 5 methodology.&lt;/p&gt;
+&lt;p&gt;We are a team, so we still need to collaborate in order to get a task done.&lt;/p&gt;
+&lt;p&gt;While working on a task you will have to wait for feedback from one or more
+team members. Example review request, help with some idea... etc
+Since we are not at work in the same time it will inevitable lead to
+having multiple opened tasks in the same time.&lt;/p&gt;
+&lt;p&gt;In order to reduce the number of parallel tasks, we need to provide quick
+feedback to our team.
+The feedback should be no more than 2 working days, preferable 1 working day.&lt;/p&gt;
+&lt;p&gt;If you need urgent feedback, mark the feedback request as such, ex put a big &lt;strong&gt;URGENT&lt;/strong&gt; tag on the review or the subject of your email.&lt;/p&gt;
+&lt;p&gt;Take notice of weekend days as most people will not work in weekends and so weekend will not count as working hours.&lt;/p&gt;
+&lt;p&gt;In case a team member is delaying the feedback, get in touch with him/her
+and try to hurry the feedback.&lt;/p&gt;
+&lt;p&gt;Try to keep the number of parallel tasks to a manageable size of less than 5
+tasks.&lt;/p&gt;
+&lt;p&gt;Make sure you have the right tools so that switching between tasks is easy and
+fun:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;the tools should provide good support for switching between
+environments or operating systems, sharing configurations or environment.&lt;/li&gt;
+&lt;li&gt;review comments should be clear so that you will always know what you
+need to do next.&lt;/li&gt;
+&lt;li&gt;changes after review should be easy to detect and focus.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="staying-healthy"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id5"&gt;Staying Healthy&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Staying healthy, both physical and mental, is harder when you are on your
+own.&lt;/p&gt;
+&lt;p&gt;When you work from home or bedroom you tend to do little physical
+effort. Fitness is something you have to pay close attention.&lt;/p&gt;
+&lt;p&gt;Make sure you have a comfortable desk, chair, keyboard,
+mouse and monitor. Any of these can cause short or long term injuries.
+There is also the option of working from a standing desk.&lt;/p&gt;
+&lt;p&gt;Being alone at work is probably the hardest part.
+When you work from home, the only person you talk to all day are members of
+the house. It can get pretty sad.&lt;/p&gt;
+&lt;p&gt;Disconnect yourself from the work, stay away from the screen and feel
+more like a social human being.
+Be pro-active and invite friend for lunch, coffee, dinner,
+game night, pasta night, drinks.
+You shouldn't be dependent on work for social interactions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="communication"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id6"&gt;Communication&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Use a dedicated account (email, chat, skype) for work.
+This will help you filter the work related communication.&lt;/p&gt;
+&lt;p&gt;Use &amp;quot;away&amp;quot; and &amp;quot;busy&amp;quot; functionality of you instant messaging tool to let other know about your status.&lt;/p&gt;
+&lt;p&gt;Since we don't work based on fixed working hours you will received email,
+review request, feedback when you are outside of your &lt;em&gt;working hours&lt;/em&gt;.
+Ignore them and don't feel the obligation to read or respond then.&lt;/p&gt;
+&lt;p&gt;When you talk to someone face-to-face or voice-to-voice,
+you get a lot of contextual information and unspoken messages,
+and information is exchanged pretty quickly.&lt;/p&gt;
+&lt;p&gt;When communicating using text messages many or these unspoken messages are
+not received.
+Always acknowledge that you have received and understood a text message.
+Be as clear as possible and avoid subtle irony or local culture jokes.
+Use emoticons to hint for mood, e.g. &lt;em&gt;This is a silly joke :)&lt;/em&gt;
+Avoid ALL CAPS as much as possible, otherwise people will feel
+that you are shouting at them.
+Use the appropriate text markup to &lt;cite&gt;**emphasize**&lt;/cite&gt; something.&lt;/p&gt;
+&lt;p&gt;Since most of the communication is done using text, get proficient at typing and get good tools to help with typing (ie a good keyboard).
+You will write many code, emails, documents, text chats.&lt;/p&gt;
+&lt;p&gt;The process of writing should encourage you to slow down,
+organize and clarify your thoughts before sharing them with someone else.&lt;/p&gt;
+&lt;p&gt;When things get too complicated, don't hesitate to switch to voice chat.
+After a voice chat don't forget to document what was discussed by updating
+a document, sending a follow up email, updating a ticket or
+creating new tickets with new up tasks.&lt;/p&gt;
+&lt;p&gt;Document everything in public places.
+Folks can look up the information they need to see how a project's going,
+how to do a task, and someone can quickly step in when a colleague is away.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="well-documented-small-tasks-based-work"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id7"&gt;Well documented, small tasks based work&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It feels flattering to be essential to the project.
+But that usually also means that project won’t make rapid progress without you.&lt;/p&gt;
+&lt;p&gt;This is not a good thing. Both for you and the project.
+What happens if want to take a (spontaneous) vacation or get sick?
+Or some work gets delayed and overlaps with your great vacation, scheduled many months before.&lt;/p&gt;
+&lt;p&gt;If you are critical to the project, there’s no slack left for anything new or urgent.
+You can not prevent new or urgent things from showing up, they will, you may count on it.&lt;/p&gt;
+&lt;p&gt;To handle this, break all your work into small tasks as described in a previous section and make sure each task is well documented so that it can be continued at any time by another team member.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tools"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id8"&gt;Tools&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Make sure all development tools are on your laptop.&lt;/p&gt;
+&lt;p&gt;Buy a good headset and microphone.&lt;/p&gt;
+&lt;p&gt;Verba volant, scripta manent. As main communication is done using text,
+you can keep track of all past conversions. Configure your instant
+messaging client to keep logs of all previous conversation and archive your
+emails instead of deleting them.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="references"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id9"&gt;References&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This page was started inspired by:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://hoppycow.com/2012/12/26/what-its-like-to-work-future-style/"&gt;http://hoppycow.com/2012/12/26/what-its-like-to-work-future-style/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://plus.google.com/108965338468155180315/posts/joE2sKYihHP"&gt;https://plus.google.com/108965338468155180315/posts/joE2sKYihHP&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
 </summary></entry><entry><title>Release process</title><link href="http://styleguide.chevah.com/release-process.html" rel="alternate"></link><updated>2015-09-28T11:25:38+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-09-28:release-process.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
@@ -401,185 +579,6 @@ Defect fixes
   an unknown command. [#160][ftp][ftps]
 &lt;/pre&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-</summary></entry><entry><title>Work</title><link href="http://styleguide.chevah.com/work.html" rel="alternate"></link><updated>2015-04-09T20:13:15+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-04-09:work.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
-&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#you-are-in-control" id="id2"&gt;You are in control&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#stay-focus-on-what-you-do" id="id3"&gt;Stay focus on what you do&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#asynchronous-tasks" id="id4"&gt;Asynchronous tasks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#staying-healthy" id="id5"&gt;Staying Healthy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#communication" id="id6"&gt;Communication&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#well-documented-small-tasks-based-work" id="id7"&gt;Well documented, small tasks based work&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#tools" id="id8"&gt;Tools&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#references" id="id9"&gt;References&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="general"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This page tries to by the &amp;quot;style-guide&amp;quot; for your life :)&lt;/p&gt;
-&lt;p&gt;Working in a distributed team can be fun, challenging but not everything is
-fun and joy... and not all the time.&lt;/p&gt;
-&lt;p&gt;A distributed team is scattered across different locations,
-and everyone works wherever they are. People can work from home
-(bedroom, living room or home office room), from co-working places or
-any place they feel comfortable.&lt;/p&gt;
-&lt;p&gt;If you have always done your job &amp;quot;at work&amp;quot;, the transition can be rough.
-Working remotely isn't for everyone, and it can take a while to adjust to it.
-Ask for advice from your team members, they have also been
-through this and can share their experience.&lt;/p&gt;
-&lt;p&gt;While we don't work from the same location, we are all located
-in a 2 hours difference time zone.&lt;/p&gt;
-&lt;p&gt;We don't have fixed working hour but our customers expect us to be available from &lt;strong&gt;9 to 5 from Monday until Friday GMT&lt;/strong&gt;.
-We try to adapt to this requirement and don't work on weekends.&lt;/p&gt;
-&lt;p&gt;We don't impose a fixed amount of work hours per week and you should work to an amount with which you care comfortable and really willing to work.&lt;/p&gt;
-&lt;p&gt;The amount of work differ greatly from one person to another,
-but we do get suspicious if someone want to work more than 40 hours per week for an extended period of time,
-as everyone needs time for itself + sleep.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="you-are-in-control"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;You are in control&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;When you work in a distributed team, you are in control.
-You plan your schedule and decide where and when to work.&lt;/p&gt;
-&lt;p&gt;Most difficult part is to find the motivation to work. Hopefully you enjoy
-what you do at work and genuinely care about getting work done for the
-project. Otherwise you might need to find another project or recognize that
-distributed teams are not your style.&lt;/p&gt;
-&lt;p&gt;There is nobody to tell you when to work, how to work or to check that you
-are at work. It is your own style to work and you need to find ways to
-improve the way you work.&lt;/p&gt;
-&lt;p&gt;The sustainable work hours number varies considerably by person so take the time to observe your limits.&lt;/p&gt;
-&lt;p&gt;Define and respect boundaries between work and your personal life.
-Realize your work throughput limit and stop working as soon as
-you hit the limit. It will be best for you and the project.&lt;/p&gt;
-&lt;p&gt;There is no correlation between work hours and experience level.
-Working hours is a personal choice, you decide how much energy you want to spend for the project and for yourself/family/friends.
-More energy spent for the project will translate in less energy for yourself.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="stay-focus-on-what-you-do"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Stay focus on what you do&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Try not to mix &amp;quot;at work&amp;quot; activities with &amp;quot;after work&amp;quot; activities.
-Make a clear distinction between when you are &amp;quot;at work&amp;quot; an when not.
-Otherwise you might be working or slacking non-stop.&lt;/p&gt;
-&lt;p&gt;When you are &amp;quot;at work&amp;quot;, it does not matter how much time you spend sitting at
-your desk or staring at the screen.
-The only thing you have to show for your day is that you've actually got
-something done.&lt;/p&gt;
-&lt;p&gt;Define a time when you work and a place where you work.
-Let others know about these boundaries.
-When at home, other members of the house might find it hard that even if
-though you're around, you're actually &amp;quot;at the office&amp;quot; working.&lt;/p&gt;
-&lt;p&gt;Same boundaries apply when you are not at work or on leave / holiday.
-Dedicate the weekend for non-work related activities.
-Refrain from checking work email, colleagues progress or project status.
-Take that time to disconnect from work, recharge your energy and motivation,
-interact with your friends... just do something else.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="asynchronous-tasks"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;Asynchronous tasks&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Distributed or asynchronous work requires a completely different way to
-handler tasks, in comparison with the 9 to 5 methodology.&lt;/p&gt;
-&lt;p&gt;We are a team, so we still need to collaborate in order to get a task done.&lt;/p&gt;
-&lt;p&gt;While working on a task you will have to wait for feedback from one or more
-team members. Example review request, help with some idea... etc
-Since we are not at work in the same time it will inevitable lead to
-having multiple opened tasks in the same time.&lt;/p&gt;
-&lt;p&gt;In order to reduce the number of parallel tasks, we need to provide quick
-feedback to our team.
-The feedback should be no more than 2 working days, preferable 1 working day.&lt;/p&gt;
-&lt;p&gt;If you need urgent feedback, mark the feedback request as such, ex put a big &lt;strong&gt;URGENT&lt;/strong&gt; tag on the review or the subject of your email.&lt;/p&gt;
-&lt;p&gt;Take notice of weekend days as most people will not work in weekends and so weekend will not count as working hours.&lt;/p&gt;
-&lt;p&gt;In case a team member is delaying the feedback, get in touch with him/her
-and try to hurry the feedback.&lt;/p&gt;
-&lt;p&gt;Try to keep the number of parallel tasks to a manageable size of less than 5
-tasks.&lt;/p&gt;
-&lt;p&gt;Make sure you have the right tools so that switching between tasks is easy and
-fun:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;the tools should provide good support for switching between
-environments or operating systems, sharing configurations or environment.&lt;/li&gt;
-&lt;li&gt;review comments should be clear so that you will always know what you
-need to do next.&lt;/li&gt;
-&lt;li&gt;changes after review should be easy to detect and focus.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="staying-healthy"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id5"&gt;Staying Healthy&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Staying healthy, both physical and mental, is harder when you are on your
-own.&lt;/p&gt;
-&lt;p&gt;When you work from home or bedroom you tend to do little physical
-effort. Fitness is something you have to pay close attention.&lt;/p&gt;
-&lt;p&gt;Make sure you have a comfortable desk, chair, keyboard,
-mouse and monitor. Any of these can cause short or long term injuries.
-There is also the option of working from a standing desk.&lt;/p&gt;
-&lt;p&gt;Being alone at work is probably the hardest part.
-When you work from home, the only person you talk to all day are members of
-the house. It can get pretty sad.&lt;/p&gt;
-&lt;p&gt;Disconnect yourself from the work, stay away from the screen and feel
-more like a social human being.
-Be pro-active and invite friend for lunch, coffee, dinner,
-game night, pasta night, drinks.
-You shouldn't be dependent on work for social interactions.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="communication"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id6"&gt;Communication&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Use a dedicated account (email, chat, skype) for work.
-This will help you filter the work related communication.&lt;/p&gt;
-&lt;p&gt;Use &amp;quot;away&amp;quot; and &amp;quot;busy&amp;quot; functionality of you instant messaging tool to let other know about your status.&lt;/p&gt;
-&lt;p&gt;Since we don't work based on fixed working hours you will received email,
-review request, feedback when you are outside of your &lt;em&gt;working hours&lt;/em&gt;.
-Ignore them and don't feel the obligation to read or respond then.&lt;/p&gt;
-&lt;p&gt;When you talk to someone face-to-face or voice-to-voice,
-you get a lot of contextual information and unspoken messages,
-and information is exchanged pretty quickly.&lt;/p&gt;
-&lt;p&gt;When communicating using text messages many or these unspoken messages are
-not received.
-Always acknowledge that you have received and understood a text message.
-Be as clear as possible and avoid subtle irony or local culture jokes.
-Use emoticons to hint for mood, e.g. &lt;em&gt;This is a silly joke :)&lt;/em&gt;
-Avoid ALL CAPS as much as possible, otherwise people will feel
-that you are shouting at them.
-Use the appropriate text markup to &lt;cite&gt;**emphasize**&lt;/cite&gt; something.&lt;/p&gt;
-&lt;p&gt;Since most of the communication is done using text, get proficient at typing and get good tools to help with typing (ie a good keyboard).
-You will write many code, emails, documents, text chats.&lt;/p&gt;
-&lt;p&gt;The process of writing should encourage you to slow down,
-organize and clarify your thoughts before sharing them with someone else.&lt;/p&gt;
-&lt;p&gt;When things get to complicated, don't hesitate to switch to voice chat.
-After a voice chat don't forget to document what was discussed by updating
-a document, sending a follow up email, updating a ticket or
-creating new tickets with new up tasks.&lt;/p&gt;
-&lt;p&gt;Document everything in public places.
-Folks can look up the information they need to see how a project's going,
-how to do a task, and someone can quickly step in when a colleague is away.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="well-documented-small-tasks-based-work"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id7"&gt;Well documented, small tasks based work&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;It feels flattering to be essential to the project.
-But that usually also means that project won’t make rapid progress without you.&lt;/p&gt;
-&lt;p&gt;This is not a good thing. Both for you and the project.
-What happens if want to take a (spontaneous) vacation or get sick?
-Or some work gets delayed and overlaps with your great vacation, scheduled many months before.&lt;/p&gt;
-&lt;p&gt;If you are critical to the project, there’s no slack left for anything new or urgent.
-You can not prevent new or urgent things from showing up, they will, you may count on it.&lt;/p&gt;
-&lt;p&gt;To handle this, break all your work into small tasks as described in a previous section and make sure each task is well documented so that it can be continued at any time by another team member.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="tools"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id8"&gt;Tools&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Make sure all development tools are on your laptop.&lt;/p&gt;
-&lt;p&gt;Buy a good headset and microphone.&lt;/p&gt;
-&lt;p&gt;Verba volant, scripta manent. As main communication is done using text,
-you can keep track of all past conversions. Configure your instant
-messaging client to keep logs of all previous conversation and archive your
-emails instead of deleting them.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="references"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id9"&gt;References&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This page was started inspired by:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://hoppycow.com/2012/12/26/what-its-like-to-work-future-style/"&gt;http://hoppycow.com/2012/12/26/what-its-like-to-work-future-style/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://plus.google.com/108965338468155180315/posts/joE2sKYihHP"&gt;https://plus.google.com/108965338468155180315/posts/joE2sKYihHP&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 &lt;/div&gt;
 </summary></entry><entry><title>Generic</title><link href="http://styleguide.chevah.com/generic.html" rel="alternate"></link><updated>2015-02-11T17:27:48+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2015-02-11:generic.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
