@@ -55,23 +55,43 @@
         </a>
       </li>
       <li>
-        <a class="" href="testing.html">
-          Testing
-        </a>
-      </li>
-      <li>
         <a class="active" href="review.html">
           Review
         </a>
       </li>
       <li>
-        <a class="" href="bugs-and-tech-debt.html">
-          Bugs and Tech-Debt
+        <a class="" href="python.html">
+          Python
         </a>
       </li>
       <li>
         <a class="" href="release-process.html">
           Release process
+        </a>
+      </li>
+      <li>
+        <a class="" href="testing.html">
+          Testing
+        </a>
+      </li>
+      <li>
+        <a class="" href="css.html">
+          CSS, LESS and Styles
+        </a>
+      </li>
+      <li>
+        <a class="" href="html.html">
+          HTML, XML and other markups
+        </a>
+      </li>
+      <li>
+        <a class="" href="javascript.html">
+          JavaScript
+        </a>
+      </li>
+      <li>
+        <a class="" href="bash.html">
+          Bash
         </a>
       </li>
       <li>
@@ -87,31 +107,6 @@
       <li>
         <a class="" href="leave-holiday.html">
           Leave / Holiday
-        </a>
-      </li>
-      <li>
-        <a class="" href="python.html">
-          Python
-        </a>
-      </li>
-      <li>
-        <a class="" href="javascript.html">
-          JavaScript
-        </a>
-      </li>
-      <li>
-        <a class="" href="css.html">
-          CSS, LESS and Styles
-        </a>
-      </li>
-      <li>
-        <a class="" href="html.html">
-          HTML, XML and other markups
-        </a>
-      </li>
-      <li>
-        <a class="" href="bash.html">
-          Bash
         </a>
       </li>
       <li>
@@ -132,20 +127,23 @@ who requests a reviewer and a person who checks a review.</p>
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#general" id="id1">General</a></li>
-<li><a class="reference internal" href="#for-person-requesting-a-review" id="id2">For person requesting a review</a><ul>
-<li><a class="reference internal" href="#review-request-message" id="id3">Review request message</a></li>
-<li><a class="reference internal" href="#merge-your-branch" id="id4">Merge your branch</a></li>
+<li><a class="reference internal" href="#general" id="id2">General</a></li>
+<li><a class="reference internal" href="#for-person-requesting-a-review" id="id3">For person requesting a review</a><ul>
+<li><a class="reference internal" href="#review-request-message" id="id4">Review request message</a></li>
+<li><a class="reference internal" href="#merge-your-branch" id="id5">Merge your branch</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#for-person-reviewing-changes" id="id5">For person reviewing changes</a><ul>
-<li><a class="reference internal" href="#reviewer-s-check-list" id="id6">Reviewer's check list</a></li>
+<li><a class="reference internal" href="#for-person-reviewing-changes" id="id6">For person reviewing changes</a><ul>
+<li><a class="reference internal" href="#reviewer-s-check-list-any-role" id="id7">Reviewer's check list - Any Role</a></li>
+<li><a class="reference internal" href="#reviewer-s-check-list-developer" id="id8">Reviewer's check list - Developer</a></li>
+<li><a class="reference internal" href="#reviewer-s-check-list-qa" id="id9">Reviewer's check list - QA</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#overview-of-the-github-and-trac-integration" id="id10">Overview of the GitHub and Trac integration</a></li>
 </ul>
 </div>
 <div class="section" id="general">
-<h2><a class="toc-backref" href="#id1">General</a></h2>
+<h2><a class="toc-backref" href="#id2">General</a></h2>
 <ul class="simple">
 <li>The goal of a review is to eliminate as many defects as possible,
 regardless of who &quot;caused&quot; the error. Branch driver and reviews work
@@ -191,20 +189,22 @@ introduced a bug.</li>
 </ul>
 </div>
 <div class="section" id="for-person-requesting-a-review">
-<h2><a class="toc-backref" href="#id2">For person requesting a review</a></h2>
+<h2><a class="toc-backref" href="#id3">For person requesting a review</a></h2>
 <ul class="simple">
 <li>Once a task/ticket is done, it should be submitted for review.</li>
 <li><strong>All</strong> changes should be reviewed prior to be merged or released.</li>
-<li>Before requesting a review you should run a full test on your local
+<li>Before requesting a review you should run a full quick test on your local
 computer and on all supported platforms.
-Just run <tt class="docutils literal">paver test_remote all</tt> and Buildbot and GitHub will work
-together to display the results.</li>
+Just run <tt class="docutils literal">paver test_quick</tt> and <tt class="docutils literal">paver test_review</tt> and
+Buildbot and GitHub will work together to display the results.</li>
 <li>Before passing the review to others, take another careful look at your work
 and perform a first review yourself.
 Check that all changes are described together with their attached test
 cases.
 It is very important to have a good review request message as it will
 help reviewers understand what you have done.</li>
+<li>Check that all changes are covered by automated tests and if not make sure
+the review description contains information about why.</li>
 <li>Check the <strong>Reviewer's check list</strong> since those are the things that a
 reviewer will check for sure.</li>
 <li>For Trac: A review request is created by adding the comment and then
@@ -219,13 +219,13 @@ branch. There is no need to wait for feature to be fully implemented and
 tests to pass.
 Writing a review request early, will help you to organize and explain
 the work that you plan to do on the branch.</li>
-<li>When the review is ready to be sent to reviewers, leave a comment
+<li>When the review is ready to be sent to reviewers, leave a comment in the PR
 containing the <strong>needs-review</strong> marker word. It will trigger the review
-request process.</li>
+request process and the GitHub to Trac synchronization.</li>
 <li>GitHub inline comments are great, and you can add them to help with the
 initial review request. Just <strong>don't abuse them</strong>!
 Think twice before adding an initial inline comment for the review.
-Ask yourself why that comments is needed and why that line is not
+Ask yourself why that comment is needed and why that line is not
 clear. Maybe adding a comment in the code would avoid the
 need for the GitHub inline comment.</li>
 <li>During a review, the reviewer might request changes. You can solve
@@ -245,7 +245,7 @@ in the initial request message, it should update the review message with
 the new test case.</li>
 </ul>
 <div class="section" id="review-request-message">
-<h3><a class="toc-backref" href="#id3">Review request message</a></h3>
+<h3><a class="toc-backref" href="#id4">Review request message</a></h3>
 <p>When submitting a ticket for review, the review request should contain the
 following message as described in <a class="reference external" href="https://github.com/chevah/styleguide/blob/master/.github/PULL_REQUEST_TEMPLATE">PULL_REQUEST_TEMPLATE</a></p>
 <ul>
@@ -271,7 +271,7 @@ this review depends and blocks the merge of this branch.</p>
 </ul>
 </div>
 <div class="section" id="merge-your-branch">
-<h3><a class="toc-backref" href="#id4">Merge your branch</a></h3>
+<h3><a class="toc-backref" href="#id5">Merge your branch</a></h3>
 <p>After the merge request and review was approved you need to merge your branch
 into master.</p>
 <p>After your review request was approved, you can send your branch to PQM
@@ -304,7 +304,7 @@ that commit.</li>
 </div>
 </div>
 <div class="section" id="for-person-reviewing-changes">
-<h2><a class="toc-backref" href="#id5">For person reviewing changes</a></h2>
+<h2><a class="toc-backref" href="#id6">For person reviewing changes</a></h2>
 <ul class="simple">
 <li>Aim for a code inspection rate of fewer than 300 – 500 LOC per hour. This
 does not apply to QA team members for which, reviewing changes is the main
@@ -333,30 +333,69 @@ the pull request page with a line starting with / containing
 them. Commit the changes and approve the review at your revision.</li>
 <li>If changes are required, you put the ticket in the <strong>needs-changes</strong> state
 and assign the ticket to the person who can make the required changes.
-When working with GitHub you can request changed by adding
+When working with GitHub you can request changes by adding
 the <strong>needs-changes</strong> marker word in a comment.</li>
 <li>Don't spend to much time on a review request if it is not clear enough and
 you don't know exactly what to do and how to test.
 This is a problem with the review request and it <cite>needs changes</cite>.</li>
 </ul>
-<div class="section" id="reviewer-s-check-list">
-<h3><a class="toc-backref" href="#id6">Reviewer's check list</a></h3>
+<div class="section" id="reviewer-s-check-list-any-role">
+<h3><a class="toc-backref" href="#id7">Reviewer's check list - Any Role</a></h3>
+<ul class="simple">
+<li>Is there a release notes entry for changes?</li>
+<li>Is there documentation for changes? Does the documentation make sense?</li>
+<li>Are the new events documented?</li>
+<li>Are the removed events documented?</li>
+</ul>
+</div>
+<div class="section" id="reviewer-s-check-list-developer">
+<h3><a class="toc-backref" href="#id8">Reviewer's check list - Developer</a></h3>
 <ul class="simple">
 <li>Does the <strong>new</strong> changes comply with latest styleguide ?</li>
-<li>Does the code have tests for new code?</li>
+<li>Does the code have automated tests for all the new code?</li>
 <li>Does the merge commit message describes what is done by this branch?</li>
 <li>Does the branch name starts with the Trac ticket ID.</li>
 <li>Does <strong>all</strong> tests pass? Does GitHub say that the branch is
 <strong>Good to merge</strong>?</li>
-<li>If there is no <tt class="docutils literal">paver test_remote all</tt> for the latest code, you can
+<li>If there is no <tt class="docutils literal">paver test_review</tt> for the latest code, you can
 either just reject the review, or trigger a test and wait for results.
 <strong>Never</strong> approve a code that is not passing the tests.</li>
-<li>Is there a release notes entry for changes?</li>
-<li>Is there documentation for changes? Does the documentation make sense?</li>
-<li>Are the new event documented?</li>
-<li>Are the removed events documented?</li>
 </ul>
 </div>
+<div class="section" id="reviewer-s-check-list-qa">
+<h3><a class="toc-backref" href="#id9">Reviewer's check list - QA</a></h3>
+<ul class="simple">
+<li>Does the new code perform as expected when running manual tests?</li>
+<li>Does the test scenarios from the review description make sense?
+Can they be executed? Successfully ?</li>
+<li>Does the new end-user interaction GUI or CLI make sense and is easy to use?</li>
+<li>Are there any corner cases not described in reviews or not covered by
+functional tests?</li>
+</ul>
+</div>
+</div>
+<div class="section" id="overview-of-the-github-and-trac-integration">
+<h2><a class="toc-backref" href="#id10">Overview of the GitHub and Trac integration</a></h2>
+<p>The repository
+<a class="reference external" href="https://github.com/chevah/github-hooks-server">github-hooks-server</a>
+contains the code responsible for handling GitHub hooks and
+applying changes to Trac tickets.</p>
+<p>Integration is mainly between GitHub Pull Requests and Trac tickets,
+following the workflow described in <a class="reference external" href="http://styleguide.chevah.com/review.html">review</a>.</p>
+<p>The Pull Request title should start with <strong>[#TRAC_TICKET_ID]</strong> and
+each message on this Pull Request triggers a hook looking for special keywords.</p>
+<p>When creating the Pull Request the special syntax <strong>reviewers: &#64;user1 &#64;user2</strong>
+sets which users should review and approve it. There is also
+<strong>depends-on: review1 review2</strong> which blocks this merge until the reviews it
+depends on are done.</p>
+<p>A comment mentioning <strong>needs-review</strong> issues a review request modifying the
+state of the Trac Ticket to <cite>needs_review</cite>.</p>
+<p>In the same way, mentioning <strong>needs-changes</strong> modifies the ticket state to
+<cite>needs_changes</cite>, notifying the assigned user that the Pull Request
+should be fixed and reviewed again.</p>
+<p>When a reviewer comments <strong>changes-approved</strong>, it marks the Pull Request as
+good to merge. If all reviewers listed in the Pull Request body comment,
+the hook will change the ticket state to <cite>needs-merge</cite>.</p>
 </div>
 
       </article>

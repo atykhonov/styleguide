@@ -1,5 +1,769 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="http://styleguide.chevah.com/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>http://styleguide.chevah.com/</id><updated>2016-03-13T12:39:29+00:00</updated><entry><title>Testing</title><link href="http://styleguide.chevah.com/testing.html" rel="alternate"></link><updated>2016-03-13T12:39:29+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-03-13:testing.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="http://styleguide.chevah.com/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>http://styleguide.chevah.com/</id><updated>2016-04-15T07:37:25+01:00</updated><entry><title>Review</title><link href="http://styleguide.chevah.com/review.html" rel="alternate"></link><updated>2016-04-15T07:37:25+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:review.html</id><summary type="html">&lt;p&gt;This page discuss the code/changes review process as both the person
+who requests a reviewer and a person who checks a review.&lt;/p&gt;
+&lt;div class="contents topic" id="contents"&gt;
+&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#general" id="id2"&gt;General&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#for-person-requesting-a-review" id="id3"&gt;For person requesting a review&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#review-request-message" id="id4"&gt;Review request message&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#merge-your-branch" id="id5"&gt;Merge your branch&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#for-person-reviewing-changes" id="id6"&gt;For person reviewing changes&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#reviewer-s-check-list-any-role" id="id7"&gt;Reviewer's check list - Any Role&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#reviewer-s-check-list-developer" id="id8"&gt;Reviewer's check list - Developer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#reviewer-s-check-list-qa" id="id9"&gt;Reviewer's check list - QA&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#overview-of-the-github-and-trac-integration" id="id10"&gt;Overview of the GitHub and Trac integration&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="general"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;General&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The goal of a review is to eliminate as many defects as possible,
+regardless of who &amp;quot;caused&amp;quot; the error. Branch driver and reviews work
+together to achieve this goal.&lt;/li&gt;
+&lt;li&gt;The review process is a very efficient form of pair-programming.&lt;/li&gt;
+&lt;li&gt;Branch driver is the person (or persons) requesting the review and
+responsible for implementing changes during review.&lt;/li&gt;
+&lt;li&gt;Reviewer is the person responsible for checking the code or changes.&lt;/li&gt;
+&lt;li&gt;The review process is first class citizen of the Quality Assurance process.&lt;/li&gt;
+&lt;li&gt;Each defect found during a review is an opportunity to improve the code.
+Every defect found and fixed in peer review is a defect that a customer
+never sees and another problem that support doesn't have to spend time
+tracking down.&lt;/li&gt;
+&lt;li&gt;The branch driver is responsible for getting his/her branch approved. In
+case a branch review is delayed, the branch driver should contact the
+reviewers and urge the review.&lt;/li&gt;
+&lt;li&gt;While the main purpose of a review is to assert the quality of the changes,
+the review is at the same time a learning, growing, and communication
+experience.&lt;/li&gt;
+&lt;li&gt;Try to observe good things from other team members and feel free to comment
+and let others know about how you think that things can be improved.&lt;/li&gt;
+&lt;li&gt;Ideally you will have many small merge requests, because the bigger they
+get, the more costly they are - now and in the future.&lt;/li&gt;
+&lt;li&gt;One merge request should do one thing only.&lt;/li&gt;
+&lt;li&gt;The target for a small request is no more than 400 touched lines
+(added + removed).&lt;/li&gt;
+&lt;li&gt;When you do a refactoring and you need to rename something in many files,
+do it in a dedicated branch which only deals with the renaming.
+This will help a lot with the review. Land your changed with the ugly
+names and then do a follow-up branch for the renaming.&lt;/li&gt;
+&lt;li&gt;Feel free to submit as many merge request as you can. There is a problem
+with the size of a merge request, not with their number :).&lt;/li&gt;
+&lt;li&gt;Some reasons for keeping the merge requests small:&lt;ul&gt;
+&lt;li&gt;Large changes are much more likely to do many things.&lt;/li&gt;
+&lt;li&gt;It's harder to understand them.&lt;/li&gt;
+&lt;li&gt;It's harder to review them.&lt;/li&gt;
+&lt;li&gt;It's harder to inspect the main branch to find the merge that
+introduced a bug.&lt;/li&gt;
+&lt;li&gt;It's more likely to break the build.&lt;/li&gt;
+&lt;li&gt;It's harder to cherry pick code for backporting / supporting old releases.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="for-person-requesting-a-review"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;For person requesting a review&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Once a task/ticket is done, it should be submitted for review.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;All&lt;/strong&gt; changes should be reviewed prior to be merged or released.&lt;/li&gt;
+&lt;li&gt;Before requesting a review you should run a full quick test on your local
+computer and on all supported platforms.
+Just run &lt;tt class="docutils literal"&gt;paver test_quick&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;paver test_review&lt;/tt&gt; and
+Buildbot and GitHub will work together to display the results.&lt;/li&gt;
+&lt;li&gt;Before passing the review to others, take another careful look at your work
+and perform a first review yourself.
+Check that all changes are described together with their attached test
+cases.
+It is very important to have a good review request message as it will
+help reviewers understand what you have done.&lt;/li&gt;
+&lt;li&gt;Check that all changes are covered by automated tests and if not make sure
+the review description contains information about why.&lt;/li&gt;
+&lt;li&gt;Check the &lt;strong&gt;Reviewer's check list&lt;/strong&gt; since those are the things that a
+reviewer will check for sure.&lt;/li&gt;
+&lt;li&gt;For Trac: A review request is created by adding the comment and then
+setting the state to 'needs_review'.
+(&lt;strong&gt;don't use keywords&lt;/strong&gt;, we are using a strict ticket
+work-flow so use the ticket action form).&lt;/li&gt;
+&lt;li&gt;For GitHub: A review request is created using &lt;strong&gt;GitHub Pull requests&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;When submitting a review for changes not planed in the current milestone,
+update the milestone to the current one. Don't leave the old milestone.&lt;/li&gt;
+&lt;li&gt;You can start writing your review request as soon as you start coding on a
+branch. There is no need to wait for feature to be fully implemented and
+tests to pass.
+Writing a review request early, will help you to organize and explain
+the work that you plan to do on the branch.&lt;/li&gt;
+&lt;li&gt;When the review is ready to be sent to reviewers, leave a comment in the PR
+containing the &lt;strong&gt;needs-review&lt;/strong&gt; marker word. It will trigger the review
+request process and the GitHub to Trac synchronization.&lt;/li&gt;
+&lt;li&gt;GitHub inline comments are great, and you can add them to help with the
+initial review request. Just &lt;strong&gt;don't abuse them&lt;/strong&gt;!
+Think twice before adding an initial inline comment for the review.
+Ask yourself why that comment is needed and why that line is not
+clear. Maybe adding a comment in the code would avoid the
+need for the GitHub inline comment.&lt;/li&gt;
+&lt;li&gt;During a review, the reviewer might request changes. You can solve
+the request by either changing the code, or adding a comment with
+the reason why you don't want to change the code. After all requests
+are solved, leave a &lt;strong&gt;new&lt;/strong&gt;, separate, comment containing the keyword
+&lt;strong&gt;needs-review&lt;/strong&gt; . This will let reviewers know that you are done and that
+they can check the latest changes.&lt;/li&gt;
+&lt;li&gt;Make sure that review request message is always up to date with latest
+changes.
+If during the review new changes are made or new test cases are discovered,
+don't forget to update the initial review request message to include a
+summary of these changes.&lt;/li&gt;
+&lt;li&gt;The &amp;quot;How to test the changes&amp;quot; section should include &lt;strong&gt;ALL&lt;/strong&gt; test cases
+done during the review. If a reviewer is following a test case not described
+in the initial request message, it should update the review message with
+the new test case.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="review-request-message"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id4"&gt;Review request message&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;When submitting a ticket for review, the review request should contain the
+following message as described in &lt;a class="reference external" href="https://github.com/chevah/styleguide/blob/master/.github/PULL_REQUEST_TEMPLATE"&gt;PULL_REQUEST_TEMPLATE&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;For GitHub review requests, &lt;strong&gt;add the merge commit message as the pull
+request title&lt;/strong&gt;. The message should include the ticket ID number.
+Example of merge commit message:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+[#1234] What was done in this branch.
+&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;The commit message should be on a single line and preferable under 100
+characters. The message should be a clearly articulated phrase, summarizing
+changes done in the branch. Further details about the changes can go in
+the release notes or review request body.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Add the list of persons who should review the branch, using a
+line starting with &lt;strong&gt;reviewers&lt;/strong&gt; and followed by GitHub names or each
+reviewer prefixed with &lt;strong&gt;&amp;#64;&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;If required, using &lt;strong&gt;depends-on&lt;/strong&gt; marker, add the list of reviews on which
+this review depends and blocks the merge of this branch.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="merge-your-branch"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id5"&gt;Merge your branch&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;After the merge request and review was approved you need to merge your branch
+into master.&lt;/p&gt;
+&lt;p&gt;After your review request was approved, you can send your branch to PQM
+for automatic testing and merging. Use the following command:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+paver pqm GITHUB_PULL_REQUEST_ID
+&lt;/pre&gt;
+&lt;p&gt;The PQM will check your branch and if it passed all tests, it will be merged
+and pushed to master.&lt;/p&gt;
+&lt;p&gt;If PQM is not enabled for the repo, you will need to do a manual merge.&lt;/p&gt;
+&lt;p&gt;When doing manual merge using git, use squash merge and don't use the
+default commit message. Here is a sample command for merging branch
+&amp;quot;1234-what-was-done&amp;quot;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+git checkout master
+git merge --no-commit --squash 1234-what-was-done
+git commit -a -m &amp;quot;[#1234] What was done in this branch.&amp;quot;
+&lt;/pre&gt;
+&lt;p&gt;It is recommended to define a git alias for &lt;cite&gt;merge --no-commit --squash&lt;/cite&gt;.&lt;/p&gt;
+&lt;p&gt;A merge commit should have a commit message, in the format:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+[#1234] What was done in this branch.
+&lt;/pre&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;#1234&lt;/strong&gt; is the ticket number for this branch. It is used to get more
+details about branch work and review. It can also be used to associate a
+commit to a ticket / branch / review / task and check the history/story of
+that commit.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="for-person-reviewing-changes"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id6"&gt;For person reviewing changes&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Aim for a code inspection rate of fewer than 300 – 500 LOC per hour. This
+does not apply to QA team members for which, reviewing changes is the main
+activity.&lt;/li&gt;
+&lt;li&gt;Take enough time for a proper, slow review, but not more than 60–90 minutes.
+Take a big break between reviews.&lt;/li&gt;
+&lt;li&gt;You should always spend at least five minutes reviewing code, even if it's
+just one line. Often, a single line or small changes can have major
+impact throughout the whole system, and it's worth the five minutes to
+think through the possible effects that a change could have.&lt;/li&gt;
+&lt;li&gt;The only quality metric of good work / code is &lt;strong&gt;WTF/s&lt;/strong&gt;. While doing
+the review you are encouraged to keep track of all your first
+contact / view / read impressions and report them in the review feedback.&lt;/li&gt;
+&lt;li&gt;Follow procedure recommended in the &amp;quot;How to try and test the changes&amp;quot;
+section, record environment, steps and results and share them through
+a comment.&lt;/li&gt;
+&lt;li&gt;In case of errors, leave a comment describing what tests were run, the
+exact steps you took and the actual results.&lt;/li&gt;
+&lt;li&gt;If the work is good, you can request the code to be merged by the author
+by setting the state to needs_merge in Trac.&lt;/li&gt;
+&lt;li&gt;If the work is good and GitHub pull request was used, leave a comment on
+the pull request page with a line starting with / containing
+&lt;strong&gt;changes-approved&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;If no merge is required you can close the ticket as solved.&lt;/li&gt;
+&lt;li&gt;If minor changes are required, and they are easy to fix, you cat try to fix
+them. Commit the changes and approve the review at your revision.&lt;/li&gt;
+&lt;li&gt;If changes are required, you put the ticket in the &lt;strong&gt;needs-changes&lt;/strong&gt; state
+and assign the ticket to the person who can make the required changes.
+When working with GitHub you can request changes by adding
+the &lt;strong&gt;needs-changes&lt;/strong&gt; marker word in a comment.&lt;/li&gt;
+&lt;li&gt;Don't spend to much time on a review request if it is not clear enough and
+you don't know exactly what to do and how to test.
+This is a problem with the review request and it &lt;cite&gt;needs changes&lt;/cite&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="reviewer-s-check-list-any-role"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id7"&gt;Reviewer's check list - Any Role&lt;/a&gt;&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Is there a release notes entry for changes?&lt;/li&gt;
+&lt;li&gt;Is there documentation for changes? Does the documentation make sense?&lt;/li&gt;
+&lt;li&gt;Are the new events documented?&lt;/li&gt;
+&lt;li&gt;Are the removed events documented?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="reviewer-s-check-list-developer"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id8"&gt;Reviewer's check list - Developer&lt;/a&gt;&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Does the &lt;strong&gt;new&lt;/strong&gt; changes comply with latest styleguide ?&lt;/li&gt;
+&lt;li&gt;Does the code have automated tests for all the new code?&lt;/li&gt;
+&lt;li&gt;Does the merge commit message describes what is done by this branch?&lt;/li&gt;
+&lt;li&gt;Does the branch name starts with the Trac ticket ID.&lt;/li&gt;
+&lt;li&gt;Does &lt;strong&gt;all&lt;/strong&gt; tests pass? Does GitHub say that the branch is
+&lt;strong&gt;Good to merge&lt;/strong&gt;?&lt;/li&gt;
+&lt;li&gt;If there is no &lt;tt class="docutils literal"&gt;paver test_review&lt;/tt&gt; for the latest code, you can
+either just reject the review, or trigger a test and wait for results.
+&lt;strong&gt;Never&lt;/strong&gt; approve a code that is not passing the tests.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="reviewer-s-check-list-qa"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id9"&gt;Reviewer's check list - QA&lt;/a&gt;&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Does the new code perform as expected when running manual tests?&lt;/li&gt;
+&lt;li&gt;Does the test scenarios from the review description make sense?
+Can they be executed? Successfully ?&lt;/li&gt;
+&lt;li&gt;Does the new end-user interaction GUI or CLI make sense and is easy to use?&lt;/li&gt;
+&lt;li&gt;Are there any corner cases not described in reviews or not covered by
+functional tests?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="overview-of-the-github-and-trac-integration"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id10"&gt;Overview of the GitHub and Trac integration&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The repository
+&lt;a class="reference external" href="https://github.com/chevah/github-hooks-server"&gt;github-hooks-server&lt;/a&gt;
+contains the code responsible for handling GitHub hooks and
+applying changes to Trac tickets.&lt;/p&gt;
+&lt;p&gt;Integration is mainly between GitHub Pull Requests and Trac tickets,
+following the workflow described in &lt;a class="reference external" href="http://styleguide.chevah.com/review.html"&gt;review&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The Pull Request title should start with &lt;strong&gt;[#TRAC_TICKET_ID]&lt;/strong&gt; and
+each message on this Pull Request triggers a hook looking for special keywords.&lt;/p&gt;
+&lt;p&gt;When creating the Pull Request the special syntax &lt;strong&gt;reviewers: &amp;#64;user1 &amp;#64;user2&lt;/strong&gt;
+sets which users should review and approve it. There is also
+&lt;strong&gt;depends-on: review1 review2&lt;/strong&gt; which blocks this merge until the reviews it
+depends on are done.&lt;/p&gt;
+&lt;p&gt;A comment mentioning &lt;strong&gt;needs-review&lt;/strong&gt; issues a review request modifying the
+state of the Trac Ticket to &lt;cite&gt;needs_review&lt;/cite&gt;.&lt;/p&gt;
+&lt;p&gt;In the same way, mentioning &lt;strong&gt;needs-changes&lt;/strong&gt; modifies the ticket state to
+&lt;cite&gt;needs_changes&lt;/cite&gt;, notifying the assigned user that the Pull Request
+should be fixed and reviewed again.&lt;/p&gt;
+&lt;p&gt;When a reviewer comments &lt;strong&gt;changes-approved&lt;/strong&gt;, it marks the Pull Request as
+good to merge. If all reviewers listed in the Pull Request body comment,
+the hook will change the ticket state to &lt;cite&gt;needs-merge&lt;/cite&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Python</title><link href="http://styleguide.chevah.com/python.html" rel="alternate"></link><updated>2016-04-15T07:37:21+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:python.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#mixin" id="id2"&gt;Mixin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#project-specific" id="id3"&gt;Project specific&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#multi-line-indentation" id="id4"&gt;Multi line indentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#imports" id="id5"&gt;Imports&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="general"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Start by reading
+&lt;a class="reference external" href="https://www.python.org/dev/peps/pep-0020/"&gt;The Zen of Python&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;this&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;For python we have pocket-lint that checks for PEP8 and some other things.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.python.org/dev/peps/pep-0008/"&gt;Python PEP 8&lt;/a&gt;
+&lt;strong&gt;Python base code style guide&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Favour single inheritance.&lt;/li&gt;
+&lt;li&gt;As the second best, use Mixins to reuse code and avoid multiple inheritance.&lt;/li&gt;
+&lt;li&gt;Docstring always use multiline strings with double quotes and empty first
+and last lines. There's no blank line either before or after the docstring.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;some_function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argument&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Single line docstring.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;code_starts_here&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SomeClass&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ParentClass&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Quick explanation of the role of this class which is a bit long so we&lt;/span&gt;
+&lt;span class="sd"&gt;    wrap it.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    More details to follow in long paragraphs.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;method_starts_here&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+      &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;      Something here.&lt;/span&gt;
+&lt;span class="sd"&gt;      &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Class members or instance members can be documented inline using the
+following syntax.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SomeClass&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ParentClass&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Docstring for class.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="c"&gt;#: Docstring for class member.&lt;/span&gt;
+    &lt;span class="c"&gt;#: Can be on multiple lines.&lt;/span&gt;
+    &lt;span class="n"&gt;class_member&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;All test functions, test methods, test suites will have docstrings.&lt;/li&gt;
+&lt;li&gt;Tests methods will be prefixed with &lt;tt class="docutils literal"&gt;test_&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;Tests suites (test class) will be prefixed with &lt;tt class="docutils literal"&gt;Test&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;Test's docstring should state what is the expected behavior based on
+test's input.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_methodName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    When doing this `methodName` will raise an AssertionError.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;When adding linter exception, always add a comment explaining the reason
+why the exception was added.&lt;/li&gt;
+&lt;li&gt;Use named parameters for calling methods. This will reduce future
+refactoring effort.&lt;/li&gt;
+&lt;li&gt;If a method or class initialization / constructor method has more than 1
+argument always use named parameters for calling that method.&lt;/li&gt;
+&lt;li&gt;Try to use single quotes for string. This will make it easier to generated
+quoted text for UI or HTML.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;YES&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;other_var&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;string&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;some_var&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;string &amp;quot;b&amp;quot; yes&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;NO&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;other_bad&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;string&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;some_bad&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;string &amp;#39;b&amp;#39; yes&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;As PEP8 recommend, Don't use '' to split long lines. Wrap long lines is by
+using Python's implied line continuation inside parentheses, brackets and
+braces. More details here:
+&lt;a class="reference external" href="http://www.python.org/dev/peps/pep-0008/#maximum-line-length"&gt;http://www.python.org/dev/peps/pep-0008/#maximum-line-length&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Multi line split using parentheses, brackets (etc) will follow the normal
+indentation. The code might look ugly and then exceptions are allowed.&lt;/li&gt;
+&lt;li&gt;Define all class members at the beginning of class definition.
+Don't interleave methods and class members definition. This should make it
+easy to identify all class members used by the class.&lt;/li&gt;
+&lt;li&gt;Define all instance members inside the __init__() method. This should make
+it easy to identity all instance members used by the class and reduce the
+risk of using the same member for more than one purpose.&lt;/li&gt;
+&lt;li&gt;Decode all input to Unicode and encode all output from Unicode. Do &lt;strong&gt;all&lt;/strong&gt;
+internal text handling in &lt;strong&gt;Unicode&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;input_raw_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;read_from_wire&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;input_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;input_raw_string&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Only work with Unicode data.&lt;/span&gt;
+&lt;span class="n"&gt;output_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;process_something&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;input_string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;output_raw_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;output_string&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;send_to_wire&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;output_raw_string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;UTF-8 is not Unicode.
+Unicode is a character set and UTF-8 is a particular way of
+encoding Unicode.&lt;/li&gt;
+&lt;li&gt;When a method does not use the &lt;em&gt;self&lt;/em&gt; attribute, this is a code smell
+that this method should be placed somewhere else.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="mixin"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Mixin&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As stated by &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Mixin"&gt;Wikipedia&lt;/a&gt;:
+Mixins encourage code reuse and avoid well-known pathologies associated
+with multiple inheritance.&lt;/p&gt;
+&lt;p&gt;Mixin is a limited usage of multiple inheritance, but they should &lt;strong&gt;not be
+mixed with overriding&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;We use mixing to reuse code and they are provide great help writing tests.&lt;/p&gt;
+&lt;p&gt;Methods from a mixin should not be overwritten by classes using the mixin.&lt;/p&gt;
+&lt;p&gt;Mixins should not overwrite methods or call &lt;strong&gt;super()&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;When defining a class using mixins, put first the parent class and then
+mixin classes in alphabetical order.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SomeMixedClass&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ParentClass&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AnotherMixin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SomeMixin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ZoroMixin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    A class with `single` inheritance and multiple mixins.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When defining a mixin, document the external class or instance members used
+by the mixin.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;some_package&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;complicated_code_using&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;complicated_other_using&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;LoginMixin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Does some kind of work.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    username - account used for authentication.&lt;/span&gt;
+&lt;span class="sd"&gt;    password - password for the account&lt;/span&gt;
+&lt;span class="sd"&gt;    ssh_key - SSH key for authentication&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;loginWithUsernameAndPassword&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;        Does something.&lt;/span&gt;
+&lt;span class="sd"&gt;        &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="n"&gt;SomeException&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+        &lt;span class="n"&gt;complicated_code_using&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;loginWithUsernameAndSSHKey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;        Does something else.&lt;/span&gt;
+&lt;span class="sd"&gt;        &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;complicated_other_using&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh_key&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="project-specific"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Project specific&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;When default arguments have mutable values they are defined as &lt;cite&gt;None&lt;/cite&gt; and
+then assigned the default value.&lt;/p&gt;
+&lt;p&gt;Otherwise this can hit us very hard. &lt;a class="reference external" href="http://stackoverflow.com/q/1132941/539264"&gt;More details here&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;methodName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;imutable&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Describe method.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+       &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+       &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SomeObject&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="multi-line-indentation"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id4"&gt;Multi line indentation&lt;/a&gt;&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;For now, just some examples:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logger&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;message_id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;factory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;number&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+    &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;factory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getUniqueString&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+    &lt;span class="n"&gt;callback&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;do_something_else&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Same indentation applies for brackets:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;some_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="n"&gt;bla&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;blabla&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;alabala&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;2 line code exception. If the parentheses expression fits on one line:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logger&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;factory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;number&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;factory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getUniqueString&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Conditional exception. When indenting parentheses for conditional
+expressions add one extra indent to separate the condition expression
+from the conditional block.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;somethin_else&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt;
+        &lt;span class="n"&gt;say_something_else&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;do_else&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nothing&lt;/span&gt;
+    &lt;span class="n"&gt;do_something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;somethin_else&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt;
+        &lt;span class="n"&gt;say_something_else&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt;
+        &lt;span class="n"&gt;we_should_not_have_long_conditionals&lt;/span&gt;
+        &lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;do_else&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nothing&lt;/span&gt;
+    &lt;span class="n"&gt;do_something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Class, method and function indentation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MyClassName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;VeryLongParentClass&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;VeryLongOtherMixin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Docstring here.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;myMethodWithLongArguments&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;other_long_thing&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Docstring here.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;my_function_with_long_arguments&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;other_long_thing&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;other_very_long_argument&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Docstring here.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="imports"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id5"&gt;Imports&lt;/a&gt;&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Imports should be called at the start of each module, the only exception is
+allowed for avoiding circular imports.&lt;/li&gt;
+&lt;li&gt;There is one empty line between the import block and module comment.&lt;/li&gt;
+&lt;li&gt;The imports blocks are separated by one empty line.&lt;/li&gt;
+&lt;li&gt;They will be arranged in 3 major blocks:&lt;ul&gt;
+&lt;li&gt;The first one is for importing from Python standard modules.&lt;/li&gt;
+&lt;li&gt;The second from modules outside of the project (3rd party).&lt;/li&gt;
+&lt;li&gt;The last for modules belonging to the project.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;In each block the modules are sorted in alphabetical order,
+case-insensitive.&lt;/li&gt;
+&lt;li&gt;When importing multiple members of a module, if they don't exceed the 78
+characters limit, they will be listed on the same line&lt;/li&gt;
+&lt;li&gt;When importing multiple members of a module, and they exceed the 78
+characters limit, they will be listed as a list, with each member on a
+line ending with comma.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A good example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Copyright (c) YEAR Your Name.&lt;/span&gt;
+&lt;span class="c"&gt;# See LICENSE for details.&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Sample module for demonstrating imports coding conventions.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;__future__&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;with_statement&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;optparse&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;OptionParser&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;logging&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;types&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;OpenSSL&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;crypto&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.web&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;server&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;simplejson&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;chevah.commons.utils.constants&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;DEFAULT_KEY_SIZE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;DEFAULT_KEY_TYPE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;DEFAULT_PUBLIC_KEY_EXTENSION&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;chevah.commons.utils.exceptions&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;OperationalException&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;chevah.commons.utils.crypto&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Key&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;chevah.commons.utils.helpers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;log_add_default_handlers&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;open_local_admin_webpage&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;chevah.server.commons.configuration&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;ApplicationConfiguration&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;chevah.server.commons.constants&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;CONFIGURATION_SERVER_FILE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;CONFIGURATION_PID_FILE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;PRODUCT_NAME&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;chevah.server.commons.process&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ChevahTwistedProcess&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Release process</title><link href="http://styleguide.chevah.com/release-process.html" rel="alternate"></link><updated>2016-04-15T07:37:21+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:release-process.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#release-notes" id="id2"&gt;Release Notes&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#sample-release-notes" id="id3"&gt;Sample release notes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="general"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This page describes the release process and steps to be followed during
+development to simplify the release or a final product or library.&lt;/p&gt;
+&lt;p&gt;Releasing a product usually consists of publishing the following:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Binary or source archives.&lt;/li&gt;
+&lt;li&gt;Documentation, which includes Release Notes, Known Issues and Upgrade Steps.&lt;/li&gt;
+&lt;li&gt;Public announcement. Notification email or website news/blog article.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="release-notes"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Release Notes&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Release notes explain what changed with this version. &lt;strong&gt;Period&lt;/strong&gt;.
+Release notes are &lt;strong&gt;not&lt;/strong&gt; installation, upgrade or configuration.&lt;/p&gt;
+&lt;p&gt;Each time a branch fixes a bug, adds a new feature or makes any changes
+which are visible to end users a new entry is added inside the release notes
+file. A release note entry is a summary for one change.&lt;/p&gt;
+&lt;p&gt;We keep release notes for all versions in a single file so that users can
+easily read all changes starting from their version up to latest or a
+specific version.&lt;/p&gt;
+&lt;p&gt;Release notes are grouped in one of the following categories. The category
+may be omitted if no changes were added for it. Here are some categories:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+* Major changes (only for major releases)
+* New features
+* Bug fixes (this will be the only section for bugfix releases)
+* Deprecation and Removals
+* Other changes. Documentation changes.
+&lt;/pre&gt;
+&lt;p&gt;A marker/tag is added at the end of the sentence to point the ticket ID
+associated with this change. Ticket ID marker is not mandatory for new features.&lt;/p&gt;
+&lt;p&gt;It can be followed by a list of tags to help users understand / filter the
+scope of the change. Here are some examples:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+* ``[https]`` - for changes affecting only a sub-system.
+* ``[aix]`` - for changes affecting only AIX systems.
+* ``[windows]`` - for changes affection only Windows system.
+&lt;/pre&gt;
+&lt;p&gt;Remember your audience/user/clients and write for that audience.&lt;/p&gt;
+&lt;p&gt;Don't explain all details of the change. When more details are required
+use a link to documentation.&lt;/p&gt;
+&lt;p&gt;All entries should be complete sentences or phrases, ending with a
+punctuation mark.&lt;/p&gt;
+&lt;p&gt;Use present tense as opposed to past tense. The text should state what the
+change &lt;strong&gt;does&lt;/strong&gt; and not what it &lt;strong&gt;did&lt;/strong&gt;.
+&amp;quot;Product no longer falls over X.&amp;quot; as opposed to &amp;quot;Product fell over X.&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Write text in &lt;strong&gt;resolution&lt;/strong&gt; form, describe what impact the change will have
+on users. What will the users notice?&lt;/p&gt;
+&lt;p&gt;If a single sentence isn't clear enough to understand, explaining the
+background of the change can be helpful, by adding in
+&lt;cite&gt;Previously, X used to do Y.&lt;/cite&gt; or &lt;cite&gt;Previously, X used to do Y. Now Z.&lt;/cite&gt;.&lt;/p&gt;
+&lt;p&gt;Don't add low-level, internal details about product logic. Focus on how
+the change affects / is perceived by the user.&lt;/p&gt;
+&lt;p&gt;Here are some examples:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Support was added for doing / integrating with X.&lt;/li&gt;
+&lt;li&gt;Users now can do X.&lt;/li&gt;
+&lt;li&gt;It is no longer possible to do Y.&lt;/li&gt;
+&lt;li&gt;The text on the ABC form is now Z.&lt;/li&gt;
+&lt;li&gt;Reworded text from X to be gender neutral.&lt;/li&gt;
+&lt;li&gt;Doing X on a session in state Y no longer gives the XYZ error.&lt;/li&gt;
+&lt;li&gt;Fix the XZY error generated when client was doing X on a session in Y state.&lt;/li&gt;
+&lt;li&gt;Previously, users were unable to upload files to a folder if they
+had write permissions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="sample-release-notes"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id3"&gt;Sample release notes&lt;/a&gt;&lt;/h3&gt;
+&lt;pre class="literal-block"&gt;
+Release Notes
+=============
+
+This is the list of all changes for PRODUCT NAME releases.
+
+
+Version 2.1.0, released 24/02/2014
+----------------------------------
+
+
+New features
+^^^^^^^^^^^^
+
+* Support was added to transfer files using SCP over SSH.
+  Read more... [scp]
+* SFTP protocol now support reading and creating symbolic links on
+  Windows. [sftp][windows]
+
+
+Defect fixes
+^^^^^^^^^^^^
+
+* Fix an internal server error when SSH client requests
+  to execute a command, a shell or a pseudo-terminal. [#176][sftp][scp]
+
+
+Deprecations and removals
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* It is no longer possible to do X. [#1359][unix]
+* Windows XP is no longer supported. [#2345]
+* Configuration option X, deprecated since Product version 12.1.2, is now
+  removed. [#1366]
+
+
+Other changes
+^^^^^^^^^^^^^
+
+* The howto document page of X now has documentation about doing Y. [#2452]
+
+
+
+Version 2.0.0, released 20/02/2014
+----------------------------------
+
+
+Major changes
+^^^^^^^^^^^^^
+
+* All log handlers were converted to event handlers.
+  This allows an unified method for interacting the the audit events
+  produced by SFTPPlus.
+* All authentication methods are now explicitly defined and ordered.
+  You can now choose the order in which different authentication methods
+  are used.
+
+
+New features
+^^^^^^^^^^^^
+
+* Support was added to transfer files using SCP over SSH.
+  Read more... [scp]
+
+
+Defect fixes
+^^^^^^^^^^^^
+
+* Fix an internal server error when SSH client requests
+  to execute a command, a shell or a pseudo-terminal. [#176][sftp][scp]
+
+
+Deprecations and removals
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* It is no longer possible to do X. [#1359][unix]
+* Windows XP is no longer supported. [#2345]
+* Configuration option X, deprecated since Product version 12.1.2, is now
+  removed. [#1366]
+
+
+Version 1.1.1, released 14/02/2013
+----------------------------------
+
+
+Defect fixes
+^^^^^^^^^^^^
+
+* Fix an internal server error when FTP client requests
+  an unknown command. [#160][ftp][ftps]
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Testing</title><link href="http://styleguide.chevah.com/testing.html" rel="alternate"></link><updated>2016-04-15T07:37:21+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:testing.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#types-of-tests" id="id1"&gt;Types of tests&lt;/a&gt;&lt;ul&gt;
@@ -88,8 +852,8 @@ with other code / systems.&lt;/p&gt;
 unit tests are.&lt;/p&gt;
 &lt;p&gt;Test for single method or functions. As the number of unit tests significantly grows
 throughout the lifecycle of the project one key requirement is that they run as
-fast as possible.
-Therefore the tests should use only data from memory for both input and output.&lt;/p&gt;
+fast as possible. Therefore the tests should use only data from memory for both input
+and output.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="integration-testing"&gt;
 &lt;h3&gt;&lt;a class="toc-backref" href="#id3"&gt;Integration testing&lt;/a&gt;&lt;/h3&gt;
@@ -752,217 +1516,7 @@ validation all the time.
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Bugs and Tech-Debt</title><link href="http://styleguide.chevah.com/bugs-and-tech-debt.html" rel="alternate"></link><updated>2016-03-13T12:37:30+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-03-13:bugs-and-tech-debt.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
-&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#defects-and-release-blockers" id="id2"&gt;Defects and Release Blockers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#technical-debt" id="id3"&gt;Technical Debt&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#references" id="id4"&gt;References&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="general"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;As with any other product, our ideal is to release a product without any
-known defects and with optimal implementation.&lt;/p&gt;
-&lt;p&gt;While this is a noble goal, achieving it might not be economically feasible.
-That is creating a zero bugs product will result a product which costs more
-than the customers are willing to pay for.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="defects-and-release-blockers"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Defects and Release Blockers&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Defects are defined as behavior of our product which does not follow our
-specification or the way we want it to work.&lt;/p&gt;
-&lt;p&gt;We split the defect into 2 categories:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;cite&gt;bugs&lt;/cite&gt; - are defects which affect (or we thing that it might affect)
-the workflow of at least one customer&lt;/li&gt;
-&lt;li&gt;&lt;cite&gt;tasks&lt;/cite&gt; (FIND A BETER NAME?) -
-are defects for which we are not aware of any affected customer
-but which we would like the product to not behave in this way.
-They are acknowledged in the &lt;strong&gt;Known Issues&lt;/strong&gt; section of our documentation.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;For some defects, fixing them is a lot of work and its impact is minor
-as maybe our customers will never use the product in a way to trigger the bug.
-In this case, we create a ticket with type &lt;cite&gt;bug&lt;/cite&gt; and add it in the backlog.&lt;/p&gt;
-&lt;p&gt;All defects which affect the work-flow of at least one customer are
-considered top priority and will &lt;strong&gt;block the release&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;All defects which are present in a release &lt;strong&gt;should&lt;/strong&gt; be acknowledge in the
-documentation.&lt;/p&gt;
-&lt;p&gt;If we gather a considerable number of minor bugs / defect we will schedule
-a release dedicated / focused on reducing their numbers.&lt;/p&gt;
-&lt;p&gt;We should focus on fixing all bugs as soon as possible. Even if a defect does
-not currently affect a customer, the changes are hight that a customer
-will be affected by it in the near future.&lt;/p&gt;
-&lt;p&gt;In the same small/minor bugs might release big flaws in the structure of our
-code. We should focus on fixing them as soon as possible so that we can work
-on them in a normal pace and not wait to fix them in a hurry under the
-pressure of a release blocker or customer complaining about bad behavior.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="technical-debt"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Technical Debt&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Technical debts are areas in which we trade code quality for having a feature
-delivered faster or a defect fixed sooner.&lt;/p&gt;
-&lt;p&gt;For every tech-debt the quality of our code is reduced.&lt;/p&gt;
-&lt;p&gt;As expressed by Martin Fowler:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-You have a piece of functionality that you need to add to your system.
-You see two ways to do it.
-One is quick to do but is messy -
-you are sure that it will make further changes harder in the future.
-The other results in a cleaner design, but will take longer to put in
-place.
-&lt;/pre&gt;
-&lt;p&gt;If you go for &lt;em&gt;the former&lt;/em&gt; method you will generate a &lt;em&gt;tech-debt&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;Further comments by Uncle Bob:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-Messy code, produced by people who are ignorant of good design practices,
-shouldn't be a debt.
-Technical Debt should be reserved for cases when people have made a
-considered decision to adopt a design strategy that isn't sustainable
-in the longer term, but yields a short term benefit,
-such as making a release.
-
-There’s nothing inherently unwise about tech-debt.
-If the early release of 1.0 drives the business that pays for
-the development of 2.0 then the business has won.
-So this kind of reasoned technical debt may indeed be appropriate.
-&lt;/pre&gt;
-&lt;p&gt;Another comment by Ron Jeffries:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-Technical debt is never a good thing.
-It is sometimes inevitable.
-We should never take on technical debt on purpose,
-and we should pay it back as soon as we know how.
-&lt;/pre&gt;
-&lt;p&gt;The analogy with the financial term is weak so please read
-&lt;a class="reference external" href="http://ronjeffries.com/articles/015-11/tech-debt/"&gt;Technical Debt – Bad metaphor or worst metaphor?&lt;/a&gt; and all the other
-articles in the reference section to find out more.&lt;/p&gt;
-&lt;p&gt;While tech-debt is a bad metaphor, we should all know what we want to say
-with &lt;cite&gt;tech-debt&lt;/cite&gt; when we talk about our code. I was not able to find a better
-metaphor so for now we are stuck with this term.&lt;/p&gt;
-&lt;p&gt;We are not paying tech-debt in dedicated sprints or releases.&lt;/p&gt;
-&lt;p&gt;Please read the &lt;a class="reference external" href="http://ronjeffries.com/xprog/articles/refactoring-not-on-the-backlog/"&gt;Refactoring - Not on the backlog!&lt;/a&gt;
-article by Ron Jeffries.&lt;/p&gt;
-&lt;p&gt;We use the &lt;cite&gt;FIXME:1234:&lt;/cite&gt; marker to signal and acknowledge a section of code
-which was created as a tech-debt.
-We will leave the tech-debt unpaid and will try to pay it next time we hit
-an issue with that section of code.&lt;/p&gt;
-&lt;p&gt;Sometimes your experience tells you that a section of code is not right and
-that it can be implemented as re-usable section.
-When you only had one use case for that code is very hard to create a
-generalized / re-usable version and something trying to do that is wrong as
-you most probably ain't gonna need that.
-Then it comes the second use cases which provides a hint that the section
-should be re-factored for reusal.
-If you know how to refactor it then just go ahead.
-If you have doubts about how to refactor it, try to do your best and mark
-the section as tech-debt.
-As more use cases are gathered you should have a better understanding of
-the requirements and refactor it in a better way.
-The tech-debt marker will inform the person which tries to re-use that code
-for a 3rd or 4th use case not to try to hard to create it's code to work
-with the existing re-usable component, but to consider refactoring the
-re-usable component itself so that it provide a clean re-usable API.&lt;/p&gt;
-&lt;p&gt;We are not blocking a release due to a tech-debt.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="references"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;References&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://c2.com/cgi/wiki?TechnicalDebt"&gt;http://c2.com/cgi/wiki?TechnicalDebt&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Technical_debt"&gt;https://en.wikipedia.org/wiki/Technical_debt&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://martinfowler.com/tags/technical%20debt.html"&gt;http://martinfowler.com/tags/technical%20debt.html&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://ronjeffries.com/categories/technical-debt/"&gt;http://ronjeffries.com/categories/technical-debt/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://sites.google.com/site/unclebobconsultingllc/a-mess-is-not-a-technical-debt"&gt;https://sites.google.com/site/unclebobconsultingllc/a-mess-is-not-a-technical-debt&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-</summary></entry><entry><title>HTML, XML and other markups</title><link href="http://styleguide.chevah.com/html.html" rel="alternate"></link><updated>2016-03-13T12:23:17+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-03-13:html.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
-&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#css-interaction" id="id2"&gt;CSS interaction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#html-tags-usage" id="id3"&gt;HTML tags usage&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="general"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;Unlike other files, indentation for XML/HTML is 2 spaces.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Don't use inline HTML style attribute. Only CSS class.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Use HTML5 doctype:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-&amp;lt;!doctype html&amp;gt;
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="css-interaction"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;CSS interaction&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Make sure all elements that are used in JS have an ID.
-This helps with testing.&lt;/li&gt;
-&lt;li&gt;Make sure all related elements have the same class.&lt;/li&gt;
-&lt;li&gt;Make sure that a page will not contain the same ID more than once.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="html-tags-usage"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;HTML tags usage&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;Don't use new HTML5 elements/tags and API.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Don't use deprecated HTML4 elements/tags.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Paragraphs of text should always be placed in a &amp;lt;p&amp;gt; tag.
-Never use multiple &amp;lt;br/&amp;gt; tags.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Items in list form should always be in &amp;lt;ul&amp;gt;, &amp;lt;ol&amp;gt;, or &amp;lt;dl&amp;gt;,
-Never a set of &amp;lt;div&amp;gt; or &amp;lt;p&amp;gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Every form input that has text attached should utilize a &amp;lt;label&amp;gt; tag.
-Especially radio or checkbox elements.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Use double quotes for tag/element attributes.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Even though quotes around attributes is optional, always put quotes around
-attributes for readability:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-GOOD: &amp;lt;p class=&amp;quot;line note&amp;quot; data-attribute=&amp;quot;106&amp;quot;&amp;gt;
-        This is my paragraph of special text.&amp;lt;/p&amp;gt;
-BAD : &amp;lt;p class=&amp;quot;line note&amp;quot; data-attribute=106&amp;gt;
-        This is my paragraph of special text.&amp;lt;/p&amp;gt;
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Make use of &amp;lt;thead&amp;gt;, &amp;lt;tfoot&amp;gt;, &amp;lt;tbody&amp;gt;, and &amp;lt;th&amp;gt; tags (and Scope attribute)
-when appropriate. (note: &amp;lt;tfoot&amp;gt; goes above &amp;lt;tbody&amp;gt; for speed reasons.
-You want the browser to load the footer before a table full of data.):&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-&amp;lt;table summary=&amp;quot;This is a chart of invoices for 2011.&amp;quot;&amp;gt;
-  &amp;lt;thead&amp;gt;
-    &amp;lt;tr&amp;gt;
-      &amp;lt;th scope=&amp;quot;col&amp;quot;&amp;gt;Table header 1&amp;lt;/th&amp;gt;
-      &amp;lt;th scope=&amp;quot;col&amp;quot;&amp;gt;Table header 2&amp;lt;/th&amp;gt;
-    &amp;lt;/tr&amp;gt;
-  &amp;lt;/thead&amp;gt;
-  &amp;lt;tfoot&amp;gt;
-    &amp;lt;tr&amp;gt;
-      &amp;lt;td&amp;gt;Table footer 1&amp;lt;/td&amp;gt;
-      &amp;lt;td&amp;gt;Table footer 2&amp;lt;/td&amp;gt;
-    &amp;lt;/tr&amp;gt;
-  &amp;lt;/tfoot&amp;gt;
-  &amp;lt;tbody&amp;gt;
-    &amp;lt;tr&amp;gt;
-      &amp;lt;td&amp;gt;Table data 1&amp;lt;/td&amp;gt;
-      &amp;lt;td&amp;gt;Table data 2&amp;lt;/td&amp;gt;
-    &amp;lt;/tr&amp;gt;
-  &amp;lt;/tbody&amp;gt;
-&amp;lt;/table&amp;gt;
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-</summary></entry><entry><title>CSS, LESS and Styles</title><link href="http://styleguide.chevah.com/css.html" rel="alternate"></link><updated>2016-03-13T12:23:10+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-03-13:css.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>CSS, LESS and Styles</title><link href="http://styleguide.chevah.com/css.html" rel="alternate"></link><updated>2016-04-15T07:37:21+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:css.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#css-syntax-elements" id="id1"&gt;CSS Syntax Elements&lt;/a&gt;&lt;/li&gt;
@@ -1128,171 +1682,421 @@ product-name {
     }
 &lt;/pre&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Bash</title><link href="http://styleguide.chevah.com/bash.html" rel="alternate"></link><updated>2016-03-13T12:22:52+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-03-13:bash.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Generic</title><link href="http://styleguide.chevah.com/generic.html" rel="alternate"></link><updated>2016-04-15T07:37:21+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:generic.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#path-constants" id="id2"&gt;Path constants&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#function-definition" id="id3"&gt;Function Definition&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#case-syntax" id="id4"&gt;Case Syntax&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#if-then-else" id="id5"&gt;IF/THEN/ELSE&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#for" id="id6"&gt;FOR&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#while-until" id="id7"&gt;WHILE/UNTIL&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#references" id="id8"&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#comments" id="id2"&gt;Comments&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#documentation" id="id3"&gt;Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#exceptions-handling" id="id4"&gt;Exceptions handling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#experimental-features-without-feature-branches" id="id5"&gt;Experimental Features Without Feature Branches&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#project-specific" id="id6"&gt;Project specific&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class="section" id="general"&gt;
 &lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The content of this website is intended to help new team members understand
+the direction of our team.&lt;/p&gt;
+&lt;p&gt;It also helps novice and advance beginners by providing a set of simple rules.
+Anyone should read this as best practice and provide feedback in case
+something is wrong.&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;Shell scripts should be kept at a minimum and &lt;strong&gt;only&lt;/strong&gt; for internal scripts.
-For all other things there is Python.&lt;/li&gt;
-&lt;li&gt;If any, public scripts should use &lt;tt class="docutils literal"&gt;/bin/sh&lt;/tt&gt;. Bash is not available on all
-Unix systems and ksh or other shells are not compatible with Bash syntax.&lt;/li&gt;
-&lt;li&gt;Use &lt;tt class="docutils literal"&gt;printf&lt;/tt&gt; instead of &lt;tt class="docutils literal"&gt;echo&lt;/tt&gt; when using  &lt;tt class="docutils literal"&gt;/bin/sh&lt;/tt&gt; as a shell,
-because &lt;tt class="docutils literal"&gt;echo&lt;/tt&gt; behaviour is incompatible in Bash and Korn shells.
-Eg. use &lt;tt class="docutils literal"&gt;printf&lt;/tt&gt; instead of &lt;tt class="docutils literal"&gt;echo &lt;span class="pre"&gt;-n&lt;/span&gt;&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;printf &amp;quot;blabla\n&amp;quot;&lt;/tt&gt; instead
-of &lt;tt class="docutils literal"&gt;echo &amp;quot;blabla&amp;quot;&lt;/tt&gt;.&lt;/li&gt;
-&lt;li&gt;For internal scripts we should use &lt;tt class="docutils literal"&gt;/bin/bash&lt;/tt&gt;, as the default &lt;tt class="docutils literal"&gt;/bin/sh&lt;/tt&gt;
-sometimes points to a lesser shell such as Dash.&lt;/li&gt;
-&lt;li&gt;A function called main is required for scripts long enough to contain at
-least one other function.&lt;/li&gt;
-&lt;li&gt;Put all functions together in the file just below constants. Don't hide
-executable code between functions.&lt;/li&gt;
-&lt;li&gt;Use uppercase for all GLOBAL variables.&lt;/li&gt;
-&lt;li&gt;In tests, enclose all uncontrolled string variables in double quotes to
-handle empty strings or spaces in variables.&lt;/li&gt;
-&lt;li&gt;Always double quote the &lt;tt class="docutils literal"&gt;$&amp;#64;&lt;/tt&gt; variable to keep all arguments with spaces.&lt;/li&gt;
-&lt;li&gt;Pipelines should be split one per line if they don't all fit on one line.&lt;/li&gt;
-&lt;li&gt;Use $(command) instead of backticks. Nested backticks require escaping the
-inner ones with . The $(command) format doesn't change when nested and is
-easier to read. See the example below&lt;/li&gt;
+&lt;li&gt;Rule #1: Keep it DRY! Don't repeat yourself!&lt;/li&gt;
+&lt;li&gt;Rule #2: KISS - Keep it simple, stupid simple!&lt;/li&gt;
+&lt;li&gt;Rule #3: If it ain't broke, don't fix it!&lt;/li&gt;
+&lt;li&gt;All code in any code-base should look like a single person typed it, no
+matter how many people contributed.&lt;/li&gt;
+&lt;li&gt;No single person is responsible for a part of the code. We write code
+together, we take the blame together, we take the glory together.
+Once a code was approved for review, reviewers are also responsible for
+that code.&lt;/li&gt;
+&lt;li&gt;Write all code as it will be written once and read thousand times.
+Write code for maximum readability.&lt;/li&gt;
+&lt;li&gt;When you need a trade-off between readability and code duplication, choose
+to have a code less readable but without duplication.&lt;/li&gt;
+&lt;li&gt;Write code as it will be used by humans, not a machine. You are not a
+a compiler / interpretor.&lt;/li&gt;
+&lt;li&gt;Optimization should come second and only if really needed. Don't Use clever
+tricks and other optimization to early.&lt;/li&gt;
+&lt;li&gt;Do the simplest thing that could possibly work and do it well.
+Always work on the story you have, not something you think we're going to
+need sometime in the future.
+Don't try implement all usecases you can think of and end with poorly
+designed code and poorly tested code.&lt;/li&gt;
+&lt;li&gt;Try to keep methods as flat as possible and return as soon as possible.&lt;/li&gt;
+&lt;li&gt;Don't use abbreviation. Use full, meaningful names.&lt;/li&gt;
+&lt;li&gt;Don't use tabs for indentation, and in general don't use tabs for anything
+else. The only exceptions are the Makefiles.&lt;/li&gt;
+&lt;li&gt;Favor indentation using 4 spaces. For deep nested languages (HTML, JS) it
+is OK to use 2 spaces.&lt;/li&gt;
+&lt;li&gt;Maximum line length for code 80 characters, but for Python we use 79 to be in
+sync with PEP8.&lt;/li&gt;
+&lt;li&gt;For narrative documentation use &lt;a class="reference external" href="http://rhodesmill.org/brandon/2012/one-sentence-per-line/"&gt;semantic newlines&lt;/a&gt;.
+Make lines short, and break lines at natural places, such as after commas and semicolons, rather than after the Nth column.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# This is preferred:&lt;/span&gt;
-&lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;$(command &amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;command1&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;)&amp;quot;&lt;/span&gt;
-
-&lt;span class="c"&gt;# This is not:&lt;/span&gt;
-&lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;`command \`command1\``&amp;quot;&lt;/span&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;Sometimes when editing a narrative documentation file, I wrap the lines semantically.
+Instead of inserting a newline at 70 columns (or whatever),
+or making paragraphs one long line,
+I put in newlines at a point that seems logical to me.
+Modern code-oriented text editor are very good at wrapping and arranging long lines.
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;Don't mix multiple languages in a single file.&lt;/li&gt;
+&lt;li&gt;No need for the ultimate purism, when using / calling code from external
+libraries it is OK if those calls don't comply with coding convention.&lt;/li&gt;
+&lt;li&gt;When extending external libraries use the coding convention used by that
+library. It might be harder to define the border of those changes but this
+should help with sending patches upstream.&lt;/li&gt;
+&lt;li&gt;When reporting a code related problem, use
+&lt;a class="reference external" href="http://sscce.org"&gt;Short, Self Contained, Correct (Compilable), Example&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;Each repository / project will have a README file describing why it exists
+and what it should do.
+The README should also include notes about contributing to the project.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Each repository will have a LICENSE and AUTHORS files.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Words are an important part of how software works.
+Even though there may be dozens of people creating a product, reading
+comments, documentation, notes etc, it should still sound like we speak
+in one consistent voice.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;When writing text for the documentation or text that appears in the
+program favour classy over cute or mechanical.
+Respect the reader, act more like a human and less like a computer,
+and use fewer words:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+Instead of:
+
+Successfully deleted the #{branch_name} branch.
+
+Try something like:
+
+The #{branch_name} branch has been deleted.
+&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Use a graphical commit tool (&lt;tt class="docutils literal"&gt;git gui&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;gitg&lt;/tt&gt;) for doing the commit.
+In this way you can split the changes in multiple commits and you can also
+do a first review just before the commit.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;When you don't understand something related to security, don't just walk
+by and ignore it. Try to understand what is happening there, or ask
+someone else to take a look or to explain it to you.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Don't abuse inheritance and favour composition and delegation.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Write code so that it can be read / used by developers having a work
+style different than yours. Don't add IDE / text editor specific things
+Don't assume that other developer will use the same IDE / text editor,
+fancy keyboard (or foot pedals), array of huge monitors...&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;When you have a non-trivial conditional expression (logical condition from
+an if statement), break it in smaller sub-conditionals.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Long conditional which is not that bad.&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MAX_SIZE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;ACTIVE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;PAUSED&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
+  &lt;span class="n"&gt;do_domething&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="c"&gt;# But can be better.&lt;/span&gt;
+&lt;span class="n"&gt;source_not_full&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MAX_SIZE&lt;/span&gt;
+&lt;span class="n"&gt;destination_available&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;ACTIVE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;PAUSED&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source_available&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;destination_available&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;do_something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="c"&gt;# Or even better.&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Source&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+  &lt;span class="n"&gt;MAX_SIZE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+  &lt;span class="nd"&gt;@property&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;full&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MAX_SIZE&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Destination&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+  &lt;span class="n"&gt;ACTIVE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+  &lt;span class="n"&gt;PAUSED&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+  &lt;span class="n"&gt;STOPPED&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+  &lt;span class="n"&gt;FAILDED&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+
+  &lt;span class="nd"&gt;@property&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;ready&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ACTIVE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
+      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PAUSED&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;full&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ready&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;do_something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="comments"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Comments&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;All comments should be valid sentences and should end with a full stop (.).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Try to write code so that it speak for itself and so that a comment is not
+required.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Try to name variables, methods, function so that they communicate their
+intend. A comment is only attached to the place where the name is defined,
+and not present in all other multiple places where it is used. IDE can help,
+but we should not rely on that.&lt;/p&gt;
+&lt;p&gt;When a comment is required is like saying: I have no idea for a better name
+for this thing, so here is my poor comment. Good luck with figuring the
+intend of this name when you see the it in the rest of this file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Place comments on a new line above their subject and in the same block as the referred code.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;some_condition&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="c"&gt;# We got into into this branch to do x.&lt;/span&gt;
+  &lt;span class="n"&gt;do_domething&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;lines&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;marker&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c"&gt;# Marker lines are ignored.&lt;/span&gt;
+    &lt;span class="k"&gt;continue&lt;/span&gt;
+  &lt;span class="n"&gt;do_domething&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;Avoid end of line comments.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Technical debt comments (ex FIXME, TODO) will always have an attached
+ticket ID and will use the following format. Only &lt;strong&gt;FIXME&lt;/strong&gt; marker is used
+followed by ticket ID. Comments will come on a new lines.
+Adapt this to the style of comments used in the specific language, but
+is important to keep the &lt;strong&gt;FIXME:123:&lt;/strong&gt; marker.:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+# FIXME:1234:
+# Details about this tech-dept. Ex: Can only be fixed when full moon.
+&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="documentation"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Documentation&lt;/a&gt;&lt;/h2&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;Always guard your Bash scripts from unexpected errors by using&lt;/li&gt;
+&lt;li&gt;Well documented code is extremely important.
+Take time to describe components, how they work, their limitations, and the way they are constructed.
+Don't leave others in the team guessing as to the purpose of uncommon or non-obvious code.&lt;/li&gt;
+&lt;li&gt;Document code as part of docstrings and not as comments.&lt;/li&gt;
+&lt;li&gt;Document packages, modules, classes, functions.&lt;/li&gt;
+&lt;li&gt;For narative documentation (non docstrins) use &lt;a class="reference external" href="http://rhodesmill.org/brandon/2012/one-sentence-per-line/"&gt;semantic linefeeds&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;set&lt;/span&gt; -o nounset
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;Sometimes when editing a narrative documentation file, I wrap the lines semantically.
+Instead of inserting a newline at 70 columns (or whatever),
+or making paragraphs one long line,
+I put in newlines at a point that seems logical to me.
+Modern code-oriented text editor are very good at wrapping and arranging long lines.
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="path-constants"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Path constants&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;When defining a directory path as a constant, you should include the trailing
-slash to make sure it is a directory and not a file. Two consecutive /'s are
-harmless in POSIX shells as long as they are not at the beginning of the path
-in some exotic environment such as Cygwin that actually uses this notation for
-SMB shares.&lt;/p&gt;
-&lt;p&gt;Always double quote path constants to handle files with spaces:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;SOME_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/some/path/
-&lt;span class="c"&gt;# and use it like this:&lt;/span&gt;
-&lt;span class="nb"&gt;command&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;${SOME_PATH}/some.file&amp;quot;&lt;/span&gt;
-
-&lt;span class="c"&gt;# Another example&lt;/span&gt;
-&lt;span class="nv"&gt;REMOTE_URI&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;chevah@chevah.com:/home/chevah/styleguide.chevah.com/vm/
-scp &lt;span class="s2"&gt;&amp;quot;$LOCAL_FILE&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;${REMOTE_URL}/file&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Instead of:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;SOME_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/some/path/
-&lt;span class="c"&gt;# and then:&lt;/span&gt;
-&lt;span class="nb"&gt;command&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;${SOME_PATH}some.file&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="function-definition"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Function Definition&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Leave 2 blank lines between function definitions and always use &lt;tt class="docutils literal"&gt;local&lt;/tt&gt; for
-local variable declaration.&lt;/p&gt;
-&lt;p&gt;Define local variables at the start of the function, in a distinct block.
-It is recommended to define a local variable named &lt;cite&gt;result&lt;/cite&gt; to hold the value
-produced by calling the function.&lt;/p&gt;
-&lt;p&gt;Put the final returned result in a separate block.&lt;/p&gt;
-&lt;p&gt;Procedures are functions which have no result.&lt;/p&gt;
-&lt;p&gt;Since Bash only support returning numeric values, which are interpreted
-as exit codes, we will pass values between functions by using &lt;tt class="docutils literal"&gt;echo&lt;/tt&gt;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#&lt;/span&gt;
-&lt;span class="c"&gt;# Description of function 1.&lt;/span&gt;
-&lt;span class="c"&gt;#&lt;/span&gt;
-&lt;span class="c"&gt;# * $1 - description of first argument&lt;/span&gt;
-&lt;span class="c"&gt;# * $2 - description of second argument&lt;/span&gt;
-&lt;span class="c"&gt;# * return - description of return value.&lt;/span&gt;
-
-function1&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
-    &lt;span class="nb"&gt;local &lt;/span&gt;variable_which_is_local
-    &lt;span class="nb"&gt;local &lt;/span&gt;result
-
-    do_some_action_here
-    do_more_action
-
-    &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$result&lt;/span&gt;
-&lt;span class="o"&gt;}&lt;/span&gt;
-
-
-&lt;span class="c"&gt;#&lt;/span&gt;
-&lt;span class="c"&gt;# Description of procedure 1.&lt;/span&gt;
-&lt;span class="c"&gt;#&lt;/span&gt;
-&lt;span class="c"&gt;# It does this and this.&lt;/span&gt;
-&lt;span class="c"&gt;#&lt;/span&gt;
-procedure1&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
-    &lt;span class="nb"&gt;local &lt;/span&gt;&lt;span class="nv"&gt;something&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;function1 ARG1&lt;span class="k"&gt;)&lt;/span&gt;
-
-    do_something_else something
-&lt;span class="o"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="case-syntax"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;Case Syntax&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;$VARIABLE_NAME&amp;quot;&lt;/span&gt; in
-    &lt;span class="s2"&gt;&amp;quot;option1&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="k"&gt;do &lt;/span&gt;specific
-        ;;
-    option2*&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="k"&gt;do &lt;/span&gt;generic
-        ;;
-    *&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="k"&gt;do &lt;/span&gt;default
-        ;;
-&lt;span class="k"&gt;esac&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="if-then-else"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id5"&gt;IF/THEN/ELSE&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if &lt;/span&gt;TEST; &lt;span class="k"&gt;then&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;call something
-&lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;$string&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; OTHER_TEST &lt;span class="o"&gt;]&lt;/span&gt;; &lt;span class="k"&gt;then&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;call something_else
-&lt;span class="k"&gt;else&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;call something_else_completely
-&lt;span class="k"&gt;fi&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="for"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id6"&gt;FOR&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for &lt;/span&gt;CONDITION; &lt;span class="k"&gt;do&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;call something
-&lt;span class="k"&gt;done&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="while-until"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id7"&gt;WHILE/UNTIL&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;while &lt;/span&gt;TEST; &lt;span class="k"&gt;do&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;call something
-&lt;span class="k"&gt;done&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="references"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id8"&gt;References&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Here are the pages I used to create this page.&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;div class="section" id="exceptions-handling"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;Exceptions handling&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Here are some simple generic rules for working with exceptions.&lt;/p&gt;
+&lt;p&gt;In Chevah project we use 2 major &amp;quot;kinds&amp;quot; of exceptions:&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://www.davidpashley.com/articles/writing-robust-shell-scripts/"&gt;http://www.davidpashley.com/articles/writing-robust-shell-scripts/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://www.linuxjournal.com/content/return-values-bash-functions"&gt;http://www.linuxjournal.com/content/return-values-bash-functions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;cite&gt;Errors&lt;/cite&gt; are top level exceptions that are not going to be handled
+internally by the package / library.&lt;/li&gt;
+&lt;li&gt;&lt;cite&gt;Exceptions&lt;/cite&gt; normal exceptions, passed inside the package/library to signal
+various conditions. The public API for the package/library should not raise
+this kind of exceptions.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;Exceptions can take any format, and most of the time they can contain only
+a text with some details about the error. These exceptions are low level
+and should be raised in simple conditions.&lt;/p&gt;
+&lt;p&gt;Errors should have an unique ID and a data attribute.
+Each ID should be raised from a single place.
+The data attribute is a dictionary with key / values that make sense for the
+error.&lt;/p&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>JavaScript</title><link href="http://styleguide.chevah.com/javascript.html" rel="alternate"></link><updated>2016-03-13T12:22:35+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-03-13:javascript.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+&lt;div class="section" id="experimental-features-without-feature-branches"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id5"&gt;Experimental Features Without Feature Branches&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Feature branches are one way to develop slow/long changes without affecting
+the production / master branch.&lt;/p&gt;
+&lt;p&gt;We don't use feature branches because:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;They need to be permanently kept in sync with main branch. This will solve
+conflicts with the main branch, but there might still be hidden conflicts
+with &lt;strong&gt;other feature&lt;/strong&gt; branches.&lt;/li&gt;
+&lt;li&gt;You will need to keep in sync with other feature branches to make sure
+there are no integration problems. This just creates more work and in the
+end you will have something close to multiple &lt;strong&gt;masters&lt;/strong&gt; as each feature
+branch will contain latest development from all other feature branches.&lt;/li&gt;
+&lt;li&gt;They create multiple versions of a product which requires more release work.
+You will want to release an alpha/beta version of the feature as soon as
+possible to get feedback from end users.&lt;/li&gt;
+&lt;li&gt;Along the focus feature, they might fix or refactor some code code which is
+of great help for the main branch.&lt;/li&gt;
+&lt;li&gt;Once merged, a feature branch will introduce a big change in a short time.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Instead of feature branches we develop experimental features directly in the
+main branch. Experimental features are triggered using dedicated
+(configuration) flags.&lt;/p&gt;
+&lt;p&gt;In this way, a feature is gradually added to master, and during development
+by spending more time in master it should have a greater exposure to testing
+and checking that it integrates with other features.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="project-specific"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id6"&gt;Project specific&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Each log message should be documented, listing format, introduction version,
+version since it was obsolete, log type, conditions in which it is raised
+and other informations that can be useful for users.&lt;/li&gt;
+&lt;li&gt;A logging messages should only be called from a single place in the code.
+This will greatly help with support and debugging.&lt;/li&gt;
+&lt;li&gt;A logging message should have a unique ID. This will help the support team
+by pointing a specific event. It will also help when localized logs are
+used.&lt;/li&gt;
+&lt;li&gt;If a logging message should be issued from multiple places, move the
+logging call into a dedicated helper method. This will help with
+automatic detection of accidentally using same message ID for different
+logs.&lt;/li&gt;
+&lt;li&gt;Components should not issue logging messages that are outside of
+theirs scope, but rather use exceptions to pass the log informations.&lt;/li&gt;
+&lt;li&gt;If there are no other options, rather than directly issuing a logging
+message, the component should call a function located in the component
+that 'owns' the log ID that will issue the log.&lt;/li&gt;
+&lt;li&gt;All branches will need to use the following convention:
+&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;TICKETNO-SHORT_DESCRIPTION&lt;/span&gt;&lt;/tt&gt;. By having a reference to a ticket, it will
+be much easier to track and keep a record of branch purpose and its
+development.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+447-add_sqlite_log
+&lt;/pre&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Each user configuration options should be documented,
+listing valid values, place where the configuration is located,
+introduction version, version since it was obsolete,
+together with a description of the purpose and effect.&lt;/li&gt;
+&lt;li&gt;Configuration options will be documented using the following format. Please
+note the order in which fields are defined, the name of the files and the
+format for declaring possible values. All fields should be present, and
+if no value is defined, use 'None' or leave it blank.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="literal-block"&gt;
+log_file
+--------
+
+:Optional: Yes
+:Default value: `log/server.log`
+:Values: * `some value`
+         * `other value` - short description or this value.
+         * `yet another value`
+:Available from version: 1.6.0
+:Available up to version: 2.0.3
+:Description:
+    This is the long description of the configuration option. It can
+    span multiple lines.
+
+    It can also span multiple paragraph.
+
+    This should be the place to describe in details available values
+    that can be set.
+&lt;/pre&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>HTML, XML and other markups</title><link href="http://styleguide.chevah.com/html.html" rel="alternate"></link><updated>2016-04-15T07:37:21+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:html.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#css-interaction" id="id2"&gt;CSS interaction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#html-tags-usage" id="id3"&gt;HTML tags usage&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="general"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;Unlike other files, indentation for XML/HTML is 2 spaces.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Don't use inline HTML style attribute. Only CSS class.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Use HTML5 doctype:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;lt;!doctype html&amp;gt;
+&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="css-interaction"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;CSS interaction&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Make sure all elements that are used in JS have an ID.
+This helps with testing.&lt;/li&gt;
+&lt;li&gt;Make sure all related elements have the same class.&lt;/li&gt;
+&lt;li&gt;Make sure that a page will not contain the same ID more than once.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="html-tags-usage"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;HTML tags usage&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;Don't use new HTML5 elements/tags and API.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Don't use deprecated HTML4 elements/tags.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Paragraphs of text should always be placed in a &amp;lt;p&amp;gt; tag.
+Never use multiple &amp;lt;br/&amp;gt; tags.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Items in list form should always be in &amp;lt;ul&amp;gt;, &amp;lt;ol&amp;gt;, or &amp;lt;dl&amp;gt;,
+Never a set of &amp;lt;div&amp;gt; or &amp;lt;p&amp;gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Every form input that has text attached should utilize a &amp;lt;label&amp;gt; tag.
+Especially radio or checkbox elements.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Use double quotes for tag/element attributes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Even though quotes around attributes is optional, always put quotes around
+attributes for readability:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+GOOD: &amp;lt;p class=&amp;quot;line note&amp;quot; data-attribute=&amp;quot;106&amp;quot;&amp;gt;
+        This is my paragraph of special text.&amp;lt;/p&amp;gt;
+BAD : &amp;lt;p class=&amp;quot;line note&amp;quot; data-attribute=106&amp;gt;
+        This is my paragraph of special text.&amp;lt;/p&amp;gt;
+&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Make use of &amp;lt;thead&amp;gt;, &amp;lt;tfoot&amp;gt;, &amp;lt;tbody&amp;gt;, and &amp;lt;th&amp;gt; tags (and Scope attribute)
+when appropriate. (note: &amp;lt;tfoot&amp;gt; goes above &amp;lt;tbody&amp;gt; for speed reasons.
+You want the browser to load the footer before a table full of data.):&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;lt;table summary=&amp;quot;This is a chart of invoices for 2011.&amp;quot;&amp;gt;
+  &amp;lt;thead&amp;gt;
+    &amp;lt;tr&amp;gt;
+      &amp;lt;th scope=&amp;quot;col&amp;quot;&amp;gt;Table header 1&amp;lt;/th&amp;gt;
+      &amp;lt;th scope=&amp;quot;col&amp;quot;&amp;gt;Table header 2&amp;lt;/th&amp;gt;
+    &amp;lt;/tr&amp;gt;
+  &amp;lt;/thead&amp;gt;
+  &amp;lt;tfoot&amp;gt;
+    &amp;lt;tr&amp;gt;
+      &amp;lt;td&amp;gt;Table footer 1&amp;lt;/td&amp;gt;
+      &amp;lt;td&amp;gt;Table footer 2&amp;lt;/td&amp;gt;
+    &amp;lt;/tr&amp;gt;
+  &amp;lt;/tfoot&amp;gt;
+  &amp;lt;tbody&amp;gt;
+    &amp;lt;tr&amp;gt;
+      &amp;lt;td&amp;gt;Table data 1&amp;lt;/td&amp;gt;
+      &amp;lt;td&amp;gt;Table data 2&amp;lt;/td&amp;gt;
+    &amp;lt;/tr&amp;gt;
+  &amp;lt;/tbody&amp;gt;
+&amp;lt;/table&amp;gt;
+&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>JavaScript</title><link href="http://styleguide.chevah.com/javascript.html" rel="alternate"></link><updated>2016-04-15T07:37:21+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:javascript.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -1685,1053 +2489,169 @@ BAD : $('#element_id').attr('src': 'some/red_dot.png');
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Python</title><link href="http://styleguide.chevah.com/python.html" rel="alternate"></link><updated>2016-03-13T12:22:14+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-03-13:python.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Bash</title><link href="http://styleguide.chevah.com/bash.html" rel="alternate"></link><updated>2016-04-15T07:37:21+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:bash.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#mixin" id="id2"&gt;Mixin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#project-specific" id="id3"&gt;Project specific&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#multi-line-indentation" id="id4"&gt;Multi line indentation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#imports" id="id5"&gt;Imports&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#path-constants" id="id2"&gt;Path constants&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#function-definition" id="id3"&gt;Function Definition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#case-syntax" id="id4"&gt;Case Syntax&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#if-then-else" id="id5"&gt;IF/THEN/ELSE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#for" id="id6"&gt;FOR&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#while-until" id="id7"&gt;WHILE/UNTIL&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#references" id="id8"&gt;References&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class="section" id="general"&gt;
 &lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;Start by reading
-&lt;a class="reference external" href="https://www.python.org/dev/peps/pep-0020/"&gt;The Zen of Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Shell scripts should be kept at a minimum and &lt;strong&gt;only&lt;/strong&gt; for internal scripts.
+For all other things there is Python.&lt;/li&gt;
+&lt;li&gt;If any, public scripts should use &lt;tt class="docutils literal"&gt;/bin/sh&lt;/tt&gt;. Bash is not available on all
+Unix systems and ksh or other shells are not compatible with Bash syntax.&lt;/li&gt;
+&lt;li&gt;Use &lt;tt class="docutils literal"&gt;printf&lt;/tt&gt; instead of &lt;tt class="docutils literal"&gt;echo&lt;/tt&gt; when using  &lt;tt class="docutils literal"&gt;/bin/sh&lt;/tt&gt; as a shell,
+because &lt;tt class="docutils literal"&gt;echo&lt;/tt&gt; behaviour is incompatible in Bash and Korn shells.
+Eg. use &lt;tt class="docutils literal"&gt;printf&lt;/tt&gt; instead of &lt;tt class="docutils literal"&gt;echo &lt;span class="pre"&gt;-n&lt;/span&gt;&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;printf &amp;quot;blabla\n&amp;quot;&lt;/tt&gt; instead
+of &lt;tt class="docutils literal"&gt;echo &amp;quot;blabla&amp;quot;&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;For internal scripts we should use &lt;tt class="docutils literal"&gt;/bin/bash&lt;/tt&gt;, as the default &lt;tt class="docutils literal"&gt;/bin/sh&lt;/tt&gt;
+sometimes points to a lesser shell such as Dash.&lt;/li&gt;
+&lt;li&gt;A function called main is required for scripts long enough to contain at
+least one other function.&lt;/li&gt;
+&lt;li&gt;Put all functions together in the file just below constants. Don't hide
+executable code between functions.&lt;/li&gt;
+&lt;li&gt;Use uppercase for all GLOBAL variables.&lt;/li&gt;
+&lt;li&gt;In tests, enclose all uncontrolled string variables in double quotes to
+handle empty strings or spaces in variables.&lt;/li&gt;
+&lt;li&gt;Always double quote the &lt;tt class="docutils literal"&gt;$&amp;#64;&lt;/tt&gt; variable to keep all arguments with spaces.&lt;/li&gt;
+&lt;li&gt;Pipelines should be split one per line if they don't all fit on one line.&lt;/li&gt;
+&lt;li&gt;Use $(command) instead of backticks. Nested backticks require escaping the
+inner ones with . The $(command) format doesn't change when nested and is
+easier to read. See the example below&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;this&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# This is preferred:&lt;/span&gt;
+&lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;$(command &amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;command1&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;)&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;# This is not:&lt;/span&gt;
+&lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;`command \`command1\``&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;For python we have pocket-lint that checks for PEP8 and some other things.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://www.python.org/dev/peps/pep-0008/"&gt;Python PEP 8&lt;/a&gt;
-&lt;strong&gt;Python base code style guide&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;Favour single inheritance.&lt;/li&gt;
-&lt;li&gt;As the second best, use Mixins to reuse code and avoid multiple inheritance.&lt;/li&gt;
-&lt;li&gt;Docstring always use multiline strings with double quotes and empty first
-and last lines. There's no blank line either before or after the docstring.&lt;/li&gt;
+&lt;li&gt;Always guard your Bash scripts from unexpected errors by using&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;some_function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argument&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    Single line docstring.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="n"&gt;code_starts_here&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SomeClass&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ParentClass&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    Quick explanation of the role of this class which is a bit long so we&lt;/span&gt;
-&lt;span class="sd"&gt;    wrap it.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    More details to follow in long paragraphs.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;method_starts_here&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-      &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;      Something here.&lt;/span&gt;
-&lt;span class="sd"&gt;      &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Class members or instance members can be documented inline using the
-following syntax.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SomeClass&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ParentClass&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    Docstring for class.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-
-    &lt;span class="c"&gt;#: Docstring for class member.&lt;/span&gt;
-    &lt;span class="c"&gt;#: Can be on multiple lines.&lt;/span&gt;
-    &lt;span class="n"&gt;class_member&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;All test functions, test methods, test suites will have docstrings.&lt;/li&gt;
-&lt;li&gt;Tests methods will be prefixed with &lt;tt class="docutils literal"&gt;test_&lt;/tt&gt;.&lt;/li&gt;
-&lt;li&gt;Tests suites (test class) will be prefixed with &lt;tt class="docutils literal"&gt;Test&lt;/tt&gt;.&lt;/li&gt;
-&lt;li&gt;Test's docstring should state what is the expected behavior based on
-test's input.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_methodName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    When doing this `methodName` will raise an AssertionError.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;When adding linter exception, always add a comment explaining the reason
-why the exception was added.&lt;/li&gt;
-&lt;li&gt;Use named parameters for calling methods. This will reduce future
-refactoring effort.&lt;/li&gt;
-&lt;li&gt;If a method or class initialization / constructor method has more than 1
-argument always use named parameters for calling that method.&lt;/li&gt;
-&lt;li&gt;Try to use single quotes for string. This will make it easier to generated
-quoted text for UI or HTML.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;other_var&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;string&amp;#39;&lt;/span&gt;
-&lt;span class="n"&gt;some_var&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;string &amp;quot;b&amp;quot; yes&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;NO&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;other_bad&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;string&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;some_bad&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;string &amp;#39;b&amp;#39; yes&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;As PEP8 recommend, Don't use '' to split long lines. Wrap long lines is by
-using Python's implied line continuation inside parentheses, brackets and
-braces. More details here:
-&lt;a class="reference external" href="http://www.python.org/dev/peps/pep-0008/#maximum-line-length"&gt;http://www.python.org/dev/peps/pep-0008/#maximum-line-length&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Multi line split using parentheses, brackets (etc) will follow the normal
-indentation. The code might look ugly and then exceptions are allowed.&lt;/li&gt;
-&lt;li&gt;Define all class members at the beginning of class definition.
-Don't interleave methods and class members definition. This should make it
-easy to identify all class members used by the class.&lt;/li&gt;
-&lt;li&gt;Define all instance members inside the __init__() method. This should make
-it easy to identity all instance members used by the class and reduce the
-risk of using the same member for more than one purpose.&lt;/li&gt;
-&lt;li&gt;Decode all input to Unicode and encode all output from Unicode. Do &lt;strong&gt;all&lt;/strong&gt;
-internal text handling in &lt;strong&gt;Unicode&lt;/strong&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;input_raw_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;read_from_wire&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;input_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;input_raw_string&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c"&gt;# Only work with Unicode data.&lt;/span&gt;
-&lt;span class="n"&gt;output_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;process_something&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;input_string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;output_raw_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;output_string&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;send_to_wire&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;output_raw_string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;UTF-8 is not Unicode.
-Unicode is a character set and UTF-8 is a particular way of
-encoding Unicode.&lt;/li&gt;
-&lt;li&gt;When a method does not use the &lt;em&gt;self&lt;/em&gt; attribute, this is a code smell
-that this method should be placed somewhere else.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="mixin"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Mixin&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;As stated by &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Mixin"&gt;Wikipedia&lt;/a&gt;:
-Mixins encourage code reuse and avoid well-known pathologies associated
-with multiple inheritance.&lt;/p&gt;
-&lt;p&gt;Mixin is a limited usage of multiple inheritance, but they should &lt;strong&gt;not be
-mixed with overriding&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;We use mixing to reuse code and they are provide great help writing tests.&lt;/p&gt;
-&lt;p&gt;Methods from a mixin should not be overwritten by classes using the mixin.&lt;/p&gt;
-&lt;p&gt;Mixins should not overwrite methods or call &lt;strong&gt;super()&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;When defining a class using mixins, put first the parent class and then
-mixin classes in alphabetical order.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SomeMixedClass&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ParentClass&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AnotherMixin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SomeMixin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ZoroMixin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    A class with `single` inheritance and multiple mixins.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;When defining a mixin, document the external class or instance members used
-by the mixin.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;some_package&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;complicated_code_using&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;complicated_other_using&lt;/span&gt;
-
-
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;LoginMixin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    Does some kind of work.&lt;/span&gt;
-
-&lt;span class="sd"&gt;    username - account used for authentication.&lt;/span&gt;
-&lt;span class="sd"&gt;    password - password for the account&lt;/span&gt;
-&lt;span class="sd"&gt;    ssh_key - SSH key for authentication&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;loginWithUsernameAndPassword&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;        Does something.&lt;/span&gt;
-&lt;span class="sd"&gt;        &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="n"&gt;SomeException&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-        &lt;span class="n"&gt;complicated_code_using&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;loginWithUsernameAndSSHKey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;        Does something else.&lt;/span&gt;
-&lt;span class="sd"&gt;        &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="n"&gt;complicated_other_using&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh_key&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;set&lt;/span&gt; -o nounset
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="section" id="project-specific"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Project specific&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;When default arguments have mutable values they are defined as &lt;cite&gt;None&lt;/cite&gt; and
-then assigned the default value.&lt;/p&gt;
-&lt;p&gt;Otherwise this can hit us very hard. &lt;a class="reference external" href="http://stackoverflow.com/q/1132941/539264"&gt;More details here&lt;/a&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;methodName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;imutable&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    Describe method.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-       &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;div class="section" id="path-constants"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Path constants&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;When defining a directory path as a constant, you should include the trailing
+slash to make sure it is a directory and not a file. Two consecutive /'s are
+harmless in POSIX shells as long as they are not at the beginning of the path
+in some exotic environment such as Cygwin that actually uses this notation for
+SMB shares.&lt;/p&gt;
+&lt;p&gt;Always double quote path constants to handle files with spaces:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;SOME_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/some/path/
+&lt;span class="c"&gt;# and use it like this:&lt;/span&gt;
+&lt;span class="nb"&gt;command&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;${SOME_PATH}/some.file&amp;quot;&lt;/span&gt;
 
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-       &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SomeObject&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c"&gt;# Another example&lt;/span&gt;
+&lt;span class="nv"&gt;REMOTE_URI&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;chevah@chevah.com:/home/chevah/styleguide.chevah.com/vm/
+scp &lt;span class="s2"&gt;&amp;quot;$LOCAL_FILE&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;${REMOTE_URL}/file&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class="section" id="multi-line-indentation"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id4"&gt;Multi line indentation&lt;/a&gt;&lt;/h3&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;For now, just some examples:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logger&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="n"&gt;message_id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;factory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;number&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
-    &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;factory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getUniqueString&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
-    &lt;span class="n"&gt;callback&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;do_something_else&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Same indentation applies for brackets:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;some_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-    &lt;span class="n"&gt;bla&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;blabla&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;alabala&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;2 line code exception. If the parentheses expression fits on one line:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logger&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="n"&gt;factory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;number&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;factory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getUniqueString&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Conditional exception. When indenting parentheses for conditional
-expressions add one extra indent to separate the condition expression
-from the conditional block.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;somethin_else&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt;
-        &lt;span class="n"&gt;say_something_else&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;do_else&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nothing&lt;/span&gt;
-    &lt;span class="n"&gt;do_something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;somethin_else&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt;
-        &lt;span class="n"&gt;say_something_else&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt;
-        &lt;span class="n"&gt;we_should_not_have_long_conditionals&lt;/span&gt;
-        &lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;do_else&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nothing&lt;/span&gt;
-    &lt;span class="n"&gt;do_something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Class, method and function indentation.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MyClassName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-        &lt;span class="n"&gt;VeryLongParentClass&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;VeryLongOtherMixin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    Docstring here.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;myMethodWithLongArguments&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;other_long_thing&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    Docstring here.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;my_function_with_long_arguments&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-        &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="n"&gt;other_long_thing&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="n"&gt;other_very_long_argument&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    Docstring here.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;p&gt;Instead of:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;SOME_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/some/path/
+&lt;span class="c"&gt;# and then:&lt;/span&gt;
+&lt;span class="nb"&gt;command&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;${SOME_PATH}some.file&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="section" id="imports"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id5"&gt;Imports&lt;/a&gt;&lt;/h3&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Imports should be called at the start of each module, the only exception is
-allowed for avoiding circular imports.&lt;/li&gt;
-&lt;li&gt;There is one empty line between the import block and module comment.&lt;/li&gt;
-&lt;li&gt;The imports blocks are separated by one empty line.&lt;/li&gt;
-&lt;li&gt;They will be arranged in 3 major blocks:&lt;ul&gt;
-&lt;li&gt;The first one is for importing from Python standard modules.&lt;/li&gt;
-&lt;li&gt;The second from modules outside of the project (3rd party).&lt;/li&gt;
-&lt;li&gt;The last for modules belonging to the project.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;In each block the modules are sorted in alphabetical order,
-case-insensitive.&lt;/li&gt;
-&lt;li&gt;When importing multiple members of a module, if they don't exceed the 78
-characters limit, they will be listed on the same line&lt;/li&gt;
-&lt;li&gt;When importing multiple members of a module, and they exceed the 78
-characters limit, they will be listed as a list, with each member on a
-line ending with comma.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;A good example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Copyright (c) YEAR Your Name.&lt;/span&gt;
-&lt;span class="c"&gt;# See LICENSE for details.&lt;/span&gt;
-&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Sample module for demonstrating imports coding conventions.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;__future__&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;with_statement&lt;/span&gt;
+&lt;div class="section" id="function-definition"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Function Definition&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Leave 2 blank lines between function definitions and always use &lt;tt class="docutils literal"&gt;local&lt;/tt&gt; for
+local variable declaration.&lt;/p&gt;
+&lt;p&gt;Define local variables at the start of the function, in a distinct block.
+It is recommended to define a local variable named &lt;cite&gt;result&lt;/cite&gt; to hold the value
+produced by calling the function.&lt;/p&gt;
+&lt;p&gt;Put the final returned result in a separate block.&lt;/p&gt;
+&lt;p&gt;Procedures are functions which have no result.&lt;/p&gt;
+&lt;p&gt;Since Bash only support returning numeric values, which are interpreted
+as exit codes, we will pass values between functions by using &lt;tt class="docutils literal"&gt;echo&lt;/tt&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#&lt;/span&gt;
+&lt;span class="c"&gt;# Description of function 1.&lt;/span&gt;
+&lt;span class="c"&gt;#&lt;/span&gt;
+&lt;span class="c"&gt;# * $1 - description of first argument&lt;/span&gt;
+&lt;span class="c"&gt;# * $2 - description of second argument&lt;/span&gt;
+&lt;span class="c"&gt;# * return - description of return value.&lt;/span&gt;
 
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;optparse&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;OptionParser&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;logging&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;types&lt;/span&gt;
+function1&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="nb"&gt;local &lt;/span&gt;variable_which_is_local
+    &lt;span class="nb"&gt;local &lt;/span&gt;result
 
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;OpenSSL&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;crypto&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.web&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;server&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;simplejson&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
+    do_some_action_here
+    do_more_action
 
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;chevah.commons.utils.constants&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="n"&gt;DEFAULT_KEY_SIZE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;DEFAULT_KEY_TYPE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;DEFAULT_PUBLIC_KEY_EXTENSION&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;chevah.commons.utils.exceptions&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;OperationalException&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;chevah.commons.utils.crypto&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Key&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;chevah.commons.utils.helpers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;log_add_default_handlers&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;open_local_admin_webpage&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;chevah.server.commons.configuration&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="n"&gt;ApplicationConfiguration&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;chevah.server.commons.constants&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="n"&gt;CONFIGURATION_SERVER_FILE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;CONFIGURATION_PID_FILE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;PRODUCT_NAME&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;chevah.server.commons.process&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ChevahTwistedProcess&lt;/span&gt;
+    &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$result&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+
+&lt;span class="c"&gt;#&lt;/span&gt;
+&lt;span class="c"&gt;# Description of procedure 1.&lt;/span&gt;
+&lt;span class="c"&gt;#&lt;/span&gt;
+&lt;span class="c"&gt;# It does this and this.&lt;/span&gt;
+&lt;span class="c"&gt;#&lt;/span&gt;
+procedure1&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="nb"&gt;local &lt;/span&gt;&lt;span class="nv"&gt;something&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;function1 ARG1&lt;span class="k"&gt;)&lt;/span&gt;
+
+    do_something_else something
+&lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-</summary></entry><entry><title>Release process</title><link href="http://styleguide.chevah.com/release-process.html" rel="alternate"></link><updated>2016-03-13T11:53:50+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-03-13:release-process.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
-&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#release-notes" id="id2"&gt;Release Notes&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#sample-release-notes" id="id3"&gt;Sample release notes&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="general"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This page describes the release process and steps to be followed during
-development to simplify the release or a final product or library.&lt;/p&gt;
-&lt;p&gt;Releasing a product usually consists of publishing the following:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Binary or source archives.&lt;/li&gt;
-&lt;li&gt;Documentation, which includes Release Notes, Known Issues and Upgrade Steps.&lt;/li&gt;
-&lt;li&gt;Public announcement. Notification email or website news/blog article.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="release-notes"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Release Notes&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Release notes explain what changed with this version. &lt;strong&gt;Period&lt;/strong&gt;.
-Release notes are &lt;strong&gt;not&lt;/strong&gt; installation, upgrade or configuration.&lt;/p&gt;
-&lt;p&gt;Each time a branch fixes a bug, adds a new feature or makes any changes
-which are visible to end users a new entry is added inside the release notes
-file. A release note entry is a summary for one change.&lt;/p&gt;
-&lt;p&gt;We keep release notes for all versions in a single file so that users can
-easily read all changes starting from their version up to latest or a
-specific version.&lt;/p&gt;
-&lt;p&gt;Release notes are grouped in one of the following categories. The category
-may be omitted if no changes were added for it. Here are some categories:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-* Major changes (only for major releases)
-* New features
-* Bug fixes (this will be the only section for bugfix releases)
-* Deprecation and Removals
-* Other changes. Documentation changes.
-&lt;/pre&gt;
-&lt;p&gt;A marker/tag is added at the end of the sentence to point the ticket ID
-associated with this change. Ticket ID marker is not mandatory for new features.&lt;/p&gt;
-&lt;p&gt;It can be followed by a list of tags to help users understand / filter the
-scope of the change. Here are some examples:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-* ``[https]`` - for changes affecting only a sub-system.
-* ``[aix]`` - for changes affecting only AIX systems.
-* ``[windows]`` - for changes affection only Windows system.
-&lt;/pre&gt;
-&lt;p&gt;Remember your audience/user/clients and write for that audience.&lt;/p&gt;
-&lt;p&gt;Don't explain all details of the change. When more details are required
-use a link to documentation.&lt;/p&gt;
-&lt;p&gt;All entries should be complete sentences or phrases, ending with a
-punctuation mark.&lt;/p&gt;
-&lt;p&gt;Use present tense as opposed to past tense. The text should state what the
-change &lt;strong&gt;does&lt;/strong&gt; and not what it &lt;strong&gt;did&lt;/strong&gt;.
-&amp;quot;Product no longer falls over X.&amp;quot; as opposed to &amp;quot;Product fell over X.&amp;quot;.&lt;/p&gt;
-&lt;p&gt;Write text in &lt;strong&gt;resolution&lt;/strong&gt; form, describe what impact the change will have
-on users. What will the users notice?&lt;/p&gt;
-&lt;p&gt;If a single sentence isn't clear enough to understand, explaining the
-background of the change can be helpful, by adding in
-&lt;cite&gt;Previously, X used to do Y.&lt;/cite&gt; or &lt;cite&gt;Previously, X used to do Y. Now Z.&lt;/cite&gt;.&lt;/p&gt;
-&lt;p&gt;Don't add low-level, internal details about product logic. Focus on how
-the change affects / is perceived by the user.&lt;/p&gt;
-&lt;p&gt;Here are some examples:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Support was added for doing / integrating with X.&lt;/li&gt;
-&lt;li&gt;Users now can do X.&lt;/li&gt;
-&lt;li&gt;It is no longer possible to do Y.&lt;/li&gt;
-&lt;li&gt;The text on the ABC form is now Z.&lt;/li&gt;
-&lt;li&gt;Reworded text from X to be gender neutral.&lt;/li&gt;
-&lt;li&gt;Doing X on a session in state Y no longer gives the XYZ error.&lt;/li&gt;
-&lt;li&gt;Fix the XZY error generated when client was doing X on a session in Y state.&lt;/li&gt;
-&lt;li&gt;Previously, users were unable to upload files to a folder if they
-had write permissions.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="section" id="sample-release-notes"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id3"&gt;Sample release notes&lt;/a&gt;&lt;/h3&gt;
-&lt;pre class="literal-block"&gt;
-Release Notes
-=============
-
-This is the list of all changes for PRODUCT NAME releases.
-
-
-Version 2.1.0, released 24/02/2014
-----------------------------------
-
-
-New features
-^^^^^^^^^^^^
-
-* Support was added to transfer files using SCP over SSH.
-  Read more... [scp]
-* SFTP protocol now support reading and creating symbolic links on
-  Windows. [sftp][windows]
-
-
-Defect fixes
-^^^^^^^^^^^^
-
-* Fix an internal server error when SSH client requests
-  to execute a command, a shell or a pseudo-terminal. [#176][sftp][scp]
-
-
-Deprecations and removals
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-* It is no longer possible to do X. [#1359][unix]
-* Windows XP is no longer supported. [#2345]
-* Configuration option X, deprecated since Product version 12.1.2, is now
-  removed. [#1366]
-
-
-Other changes
-^^^^^^^^^^^^^
-
-* The howto document page of X now has documentation about doing Y. [#2452]
-
-
-
-Version 2.0.0, released 20/02/2014
-----------------------------------
-
-
-Major changes
-^^^^^^^^^^^^^
-
-* All log handlers were converted to event handlers.
-  This allows an unified method for interacting the the audit events
-  produced by SFTPPlus.
-* All authentication methods are now explicitly defined and ordered.
-  You can now choose the order in which different authentication methods
-  are used.
-
-
-New features
-^^^^^^^^^^^^
-
-* Support was added to transfer files using SCP over SSH.
-  Read more... [scp]
-
-
-Defect fixes
-^^^^^^^^^^^^
-
-* Fix an internal server error when SSH client requests
-  to execute a command, a shell or a pseudo-terminal. [#176][sftp][scp]
-
-
-Deprecations and removals
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-* It is no longer possible to do X. [#1359][unix]
-* Windows XP is no longer supported. [#2345]
-* Configuration option X, deprecated since Product version 12.1.2, is now
-  removed. [#1366]
-
-
-Version 1.1.1, released 14/02/2013
-----------------------------------
-
-
-Defect fixes
-^^^^^^^^^^^^
-
-* Fix an internal server error when FTP client requests
-  an unknown command. [#160][ftp][ftps]
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</summary></entry><entry><title>Generic</title><link href="http://styleguide.chevah.com/generic.html" rel="alternate"></link><updated>2016-03-13T11:53:17+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-03-13:generic.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
-&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#comments" id="id2"&gt;Comments&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#documentation" id="id3"&gt;Documentation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#exceptions-handling" id="id4"&gt;Exceptions handling&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#experimental-features-without-feature-branches" id="id5"&gt;Experimental Features Without Feature Branches&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#project-specific" id="id6"&gt;Project specific&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="general"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The content of this website is intended to help new team members understand
-the direction of our team.&lt;/p&gt;
-&lt;p&gt;It also helps novice and advance beginners by providing a set of simple rules.
-Anyone should read this as best practice and provide feedback in case
-something is wrong.&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Rule #1: Keep it DRY! Don't repeat yourself!&lt;/li&gt;
-&lt;li&gt;Rule #2: KISS - Keep it simple, stupid simple!&lt;/li&gt;
-&lt;li&gt;Rule #3: If it ain't broke, don't fix it!&lt;/li&gt;
-&lt;li&gt;All code in any code-base should look like a single person typed it, no
-matter how many people contributed.&lt;/li&gt;
-&lt;li&gt;No single person is responsible for a part of the code. We write code
-together, we take the blame together, we take the glory together.
-Once a code was approved for review, reviewers are also responsible for
-that code.&lt;/li&gt;
-&lt;li&gt;Write all code as it will be written once and read thousand times.
-Write code for maximum readability.&lt;/li&gt;
-&lt;li&gt;When you need a trade-off between readability and code duplication, choose
-to have a code less readable but without duplication.&lt;/li&gt;
-&lt;li&gt;Write code as it will be used by humans, not a machine. You are not a
-a compiler / interpretor.&lt;/li&gt;
-&lt;li&gt;Optimization should come second and only if really needed. Don't Use clever
-tricks and other optimization to early.&lt;/li&gt;
-&lt;li&gt;Do the simplest thing that could possibly work and do it well.
-Always work on the story you have, not something you think we're going to
-need sometime in the future.
-Don't try implement all usecases you can think of and end with poorly
-designed code and poorly tested code.&lt;/li&gt;
-&lt;li&gt;Try to keep methods as flat as possible and return as soon as possible.&lt;/li&gt;
-&lt;li&gt;Don't use abbreviation. Use full, meaningful names.&lt;/li&gt;
-&lt;li&gt;Don't use tabs for indentation, and in general don't use tabs for anything
-else. The only exceptions are the Makefiles.&lt;/li&gt;
-&lt;li&gt;Favor indentation using 4 spaces. For deep nested languages (HTML, JS) it
-is OK to use 2 spaces.&lt;/li&gt;
-&lt;li&gt;Maximum line length for code 80 characters, but for Python we use 79 to be in
-sync with PEP8.&lt;/li&gt;
-&lt;li&gt;For narrative documentation use &lt;a class="reference external" href="http://rhodesmill.org/brandon/2012/one-sentence-per-line/"&gt;semantic newlines&lt;/a&gt;.
-Make lines short, and break lines at natural places, such as after commas and semicolons, rather than after the Nth column.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
-2
-3
-4
-5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;Sometimes when editing a narrative documentation file, I wrap the lines semantically.
-Instead of inserting a newline at 70 columns (or whatever),
-or making paragraphs one long line,
-I put in newlines at a point that seems logical to me.
-Modern code-oriented text editor are very good at wrapping and arranging long lines.
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;ul class="simple"&gt;
-&lt;li&gt;Don't mix multiple languages in a single file.&lt;/li&gt;
-&lt;li&gt;No need for the ultimate purism, when using / calling code from external
-libraries it is OK if those calls don't comply with coding convention.&lt;/li&gt;
-&lt;li&gt;When extending external libraries use the coding convention used by that
-library. It might be harder to define the border of those changes but this
-should help with sending patches upstream.&lt;/li&gt;
-&lt;li&gt;When reporting a code related problem, use
-&lt;a class="reference external" href="http://sscce.org"&gt;Short, Self Contained, Correct (Compilable), Example&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;Each repository / project will have a README file describing why it exists
-and what it should do.
-The README should also include notes about contributing to the project.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Each repository will have a LICENSE and AUTHORS files.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Words are an important part of how software works.
-Even though there may be dozens of people creating a product, reading
-comments, documentation, notes etc, it should still sound like we speak
-in one consistent voice.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;When writing text for the documentation or text that appears in the
-program favour classy over cute or mechanical.
-Respect the reader, act more like a human and less like a computer,
-and use fewer words:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-Instead of:
-
-Successfully deleted the #{branch_name} branch.
-
-Try something like:
-
-The #{branch_name} branch has been deleted.
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Use a graphical commit tool (&lt;tt class="docutils literal"&gt;git gui&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;gitg&lt;/tt&gt;) for doing the commit.
-In this way you can split the changes in multiple commits and you can also
-do a first review just before the commit.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;When you don't understand something related to security, don't just walk
-by and ignore it. Try to understand what is happening there, or ask
-someone else to take a look or to explain it to you.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Don't abuse inheritance and favour composition and delegation.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Write code so that it can be read / used by developers having a work
-style different than yours. Don't add IDE / text editor specific things
-Don't assume that other developer will use the same IDE / text editor,
-fancy keyboard (or foot pedals), array of huge monitors...&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;When you have a non-trivial conditional expression (logical condition from
-an if statement), break it in smaller sub-conditionals.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Long conditional which is not that bad.&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MAX_SIZE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
-    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;ACTIVE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
-    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;PAUSED&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
-  &lt;span class="n"&gt;do_domething&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-&lt;span class="c"&gt;# But can be better.&lt;/span&gt;
-&lt;span class="n"&gt;source_not_full&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MAX_SIZE&lt;/span&gt;
-&lt;span class="n"&gt;destination_available&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;ACTIVE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
-    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;PAUSED&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;source_available&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;destination_available&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-  &lt;span class="n"&gt;do_something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-&lt;span class="c"&gt;# Or even better.&lt;/span&gt;
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Source&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-  &lt;span class="n"&gt;MAX_SIZE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
-  &lt;span class="nd"&gt;@property&lt;/span&gt;
-  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;full&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MAX_SIZE&lt;/span&gt;
-
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Destination&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-  &lt;span class="n"&gt;ACTIVE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-  &lt;span class="n"&gt;PAUSED&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
-  &lt;span class="n"&gt;STOPPED&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
-  &lt;span class="n"&gt;FAILDED&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
-
-  &lt;span class="nd"&gt;@property&lt;/span&gt;
-  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;ready&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
-      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ACTIVE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
-      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PAUSED&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-      &lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;full&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;destination&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ready&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-  &lt;span class="n"&gt;do_something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;div class="section" id="case-syntax"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;Case Syntax&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;$VARIABLE_NAME&amp;quot;&lt;/span&gt; in
+    &lt;span class="s2"&gt;&amp;quot;option1&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;do &lt;/span&gt;specific
+        ;;
+    option2*&lt;span class="o"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;do &lt;/span&gt;generic
+        ;;
+    *&lt;span class="o"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;do &lt;/span&gt;default
+        ;;
+&lt;span class="k"&gt;esac&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="section" id="comments"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Comments&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;All comments should be valid sentences and should end with a full stop (.).&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Try to write code so that it speak for itself and so that a comment is not
-required.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Try to name variables, methods, function so that they communicate their
-intend. A comment is only attached to the place where the name is defined,
-and not present in all other multiple places where it is used. IDE can help,
-but we should not rely on that.&lt;/p&gt;
-&lt;p&gt;When a comment is required is like saying: I have no idea for a better name
-for this thing, so here is my poor comment. Good luck with figuring the
-intend of this name when you see the it in the rest of this file.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Place comments on a new line above their subject and in the same block as the referred code.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;some_condition&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-  &lt;span class="c"&gt;# We got into into this branch to do x.&lt;/span&gt;
-  &lt;span class="n"&gt;do_domething&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;lines&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;marker&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="c"&gt;# Marker lines are ignored.&lt;/span&gt;
-    &lt;span class="k"&gt;continue&lt;/span&gt;
-  &lt;span class="n"&gt;do_domething&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;div class="section" id="if-then-else"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id5"&gt;IF/THEN/ELSE&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if &lt;/span&gt;TEST; &lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="k"&gt;    &lt;/span&gt;call something
+&lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;$string&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; OTHER_TEST &lt;span class="o"&gt;]&lt;/span&gt;; &lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="k"&gt;    &lt;/span&gt;call something_else
+&lt;span class="k"&gt;else&lt;/span&gt;
+&lt;span class="k"&gt;    &lt;/span&gt;call something_else_completely
+&lt;span class="k"&gt;fi&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;Avoid end of line comments.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Technical debt comments (ex FIXME, TODO) will always have an attached
-ticket ID and will use the following format. Only &lt;strong&gt;FIXME&lt;/strong&gt; marker is used
-followed by ticket ID. Comments will come on a new lines.
-Adapt this to the style of comments used in the specific language, but
-is important to keep the &lt;strong&gt;FIXME:123:&lt;/strong&gt; marker.:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-# FIXME:1234:
-# Details about this tech-dept. Ex: Can only be fixed when full moon.
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
 &lt;/div&gt;
-&lt;div class="section" id="documentation"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Documentation&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Well documented code is extremely important.
-Take time to describe components, how they work, their limitations, and the way they are constructed.
-Don't leave others in the team guessing as to the purpose of uncommon or non-obvious code.&lt;/li&gt;
-&lt;li&gt;Document code as part of docstrings and not as comments.&lt;/li&gt;
-&lt;li&gt;Document packages, modules, classes, functions.&lt;/li&gt;
-&lt;li&gt;For narative documentation (non docstrins) use &lt;a class="reference external" href="http://rhodesmill.org/brandon/2012/one-sentence-per-line/"&gt;semantic linefeeds&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
-2
-3
-4
-5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;Sometimes when editing a narrative documentation file, I wrap the lines semantically.
-Instead of inserting a newline at 70 columns (or whatever),
-or making paragraphs one long line,
-I put in newlines at a point that seems logical to me.
-Modern code-oriented text editor are very good at wrapping and arranging long lines.
+&lt;div class="section" id="for"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id6"&gt;FOR&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for &lt;/span&gt;CONDITION; &lt;span class="k"&gt;do&lt;/span&gt;
+&lt;span class="k"&gt;    &lt;/span&gt;call something
+&lt;span class="k"&gt;done&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-&lt;div class="section" id="exceptions-handling"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;Exceptions handling&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Here are some simple generic rules for working with exceptions.&lt;/p&gt;
-&lt;p&gt;In Chevah project we use 2 major &amp;quot;kinds&amp;quot; of exceptions:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;cite&gt;Errors&lt;/cite&gt; are top level exceptions that are not going to be handled
-internally by the package / library.&lt;/li&gt;
-&lt;li&gt;&lt;cite&gt;Exceptions&lt;/cite&gt; normal exceptions, passed inside the package/library to signal
-various conditions. The public API for the package/library should not raise
-this kind of exceptions.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Exceptions can take any format, and most of the time they can contain only
-a text with some details about the error. These exceptions are low level
-and should be raised in simple conditions.&lt;/p&gt;
-&lt;p&gt;Errors should have an unique ID and a data attribute.
-Each ID should be raised from a single place.
-The data attribute is a dictionary with key / values that make sense for the
-error.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="experimental-features-without-feature-branches"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id5"&gt;Experimental Features Without Feature Branches&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Feature branches are one way to develop slow/long changes without affecting
-the production / master branch.&lt;/p&gt;
-&lt;p&gt;We don't use feature branches because:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;They need to be permanently kept in sync with main branch. This will solve
-conflicts with the main branch, but there might still be hidden conflicts
-with &lt;strong&gt;other feature&lt;/strong&gt; branches.&lt;/li&gt;
-&lt;li&gt;You will need to keep in sync with other feature branches to make sure
-there are no integration problems. This just creates more work and in the
-end you will have something close to multiple &lt;strong&gt;masters&lt;/strong&gt; as each feature
-branch will contain latest development from all other feature branches.&lt;/li&gt;
-&lt;li&gt;They create multiple versions of a product which requires more release work.
-You will want to release an alpha/beta version of the feature as soon as
-possible to get feedback from end users.&lt;/li&gt;
-&lt;li&gt;Along the focus feature, they might fix or refactor some code code which is
-of great help for the main branch.&lt;/li&gt;
-&lt;li&gt;Once merged, a feature branch will introduce a big change in a short time.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Instead of feature branches we develop experimental features directly in the
-main branch. Experimental features are triggered using dedicated
-(configuration) flags.&lt;/p&gt;
-&lt;p&gt;In this way, a feature is gradually added to master, and during development
-by spending more time in master it should have a greater exposure to testing
-and checking that it integrates with other features.&lt;/p&gt;
+&lt;div class="section" id="while-until"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id7"&gt;WHILE/UNTIL&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;while &lt;/span&gt;TEST; &lt;span class="k"&gt;do&lt;/span&gt;
+&lt;span class="k"&gt;    &lt;/span&gt;call something
+&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="section" id="project-specific"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id6"&gt;Project specific&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="section" id="references"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id8"&gt;References&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Here are the pages I used to create this page.&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;Each log message should be documented, listing format, introduction version,
-version since it was obsolete, log type, conditions in which it is raised
-and other informations that can be useful for users.&lt;/li&gt;
-&lt;li&gt;A logging messages should only be called from a single place in the code.
-This will greatly help with support and debugging.&lt;/li&gt;
-&lt;li&gt;A logging message should have a unique ID. This will help the support team
-by pointing a specific event. It will also help when localized logs are
-used.&lt;/li&gt;
-&lt;li&gt;If a logging message should be issued from multiple places, move the
-logging call into a dedicated helper method. This will help with
-automatic detection of accidentally using same message ID for different
-logs.&lt;/li&gt;
-&lt;li&gt;Components should not issue logging messages that are outside of
-theirs scope, but rather use exceptions to pass the log informations.&lt;/li&gt;
-&lt;li&gt;If there are no other options, rather than directly issuing a logging
-message, the component should call a function located in the component
-that 'owns' the log ID that will issue the log.&lt;/li&gt;
-&lt;li&gt;All branches will need to use the following convention:
-&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;TICKETNO-SHORT_DESCRIPTION&lt;/span&gt;&lt;/tt&gt;. By having a reference to a ticket, it will
-be much easier to track and keep a record of branch purpose and its
-development.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.davidpashley.com/articles/writing-robust-shell-scripts/"&gt;http://www.davidpashley.com/articles/writing-robust-shell-scripts/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.linuxjournal.com/content/return-values-bash-functions"&gt;http://www.linuxjournal.com/content/return-values-bash-functions&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Example:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-447-add_sqlite_log
-&lt;/pre&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Each user configuration options should be documented,
-listing valid values, place where the configuration is located,
-introduction version, version since it was obsolete,
-together with a description of the purpose and effect.&lt;/li&gt;
-&lt;li&gt;Configuration options will be documented using the following format. Please
-note the order in which fields are defined, the name of the files and the
-format for declaring possible values. All fields should be present, and
-if no value is defined, use 'None' or leave it blank.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="literal-block"&gt;
-log_file
---------
-
-:Optional: Yes
-:Default value: `log/server.log`
-:Values: * `some value`
-         * `other value` - short description or this value.
-         * `yet another value`
-:Available from version: 1.6.0
-:Available up to version: 2.0.3
-:Description:
-    This is the long description of the configuration option. It can
-    span multiple lines.
-
-    It can also span multiple paragraph.
-
-    This should be the place to describe in details available values
-    that can be set.
-&lt;/pre&gt;
-&lt;/div&gt;
-</summary></entry><entry><title>Review</title><link href="http://styleguide.chevah.com/review.html" rel="alternate"></link><updated>2016-03-13T11:52:53+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-03-13:review.html</id><summary type="html">&lt;p&gt;This page discuss the code/changes review process as both the person
-who requests a reviewer and a person who checks a review.&lt;/p&gt;
-&lt;div class="contents topic" id="contents"&gt;
-&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#for-person-requesting-a-review" id="id2"&gt;For person requesting a review&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#review-request-message" id="id3"&gt;Review request message&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#merge-your-branch" id="id4"&gt;Merge your branch&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#for-person-reviewing-changes" id="id5"&gt;For person reviewing changes&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#reviewer-s-check-list" id="id6"&gt;Reviewer's check list&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="general"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;The goal of a review is to eliminate as many defects as possible,
-regardless of who &amp;quot;caused&amp;quot; the error. Branch driver and reviews work
-together to achieve this goal.&lt;/li&gt;
-&lt;li&gt;The review process is a very efficient form of pair-programming.&lt;/li&gt;
-&lt;li&gt;Branch driver is the person (or persons) requesting the review and
-responsible for implementing changes during review.&lt;/li&gt;
-&lt;li&gt;Reviewer is the person responsible for checking the code or changes.&lt;/li&gt;
-&lt;li&gt;The review process is first class citizen of the Quality Assurance process.&lt;/li&gt;
-&lt;li&gt;Each defect found during a review is an opportunity to improve the code.
-Every defect found and fixed in peer review is a defect that a customer
-never sees and another problem that support doesn't have to spend time
-tracking down.&lt;/li&gt;
-&lt;li&gt;The branch driver is responsible for getting his/her branch approved. In
-case a branch review is delayed, the branch driver should contact the
-reviewers and urge the review.&lt;/li&gt;
-&lt;li&gt;While the main purpose of a review is to assert the quality of the changes,
-the review is at the same time a learning, growing, and communication
-experience.&lt;/li&gt;
-&lt;li&gt;Try to observe good things from other team members and feel free to comment
-and let others know about how you think that things can be improved.&lt;/li&gt;
-&lt;li&gt;Ideally you will have many small merge requests, because the bigger they
-get, the more costly they are - now and in the future.&lt;/li&gt;
-&lt;li&gt;One merge request should do one thing only.&lt;/li&gt;
-&lt;li&gt;The target for a small request is no more than 400 touched lines
-(added + removed).&lt;/li&gt;
-&lt;li&gt;When you do a refactoring and you need to rename something in many files,
-do it in a dedicated branch which only deals with the renaming.
-This will help a lot with the review. Land your changed with the ugly
-names and then do a follow-up branch for the renaming.&lt;/li&gt;
-&lt;li&gt;Feel free to submit as many merge request as you can. There is a problem
-with the size of a merge request, not with their number :).&lt;/li&gt;
-&lt;li&gt;Some reasons for keeping the merge requests small:&lt;ul&gt;
-&lt;li&gt;Large changes are much more likely to do many things.&lt;/li&gt;
-&lt;li&gt;It's harder to understand them.&lt;/li&gt;
-&lt;li&gt;It's harder to review them.&lt;/li&gt;
-&lt;li&gt;It's harder to inspect the main branch to find the merge that
-introduced a bug.&lt;/li&gt;
-&lt;li&gt;It's more likely to break the build.&lt;/li&gt;
-&lt;li&gt;It's harder to cherry pick code for backporting / supporting old releases.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="for-person-requesting-a-review"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;For person requesting a review&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Once a task/ticket is done, it should be submitted for review.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;All&lt;/strong&gt; changes should be reviewed prior to be merged or released.&lt;/li&gt;
-&lt;li&gt;Before requesting a review you should run a full test on your local
-computer and on all supported platforms.
-Just run &lt;tt class="docutils literal"&gt;paver test_remote all&lt;/tt&gt; and Buildbot and GitHub will work
-together to display the results.&lt;/li&gt;
-&lt;li&gt;Before passing the review to others, take another careful look at your work
-and perform a first review yourself.
-Check that all changes are described together with their attached test
-cases.
-It is very important to have a good review request message as it will
-help reviewers understand what you have done.&lt;/li&gt;
-&lt;li&gt;Check the &lt;strong&gt;Reviewer's check list&lt;/strong&gt; since those are the things that a
-reviewer will check for sure.&lt;/li&gt;
-&lt;li&gt;For Trac: A review request is created by adding the comment and then
-setting the state to 'needs_review'.
-(&lt;strong&gt;don't use keywords&lt;/strong&gt;, we are using a strict ticket
-work-flow so use the ticket action form).&lt;/li&gt;
-&lt;li&gt;For GitHub: A review request is created using &lt;strong&gt;GitHub Pull requests&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;When submitting a review for changes not planed in the current milestone,
-update the milestone to the current one. Don't leave the old milestone.&lt;/li&gt;
-&lt;li&gt;You can start writing your review request as soon as you start coding on a
-branch. There is no need to wait for feature to be fully implemented and
-tests to pass.
-Writing a review request early, will help you to organize and explain
-the work that you plan to do on the branch.&lt;/li&gt;
-&lt;li&gt;When the review is ready to be sent to reviewers, leave a comment
-containing the &lt;strong&gt;needs-review&lt;/strong&gt; marker word. It will trigger the review
-request process.&lt;/li&gt;
-&lt;li&gt;GitHub inline comments are great, and you can add them to help with the
-initial review request. Just &lt;strong&gt;don't abuse them&lt;/strong&gt;!
-Think twice before adding an initial inline comment for the review.
-Ask yourself why that comments is needed and why that line is not
-clear. Maybe adding a comment in the code would avoid the
-need for the GitHub inline comment.&lt;/li&gt;
-&lt;li&gt;During a review, the reviewer might request changes. You can solve
-the request by either changing the code, or adding a comment with
-the reason why you don't want to change the code. After all requests
-are solved, leave a &lt;strong&gt;new&lt;/strong&gt;, separate, comment containing the keyword
-&lt;strong&gt;needs-review&lt;/strong&gt; . This will let reviewers know that you are done and that
-they can check the latest changes.&lt;/li&gt;
-&lt;li&gt;Make sure that review request message is always up to date with latest
-changes.
-If during the review new changes are made or new test cases are discovered,
-don't forget to update the initial review request message to include a
-summary of these changes.&lt;/li&gt;
-&lt;li&gt;The &amp;quot;How to test the changes&amp;quot; section should include &lt;strong&gt;ALL&lt;/strong&gt; test cases
-done during the review. If a reviewer is following a test case not described
-in the initial request message, it should update the review message with
-the new test case.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="section" id="review-request-message"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id3"&gt;Review request message&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;When submitting a ticket for review, the review request should contain the
-following message as described in &lt;a class="reference external" href="https://github.com/chevah/styleguide/blob/master/.github/PULL_REQUEST_TEMPLATE"&gt;PULL_REQUEST_TEMPLATE&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;For GitHub review requests, &lt;strong&gt;add the merge commit message as the pull
-request title&lt;/strong&gt;. The message should include the ticket ID number.
-Example of merge commit message:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-[#1234] What was done in this branch.
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;The commit message should be on a single line and preferable under 100
-characters. The message should be a clearly articulated phrase, summarizing
-changes done in the branch. Further details about the changes can go in
-the release notes or review request body.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Add the list of persons who should review the branch, using a
-line starting with &lt;strong&gt;reviewers&lt;/strong&gt; and followed by GitHub names or each
-reviewer prefixed with &lt;strong&gt;&amp;#64;&lt;/strong&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;If required, using &lt;strong&gt;depends-on&lt;/strong&gt; marker, add the list of reviews on which
-this review depends and blocks the merge of this branch.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="merge-your-branch"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id4"&gt;Merge your branch&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;After the merge request and review was approved you need to merge your branch
-into master.&lt;/p&gt;
-&lt;p&gt;After your review request was approved, you can send your branch to PQM
-for automatic testing and merging. Use the following command:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-paver pqm GITHUB_PULL_REQUEST_ID
-&lt;/pre&gt;
-&lt;p&gt;The PQM will check your branch and if it passed all tests, it will be merged
-and pushed to master.&lt;/p&gt;
-&lt;p&gt;If PQM is not enabled for the repo, you will need to do a manual merge.&lt;/p&gt;
-&lt;p&gt;When doing manual merge using git, use squash merge and don't use the
-default commit message. Here is a sample command for merging branch
-&amp;quot;1234-what-was-done&amp;quot;:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-git checkout master
-git merge --no-commit --squash 1234-what-was-done
-git commit -a -m &amp;quot;[#1234] What was done in this branch.&amp;quot;
-&lt;/pre&gt;
-&lt;p&gt;It is recommended to define a git alias for &lt;cite&gt;merge --no-commit --squash&lt;/cite&gt;.&lt;/p&gt;
-&lt;p&gt;A merge commit should have a commit message, in the format:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-[#1234] What was done in this branch.
-&lt;/pre&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;strong&gt;#1234&lt;/strong&gt; is the ticket number for this branch. It is used to get more
-details about branch work and review. It can also be used to associate a
-commit to a ticket / branch / review / task and check the history/story of
-that commit.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="for-person-reviewing-changes"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id5"&gt;For person reviewing changes&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Aim for a code inspection rate of fewer than 300 – 500 LOC per hour. This
-does not apply to QA team members for which, reviewing changes is the main
-activity.&lt;/li&gt;
-&lt;li&gt;Take enough time for a proper, slow review, but not more than 60–90 minutes.
-Take a big break between reviews.&lt;/li&gt;
-&lt;li&gt;You should always spend at least five minutes reviewing code, even if it's
-just one line. Often, a single line or small changes can have major
-impact throughout the whole system, and it's worth the five minutes to
-think through the possible effects that a change could have.&lt;/li&gt;
-&lt;li&gt;The only quality metric of good work / code is &lt;strong&gt;WTF/s&lt;/strong&gt;. While doing
-the review you are encouraged to keep track of all your first
-contact / view / read impressions and report them in the review feedback.&lt;/li&gt;
-&lt;li&gt;Follow procedure recommended in the &amp;quot;How to try and test the changes&amp;quot;
-section, record environment, steps and results and share them through
-a comment.&lt;/li&gt;
-&lt;li&gt;In case of errors, leave a comment describing what tests were run, the
-exact steps you took and the actual results.&lt;/li&gt;
-&lt;li&gt;If the work is good, you can request the code to be merged by the author
-by setting the state to needs_merge in Trac.&lt;/li&gt;
-&lt;li&gt;If the work is good and GitHub pull request was used, leave a comment on
-the pull request page with a line starting with / containing
-&lt;strong&gt;changes-approved&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;If no merge is required you can close the ticket as solved.&lt;/li&gt;
-&lt;li&gt;If minor changes are required, and they are easy to fix, you cat try to fix
-them. Commit the changes and approve the review at your revision.&lt;/li&gt;
-&lt;li&gt;If changes are required, you put the ticket in the &lt;strong&gt;needs-changes&lt;/strong&gt; state
-and assign the ticket to the person who can make the required changes.
-When working with GitHub you can request changed by adding
-the &lt;strong&gt;needs-changes&lt;/strong&gt; marker word in a comment.&lt;/li&gt;
-&lt;li&gt;Don't spend to much time on a review request if it is not clear enough and
-you don't know exactly what to do and how to test.
-This is a problem with the review request and it &lt;cite&gt;needs changes&lt;/cite&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="section" id="reviewer-s-check-list"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id6"&gt;Reviewer's check list&lt;/a&gt;&lt;/h3&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Does the &lt;strong&gt;new&lt;/strong&gt; changes comply with latest styleguide ?&lt;/li&gt;
-&lt;li&gt;Does the code have tests for new code?&lt;/li&gt;
-&lt;li&gt;Does the merge commit message describes what is done by this branch?&lt;/li&gt;
-&lt;li&gt;Does the branch name starts with the Trac ticket ID.&lt;/li&gt;
-&lt;li&gt;Does &lt;strong&gt;all&lt;/strong&gt; tests pass? Does GitHub say that the branch is
-&lt;strong&gt;Good to merge&lt;/strong&gt;?&lt;/li&gt;
-&lt;li&gt;If there is no &lt;tt class="docutils literal"&gt;paver test_remote all&lt;/tt&gt; for the latest code, you can
-either just reject the review, or trigger a test and wait for results.
-&lt;strong&gt;Never&lt;/strong&gt; approve a code that is not passing the tests.&lt;/li&gt;
-&lt;li&gt;Is there a release notes entry for changes?&lt;/li&gt;
-&lt;li&gt;Is there documentation for changes? Does the documentation make sense?&lt;/li&gt;
-&lt;li&gt;Are the new event documented?&lt;/li&gt;
-&lt;li&gt;Are the removed events documented?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
+&lt;/blockquote&gt;
 &lt;/div&gt;
 </summary></entry><entry><title>Work</title><link href="http://styleguide.chevah.com/work.html" rel="alternate"></link><updated>2016-03-07T12:40:20+00:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-03-07:work.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;

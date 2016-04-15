@@ -17,171 +17,29 @@
 
 <ol id="post-list">
         <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="http://styleguide.chevah.com/testing.html" rel="bookmark" title="Permalink to Testing">Testing</a></h2> </header>
+                <header> <h2 class="entry-title"><a href="http://styleguide.chevah.com/review.html" rel="bookmark" title="Permalink to Review">Review</a></h2> </header>
                 <footer class="post-info">
-                    <abbr class="published" title="2016-03-13T12:39:29.363052"> Sun 13 March 2016 </abbr>
+                    <abbr class="published" title="2016-04-15T07:37:25.858397"> Fri 15 April 2016 </abbr>
 <address class="vcard author">By <a class="url fn" href="http://styleguide.chevah.com/author/chevah-team.html">Chevah Team</a></address>                </footer><!-- /.post-info -->
-                <div class="entry-content"> <div class="contents topic" id="contents">
+                <div class="entry-content"> <p>This page discuss the code/changes review process as both the person
+who requests a reviewer and a person who checks a review.</p>
+<div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#types-of-tests" id="id1">Types of tests</a><ul>
-<li><a class="reference internal" href="#unit-testing" id="id2">Unit testing</a></li>
-<li><a class="reference internal" href="#integration-testing" id="id3">Integration testing</a></li>
-<li><a class="reference internal" href="#system-testing" id="id4">System testing</a></li>
-<li><a class="reference internal" href="#story-functional-customer-tests" id="id5">Story / Functional / Customer tests</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#developing-using-tests" id="id6">Developing using tests</a><ul>
-<li><a class="reference internal" href="#domain-specific-language" id="id7">Domain Specific Language</a></li>
-<li><a class="reference internal" href="#dependency-injection-of-system-components" id="id8">Dependency injection of system components</a></li>
-<li><a class="reference internal" href="#mock-object" id="id9">Mock object</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#structure-of-a-test" id="id10">Structure of a test</a></li>
-<li><a class="reference internal" href="#smells" id="id11">Smells</a></li>
-<li><a class="reference internal" href="#naming-conventions" id="id12">Naming conventions</a></li>
-<li><a class="reference internal" href="#test-fixtures-setup-and-teardown" id="id13">Test fixtures, setUp and tearDown</a></li>
-<li><a class="reference internal" href="#tests-description-docstrings" id="id14">Tests description - docstrings</a></li>
-<li><a class="reference internal" href="#rerefences" id="id15">Rerefences</a></li>
-</ul>
-</div>
-<p>Writing automated tests is an important part ...</p> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="http://styleguide.chevah.com/bugs-and-tech-debt.html" rel="bookmark" title="Permalink to Bugs and Tech-Debt">Bugs and Tech-Debt</a></h2> </header>
-                <footer class="post-info">
-                    <abbr class="published" title="2016-03-13T12:37:30.143047"> Sun 13 March 2016 </abbr>
-<address class="vcard author">By <a class="url fn" href="http://styleguide.chevah.com/author/chevah-team.html">Chevah Team</a></address>                </footer><!-- /.post-info -->
-                <div class="entry-content"> <div class="contents topic" id="contents">
-<p class="topic-title first">Contents</p>
-<ul class="simple">
-<li><a class="reference internal" href="#general" id="id1">General</a></li>
-<li><a class="reference internal" href="#defects-and-release-blockers" id="id2">Defects and Release Blockers</a></li>
-<li><a class="reference internal" href="#technical-debt" id="id3">Technical Debt</a></li>
-<li><a class="reference internal" href="#references" id="id4">References</a></li>
-</ul>
-</div>
-<div class="section" id="general">
-<h2><a class="toc-backref" href="#id1">General</a></h2>
-<p>As with any other product, our ideal is to release a product without any
-known defects and with optimal implementation.</p>
-<p>While this is a noble goal, achieving it might not be economically feasible.
-That is creating a zero bugs product ...</p></div> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="http://styleguide.chevah.com/html.html" rel="bookmark" title="Permalink to HTML, XML and other markups">HTML, XML and other markups</a></h2> </header>
-                <footer class="post-info">
-                    <abbr class="published" title="2016-03-13T12:23:17.627009"> Sun 13 March 2016 </abbr>
-<address class="vcard author">By <a class="url fn" href="http://styleguide.chevah.com/author/chevah-team.html">Chevah Team</a></address>                </footer><!-- /.post-info -->
-                <div class="entry-content"> <div class="contents topic" id="contents">
-<p class="topic-title first">Contents</p>
-<ul class="simple">
-<li><a class="reference internal" href="#general" id="id1">General</a></li>
-<li><a class="reference internal" href="#css-interaction" id="id2">CSS interaction</a></li>
-<li><a class="reference internal" href="#html-tags-usage" id="id3">HTML tags usage</a></li>
-</ul>
-</div>
-<div class="section" id="general">
-<h2><a class="toc-backref" href="#id1">General</a></h2>
-<ul>
-<li><p class="first">Unlike other files, indentation for XML/HTML is 2 spaces.</p>
-</li>
-<li><p class="first">Don't use inline HTML style attribute. Only CSS class.</p>
-</li>
-<li><p class="first">Use HTML5 doctype:</p>
-<pre class="literal-block">
-&lt;!doctype html&gt;
-</pre>
-</li>
-</ul>
-</div>
-<div class="section" id="css-interaction">
-<h2><a class="toc-backref" href="#id2">CSS interaction</a></h2>
-<ul class="simple">
-<li>Make sure all elements that are used in JS have an ID.
-This helps with ...</li></ul></div> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="http://styleguide.chevah.com/css.html" rel="bookmark" title="Permalink to CSS, LESS and Styles">CSS, LESS and Styles</a></h2> </header>
-                <footer class="post-info">
-                    <abbr class="published" title="2016-03-13T12:23:10.267009"> Sun 13 March 2016 </abbr>
-<address class="vcard author">By <a class="url fn" href="http://styleguide.chevah.com/author/chevah-team.html">Chevah Team</a></address>                </footer><!-- /.post-info -->
-                <div class="entry-content"> <div class="contents topic" id="contents">
-<p class="topic-title first">Contents</p>
-<ul class="simple">
-<li><a class="reference internal" href="#css-syntax-elements" id="id1">CSS Syntax Elements</a></li>
 <li><a class="reference internal" href="#general" id="id2">General</a></li>
-<li><a class="reference internal" href="#css-class-naming" id="id3">CSS Class naming</a></li>
-<li><a class="reference internal" href="#rules-definition" id="id4">Rules definition</a></li>
-<li><a class="reference internal" href="#layout-and-typography-separation" id="id5">Layout and Typography separation</a></li>
-</ul>
-</div>
-<p>The CSS Coding conventions are inspired by <a class="reference external" href="http://www.phpied.com/css-coding-conventions">Stoyan Stefanov's CSS Coding
-Conventions</a></p>
-<p>Many of them are automatically checked using pocket-lint that now included
-the CSS Coding Convention Checker.
-Please report any problems that you have ...</p> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="http://styleguide.chevah.com/bash.html" rel="bookmark" title="Permalink to Bash">Bash</a></h2> </header>
-                <footer class="post-info">
-                    <abbr class="published" title="2016-03-13T12:22:52.951008"> Sun 13 March 2016 </abbr>
-<address class="vcard author">By <a class="url fn" href="http://styleguide.chevah.com/author/chevah-team.html">Chevah Team</a></address>                </footer><!-- /.post-info -->
-                <div class="entry-content"> <div class="contents topic" id="contents">
-<p class="topic-title first">Contents</p>
-<ul class="simple">
-<li><a class="reference internal" href="#general" id="id1">General</a></li>
-<li><a class="reference internal" href="#path-constants" id="id2">Path constants</a></li>
-<li><a class="reference internal" href="#function-definition" id="id3">Function Definition</a></li>
-<li><a class="reference internal" href="#case-syntax" id="id4">Case Syntax</a></li>
-<li><a class="reference internal" href="#if-then-else" id="id5">IF/THEN/ELSE</a></li>
-<li><a class="reference internal" href="#for" id="id6">FOR</a></li>
-<li><a class="reference internal" href="#while-until" id="id7">WHILE/UNTIL</a></li>
-<li><a class="reference internal" href="#references" id="id8">References</a></li>
-</ul>
-</div>
-<div class="section" id="general">
-<h2><a class="toc-backref" href="#id1">General</a></h2>
-<ul class="simple">
-<li>Shell scripts should be kept at a minimum and <strong>only</strong> for internal scripts.
-For all other things there is Python.</li>
-<li>If any, public scripts should use <tt class="docutils literal">/bin/sh</tt>. Bash is not available on all ...</li></ul></div> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="http://styleguide.chevah.com/javascript.html" rel="bookmark" title="Permalink to JavaScript">JavaScript</a></h2> </header>
-                <footer class="post-info">
-                    <abbr class="published" title="2016-03-13T12:22:35.155007"> Sun 13 March 2016 </abbr>
-<address class="vcard author">By <a class="url fn" href="http://styleguide.chevah.com/author/chevah-team.html">Chevah Team</a></address>                </footer><!-- /.post-info -->
-                <div class="entry-content"> <div class="contents topic" id="contents">
-<p class="topic-title first">Contents</p>
-<ul class="simple">
-<li><a class="reference internal" href="#general" id="id1">General</a></li>
-<li><a class="reference internal" href="#prevent-polluting-the-global-scope" id="id2">Prevent polluting the global scope</a></li>
-<li><a class="reference internal" href="#defining-classes" id="id3">Defining classes</a></li>
-<li><a class="reference internal" href="#css-interaction" id="id4">CSS interaction</a><ul>
-<li><a class="reference internal" href="#js-related-css-class" id="id5">JS related CSS class</a></li>
-<li><a class="reference internal" href="#changing-css-html-from-js" id="id6">Changing CSS/HTML from JS</a></li>
+<li><a class="reference internal" href="#for-person-requesting-a-review" id="id3">For person requesting a review</a><ul>
+<li><a class="reference internal" href="#review-request-message" id="id4">Review request message</a></li>
+<li><a class="reference internal" href="#merge-your-branch" id="id5">Merge your branch</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#test-styleguide" id="id7">Test styleguide</a><ul>
-<li><a class="reference internal" href="#rerefences" id="id8">Rerefences</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="general">
-<h2><a class="toc-backref" href="#id1">General</a></h2>
-<ul>
-<li><p class="first">Variable declarations must start with 'var'.</p>
-</li>
-<li><p class="first">Do your best to never use a semicolon.
-This means avoiding them at line breaks and avoiding multi-statement lines.
-Semi-colon ...</p></li></ul></div> </div><!-- /.entry-content -->
+<li><a class="reference internal" href="#for-person-reviewing-changes" id="id6">For person reviewing changes</a><ul>
+<li><a class="reference internal" href="#reviewer-s-check-list-any-role" id="id7">Reviewer's check list - Any Role</a></li>
+<li><a class="reference internal" href="#reviewer-s-check-list-developer" id="id8">Reviewer's check list ...</a></li></ul></li></ul></div> </div><!-- /.entry-content -->
         </article></li>
         <li><article class="hentry">
                 <header> <h2 class="entry-title"><a href="http://styleguide.chevah.com/python.html" rel="bookmark" title="Permalink to Python">Python</a></h2> </header>
                 <footer class="post-info">
-                    <abbr class="published" title="2016-03-13T12:22:14.399006"> Sun 13 March 2016 </abbr>
+                    <abbr class="published" title="2016-04-15T07:37:21.314397"> Fri 15 April 2016 </abbr>
 <address class="vcard author">By <a class="url fn" href="http://styleguide.chevah.com/author/chevah-team.html">Chevah Team</a></address>                </footer><!-- /.post-info -->
                 <div class="entry-content"> <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
@@ -213,7 +71,7 @@ Semi-colon ...</p></li></ul></div> </div><!-- /.entry-content -->
         <li><article class="hentry">
                 <header> <h2 class="entry-title"><a href="http://styleguide.chevah.com/release-process.html" rel="bookmark" title="Permalink to Release process">Release process</a></h2> </header>
                 <footer class="post-info">
-                    <abbr class="published" title="2016-03-13T11:53:50.857985"> Sun 13 March 2016 </abbr>
+                    <abbr class="published" title="2016-04-15T07:37:21.314397"> Fri 15 April 2016 </abbr>
 <address class="vcard author">By <a class="url fn" href="http://styleguide.chevah.com/author/chevah-team.html">Chevah Team</a></address>                </footer><!-- /.post-info -->
                 <div class="entry-content"> <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
@@ -235,9 +93,61 @@ development to simplify the release or a final product or library.</p>
 <li>Documentation, which includes Release Notes, Known ...</li></ul></div> </div><!-- /.entry-content -->
         </article></li>
         <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="http://styleguide.chevah.com/testing.html" rel="bookmark" title="Permalink to Testing">Testing</a></h2> </header>
+                <footer class="post-info">
+                    <abbr class="published" title="2016-04-15T07:37:21.314397"> Fri 15 April 2016 </abbr>
+<address class="vcard author">By <a class="url fn" href="http://styleguide.chevah.com/author/chevah-team.html">Chevah Team</a></address>                </footer><!-- /.post-info -->
+                <div class="entry-content"> <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#types-of-tests" id="id1">Types of tests</a><ul>
+<li><a class="reference internal" href="#unit-testing" id="id2">Unit testing</a></li>
+<li><a class="reference internal" href="#integration-testing" id="id3">Integration testing</a></li>
+<li><a class="reference internal" href="#system-testing" id="id4">System testing</a></li>
+<li><a class="reference internal" href="#story-functional-customer-tests" id="id5">Story / Functional / Customer tests</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#developing-using-tests" id="id6">Developing using tests</a><ul>
+<li><a class="reference internal" href="#domain-specific-language" id="id7">Domain Specific Language</a></li>
+<li><a class="reference internal" href="#dependency-injection-of-system-components" id="id8">Dependency injection of system components</a></li>
+<li><a class="reference internal" href="#mock-object" id="id9">Mock object</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#structure-of-a-test" id="id10">Structure of a test</a></li>
+<li><a class="reference internal" href="#smells" id="id11">Smells</a></li>
+<li><a class="reference internal" href="#naming-conventions" id="id12">Naming conventions</a></li>
+<li><a class="reference internal" href="#test-fixtures-setup-and-teardown" id="id13">Test fixtures, setUp and tearDown</a></li>
+<li><a class="reference internal" href="#tests-description-docstrings" id="id14">Tests description - docstrings</a></li>
+<li><a class="reference internal" href="#rerefences" id="id15">Rerefences</a></li>
+</ul>
+</div>
+<p>Writing automated tests is an important part ...</p> </div><!-- /.entry-content -->
+        </article></li>
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="http://styleguide.chevah.com/css.html" rel="bookmark" title="Permalink to CSS, LESS and Styles">CSS, LESS and Styles</a></h2> </header>
+                <footer class="post-info">
+                    <abbr class="published" title="2016-04-15T07:37:21.310397"> Fri 15 April 2016 </abbr>
+<address class="vcard author">By <a class="url fn" href="http://styleguide.chevah.com/author/chevah-team.html">Chevah Team</a></address>                </footer><!-- /.post-info -->
+                <div class="entry-content"> <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#css-syntax-elements" id="id1">CSS Syntax Elements</a></li>
+<li><a class="reference internal" href="#general" id="id2">General</a></li>
+<li><a class="reference internal" href="#css-class-naming" id="id3">CSS Class naming</a></li>
+<li><a class="reference internal" href="#rules-definition" id="id4">Rules definition</a></li>
+<li><a class="reference internal" href="#layout-and-typography-separation" id="id5">Layout and Typography separation</a></li>
+</ul>
+</div>
+<p>The CSS Coding conventions are inspired by <a class="reference external" href="http://www.phpied.com/css-coding-conventions">Stoyan Stefanov's CSS Coding
+Conventions</a></p>
+<p>Many of them are automatically checked using pocket-lint that now included
+the CSS Coding Convention Checker.
+Please report any problems that you have ...</p> </div><!-- /.entry-content -->
+        </article></li>
+        <li><article class="hentry">
                 <header> <h2 class="entry-title"><a href="http://styleguide.chevah.com/generic.html" rel="bookmark" title="Permalink to Generic">Generic</a></h2> </header>
                 <footer class="post-info">
-                    <abbr class="published" title="2016-03-13T11:53:17.769984"> Sun 13 March 2016 </abbr>
+                    <abbr class="published" title="2016-04-15T07:37:21.310397"> Fri 15 April 2016 </abbr>
 <address class="vcard author">By <a class="url fn" href="http://styleguide.chevah.com/author/chevah-team.html">Chevah Team</a></address>                </footer><!-- /.post-info -->
                 <div class="entry-content"> <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
@@ -258,31 +168,93 @@ the direction of our team.</p>
 Anyone should read this ...</p></div> </div><!-- /.entry-content -->
         </article></li>
         <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="http://styleguide.chevah.com/review.html" rel="bookmark" title="Permalink to Review">Review</a></h2> </header>
+                <header> <h2 class="entry-title"><a href="http://styleguide.chevah.com/html.html" rel="bookmark" title="Permalink to HTML, XML and other markups">HTML, XML and other markups</a></h2> </header>
                 <footer class="post-info">
-                    <abbr class="published" title="2016-03-13T11:52:53.733982"> Sun 13 March 2016 </abbr>
+                    <abbr class="published" title="2016-04-15T07:37:21.310397"> Fri 15 April 2016 </abbr>
 <address class="vcard author">By <a class="url fn" href="http://styleguide.chevah.com/author/chevah-team.html">Chevah Team</a></address>                </footer><!-- /.post-info -->
-                <div class="entry-content"> <p>This page discuss the code/changes review process as both the person
-who requests a reviewer and a person who checks a review.</p>
-<div class="contents topic" id="contents">
+                <div class="entry-content"> <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#general" id="id1">General</a></li>
-<li><a class="reference internal" href="#for-person-requesting-a-review" id="id2">For person requesting a review</a><ul>
-<li><a class="reference internal" href="#review-request-message" id="id3">Review request message</a></li>
-<li><a class="reference internal" href="#merge-your-branch" id="id4">Merge your branch</a></li>
+<li><a class="reference internal" href="#css-interaction" id="id2">CSS interaction</a></li>
+<li><a class="reference internal" href="#html-tags-usage" id="id3">HTML tags usage</a></li>
+</ul>
+</div>
+<div class="section" id="general">
+<h2><a class="toc-backref" href="#id1">General</a></h2>
+<ul>
+<li><p class="first">Unlike other files, indentation for XML/HTML is 2 spaces.</p>
+</li>
+<li><p class="first">Don't use inline HTML style attribute. Only CSS class.</p>
+</li>
+<li><p class="first">Use HTML5 doctype:</p>
+<pre class="literal-block">
+&lt;!doctype html&gt;
+</pre>
+</li>
+</ul>
+</div>
+<div class="section" id="css-interaction">
+<h2><a class="toc-backref" href="#id2">CSS interaction</a></h2>
+<ul class="simple">
+<li>Make sure all elements that are used in JS have an ID.
+This helps with ...</li></ul></div> </div><!-- /.entry-content -->
+        </article></li>
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="http://styleguide.chevah.com/javascript.html" rel="bookmark" title="Permalink to JavaScript">JavaScript</a></h2> </header>
+                <footer class="post-info">
+                    <abbr class="published" title="2016-04-15T07:37:21.310397"> Fri 15 April 2016 </abbr>
+<address class="vcard author">By <a class="url fn" href="http://styleguide.chevah.com/author/chevah-team.html">Chevah Team</a></address>                </footer><!-- /.post-info -->
+                <div class="entry-content"> <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#general" id="id1">General</a></li>
+<li><a class="reference internal" href="#prevent-polluting-the-global-scope" id="id2">Prevent polluting the global scope</a></li>
+<li><a class="reference internal" href="#defining-classes" id="id3">Defining classes</a></li>
+<li><a class="reference internal" href="#css-interaction" id="id4">CSS interaction</a><ul>
+<li><a class="reference internal" href="#js-related-css-class" id="id5">JS related CSS class</a></li>
+<li><a class="reference internal" href="#changing-css-html-from-js" id="id6">Changing CSS/HTML from JS</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#for-person-reviewing-changes" id="id5">For person reviewing changes</a><ul>
-<li><a class="reference internal" href="#reviewer-s-check-list" id="id6">Reviewer's check list</a></li>
+<li><a class="reference internal" href="#test-styleguide" id="id7">Test styleguide</a><ul>
+<li><a class="reference internal" href="#rerefences" id="id8">Rerefences</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="general">
 <h2><a class="toc-backref" href="#id1">General</a></h2>
+<ul>
+<li><p class="first">Variable declarations must start with 'var'.</p>
+</li>
+<li><p class="first">Do your best to never use a semicolon.
+This means avoiding them at line breaks and avoiding multi-statement lines.
+Semi-colon ...</p></li></ul></div> </div><!-- /.entry-content -->
+        </article></li>
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="http://styleguide.chevah.com/bash.html" rel="bookmark" title="Permalink to Bash">Bash</a></h2> </header>
+                <footer class="post-info">
+                    <abbr class="published" title="2016-04-15T07:37:21.306397"> Fri 15 April 2016 </abbr>
+<address class="vcard author">By <a class="url fn" href="http://styleguide.chevah.com/author/chevah-team.html">Chevah Team</a></address>                </footer><!-- /.post-info -->
+                <div class="entry-content"> <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
 <ul class="simple">
-<li>The goal of a review ...</li></ul></div> </div><!-- /.entry-content -->
+<li><a class="reference internal" href="#general" id="id1">General</a></li>
+<li><a class="reference internal" href="#path-constants" id="id2">Path constants</a></li>
+<li><a class="reference internal" href="#function-definition" id="id3">Function Definition</a></li>
+<li><a class="reference internal" href="#case-syntax" id="id4">Case Syntax</a></li>
+<li><a class="reference internal" href="#if-then-else" id="id5">IF/THEN/ELSE</a></li>
+<li><a class="reference internal" href="#for" id="id6">FOR</a></li>
+<li><a class="reference internal" href="#while-until" id="id7">WHILE/UNTIL</a></li>
+<li><a class="reference internal" href="#references" id="id8">References</a></li>
+</ul>
+</div>
+<div class="section" id="general">
+<h2><a class="toc-backref" href="#id1">General</a></h2>
+<ul class="simple">
+<li>Shell scripts should be kept at a minimum and <strong>only</strong> for internal scripts.
+For all other things there is Python.</li>
+<li>If any, public scripts should use <tt class="docutils literal">/bin/sh</tt>. Bash is not available on all ...</li></ul></div> </div><!-- /.entry-content -->
         </article></li>
         <li><article class="hentry">
                 <header> <h2 class="entry-title"><a href="http://styleguide.chevah.com/work.html" rel="bookmark" title="Permalink to Work">Work</a></h2> </header>
