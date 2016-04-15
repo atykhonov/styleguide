@@ -1,280 +1,398 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="http://styleguide.chevah.com/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>http://styleguide.chevah.com/</id><updated>2016-04-15T07:37:25+01:00</updated><entry><title>Review</title><link href="http://styleguide.chevah.com/review.html" rel="alternate"></link><updated>2016-04-15T07:37:25+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:review.html</id><summary type="html">&lt;p&gt;This page discuss the code/changes review process as both the person
-who requests a reviewer and a person who checks a review.&lt;/p&gt;
-&lt;div class="contents topic" id="contents"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Chevah Style Guide</title><link href="http://styleguide.chevah.com/" rel="alternate"></link><link href="http://styleguide.chevah.com/feeds/all.atom.xml" rel="self"></link><id>http://styleguide.chevah.com/</id><updated>2016-04-15T07:39:16+01:00</updated><entry><title>JavaScript</title><link href="http://styleguide.chevah.com/javascript.html" rel="alternate"></link><updated>2016-04-15T07:39:16+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:javascript.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#general" id="id2"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#for-person-requesting-a-review" id="id3"&gt;For person requesting a review&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#review-request-message" id="id4"&gt;Review request message&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#merge-your-branch" id="id5"&gt;Merge your branch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#prevent-polluting-the-global-scope" id="id2"&gt;Prevent polluting the global scope&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#defining-classes" id="id3"&gt;Defining classes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#css-interaction" id="id4"&gt;CSS interaction&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#js-related-css-class" id="id5"&gt;JS related CSS class&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#changing-css-html-from-js" id="id6"&gt;Changing CSS/HTML from JS&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#for-person-reviewing-changes" id="id6"&gt;For person reviewing changes&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#reviewer-s-check-list-any-role" id="id7"&gt;Reviewer's check list - Any Role&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#reviewer-s-check-list-developer" id="id8"&gt;Reviewer's check list - Developer&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#reviewer-s-check-list-qa" id="id9"&gt;Reviewer's check list - QA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#test-styleguide" id="id7"&gt;Test styleguide&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#rerefences" id="id8"&gt;Rerefences&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#overview-of-the-github-and-trac-integration" id="id10"&gt;Overview of the GitHub and Trac integration&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class="section" id="general"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;General&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;The goal of a review is to eliminate as many defects as possible,
-regardless of who &amp;quot;caused&amp;quot; the error. Branch driver and reviews work
-together to achieve this goal.&lt;/li&gt;
-&lt;li&gt;The review process is a very efficient form of pair-programming.&lt;/li&gt;
-&lt;li&gt;Branch driver is the person (or persons) requesting the review and
-responsible for implementing changes during review.&lt;/li&gt;
-&lt;li&gt;Reviewer is the person responsible for checking the code or changes.&lt;/li&gt;
-&lt;li&gt;The review process is first class citizen of the Quality Assurance process.&lt;/li&gt;
-&lt;li&gt;Each defect found during a review is an opportunity to improve the code.
-Every defect found and fixed in peer review is a defect that a customer
-never sees and another problem that support doesn't have to spend time
-tracking down.&lt;/li&gt;
-&lt;li&gt;The branch driver is responsible for getting his/her branch approved. In
-case a branch review is delayed, the branch driver should contact the
-reviewers and urge the review.&lt;/li&gt;
-&lt;li&gt;While the main purpose of a review is to assert the quality of the changes,
-the review is at the same time a learning, growing, and communication
-experience.&lt;/li&gt;
-&lt;li&gt;Try to observe good things from other team members and feel free to comment
-and let others know about how you think that things can be improved.&lt;/li&gt;
-&lt;li&gt;Ideally you will have many small merge requests, because the bigger they
-get, the more costly they are - now and in the future.&lt;/li&gt;
-&lt;li&gt;One merge request should do one thing only.&lt;/li&gt;
-&lt;li&gt;The target for a small request is no more than 400 touched lines
-(added + removed).&lt;/li&gt;
-&lt;li&gt;When you do a refactoring and you need to rename something in many files,
-do it in a dedicated branch which only deals with the renaming.
-This will help a lot with the review. Land your changed with the ugly
-names and then do a follow-up branch for the renaming.&lt;/li&gt;
-&lt;li&gt;Feel free to submit as many merge request as you can. There is a problem
-with the size of a merge request, not with their number :).&lt;/li&gt;
-&lt;li&gt;Some reasons for keeping the merge requests small:&lt;ul&gt;
-&lt;li&gt;Large changes are much more likely to do many things.&lt;/li&gt;
-&lt;li&gt;It's harder to understand them.&lt;/li&gt;
-&lt;li&gt;It's harder to review them.&lt;/li&gt;
-&lt;li&gt;It's harder to inspect the main branch to find the merge that
-introduced a bug.&lt;/li&gt;
-&lt;li&gt;It's more likely to break the build.&lt;/li&gt;
-&lt;li&gt;It's harder to cherry pick code for backporting / supporting old releases.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="for-person-requesting-a-review"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;For person requesting a review&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Once a task/ticket is done, it should be submitted for review.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;All&lt;/strong&gt; changes should be reviewed prior to be merged or released.&lt;/li&gt;
-&lt;li&gt;Before requesting a review you should run a full quick test on your local
-computer and on all supported platforms.
-Just run &lt;tt class="docutils literal"&gt;paver test_quick&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;paver test_review&lt;/tt&gt; and
-Buildbot and GitHub will work together to display the results.&lt;/li&gt;
-&lt;li&gt;Before passing the review to others, take another careful look at your work
-and perform a first review yourself.
-Check that all changes are described together with their attached test
-cases.
-It is very important to have a good review request message as it will
-help reviewers understand what you have done.&lt;/li&gt;
-&lt;li&gt;Check that all changes are covered by automated tests and if not make sure
-the review description contains information about why.&lt;/li&gt;
-&lt;li&gt;Check the &lt;strong&gt;Reviewer's check list&lt;/strong&gt; since those are the things that a
-reviewer will check for sure.&lt;/li&gt;
-&lt;li&gt;For Trac: A review request is created by adding the comment and then
-setting the state to 'needs_review'.
-(&lt;strong&gt;don't use keywords&lt;/strong&gt;, we are using a strict ticket
-work-flow so use the ticket action form).&lt;/li&gt;
-&lt;li&gt;For GitHub: A review request is created using &lt;strong&gt;GitHub Pull requests&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;When submitting a review for changes not planed in the current milestone,
-update the milestone to the current one. Don't leave the old milestone.&lt;/li&gt;
-&lt;li&gt;You can start writing your review request as soon as you start coding on a
-branch. There is no need to wait for feature to be fully implemented and
-tests to pass.
-Writing a review request early, will help you to organize and explain
-the work that you plan to do on the branch.&lt;/li&gt;
-&lt;li&gt;When the review is ready to be sent to reviewers, leave a comment in the PR
-containing the &lt;strong&gt;needs-review&lt;/strong&gt; marker word. It will trigger the review
-request process and the GitHub to Trac synchronization.&lt;/li&gt;
-&lt;li&gt;GitHub inline comments are great, and you can add them to help with the
-initial review request. Just &lt;strong&gt;don't abuse them&lt;/strong&gt;!
-Think twice before adding an initial inline comment for the review.
-Ask yourself why that comment is needed and why that line is not
-clear. Maybe adding a comment in the code would avoid the
-need for the GitHub inline comment.&lt;/li&gt;
-&lt;li&gt;During a review, the reviewer might request changes. You can solve
-the request by either changing the code, or adding a comment with
-the reason why you don't want to change the code. After all requests
-are solved, leave a &lt;strong&gt;new&lt;/strong&gt;, separate, comment containing the keyword
-&lt;strong&gt;needs-review&lt;/strong&gt; . This will let reviewers know that you are done and that
-they can check the latest changes.&lt;/li&gt;
-&lt;li&gt;Make sure that review request message is always up to date with latest
-changes.
-If during the review new changes are made or new test cases are discovered,
-don't forget to update the initial review request message to include a
-summary of these changes.&lt;/li&gt;
-&lt;li&gt;The &amp;quot;How to test the changes&amp;quot; section should include &lt;strong&gt;ALL&lt;/strong&gt; test cases
-done during the review. If a reviewer is following a test case not described
-in the initial request message, it should update the review message with
-the new test case.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="section" id="review-request-message"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id4"&gt;Review request message&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;When submitting a ticket for review, the review request should contain the
-following message as described in &lt;a class="reference external" href="https://github.com/chevah/styleguide/blob/master/.github/PULL_REQUEST_TEMPLATE"&gt;PULL_REQUEST_TEMPLATE&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;For GitHub review requests, &lt;strong&gt;add the merge commit message as the pull
-request title&lt;/strong&gt;. The message should include the ticket ID number.
-Example of merge commit message:&lt;/p&gt;
+&lt;li&gt;&lt;p class="first"&gt;Variable declarations must start with 'var'.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Do your best to never use a semicolon.
+This means avoiding them at line breaks and avoiding multi-statement lines.
+Semi-colon at the end of the line is added only when required.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Use 4 space indentation.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Variable, function, method and constants name are after PEP8.
+variable_name, function_name, methodName, ClassName, CONSTANT_NAME&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Callback methods should always end with 'Callback' as the
+method / function name. This is a reminder of the fact that
+the context is lost.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Constructor functions (those that are called with &lt;strong&gt;new&lt;/strong&gt;) should use
+class naming convention.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;use &lt;tt class="docutils literal"&gt;===&lt;/tt&gt; instead of &lt;tt class="docutils literal"&gt;==&lt;/tt&gt; for comparison. &lt;tt class="docutils literal"&gt;===&lt;/tt&gt; doesn't do type
+coercion.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Only use &lt;tt class="docutils literal"&gt;typeof&lt;/tt&gt; for checking against undefined variables:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
-[#1234] What was done in this branch.
+typeof foo !== 'undefined'
 &lt;/pre&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;The commit message should be on a single line and preferable under 100
-characters. The message should be a clearly articulated phrase, summarizing
-changes done in the branch. Further details about the changes can go in
-the release notes or review request body.&lt;/p&gt;
+&lt;li&gt;&lt;p class="first"&gt;For all other type checking use the custom defined typeOf() function.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Add the list of persons who should review the branch, using a
-line starting with &lt;strong&gt;reviewers&lt;/strong&gt; and followed by GitHub names or each
-reviewer prefixed with &lt;strong&gt;&amp;#64;&lt;/strong&gt;.&lt;/p&gt;
+&lt;li&gt;&lt;p class="first"&gt;Try to avoid the usage of &lt;tt class="docutils literal"&gt;instanceof&lt;/tt&gt; and don't use it for native types.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;If required, using &lt;strong&gt;depends-on&lt;/strong&gt; marker, add the list of reviews on which
-this review depends and blocks the merge of this branch.&lt;/p&gt;
+&lt;li&gt;&lt;p class="first"&gt;Create new arrays using the array literals &lt;tt class="docutils literal"&gt;[]&lt;/tt&gt; notation. Don't use
+&lt;tt class="docutils literal"&gt;new Array()&lt;/tt&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Iterate arrays using the classic &lt;tt class="docutils literal"&gt;for&lt;/tt&gt; loop:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+var list = [1, 2, 3, 4, 5, ...... 100000000];
+for (var i = 0, l = list.length; i == l; i++) {
+    console.log(list[i]);
+}
+&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Always define the variable used to iterate in a &lt;tt class="docutils literal"&gt;for&lt;/tt&gt; loop.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Don't use &lt;tt class="docutils literal"&gt;eval&lt;/tt&gt; and don't pass strings to &lt;tt class="docutils literal"&gt;setTimeout&lt;/tt&gt; and
+&lt;tt class="docutils literal"&gt;setInterval&lt;/tt&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Use &lt;tt class="docutils literal"&gt;undefined&lt;/tt&gt; instead of the the traditional &lt;tt class="docutils literal"&gt;null&lt;/tt&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Keep braces on the same line as their corresponding statements. Never omit
+them for single-line if / else statements.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="merge-your-branch"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id5"&gt;Merge your branch&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;After the merge request and review was approved you need to merge your branch
-into master.&lt;/p&gt;
-&lt;p&gt;After your review request was approved, you can send your branch to PQM
-for automatic testing and merging. Use the following command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;something&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// code here&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// code here&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;duppy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;something&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Leave 2 empty lines between global function or class definitions.
+Leave 1 empty line between functions from the same class.
+Global variable can be grouped and the don't require empty lines in between.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;GLOBAL_DAY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;GLOBAL_YEAR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+
+
+&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;Docstring for duppy.&lt;/span&gt;
+&lt;span class="cm"&gt;*/&lt;/span&gt;
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;duppy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// Do something here.&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+
+&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;Docstring for duppy_doo.&lt;/span&gt;
+&lt;span class="cm"&gt;*/&lt;/span&gt;
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;duppy_doo&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// Do something here.&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+
+&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;A simple mock for Browser service.&lt;/span&gt;
+&lt;span class="cm"&gt;*/&lt;/span&gt;
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;MockBrowser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;_cookies&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;    Docstring for MockBrower.setCookies()&lt;/span&gt;
+&lt;span class="cm"&gt;    */&lt;/span&gt;
+    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setCookie&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;// Implementation here.&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;    Docstring here.&lt;/span&gt;
+&lt;span class="cm"&gt;    */&lt;/span&gt;
+    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;doSomethingElse&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;// Implementation here.&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;_methodWihoutDocstring&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;// Implementation here.&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;Avoid using leading parenthesis.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Avoid using &lt;tt class="docutils literal"&gt;delete&lt;/tt&gt; operator and only use it to delete explicitly
+set properties on normal objects:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
-paver pqm GITHUB_PULL_REQUEST_ID
+var obj = {x: 1};
+obj.y = 2;
+delete obj.x;  // true
+delete obj.y;  // true
 &lt;/pre&gt;
-&lt;p&gt;The PQM will check your branch and if it passed all tests, it will be merged
-and pushed to master.&lt;/p&gt;
-&lt;p&gt;If PQM is not enabled for the repo, you will need to do a manual merge.&lt;/p&gt;
-&lt;p&gt;When doing manual merge using git, use squash merge and don't use the
-default commit message. Here is a sample command for merging branch
-&amp;quot;1234-what-was-done&amp;quot;:&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Use single quote for strings.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Example:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
-git checkout master
-git merge --no-commit --squash 1234-what-was-done
-git commit -a -m &amp;quot;[#1234] What was done in this branch.&amp;quot;
+In HTML, we use &amp;quot; as quotes around attribute values, like this:
+
+&amp;lt;a href=&amp;quot;foo&amp;quot;&amp;gt;bar&amp;lt;/a&amp;gt;
+In JavaScript, we use ' as much as possible.
+
+alert('qux');
+This way, we can use consistent quotes when writing HTML inside of JS:
+
+alert('&amp;lt;a href=&amp;quot;foo&amp;quot;&amp;gt;bar&amp;lt;/a&amp;gt;')
 &lt;/pre&gt;
-&lt;p&gt;It is recommended to define a git alias for &lt;cite&gt;merge --no-commit --squash&lt;/cite&gt;.&lt;/p&gt;
-&lt;p&gt;A merge commit should have a commit message, in the format:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;REST web services should always return a valid dictionary
+and not an Array or a primitive. JSON-RPC is forced to return a dictionary
+by the protocol.&lt;/li&gt;
+&lt;li&gt;Callbacks called from the GUI / DOM should be prefixed with &lt;cite&gt;on&lt;/cite&gt;.
+Ex: onAuthentication (when authenticate button is pressed),
+onLogout (when logout link is pressed),
+onLoginFormSubmit (when login form is submitted)&lt;/li&gt;
+&lt;li&gt;Callbacks/Errback for XHR are be prefixed with &lt;cite&gt;cb&lt;/cite&gt; and &lt;cite&gt;eb&lt;/cite&gt;, similar
+with Python/Twisted convention.&lt;/li&gt;
+&lt;li&gt;For one line comments, leave one empty space after the comment marker.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// Good comment line.&lt;/span&gt;
+&lt;span class="c1"&gt;//Bad comment line.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;For multi line comments use the following convention.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;Short single line comment title.&lt;/span&gt;
+&lt;span class="cm"&gt;More details about what is here and&lt;/span&gt;
+&lt;span class="cm"&gt;here and here.&lt;/span&gt;
+
+&lt;span class="cm"&gt;Feel free to create paragraphs separation.&lt;/span&gt;
+&lt;span class="cm"&gt;*/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Global constants will follow the CONSTANT_NAME naming convention.&lt;/li&gt;
+&lt;li&gt;Global services (objects with methods) are named similar to class names.
+Most of the time they will be singletons so there will be no associated
+class.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;Shell&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;ActiveXObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;WScript.Shell&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;do_something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;bla&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Shell&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;method_usage&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;TODO
+&lt;a class="reference external" href="http://javascript.crockford.com/code.html"&gt;http://javascript.crockford.com/code.html&lt;/a&gt; &lt;a class="reference external" href="http://jibbering.com/faq/notes/code-guidelines/"&gt;http://jibbering.com/faq/notes/code-guidelines/&lt;/a&gt; &lt;a class="reference external" href="http://neil.rashbrook.org/Js.htm"&gt;http://neil.rashbrook.org/Js.htm&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="prevent-polluting-the-global-scope"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Prevent polluting the global scope&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;You can use immediately invoked function expression IIFE to avoid
+injecting more variables into global scope.
+When using IIFE don't forget to add the semicolon at the beginning.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// Path something from global scope.&lt;/span&gt;
+&lt;span class="p"&gt;;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="c1"&gt;// tagsInput is kept only inside this scope.&lt;/span&gt;
+  &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;tagsInput&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;angular&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;module&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ngTagsInput&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="nx"&gt;tagsInput&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;factory&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;tiTranscludeAppendDirective&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+  &lt;span class="p"&gt;})&lt;/span&gt;
+&lt;span class="p"&gt;})()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="defining-classes"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Defining classes&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In JS there is no strict way of defining a class and instances are created
+using a function and new operator.&lt;/p&gt;
+&lt;p&gt;When defining a class we use an anonymous function to allow class
+private instances and create a new class scope.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;BaseAccount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;class_private_member&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;    Constructor is here.&lt;/span&gt;
+&lt;span class="cm"&gt;    */&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;
+        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;class_member&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;    Base method.&lt;/span&gt;
+&lt;span class="cm"&gt;    */&lt;/span&gt;
+    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;base_method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;-&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;    Some method.&lt;/span&gt;
+&lt;span class="cm"&gt;    */&lt;/span&gt;
+    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;some_method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;prefix&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;base_method&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;    Another method.&lt;/span&gt;
+&lt;span class="cm"&gt;    */&lt;/span&gt;
+    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;tuned&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt;
+&lt;span class="p"&gt;}())&lt;/span&gt;
+
+
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;SpecialAccount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;variant&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;light&amp;#39;&lt;/span&gt;
+        &lt;span class="cm"&gt;/* Something similar to super()*/&lt;/span&gt;
+        &lt;span class="nx"&gt;BaseAccount&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;call&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/* Something similar to inheritance. */&lt;/span&gt;
+    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;Object&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;BaseAccount&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;constructor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;    Method extending parent.&lt;/span&gt;
+&lt;span class="cm"&gt;    */&lt;/span&gt;
+    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;some_method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;prefix&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;parent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;BaseAccount&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;some_method&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;call&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;prefix&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;-child-&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;parent&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;    Method overwriting parent.&lt;/span&gt;
+&lt;span class="cm"&gt;    */&lt;/span&gt;
+    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;tuned&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt;
+&lt;span class="p"&gt;}())&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="css-interaction"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;CSS interaction&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="section" id="js-related-css-class"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id5"&gt;JS related CSS class&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Try to append js- to all javascript-based selectors. This is taken from
+&lt;a class="reference external" href="http://ozmm.org/posts/slightly_obtrusive_javascript.html"&gt;slightly obtrusive javascript&lt;/a&gt;. The idea is that you should be able to tell
+a presentational class from a functional class.&lt;/p&gt;
+&lt;p&gt;There are good things and bad things about &amp;quot;Unobtrustive JavaScript.&amp;quot;
+One bad thing: it's hard to tell what JavaScript is touching an element.&lt;/p&gt;
+&lt;p&gt;Only ever use classes and ids prefix with js- when touching the DOM with
+JavaScript.&lt;/p&gt;
+&lt;p&gt;For example:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
-[#1234] What was done in this branch.
+&amp;lt;a href=&amp;quot;#prices&amp;quot; class=&amp;quot;button js-open-tab&amp;quot;&amp;gt;Prices&amp;lt;/a&amp;gt;
 &lt;/pre&gt;
+&lt;p&gt;Now we know to look for any JavaScript touching .js-open-tab, which should
+only be a simple search away.&lt;/p&gt;
+&lt;p&gt;And hey, now JavaScript and CSS won't share selectors. Since we're separating
+our content and presentation, we might as well separate our behaviour all the
+way too.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="changing-css-html-from-js"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id6"&gt;Changing CSS/HTML from JS&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Don't modify the associated CSS properties, but rather modify the CSS class:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+GOOD: $('#element_id').addClass('highlight');
+BAD : $('#element_id').css('font-weight': 'bold');
+&lt;/pre&gt;
+&lt;p&gt;Same story as with CSS, don't modify HTML tag attributes,
+but rather try to change the CSS class:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+GOOD: $('#element_id').addClass('sprite red_dot');
+BAD : $('#element_id').attr('src': 'some/red_dot.png');
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="test-styleguide"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id7"&gt;Test styleguide&lt;/a&gt;&lt;/h2&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;strong&gt;#1234&lt;/strong&gt; is the ticket number for this branch. It is used to get more
-details about branch work and review. It can also be used to associate a
-commit to a ticket / branch / review / task and check the history/story of
-that commit.&lt;/li&gt;
+&lt;li&gt;We use &lt;tt class="docutils literal"&gt;expect&lt;/tt&gt; style testing.&lt;/li&gt;
+&lt;li&gt;Leave 2 emtpy lines before each &lt;tt class="docutils literal"&gt;suite&lt;/tt&gt; and one empty line before each
+&lt;tt class="docutils literal"&gt;test&lt;/tt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;Tests for login controller.&lt;/span&gt;
+&lt;span class="cm"&gt;*/&lt;/span&gt;
+
+
+&lt;span class="nx"&gt;suite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;LoginCtrl&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// Shared variables.&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;scope&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;ctrl&lt;/span&gt;
+
+    &lt;span class="nx"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;// Initialize first.&lt;/span&gt;
+    &lt;span class="p"&gt;})&lt;/span&gt;
+
+    &lt;span class="nx"&gt;teardown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;// Clean second.&lt;/span&gt;
+    &lt;span class="p"&gt;})&lt;/span&gt;
+
+    &lt;span class="nx"&gt;test&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;Initializes with no errors and blank values&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;long line are wrapped&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;something&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+        &lt;span class="nx"&gt;something&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;doSomething&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+        &lt;span class="nx"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;equal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;something&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;username&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;})&lt;/span&gt;
+
+
+    &lt;span class="nx"&gt;suite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;critical_error attribute&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+
+        &lt;span class="nx"&gt;test&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;When set, hides the form and sets the error message.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+            &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;manu&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;makeUniqueString&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+            &lt;span class="nx"&gt;scope&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;critical_error&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt;
+            &lt;span class="nx"&gt;scope&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$digest&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+            &lt;span class="nx"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;isFalse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;scope&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;show_form&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="nx"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;equal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;scope&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;})&lt;/span&gt;
+    &lt;span class="p"&gt;})&lt;/span&gt;
+&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="rerefences"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id8"&gt;Rerefences&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Here are the pages I used to create this page.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://toranbillups.com/blog/archive/2013/05/15/Basic-javascript-inheritance-and-polymorphism/"&gt;http://toranbillups.com/blog/archive/2013/05/15/Basic-javascript-inheritance-and-polymorphism/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="section" id="for-person-reviewing-changes"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id6"&gt;For person reviewing changes&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Aim for a code inspection rate of fewer than 300 – 500 LOC per hour. This
-does not apply to QA team members for which, reviewing changes is the main
-activity.&lt;/li&gt;
-&lt;li&gt;Take enough time for a proper, slow review, but not more than 60–90 minutes.
-Take a big break between reviews.&lt;/li&gt;
-&lt;li&gt;You should always spend at least five minutes reviewing code, even if it's
-just one line. Often, a single line or small changes can have major
-impact throughout the whole system, and it's worth the five minutes to
-think through the possible effects that a change could have.&lt;/li&gt;
-&lt;li&gt;The only quality metric of good work / code is &lt;strong&gt;WTF/s&lt;/strong&gt;. While doing
-the review you are encouraged to keep track of all your first
-contact / view / read impressions and report them in the review feedback.&lt;/li&gt;
-&lt;li&gt;Follow procedure recommended in the &amp;quot;How to try and test the changes&amp;quot;
-section, record environment, steps and results and share them through
-a comment.&lt;/li&gt;
-&lt;li&gt;In case of errors, leave a comment describing what tests were run, the
-exact steps you took and the actual results.&lt;/li&gt;
-&lt;li&gt;If the work is good, you can request the code to be merged by the author
-by setting the state to needs_merge in Trac.&lt;/li&gt;
-&lt;li&gt;If the work is good and GitHub pull request was used, leave a comment on
-the pull request page with a line starting with / containing
-&lt;strong&gt;changes-approved&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;If no merge is required you can close the ticket as solved.&lt;/li&gt;
-&lt;li&gt;If minor changes are required, and they are easy to fix, you cat try to fix
-them. Commit the changes and approve the review at your revision.&lt;/li&gt;
-&lt;li&gt;If changes are required, you put the ticket in the &lt;strong&gt;needs-changes&lt;/strong&gt; state
-and assign the ticket to the person who can make the required changes.
-When working with GitHub you can request changes by adding
-the &lt;strong&gt;needs-changes&lt;/strong&gt; marker word in a comment.&lt;/li&gt;
-&lt;li&gt;Don't spend to much time on a review request if it is not clear enough and
-you don't know exactly what to do and how to test.
-This is a problem with the review request and it &lt;cite&gt;needs changes&lt;/cite&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="section" id="reviewer-s-check-list-any-role"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id7"&gt;Reviewer's check list - Any Role&lt;/a&gt;&lt;/h3&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Is there a release notes entry for changes?&lt;/li&gt;
-&lt;li&gt;Is there documentation for changes? Does the documentation make sense?&lt;/li&gt;
-&lt;li&gt;Are the new events documented?&lt;/li&gt;
-&lt;li&gt;Are the removed events documented?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="reviewer-s-check-list-developer"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id8"&gt;Reviewer's check list - Developer&lt;/a&gt;&lt;/h3&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Does the &lt;strong&gt;new&lt;/strong&gt; changes comply with latest styleguide ?&lt;/li&gt;
-&lt;li&gt;Does the code have automated tests for all the new code?&lt;/li&gt;
-&lt;li&gt;Does the merge commit message describes what is done by this branch?&lt;/li&gt;
-&lt;li&gt;Does the branch name starts with the Trac ticket ID.&lt;/li&gt;
-&lt;li&gt;Does &lt;strong&gt;all&lt;/strong&gt; tests pass? Does GitHub say that the branch is
-&lt;strong&gt;Good to merge&lt;/strong&gt;?&lt;/li&gt;
-&lt;li&gt;If there is no &lt;tt class="docutils literal"&gt;paver test_review&lt;/tt&gt; for the latest code, you can
-either just reject the review, or trigger a test and wait for results.
-&lt;strong&gt;Never&lt;/strong&gt; approve a code that is not passing the tests.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="reviewer-s-check-list-qa"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id9"&gt;Reviewer's check list - QA&lt;/a&gt;&lt;/h3&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Does the new code perform as expected when running manual tests?&lt;/li&gt;
-&lt;li&gt;Does the test scenarios from the review description make sense?
-Can they be executed? Successfully ?&lt;/li&gt;
-&lt;li&gt;Does the new end-user interaction GUI or CLI make sense and is easy to use?&lt;/li&gt;
-&lt;li&gt;Are there any corner cases not described in reviews or not covered by
-functional tests?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="overview-of-the-github-and-trac-integration"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id10"&gt;Overview of the GitHub and Trac integration&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The repository
-&lt;a class="reference external" href="https://github.com/chevah/github-hooks-server"&gt;github-hooks-server&lt;/a&gt;
-contains the code responsible for handling GitHub hooks and
-applying changes to Trac tickets.&lt;/p&gt;
-&lt;p&gt;Integration is mainly between GitHub Pull Requests and Trac tickets,
-following the workflow described in &lt;a class="reference external" href="http://styleguide.chevah.com/review.html"&gt;review&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The Pull Request title should start with &lt;strong&gt;[#TRAC_TICKET_ID]&lt;/strong&gt; and
-each message on this Pull Request triggers a hook looking for special keywords.&lt;/p&gt;
-&lt;p&gt;When creating the Pull Request the special syntax &lt;strong&gt;reviewers: &amp;#64;user1 &amp;#64;user2&lt;/strong&gt;
-sets which users should review and approve it. There is also
-&lt;strong&gt;depends-on: review1 review2&lt;/strong&gt; which blocks this merge until the reviews it
-depends on are done.&lt;/p&gt;
-&lt;p&gt;A comment mentioning &lt;strong&gt;needs-review&lt;/strong&gt; issues a review request modifying the
-state of the Trac Ticket to &lt;cite&gt;needs_review&lt;/cite&gt;.&lt;/p&gt;
-&lt;p&gt;In the same way, mentioning &lt;strong&gt;needs-changes&lt;/strong&gt; modifies the ticket state to
-&lt;cite&gt;needs_changes&lt;/cite&gt;, notifying the assigned user that the Pull Request
-should be fixed and reviewed again.&lt;/p&gt;
-&lt;p&gt;When a reviewer comments &lt;strong&gt;changes-approved&lt;/strong&gt;, it marks the Pull Request as
-good to merge. If all reviewers listed in the Pull Request body comment,
-the hook will change the ticket state to &lt;cite&gt;needs-merge&lt;/cite&gt;.&lt;/p&gt;
-&lt;/div&gt;
-</summary></entry><entry><title>Python</title><link href="http://styleguide.chevah.com/python.html" rel="alternate"></link><updated>2016-04-15T07:37:21+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:python.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Python</title><link href="http://styleguide.chevah.com/python.html" rel="alternate"></link><updated>2016-04-15T07:39:16+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:python.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -592,7 +710,7 @@ line ending with comma.&lt;/li&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Release process</title><link href="http://styleguide.chevah.com/release-process.html" rel="alternate"></link><updated>2016-04-15T07:37:21+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:release-process.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Release process</title><link href="http://styleguide.chevah.com/release-process.html" rel="alternate"></link><updated>2016-04-15T07:39:16+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:release-process.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -763,7 +881,282 @@ Defect fixes
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Testing</title><link href="http://styleguide.chevah.com/testing.html" rel="alternate"></link><updated>2016-04-15T07:37:21+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:testing.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Review</title><link href="http://styleguide.chevah.com/review.html" rel="alternate"></link><updated>2016-04-15T07:39:16+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:review.html</id><summary type="html">&lt;p&gt;This page discuss the code/changes review process as both the person
+who requests a reviewer and a person who checks a review.&lt;/p&gt;
+&lt;div class="contents topic" id="contents"&gt;
+&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#general" id="id2"&gt;General&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#for-person-requesting-a-review" id="id3"&gt;For person requesting a review&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#review-request-message" id="id4"&gt;Review request message&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#merge-your-branch" id="id5"&gt;Merge your branch&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#for-person-reviewing-changes" id="id6"&gt;For person reviewing changes&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#reviewer-s-check-list-any-role" id="id7"&gt;Reviewer's check list - Any Role&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#reviewer-s-check-list-developer" id="id8"&gt;Reviewer's check list - Developer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#reviewer-s-check-list-qa" id="id9"&gt;Reviewer's check list - QA&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#overview-of-the-github-and-trac-integration" id="id10"&gt;Overview of the GitHub and Trac integration&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="general"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;General&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The goal of a review is to eliminate as many defects as possible,
+regardless of who &amp;quot;caused&amp;quot; the error. Branch driver and reviews work
+together to achieve this goal.&lt;/li&gt;
+&lt;li&gt;The review process is a very efficient form of pair-programming.&lt;/li&gt;
+&lt;li&gt;Branch driver is the person (or persons) requesting the review and
+responsible for implementing changes during review.&lt;/li&gt;
+&lt;li&gt;Reviewer is the person responsible for checking the code or changes.&lt;/li&gt;
+&lt;li&gt;The review process is first class citizen of the Quality Assurance process.&lt;/li&gt;
+&lt;li&gt;Each defect found during a review is an opportunity to improve the code.
+Every defect found and fixed in peer review is a defect that a customer
+never sees and another problem that support doesn't have to spend time
+tracking down.&lt;/li&gt;
+&lt;li&gt;The branch driver is responsible for getting his/her branch approved. In
+case a branch review is delayed, the branch driver should contact the
+reviewers and urge the review.&lt;/li&gt;
+&lt;li&gt;While the main purpose of a review is to assert the quality of the changes,
+the review is at the same time a learning, growing, and communication
+experience.&lt;/li&gt;
+&lt;li&gt;Try to observe good things from other team members and feel free to comment
+and let others know about how you think that things can be improved.&lt;/li&gt;
+&lt;li&gt;Ideally you will have many small merge requests, because the bigger they
+get, the more costly they are - now and in the future.&lt;/li&gt;
+&lt;li&gt;One merge request should do one thing only.&lt;/li&gt;
+&lt;li&gt;The target for a small request is no more than 400 touched lines
+(added + removed).&lt;/li&gt;
+&lt;li&gt;When you do a refactoring and you need to rename something in many files,
+do it in a dedicated branch which only deals with the renaming.
+This will help a lot with the review. Land your changed with the ugly
+names and then do a follow-up branch for the renaming.&lt;/li&gt;
+&lt;li&gt;Feel free to submit as many merge request as you can. There is a problem
+with the size of a merge request, not with their number :).&lt;/li&gt;
+&lt;li&gt;Some reasons for keeping the merge requests small:&lt;ul&gt;
+&lt;li&gt;Large changes are much more likely to do many things.&lt;/li&gt;
+&lt;li&gt;It's harder to understand them.&lt;/li&gt;
+&lt;li&gt;It's harder to review them.&lt;/li&gt;
+&lt;li&gt;It's harder to inspect the main branch to find the merge that
+introduced a bug.&lt;/li&gt;
+&lt;li&gt;It's more likely to break the build.&lt;/li&gt;
+&lt;li&gt;It's harder to cherry pick code for backporting / supporting old releases.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="for-person-requesting-a-review"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;For person requesting a review&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Once a task/ticket is done, it should be submitted for review.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;All&lt;/strong&gt; changes should be reviewed prior to be merged or released.&lt;/li&gt;
+&lt;li&gt;Before requesting a review you should run a full quick test on your local
+computer and on all supported platforms.
+Just run &lt;tt class="docutils literal"&gt;paver test_quick&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;paver test_review&lt;/tt&gt; and
+Buildbot and GitHub will work together to display the results.&lt;/li&gt;
+&lt;li&gt;Before passing the review to others, take another careful look at your work
+and perform a first review yourself.
+Check that all changes are described together with their attached test
+cases.
+It is very important to have a good review request message as it will
+help reviewers understand what you have done.&lt;/li&gt;
+&lt;li&gt;Check that all changes are covered by automated tests and if not make sure
+the review description contains information about why.&lt;/li&gt;
+&lt;li&gt;Check the &lt;strong&gt;Reviewer's check list&lt;/strong&gt; since those are the things that a
+reviewer will check for sure.&lt;/li&gt;
+&lt;li&gt;For Trac: A review request is created by adding the comment and then
+setting the state to 'needs_review'.
+(&lt;strong&gt;don't use keywords&lt;/strong&gt;, we are using a strict ticket
+work-flow so use the ticket action form).&lt;/li&gt;
+&lt;li&gt;For GitHub: A review request is created using &lt;strong&gt;GitHub Pull requests&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;When submitting a review for changes not planed in the current milestone,
+update the milestone to the current one. Don't leave the old milestone.&lt;/li&gt;
+&lt;li&gt;You can start writing your review request as soon as you start coding on a
+branch. There is no need to wait for feature to be fully implemented and
+tests to pass.
+Writing a review request early, will help you to organize and explain
+the work that you plan to do on the branch.&lt;/li&gt;
+&lt;li&gt;When the review is ready to be sent to reviewers, leave a comment in the PR
+containing the &lt;strong&gt;needs-review&lt;/strong&gt; marker word. It will trigger the review
+request process and the GitHub to Trac synchronization.&lt;/li&gt;
+&lt;li&gt;GitHub inline comments are great, and you can add them to help with the
+initial review request. Just &lt;strong&gt;don't abuse them&lt;/strong&gt;!
+Think twice before adding an initial inline comment for the review.
+Ask yourself why that comment is needed and why that line is not
+clear. Maybe adding a comment in the code would avoid the
+need for the GitHub inline comment.&lt;/li&gt;
+&lt;li&gt;During a review, the reviewer might request changes. You can solve
+the request by either changing the code, or adding a comment with
+the reason why you don't want to change the code. After all requests
+are solved, leave a &lt;strong&gt;new&lt;/strong&gt;, separate, comment containing the keyword
+&lt;strong&gt;needs-review&lt;/strong&gt; . This will let reviewers know that you are done and that
+they can check the latest changes.&lt;/li&gt;
+&lt;li&gt;Make sure that review request message is always up to date with latest
+changes.
+If during the review new changes are made or new test cases are discovered,
+don't forget to update the initial review request message to include a
+summary of these changes.&lt;/li&gt;
+&lt;li&gt;The &amp;quot;How to test the changes&amp;quot; section should include &lt;strong&gt;ALL&lt;/strong&gt; test cases
+done during the review. If a reviewer is following a test case not described
+in the initial request message, it should update the review message with
+the new test case.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="review-request-message"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id4"&gt;Review request message&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;When submitting a ticket for review, the review request should contain the
+following message as described in &lt;a class="reference external" href="https://github.com/chevah/styleguide/blob/master/.github/PULL_REQUEST_TEMPLATE"&gt;PULL_REQUEST_TEMPLATE&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;For GitHub review requests, &lt;strong&gt;add the merge commit message as the pull
+request title&lt;/strong&gt;. The message should include the ticket ID number.
+Example of merge commit message:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+[#1234] What was done in this branch.
+&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;The commit message should be on a single line and preferable under 100
+characters. The message should be a clearly articulated phrase, summarizing
+changes done in the branch. Further details about the changes can go in
+the release notes or review request body.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Add the list of persons who should review the branch, using a
+line starting with &lt;strong&gt;reviewers&lt;/strong&gt; and followed by GitHub names or each
+reviewer prefixed with &lt;strong&gt;&amp;#64;&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;If required, using &lt;strong&gt;depends-on&lt;/strong&gt; marker, add the list of reviews on which
+this review depends and blocks the merge of this branch.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="merge-your-branch"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id5"&gt;Merge your branch&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;After the merge request and review was approved you need to merge your branch
+into master.&lt;/p&gt;
+&lt;p&gt;After your review request was approved, you can send your branch to PQM
+for automatic testing and merging. Use the following command:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+paver pqm GITHUB_PULL_REQUEST_ID
+&lt;/pre&gt;
+&lt;p&gt;The PQM will check your branch and if it passed all tests, it will be merged
+and pushed to master.&lt;/p&gt;
+&lt;p&gt;If PQM is not enabled for the repo, you will need to do a manual merge.&lt;/p&gt;
+&lt;p&gt;When doing manual merge using git, use squash merge and don't use the
+default commit message. Here is a sample command for merging branch
+&amp;quot;1234-what-was-done&amp;quot;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+git checkout master
+git merge --no-commit --squash 1234-what-was-done
+git commit -a -m &amp;quot;[#1234] What was done in this branch.&amp;quot;
+&lt;/pre&gt;
+&lt;p&gt;It is recommended to define a git alias for &lt;cite&gt;merge --no-commit --squash&lt;/cite&gt;.&lt;/p&gt;
+&lt;p&gt;A merge commit should have a commit message, in the format:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+[#1234] What was done in this branch.
+&lt;/pre&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;#1234&lt;/strong&gt; is the ticket number for this branch. It is used to get more
+details about branch work and review. It can also be used to associate a
+commit to a ticket / branch / review / task and check the history/story of
+that commit.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="for-person-reviewing-changes"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id6"&gt;For person reviewing changes&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Aim for a code inspection rate of fewer than 300 – 500 LOC per hour. This
+does not apply to QA team members for which, reviewing changes is the main
+activity.&lt;/li&gt;
+&lt;li&gt;Take enough time for a proper, slow review, but not more than 60–90 minutes.
+Take a big break between reviews.&lt;/li&gt;
+&lt;li&gt;You should always spend at least five minutes reviewing code, even if it's
+just one line. Often, a single line or small changes can have major
+impact throughout the whole system, and it's worth the five minutes to
+think through the possible effects that a change could have.&lt;/li&gt;
+&lt;li&gt;The only quality metric of good work / code is &lt;strong&gt;WTF/s&lt;/strong&gt;. While doing
+the review you are encouraged to keep track of all your first
+contact / view / read impressions and report them in the review feedback.&lt;/li&gt;
+&lt;li&gt;Follow procedure recommended in the &amp;quot;How to try and test the changes&amp;quot;
+section, record environment, steps and results and share them through
+a comment.&lt;/li&gt;
+&lt;li&gt;In case of errors, leave a comment describing what tests were run, the
+exact steps you took and the actual results.&lt;/li&gt;
+&lt;li&gt;If the work is good, you can request the code to be merged by the author
+by setting the state to needs_merge in Trac.&lt;/li&gt;
+&lt;li&gt;If the work is good and GitHub pull request was used, leave a comment on
+the pull request page with a line starting with / containing
+&lt;strong&gt;changes-approved&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;If no merge is required you can close the ticket as solved.&lt;/li&gt;
+&lt;li&gt;If minor changes are required, and they are easy to fix, you cat try to fix
+them. Commit the changes and approve the review at your revision.&lt;/li&gt;
+&lt;li&gt;If changes are required, you put the ticket in the &lt;strong&gt;needs-changes&lt;/strong&gt; state
+and assign the ticket to the person who can make the required changes.
+When working with GitHub you can request changes by adding
+the &lt;strong&gt;needs-changes&lt;/strong&gt; marker word in a comment.&lt;/li&gt;
+&lt;li&gt;Don't spend to much time on a review request if it is not clear enough and
+you don't know exactly what to do and how to test.
+This is a problem with the review request and it &lt;cite&gt;needs changes&lt;/cite&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="reviewer-s-check-list-any-role"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id7"&gt;Reviewer's check list - Any Role&lt;/a&gt;&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Is there a release notes entry for changes?&lt;/li&gt;
+&lt;li&gt;Is there documentation for changes? Does the documentation make sense?&lt;/li&gt;
+&lt;li&gt;Are the new events documented?&lt;/li&gt;
+&lt;li&gt;Are the removed events documented?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="reviewer-s-check-list-developer"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id8"&gt;Reviewer's check list - Developer&lt;/a&gt;&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Does the &lt;strong&gt;new&lt;/strong&gt; changes comply with latest styleguide ?&lt;/li&gt;
+&lt;li&gt;Does the code have automated tests for all the new code?&lt;/li&gt;
+&lt;li&gt;Does the merge commit message describes what is done by this branch?&lt;/li&gt;
+&lt;li&gt;Does the branch name starts with the Trac ticket ID.&lt;/li&gt;
+&lt;li&gt;Does &lt;strong&gt;all&lt;/strong&gt; tests pass? Does GitHub say that the branch is
+&lt;strong&gt;Good to merge&lt;/strong&gt;?&lt;/li&gt;
+&lt;li&gt;If there is no &lt;tt class="docutils literal"&gt;paver test_review&lt;/tt&gt; for the latest code, you can
+either just reject the review, or trigger a test and wait for results.
+&lt;strong&gt;Never&lt;/strong&gt; approve a code that is not passing the tests.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="reviewer-s-check-list-qa"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id9"&gt;Reviewer's check list - QA&lt;/a&gt;&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Does the new code perform as expected when running manual tests?&lt;/li&gt;
+&lt;li&gt;Does the test scenarios from the review description make sense?
+Can they be executed? Successfully ?&lt;/li&gt;
+&lt;li&gt;Does the new end-user interaction GUI or CLI make sense and is easy to use?&lt;/li&gt;
+&lt;li&gt;Are there any corner cases not described in reviews or not covered by
+functional tests?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="overview-of-the-github-and-trac-integration"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id10"&gt;Overview of the GitHub and Trac integration&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The repository
+&lt;a class="reference external" href="https://github.com/chevah/github-hooks-server"&gt;github-hooks-server&lt;/a&gt;
+contains the code responsible for handling GitHub hooks and
+applying changes to Trac tickets.&lt;/p&gt;
+&lt;p&gt;Integration is mainly between GitHub Pull Requests and Trac tickets,
+following the workflow described in &lt;a class="reference external" href="http://styleguide.chevah.com/review.html"&gt;review&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The Pull Request title should start with &lt;strong&gt;[#TRAC_TICKET_ID]&lt;/strong&gt; and
+each message on this Pull Request triggers a hook looking for special keywords.&lt;/p&gt;
+&lt;p&gt;When creating the Pull Request the special syntax &lt;strong&gt;reviewers: &amp;#64;user1 &amp;#64;user2&lt;/strong&gt;
+sets which users should review and approve it. There is also
+&lt;strong&gt;depends-on: review1 review2&lt;/strong&gt; which blocks this merge until the reviews it
+depends on are done.&lt;/p&gt;
+&lt;p&gt;A comment mentioning &lt;strong&gt;needs-review&lt;/strong&gt; issues a review request modifying the
+state of the Trac Ticket to &lt;cite&gt;needs_review&lt;/cite&gt;.&lt;/p&gt;
+&lt;p&gt;In the same way, mentioning &lt;strong&gt;needs-changes&lt;/strong&gt; modifies the ticket state to
+&lt;cite&gt;needs_changes&lt;/cite&gt;, notifying the assigned user that the Pull Request
+should be fixed and reviewed again.&lt;/p&gt;
+&lt;p&gt;When a reviewer comments &lt;strong&gt;changes-approved&lt;/strong&gt;, it marks the Pull Request as
+good to merge. If all reviewers listed in the Pull Request body comment,
+the hook will change the ticket state to &lt;cite&gt;needs-merge&lt;/cite&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Testing</title><link href="http://styleguide.chevah.com/testing.html" rel="alternate"></link><updated>2016-04-15T07:39:16+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:testing.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#types-of-tests" id="id1"&gt;Types of tests&lt;/a&gt;&lt;ul&gt;
@@ -852,8 +1245,8 @@ with other code / systems.&lt;/p&gt;
 unit tests are.&lt;/p&gt;
 &lt;p&gt;Test for single method or functions. As the number of unit tests significantly grows
 throughout the lifecycle of the project one key requirement is that they run as
-fast as possible. Therefore the tests should use only data from memory for both input
-and output.&lt;/p&gt;
+fast as possible.
+Therefore the tests should use only data from memory for both input and output.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="integration-testing"&gt;
 &lt;h3&gt;&lt;a class="toc-backref" href="#id3"&gt;Integration testing&lt;/a&gt;&lt;/h3&gt;
@@ -1516,7 +1909,136 @@ validation all the time.
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>CSS, LESS and Styles</title><link href="http://styleguide.chevah.com/css.html" rel="alternate"></link><updated>2016-04-15T07:37:21+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:css.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Bugs and Tech-Debt</title><link href="http://styleguide.chevah.com/bugs-and-tech-debt.html" rel="alternate"></link><updated>2016-04-15T07:39:16+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:bugs-and-tech-debt.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#defects-and-release-blockers" id="id2"&gt;Defects and Release Blockers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#technical-debt" id="id3"&gt;Technical Debt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#references" id="id4"&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="general"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As with any other product, our ideal is to release a product without any
+known defects and with optimal implementation.&lt;/p&gt;
+&lt;p&gt;While this is a noble goal, achieving it might not be economically feasible.
+That is creating a zero bugs product will result a product which costs more
+than the customers are willing to pay for.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="defects-and-release-blockers"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Defects and Release Blockers&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Defects are defined as behavior of our product which does not follow our
+specification or the way we want it to work.&lt;/p&gt;
+&lt;p&gt;Mis-behaviors in our build system, testing system or infrastructure are also
+defects.&lt;/p&gt;
+&lt;p&gt;We split the defect into 3 categories:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;cite&gt;bugs with priority high or critical&lt;/cite&gt; - are defects which affect
+(or we thing that it might affect) the workflow of at least one customer&lt;/li&gt;
+&lt;li&gt;&lt;cite&gt;bugs with priority low&lt;/cite&gt; -
+are defects for which we are not aware of any affected customer
+but which we would like the product to not behave in this way.
+They are acknowledged in the &lt;strong&gt;Known Issues&lt;/strong&gt; section of our documentation.&lt;/li&gt;
+&lt;li&gt;&lt;cite&gt;tasks with priority high or critical&lt;/cite&gt; - are defects affecting our build
+system or testing infrastructure, but are not defects in the actual
+product.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For some defects, fixing them is a lot of work and their impact is minor
+as maybe our customers will never use the product in a way to trigger the bug.
+In this case, we create a ticket with type &lt;cite&gt;bug&lt;/cite&gt; and add it in the backlog.&lt;/p&gt;
+&lt;p&gt;All defects which affect the work-flow of at least one customer are
+considered top priority and will &lt;strong&gt;block the release&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;All defects which are present in a release &lt;strong&gt;should&lt;/strong&gt; be acknowledge in the
+documentation.&lt;/p&gt;
+&lt;p&gt;If we gather a considerable number of minor bugs / defect we will schedule
+a release dedicated / focused on reducing their numbers.&lt;/p&gt;
+&lt;p&gt;We should focus on fixing all bugs as soon as possible. Even if a defect does
+not currently affect a customer, the chances are high that a customer
+will be affected by it in the near future.&lt;/p&gt;
+&lt;p&gt;Also small/minor bugs might release big flaws in the structure of our
+code. We should focus on fixing them as soon as possible so that we can work
+on them at a normal pace and not wait to fix them in a hurry under the
+pressure of a release blocker or customer complaining about bad behaviour.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="technical-debt"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Technical Debt&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Technical debts are areas in which we trade code quality for having a feature
+delivered faster or a defect fixed sooner.&lt;/p&gt;
+&lt;p&gt;For every tech-debt the quality of our code is reduced.&lt;/p&gt;
+&lt;p&gt;As expressed by Martin Fowler:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+You have a piece of functionality that you need to add to your system.
+You see two ways to do it.
+One is quick to do but is messy -
+you are sure that it will make further changes harder in the future.
+The other results in a cleaner design, but will take longer to put in
+place.
+&lt;/pre&gt;
+&lt;p&gt;If you go for &lt;em&gt;the former&lt;/em&gt; method you will generate a &lt;em&gt;tech-debt&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Further comments by Uncle Bob:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+Messy code, produced by people who are ignorant of good design practices,
+shouldn't be a debt.
+Technical Debt should be reserved for cases when people have made a
+considered decision to adopt a design strategy that isn't sustainable
+in the longer term, but yields a short term benefit,
+such as making a release.
+
+There’s nothing inherently unwise about tech-debt.
+If the early release of 1.0 drives the business that pays for
+the development of 2.0 then the business has won.
+So this kind of reasoned technical debt may indeed be appropriate.
+&lt;/pre&gt;
+&lt;p&gt;Another comment by Ron Jeffries:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+Technical debt is never a good thing.
+It is sometimes inevitable.
+We should never take on technical debt on purpose,
+and we should pay it back as soon as we know how.
+&lt;/pre&gt;
+&lt;p&gt;The analogy with the financial term is weak so please read
+&lt;a class="reference external" href="http://ronjeffries.com/articles/015-11/tech-debt/"&gt;Technical Debt – Bad metaphor or worst metaphor?&lt;/a&gt; and all the other
+articles in the reference section to find out more.&lt;/p&gt;
+&lt;p&gt;While tech-debt is a bad metaphor, we should all know what we want to say
+with &lt;cite&gt;tech-debt&lt;/cite&gt; when we talk about our code. I was not able to find a better
+metaphor so for now we are stuck with this term.&lt;/p&gt;
+&lt;p&gt;We are not paying tech-debt in dedicated sprints or releases.&lt;/p&gt;
+&lt;p&gt;Please read the &lt;a class="reference external" href="http://ronjeffries.com/xprog/articles/refactoring-not-on-the-backlog/"&gt;Refactoring - Not on the backlog!&lt;/a&gt;
+article by Ron Jeffries.&lt;/p&gt;
+&lt;p&gt;We use the &lt;cite&gt;FIXME:1234:&lt;/cite&gt; marker to signal and acknowledge a section of code
+which was created as a tech-debt.
+We will leave the tech-debt unpaid and will try to pay it next time we hit
+an issue with that section of code.&lt;/p&gt;
+&lt;p&gt;Sometimes your experience tells you that a section of code is not right and
+that it can be implemented as re-usable section.
+When you only had one use case for that code is very hard to create a
+generalized / re-usable version and something trying to do that is wrong as
+you most probably ain't gonna need that.
+Then it comes the second use cases which provides a hint that the section
+should be re-factored for reusal.
+If you know how to refactor it then just go ahead.
+If you have doubts about how to refactor it, try to do your best and mark
+the section as tech-debt.
+As more use cases are gathered you should have a better understanding of
+the requirements and refactor it in a better way.
+The tech-debt marker will inform the person which tries to re-use that code
+for a 3rd or 4th use case not to try to hard to create it's code to work
+with the existing re-usable component, but to consider refactoring the
+re-usable component itself so that it provide a clean re-usable API.&lt;/p&gt;
+&lt;p&gt;We are not blocking a release due to a tech-debt.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="references"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;References&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://c2.com/cgi/wiki?TechnicalDebt"&gt;http://c2.com/cgi/wiki?TechnicalDebt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Technical_debt"&gt;https://en.wikipedia.org/wiki/Technical_debt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://martinfowler.com/tags/technical%20debt.html"&gt;http://martinfowler.com/tags/technical%20debt.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://ronjeffries.com/categories/technical-debt/"&gt;http://ronjeffries.com/categories/technical-debt/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://sites.google.com/site/unclebobconsultingllc/a-mess-is-not-a-technical-debt"&gt;https://sites.google.com/site/unclebobconsultingllc/a-mess-is-not-a-technical-debt&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>CSS, LESS and Styles</title><link href="http://styleguide.chevah.com/css.html" rel="alternate"></link><updated>2016-04-15T07:39:16+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:css.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#css-syntax-elements" id="id1"&gt;CSS Syntax Elements&lt;/a&gt;&lt;/li&gt;
@@ -1682,7 +2204,7 @@ product-name {
     }
 &lt;/pre&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Generic</title><link href="http://styleguide.chevah.com/generic.html" rel="alternate"></link><updated>2016-04-15T07:37:21+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:generic.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Generic</title><link href="http://styleguide.chevah.com/generic.html" rel="alternate"></link><updated>2016-04-15T07:39:16+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:generic.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -2010,7 +2532,7 @@ log_file
     that can be set.
 &lt;/pre&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>HTML, XML and other markups</title><link href="http://styleguide.chevah.com/html.html" rel="alternate"></link><updated>2016-04-15T07:37:21+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:html.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>HTML, XML and other markups</title><link href="http://styleguide.chevah.com/html.html" rel="alternate"></link><updated>2016-04-15T07:39:16+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:html.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -2096,400 +2618,7 @@ You want the browser to load the footer before a table full of data.):&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>JavaScript</title><link href="http://styleguide.chevah.com/javascript.html" rel="alternate"></link><updated>2016-04-15T07:37:21+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:javascript.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
-&lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#prevent-polluting-the-global-scope" id="id2"&gt;Prevent polluting the global scope&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#defining-classes" id="id3"&gt;Defining classes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#css-interaction" id="id4"&gt;CSS interaction&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#js-related-css-class" id="id5"&gt;JS related CSS class&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#changing-css-html-from-js" id="id6"&gt;Changing CSS/HTML from JS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#test-styleguide" id="id7"&gt;Test styleguide&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#rerefences" id="id8"&gt;Rerefences&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="general"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;General&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;Variable declarations must start with 'var'.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Do your best to never use a semicolon.
-This means avoiding them at line breaks and avoiding multi-statement lines.
-Semi-colon at the end of the line is added only when required.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Use 4 space indentation.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Variable, function, method and constants name are after PEP8.
-variable_name, function_name, methodName, ClassName, CONSTANT_NAME&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Callback methods should always end with 'Callback' as the
-method / function name. This is a reminder of the fact that
-the context is lost.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Constructor functions (those that are called with &lt;strong&gt;new&lt;/strong&gt;) should use
-class naming convention.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;use &lt;tt class="docutils literal"&gt;===&lt;/tt&gt; instead of &lt;tt class="docutils literal"&gt;==&lt;/tt&gt; for comparison. &lt;tt class="docutils literal"&gt;===&lt;/tt&gt; doesn't do type
-coercion.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Only use &lt;tt class="docutils literal"&gt;typeof&lt;/tt&gt; for checking against undefined variables:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-typeof foo !== 'undefined'
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;For all other type checking use the custom defined typeOf() function.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Try to avoid the usage of &lt;tt class="docutils literal"&gt;instanceof&lt;/tt&gt; and don't use it for native types.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Create new arrays using the array literals &lt;tt class="docutils literal"&gt;[]&lt;/tt&gt; notation. Don't use
-&lt;tt class="docutils literal"&gt;new Array()&lt;/tt&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Iterate arrays using the classic &lt;tt class="docutils literal"&gt;for&lt;/tt&gt; loop:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-var list = [1, 2, 3, 4, 5, ...... 100000000];
-for (var i = 0, l = list.length; i == l; i++) {
-    console.log(list[i]);
-}
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Always define the variable used to iterate in a &lt;tt class="docutils literal"&gt;for&lt;/tt&gt; loop.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Don't use &lt;tt class="docutils literal"&gt;eval&lt;/tt&gt; and don't pass strings to &lt;tt class="docutils literal"&gt;setTimeout&lt;/tt&gt; and
-&lt;tt class="docutils literal"&gt;setInterval&lt;/tt&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Use &lt;tt class="docutils literal"&gt;undefined&lt;/tt&gt; instead of the the traditional &lt;tt class="docutils literal"&gt;null&lt;/tt&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Keep braces on the same line as their corresponding statements. Never omit
-them for single-line if / else statements.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;something&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="c1"&gt;// code here&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="c1"&gt;// code here&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;duppy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;something&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="nx"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Leave 2 empty lines between global function or class definitions.
-Leave 1 empty line between functions from the same class.
-Global variable can be grouped and the don't require empty lines in between.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;GLOBAL_DAY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;GLOBAL_YEAR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
-
-
-&lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;Docstring for duppy.&lt;/span&gt;
-&lt;span class="cm"&gt;*/&lt;/span&gt;
-&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;duppy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="c1"&gt;// Do something here.&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-
-&lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;Docstring for duppy_doo.&lt;/span&gt;
-&lt;span class="cm"&gt;*/&lt;/span&gt;
-&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;duppy_doo&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="c1"&gt;// Do something here.&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-
-&lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;A simple mock for Browser service.&lt;/span&gt;
-&lt;span class="cm"&gt;*/&lt;/span&gt;
-&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;MockBrowser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;_cookies&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
-
-    &lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;    Docstring for MockBrower.setCookies()&lt;/span&gt;
-&lt;span class="cm"&gt;    */&lt;/span&gt;
-    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setCookie&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="c1"&gt;// Implementation here.&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;    Docstring here.&lt;/span&gt;
-&lt;span class="cm"&gt;    */&lt;/span&gt;
-    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;doSomethingElse&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="c1"&gt;// Implementation here.&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;_methodWihoutDocstring&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="c1"&gt;// Implementation here.&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;Avoid using leading parenthesis.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Avoid using &lt;tt class="docutils literal"&gt;delete&lt;/tt&gt; operator and only use it to delete explicitly
-set properties on normal objects:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-var obj = {x: 1};
-obj.y = 2;
-delete obj.x;  // true
-delete obj.y;  // true
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Use single quote for strings.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Example:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-In HTML, we use &amp;quot; as quotes around attribute values, like this:
-
-&amp;lt;a href=&amp;quot;foo&amp;quot;&amp;gt;bar&amp;lt;/a&amp;gt;
-In JavaScript, we use ' as much as possible.
-
-alert('qux');
-This way, we can use consistent quotes when writing HTML inside of JS:
-
-alert('&amp;lt;a href=&amp;quot;foo&amp;quot;&amp;gt;bar&amp;lt;/a&amp;gt;')
-&lt;/pre&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;REST web services should always return a valid dictionary
-and not an Array or a primitive. JSON-RPC is forced to return a dictionary
-by the protocol.&lt;/li&gt;
-&lt;li&gt;Callbacks called from the GUI / DOM should be prefixed with &lt;cite&gt;on&lt;/cite&gt;.
-Ex: onAuthentication (when authenticate button is pressed),
-onLogout (when logout link is pressed),
-onLoginFormSubmit (when login form is submitted)&lt;/li&gt;
-&lt;li&gt;Callbacks/Errback for XHR are be prefixed with &lt;cite&gt;cb&lt;/cite&gt; and &lt;cite&gt;eb&lt;/cite&gt;, similar
-with Python/Twisted convention.&lt;/li&gt;
-&lt;li&gt;For one line comments, leave one empty space after the comment marker.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// Good comment line.&lt;/span&gt;
-&lt;span class="c1"&gt;//Bad comment line.&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;For multi line comments use the following convention.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;Short single line comment title.&lt;/span&gt;
-&lt;span class="cm"&gt;More details about what is here and&lt;/span&gt;
-&lt;span class="cm"&gt;here and here.&lt;/span&gt;
-
-&lt;span class="cm"&gt;Feel free to create paragraphs separation.&lt;/span&gt;
-&lt;span class="cm"&gt;*/&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Global constants will follow the CONSTANT_NAME naming convention.&lt;/li&gt;
-&lt;li&gt;Global services (objects with methods) are named similar to class names.
-Most of the time they will be singletons so there will be no associated
-class.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;Shell&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;ActiveXObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;WScript.Shell&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-
-&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;do_something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;bla&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Shell&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;method_usage&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;TODO
-&lt;a class="reference external" href="http://javascript.crockford.com/code.html"&gt;http://javascript.crockford.com/code.html&lt;/a&gt; &lt;a class="reference external" href="http://jibbering.com/faq/notes/code-guidelines/"&gt;http://jibbering.com/faq/notes/code-guidelines/&lt;/a&gt; &lt;a class="reference external" href="http://neil.rashbrook.org/Js.htm"&gt;http://neil.rashbrook.org/Js.htm&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="prevent-polluting-the-global-scope"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Prevent polluting the global scope&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;You can use immediately invoked function expression IIFE to avoid
-injecting more variables into global scope.
-When using IIFE don't forget to add the semicolon at the beginning.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// Path something from global scope.&lt;/span&gt;
-&lt;span class="p"&gt;;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="c1"&gt;// tagsInput is kept only inside this scope.&lt;/span&gt;
-  &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;tagsInput&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;angular&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;module&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ngTagsInput&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="nx"&gt;tagsInput&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;factory&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;tiTranscludeAppendDirective&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-      &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
-  &lt;span class="p"&gt;})&lt;/span&gt;
-&lt;span class="p"&gt;})()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="defining-classes"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Defining classes&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;In JS there is no strict way of defining a class and instances are created
-using a function and new operator.&lt;/p&gt;
-&lt;p&gt;When defining a class we use an anonymous function to allow class
-private instances and create a new class scope.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;BaseAccount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-
-    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;class_private_member&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
-
-    &lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;    Constructor is here.&lt;/span&gt;
-&lt;span class="cm"&gt;    */&lt;/span&gt;
-    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;
-        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;class_member&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
-
-    &lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;    Base method.&lt;/span&gt;
-&lt;span class="cm"&gt;    */&lt;/span&gt;
-    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;base_method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;-&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;    Some method.&lt;/span&gt;
-&lt;span class="cm"&gt;    */&lt;/span&gt;
-    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;some_method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;prefix&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;base_method&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;    Another method.&lt;/span&gt;
-&lt;span class="cm"&gt;    */&lt;/span&gt;
-    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;tuned&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt;
-&lt;span class="p"&gt;}())&lt;/span&gt;
-
-
-&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;SpecialAccount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-
-    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;variant&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;light&amp;#39;&lt;/span&gt;
-        &lt;span class="cm"&gt;/* Something similar to super()*/&lt;/span&gt;
-        &lt;span class="nx"&gt;BaseAccount&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;call&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="cm"&gt;/* Something similar to inheritance. */&lt;/span&gt;
-    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;Object&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;BaseAccount&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;constructor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt;
-
-    &lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;    Method extending parent.&lt;/span&gt;
-&lt;span class="cm"&gt;    */&lt;/span&gt;
-    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;some_method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;prefix&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;parent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;BaseAccount&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;some_method&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;call&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;prefix&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;-child-&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;parent&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;    Method overwriting parent.&lt;/span&gt;
-&lt;span class="cm"&gt;    */&lt;/span&gt;
-    &lt;span class="nx"&gt;cls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;tuned&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;cls&lt;/span&gt;
-&lt;span class="p"&gt;}())&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="css-interaction"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;CSS interaction&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="section" id="js-related-css-class"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id5"&gt;JS related CSS class&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Try to append js- to all javascript-based selectors. This is taken from
-&lt;a class="reference external" href="http://ozmm.org/posts/slightly_obtrusive_javascript.html"&gt;slightly obtrusive javascript&lt;/a&gt;. The idea is that you should be able to tell
-a presentational class from a functional class.&lt;/p&gt;
-&lt;p&gt;There are good things and bad things about &amp;quot;Unobtrustive JavaScript.&amp;quot;
-One bad thing: it's hard to tell what JavaScript is touching an element.&lt;/p&gt;
-&lt;p&gt;Only ever use classes and ids prefix with js- when touching the DOM with
-JavaScript.&lt;/p&gt;
-&lt;p&gt;For example:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-&amp;lt;a href=&amp;quot;#prices&amp;quot; class=&amp;quot;button js-open-tab&amp;quot;&amp;gt;Prices&amp;lt;/a&amp;gt;
-&lt;/pre&gt;
-&lt;p&gt;Now we know to look for any JavaScript touching .js-open-tab, which should
-only be a simple search away.&lt;/p&gt;
-&lt;p&gt;And hey, now JavaScript and CSS won't share selectors. Since we're separating
-our content and presentation, we might as well separate our behaviour all the
-way too.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="changing-css-html-from-js"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id6"&gt;Changing CSS/HTML from JS&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Don't modify the associated CSS properties, but rather modify the CSS class:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-GOOD: $('#element_id').addClass('highlight');
-BAD : $('#element_id').css('font-weight': 'bold');
-&lt;/pre&gt;
-&lt;p&gt;Same story as with CSS, don't modify HTML tag attributes,
-but rather try to change the CSS class:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-GOOD: $('#element_id').addClass('sprite red_dot');
-BAD : $('#element_id').attr('src': 'some/red_dot.png');
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="test-styleguide"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#id7"&gt;Test styleguide&lt;/a&gt;&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;We use &lt;tt class="docutils literal"&gt;expect&lt;/tt&gt; style testing.&lt;/li&gt;
-&lt;li&gt;Leave 2 emtpy lines before each &lt;tt class="docutils literal"&gt;suite&lt;/tt&gt; and one empty line before each
-&lt;tt class="docutils literal"&gt;test&lt;/tt&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;span class="cm"&gt;Tests for login controller.&lt;/span&gt;
-&lt;span class="cm"&gt;*/&lt;/span&gt;
-
-
-&lt;span class="nx"&gt;suite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;LoginCtrl&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-
-    &lt;span class="c1"&gt;// Shared variables.&lt;/span&gt;
-    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;scope&lt;/span&gt;
-    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;ctrl&lt;/span&gt;
-
-    &lt;span class="nx"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="c1"&gt;// Initialize first.&lt;/span&gt;
-    &lt;span class="p"&gt;})&lt;/span&gt;
-
-    &lt;span class="nx"&gt;teardown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="c1"&gt;// Clean second.&lt;/span&gt;
-    &lt;span class="p"&gt;})&lt;/span&gt;
-
-    &lt;span class="nx"&gt;test&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="s1"&gt;&amp;#39;Initializes with no errors and blank values&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
-    &lt;span class="s1"&gt;&amp;#39;long line are wrapped&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;something&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-        &lt;span class="nx"&gt;something&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;doSomething&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-        &lt;span class="nx"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;equal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;something&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;username&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="p"&gt;})&lt;/span&gt;
-
-
-    &lt;span class="nx"&gt;suite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;critical_error attribute&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
-
-        &lt;span class="nx"&gt;test&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-        &lt;span class="s1"&gt;&amp;#39;When set, hides the form and sets the error message.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
-            &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;manu&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;makeUniqueString&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-            &lt;span class="nx"&gt;scope&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;critical_error&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt;
-            &lt;span class="nx"&gt;scope&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$digest&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-            &lt;span class="nx"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;isFalse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;scope&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;show_form&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-            &lt;span class="nx"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;equal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;scope&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;})&lt;/span&gt;
-    &lt;span class="p"&gt;})&lt;/span&gt;
-&lt;span class="p"&gt;})&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;div class="section" id="rerefences"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="#id8"&gt;Rerefences&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Here are the pages I used to create this page.&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://toranbillups.com/blog/archive/2013/05/15/Basic-javascript-inheritance-and-polymorphism/"&gt;http://toranbillups.com/blog/archive/2013/05/15/Basic-javascript-inheritance-and-polymorphism/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</summary></entry><entry><title>Bash</title><link href="http://styleguide.chevah.com/bash.html" rel="alternate"></link><updated>2016-04-15T07:37:21+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:bash.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
+</summary></entry><entry><title>Bash</title><link href="http://styleguide.chevah.com/bash.html" rel="alternate"></link><updated>2016-04-15T07:39:16+01:00</updated><author><name>Chevah Team</name></author><id>tag:styleguide.chevah.com,2016-04-15:bash.html</id><summary type="html">&lt;div class="contents topic" id="contents"&gt;
 &lt;p class="topic-title first"&gt;Contents&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#general" id="id1"&gt;General&lt;/a&gt;&lt;/li&gt;
