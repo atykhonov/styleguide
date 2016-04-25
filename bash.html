@@ -70,13 +70,8 @@
         </a>
       </li>
       <li>
-        <a class="" href="release-process.html">
-          Release process
-        </a>
-      </li>
-      <li>
-        <a class="" href="work.html">
-          Work
+        <a class="" href="leave-holiday.html">
+          Leave / Holiday
         </a>
       </li>
       <li>
@@ -85,8 +80,13 @@
         </a>
       </li>
       <li>
-        <a class="" href="leave-holiday.html">
-          Leave / Holiday
+        <a class="" href="release-process.html">
+          Release process
+        </a>
+      </li>
+      <li>
+        <a class="" href="work.html">
+          Work
         </a>
       </li>
       <li>
@@ -167,7 +167,7 @@ inner ones with . The $(command) format doesn't change when nested and is
 easier to read. See the example below</li>
 </ul>
 <div class="highlight"><pre><span class="c"># This is preferred:</span>
-<span class="nv">var</span><span class="o">=</span><span class="s2">&quot;$(command &quot;</span><span class="k">$(</span>command1<span class="k">)</span><span class="s2">&quot;)&quot;</span>
+<span class="nv">var</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">command</span> <span class="s2">&quot;</span><span class="k">$(</span>command1<span class="k">)</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2">&quot;</span>
 
 <span class="c"># This is not:</span>
 <span class="nv">var</span><span class="o">=</span><span class="s2">&quot;`command \`command1\``&quot;</span>
@@ -188,16 +188,16 @@ SMB shares.</p>
 <p>Always double quote path constants to handle files with spaces:</p>
 <div class="highlight"><pre><span class="nv">SOME_PATH</span><span class="o">=</span>/some/path/
 <span class="c"># and use it like this:</span>
-<span class="nb">command</span> <span class="s2">&quot;${SOME_PATH}/some.file&quot;</span>
+<span class="nb">command</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SOME_PATH</span><span class="si">}</span><span class="s2">/some.file&quot;</span>
 
 <span class="c"># Another example</span>
 <span class="nv">REMOTE_URI</span><span class="o">=</span>chevah@chevah.com:/home/chevah/styleguide.chevah.com/vm/
-scp <span class="s2">&quot;$LOCAL_FILE&quot;</span> <span class="s2">&quot;${REMOTE_URL}/file&quot;</span>
+scp <span class="s2">&quot;</span><span class="nv">$LOCAL_FILE</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">REMOTE_URL</span><span class="si">}</span><span class="s2">/file&quot;</span>
 </pre></div>
 <p>Instead of:</p>
 <div class="highlight"><pre><span class="nv">SOME_PATH</span><span class="o">=</span>/some/path/
 <span class="c"># and then:</span>
-<span class="nb">command</span> <span class="s2">&quot;${SOME_PATH}some.file&quot;</span>
+<span class="nb">command</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SOME_PATH</span><span class="si">}</span><span class="s2">some.file&quot;</span>
 </pre></div>
 </div>
 <div class="section" id="function-definition">
@@ -243,41 +243,41 @@ procedure1<span class="o">()</span> <span class="o">{</span>
 </div>
 <div class="section" id="case-syntax">
 <h2><a class="toc-backref" href="#id4">Case Syntax</a></h2>
-<div class="highlight"><pre><span class="k">case</span> <span class="s2">&quot;$VARIABLE_NAME&quot;</span> in
+<div class="highlight"><pre><span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$VARIABLE_NAME</span><span class="s2">&quot;</span> in
     <span class="s2">&quot;option1&quot;</span><span class="o">)</span>
-        <span class="k">do </span>specific
-        ;;
+        <span class="k">do</span> specific
+        <span class="p">;;</span>
     option2*<span class="o">)</span>
-        <span class="k">do </span>generic
-        ;;
+        <span class="k">do</span> generic
+        <span class="p">;;</span>
     *<span class="o">)</span>
-        <span class="k">do </span>default
-        ;;
+        <span class="k">do</span> default
+        <span class="p">;;</span>
 <span class="k">esac</span>
 </pre></div>
 </div>
 <div class="section" id="if-then-else">
 <h2><a class="toc-backref" href="#id5">IF/THEN/ELSE</a></h2>
-<div class="highlight"><pre><span class="k">if </span>TEST; <span class="k">then</span>
-<span class="k">    </span>call something
-<span class="k">elif</span> <span class="o">[</span> <span class="s2">&quot;$string&quot;</span> <span class="o">=</span> OTHER_TEST <span class="o">]</span>; <span class="k">then</span>
-<span class="k">    </span>call something_else
+<div class="highlight"><pre><span class="k">if</span> TEST<span class="p">;</span> <span class="k">then</span>
+    call something
+<span class="k">elif</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$string</span><span class="s2">&quot;</span> <span class="o">=</span> OTHER_TEST <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    call something_else
 <span class="k">else</span>
-<span class="k">    </span>call something_else_completely
+    call something_else_completely
 <span class="k">fi</span>
 </pre></div>
 </div>
 <div class="section" id="for">
 <h2><a class="toc-backref" href="#id6">FOR</a></h2>
-<div class="highlight"><pre><span class="k">for </span>CONDITION; <span class="k">do</span>
-<span class="k">    </span>call something
+<div class="highlight"><pre><span class="k">for</span> CONDITION<span class="p">;</span> <span class="k">do</span>
+    call something
 <span class="k">done</span>
 </pre></div>
 </div>
 <div class="section" id="while-until">
 <h2><a class="toc-backref" href="#id7">WHILE/UNTIL</a></h2>
-<div class="highlight"><pre><span class="k">while </span>TEST; <span class="k">do</span>
-<span class="k">    </span>call something
+<div class="highlight"><pre><span class="k">while</span> TEST<span class="p">;</span> <span class="k">do</span>
+    call something
 <span class="k">done</span>
 </pre></div>
 </div>

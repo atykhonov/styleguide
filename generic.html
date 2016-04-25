@@ -70,13 +70,8 @@
         </a>
       </li>
       <li>
-        <a class="" href="release-process.html">
-          Release process
-        </a>
-      </li>
-      <li>
-        <a class="" href="work.html">
-          Work
+        <a class="" href="leave-holiday.html">
+          Leave / Holiday
         </a>
       </li>
       <li>
@@ -85,8 +80,13 @@
         </a>
       </li>
       <li>
-        <a class="" href="leave-holiday.html">
-          Leave / Holiday
+        <a class="" href="release-process.html">
+          Release process
+        </a>
+      </li>
+      <li>
+        <a class="" href="work.html">
+          Work
         </a>
       </li>
       <li>
@@ -367,6 +367,24 @@ and should be raised in simple conditions.</p>
 Each ID should be raised from a single place.
 The data attribute is a dictionary with key / values that make sense for the
 error.</p>
+<p>Don't use the <cite>assert</cite> statement in code but rather raise an explicit error.
+<cite>assert</cite> statement optimization is useless as it was scientifically proven
+that some bugs only show up when a customer uses the machine and we want
+those exceptions to be raised in production and not be accidentally
+disabled.</p>
+<p>Don't raise <cite>AssertionError</cite> outside of the test code.
+Use <cite>RuntimeError</cite> or a more specific exception.</p>
+<p>The <cite>AssertionError</cite> should never be handled; be in production nor in
+testing code.
+Using <cite>self.assertRaises(AssertionError)</cite> is a form of handling an
+exception.</p>
+<p>Don't raise <cite>RuntimeError</cite> outside of the production code.
+Use <cite>AssertionError</cite> when implementing doubles, stub or mock implementation
+to support the testing.</p>
+<p>All raised assertions should have a descriptive message.
+Raising an error without a message is a way of saying:
+&quot;I cared enough to give you an error, but not enough to tell you what is
+going on&quot;.</p>
 </div>
 <div class="section" id="experimental-features-without-feature-branches">
 <h2><a class="toc-backref" href="#id5">Experimental Features Without Feature Branches</a></h2>
